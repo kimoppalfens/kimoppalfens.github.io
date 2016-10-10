@@ -1,7 +1,4 @@
 ---
-id: 294
-title: About me
-date: 2012-03-19T13:55:24+00:00
 permalink: /about-me/
 ---
 Hey everybody, welcome to my blog! Great to see you here and I hope you like what you read until now. What about me?
