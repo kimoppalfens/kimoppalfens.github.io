@@ -10,7 +10,7 @@ locale                   : "en"
 title                    : "Enterprise Mobility ramblings"
 title_separator          : "-"
 name                     : "Kim Oppalfens"
-description              : "A whole new site by Kim Kitagries Oppalfens."
+description              : "A whole new site by Kim 'Kitagries' Oppalfens."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -18,7 +18,7 @@ teaser                   : # filename of teaser fallback teaser image placed in 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  provider               : "google-plus"# false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
