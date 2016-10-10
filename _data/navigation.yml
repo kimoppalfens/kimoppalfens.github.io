@@ -2,6 +2,9 @@
 main:
   - title: "Public sessions"
     url: /Sessions
+ 
+  - title: "Technet Searchlibrary"
+    url: /Technet
 
   - title: "About Kim"
     url: /About
