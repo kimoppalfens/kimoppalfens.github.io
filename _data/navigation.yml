@@ -4,7 +4,7 @@ main:
     url: /Sessions
  
   - title: "Technet Searchlibrary"
-    url: /Technet/
+    url: /technet/
 
   - title: "About Kim"
-    url: /About-me/
+    url: /about-me/
