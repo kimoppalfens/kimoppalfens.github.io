@@ -22,3 +22,5 @@ This feature can update and deliver fixes and features for:
 	<li>Configuration Manager console</li>
 	<li>Configuration manager clients</li>
 </ul>
+Which should provide the necessary flexibility to update just about anything, as this allows the product team to update, the ConfigMgr File system, the Admin UI file system, the database (Data as well as new tables, views, Stored procedres,…, as WMI)
+
