@@ -24,3 +24,34 @@ This feature can update and deliver fixes and features for:
 </ul>
 Which should provide the necessary flexibility to update just about anything, as this allows the product team to update, the ConfigMgr File system, the Admin UI file system, the database (Data as well as new tables, views, Stored procedres,functions, as WMI)
 
+<h1>Feature documentation</h1>
+The announcement itself didn't go into much detail explaining how the future worked, however did contain a <a href="http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttps:/technet.microsoft.com/library/dn965439.aspx">link</a> to the documentation of the Microsoft System Center Configuration Manager Technical Preview. This page contains a section on "Updates and servicing" which gives some insight into how this all operates.
+
+Some important items in that documentation, are highlighted below, but I do encourage you to go and read the doc itself to get all the nitty gritty details
+
+First of all, this entire process is driven by a new site system role called the cloud connection point, which replaces the Microsoft Intune connector site system role. In the current tech preview (Release 3), <span style="color: red;">the cloud connection point needs to be installed on the primary site server and needs internet access. </span>Both of these limitations are expected to be resolved in a subsequent release, and an offline procedure is planned for a future release, as mentioned in the comments section of the blog.
+
+Other limitations: Os language must be English, and you must set your date/time format to this absolutely weird way of throwing days, months and years in some random order called MM-DD-YYYY. Not sure who ever came up with that way of noting dates, but apparently that's what we need to use. In testing and hearing experiences from others, <span style="color: red;"><strong>this is the number one deal-breaker: The update process itself seems to be rock-solid, assuming you set your Date/time format accordingly.
+</strong></span>
+
+New updates are checked for every 7 days, since the install date of the environment. According to the docs a restart of the SMS_executive service triggers the check for updates as well. I'd venture a guess that restarting the SMS_DMP_Downloader might trick it as well, which would be less disruptive. (To be tested).
+
+Once the updates are downloaded you'll find them in <strong>Administration</strong> &gt; <strong>Cloud Services</strong> &gt; <strong>Updates and Services</strong> as available, you can subsequently click <strong>Install Update Pack
+</strong>
+
+As a final note, just running the prerequisite checker standalone, from this same node, doesn't work in the current build. Triggering this will perform the install as well.
+<h1>Feature at work – The server upgrade</h1>
+<ol>
+	<li>Step 1 would be to restart your sms_executive service if the update hasn't arrive in your <strong>Updates and Services</strong> node.</li>
+	<li>The update should arrive and be in the downloading state for a while. You can monitor the download progress in the DMPDownloader.log the log should contains lines similar to:</li>
+</ol>
+<em>EasySetupDownload thread is starting... $$&lt;SMS_DMP_DOWNLOADER&gt;&lt;09-22-2015 21:21:36.981-120&gt;&lt;thread=4700 (0x125C)&gt;
+</em>
+<p style="margin-left: 18pt;"><em>Download Easy setup payloads~~ $$&lt;SMS_DMP_DOWNLOADER&gt;&lt;09-22-2015 21:21:37.008-120&gt;&lt;thread=4700 (0x125C)&gt;
+</em></p>
+<p style="margin-left: 18pt;"><em>Get manifest.cab url~~ $$&lt;SMS_DMP_DOWNLOADER&gt;&lt;09-22-2015 21:21:37.012-120&gt;&lt;thread=4700 (0x125C)&gt;
+</em></p>
+<p style="margin-left: 18pt;"><em>Successfully write the update meta into outbox for package dcd17922-2c96-4bd7-b72d-e9159582cdf2~~ $$&lt;SMS_DMP_DOWNLOADER&gt;&lt;09-22-2015 21:40:36.934-120&gt;&lt;thread=4700 (0x125C)&gt;
+</em></p>
+
+
