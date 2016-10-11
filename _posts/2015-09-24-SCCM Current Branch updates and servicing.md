@@ -15,3 +15,12 @@ Or in the words of the blog: This update is the first to be delivered through ou
 
 People already involved with Microsoft Intune in a Hybrid scenario will see a lot of similarities with what is called the weave feature to download mobile device management extensions and enable/install these extensions. This should not come as a surprise, as one of the driving factors behind weave was the speed with which new versions and features of IOS, Android and Windows Phone were released. The mobile device management market is rapidly growing and evolving, and needed it's own release vehicle, that release vehicle became 'Extensions for Microsoft Intune' a.k.a weave. Now, with Windows 10 entering the Windows as a service-era, with things like the current branch potentially upgrading every 10 months, Microsoft needed something similar to update general CM items, and not just mobile device management related items. The blog released yesterday was the announcement of "the very first real world public test of this mechanism!". The announcement itself lacked a bit of enthusiasm, but this is a feature that I am excited about for the future of CM.
 
+This feature can update and deliver fixes and features for:
+<ul>
+	<li>Site servers</li>
+	<li>SMS_Provider</li>
+	<li>Configuration Manager console</li>
+	<li>Configuration manager clients</li>
+</ul>
+Which should provide the necessary flexibility to update just about anything, as this allows the product team to update, the ConfigMgr File system, the Admin UI file system, the database (Data as well as new tables, views, Stored procedres,…, as WMI)
+<h1>Feature documentation</h1>
