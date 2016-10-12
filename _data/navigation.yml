@@ -1,7 +1,7 @@
 # main links links
 main:
   - title: "Public sessions"
-    url: /Sessions
+    url: /sessions/
  
   - title: "Technet Searchlibrary"
     url: /technet/
