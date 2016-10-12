@@ -5,7 +5,7 @@
 <ShortName>CM12</ShortName>
 <Description>Search the Configuration Manager 2012 technet doclibrary</Description>
 
-<Image height="24" width="24" type="image/icon">http://oscc1-public.sharepoint.com/SiteAssets/tn-library-searchpage/ConfigMgr.ico</Image>
+<Image height="24" width="24" type="image/icon">http://kimoppalfens.github.io/media/ConfigMgr.ico</Image>
 
 <Url type="text/html" template="http://www.bing.com/search?q={searchTerms}+Meta%3ASearch.MSHAttr.appliesToProduct%28%22System+Center+2012+Configuration+Manager%22%29+site%3Atechnet.microsoft.com&amp;source=IE"/>
 
