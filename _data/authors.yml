@@ -1,8 +1,14 @@
-tom_degreef:
-#fix line2
-name             : "Tom Degreef"
-avatar           : "tom_degreef.jpg"
-bio              : "Tom has been a Configmgr consultant for many years now and has joined Microsoft as Support Engineer (Configmgr) about 2 years ago to experience what it's like at the other side of the table. Since last year november he got promoted to Support Escalation Engineer and is still performing that task until now."
-email            : "tom.degreef@ccsd.be"
-#  linkedin         : "tom-degreef-7a77881"
-#  twitter          : "@tomdegreef"
+Billy Rick:
+  name: "Billy Rick"
+  uri: "http://thewhip.com"
+  email: "billy@rick.com"
+  bio: "What do you want, jewels? I am a very extravagant man."
+  avatar: "bio-photo-2.jpg"
+  twitter: "extravagantman"
+
+Cornelius Fiddlebone:
+  name: "Cornelius Fiddlebone"
+  email: "cornelius@thewhip.com"
+  bio: "I ordered what?"
+  avatar: "bio-photo.jpg"
+  twitter: "rhymeswithsackit"
