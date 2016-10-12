@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
+
+<ShortName>SM12R2</ShortName>
+<Description>Search the Service Manager 2012 R2 technet doclibrary</Description>
+
+<Image height="24" width="24" type="image/icon">http://oscc1-public.sharepoint.com/SiteAssets/tn-library-searchpage/SCSM.ico</Image>
+
+<Url type="text/html" template="http://www.bing.com/search?q={searchTerms}+Meta%3ASearch.MSHAttr.appliesToProduct%28%22System+Center+2012+R2+Service+Manager%22%29+site%3Atechnet.microsoft.com&amp;source=IE"/>
+
+
+</OpenSearchDescription>

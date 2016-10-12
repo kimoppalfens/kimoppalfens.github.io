@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
+
+<ShortName>CM07</ShortName>
+<Description>Search the Configuration Manager 2007 technet doclibrary</Description>
+
+<Url type="text/html" template="http://www.bing.com/search?q={searchTerms}+Meta%3ASearch.MSHAttr.appliesToProduct%28%22System+Center+Configuration+Manager+2007%22%29+site%3Atechnet.microsoft.com&amp;source=IE"/>
+
+
+</OpenSearchDescription>
