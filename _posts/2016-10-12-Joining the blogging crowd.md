@@ -1,4 +1,4 @@
 ---
-author: tom_degreef
+author: Cornelius Fiddlebone
 ---
 First test
