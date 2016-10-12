@@ -1,0 +1,40 @@
+---
+layout: post
+title: Easing Tasksequence basevariable management in SCCM
+date: 2011-07-22 10:46:58.000000000 +02:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- AdminUI
+- ConfigMgr
+- SCCM
+meta: {}
+author:
+  login: kimoppalfens
+  email: kim.oppalfens@oscc.be
+  display_name: The WMI guy
+  first_name: The
+  last_name: WMI guy
+---
+<p>Hi All,</p>
+<p>Configuration Manager has a powerfull way of creating software profiles using the basevariables and the tasksequence step Install Software with the Install multiple applications option. This method is described here: </p>
+<p><a title="http://technet.microsoft.com/en-us/library/bb680842.aspx" href="http://technet.microsoft.com/en-us/library/bb680842.aspx">http://technet.microsoft.com/en-us/library/bb680842.aspx</a></p>
+<p>Explaining the workings of this method is not the intent of this blogpost. However, once you figure out how all of this works you might find the user interface for configuring all of it somewhat lacking.</p>
+<p>Two inconveniences I wanted to fix for a while is the inability to reorder those basevariables, and the even more problematic inability to delete a basevariable from somewhere in your list of packages. To do this I took advantage of the extensibility of the ConfigMgr Admin UI, to create my own interface. A screenshot is available below:</p>
+<p><a href="http://scug.be/thewmiguy/files/2012/06/TaskSequenceCollVarUI_16D35E75.png"><img style="border-bottom: 0px;border-left: 0px;padding-left: 0px;padding-right: 0px;border-top: 0px;border-right: 0px;padding-top: 0px" border="0" alt="TaskSequenceCollVarUI" src="{{ site.baseurl }}/assets/TaskSequenceCollVarUI_thumb_485ECC0A.png" width="519" height="452" /></a></p>
+<p>&#160;</p>
+<p>Installation is super-easy just </p>
+<p>copy the TaskSequenceBasevariableUI.dll to &lt;ConfigMgr Install folder&gt;\adminui\bin, </p>
+<p>and copy the xml to &lt;ConfigMgr Install folder&gt;\adminui\xmlstorage\extensions\forms.</p>
+<p>You might have to create the forms folder underneath the extensions folder.</p>
+<p>Download the project <a href="https://skydrive.live.com/?cid=2c4ac2127eae73d5&amp;sc=documents&amp;move=2C4AC2127EAE73D5%21604&amp;sid=2C4AC2127EAE73D5%21146&amp;iscopy=0&amp;id=2C4AC2127EAE73D5%21605">here</a>.</p>
+<p>Give it a try, and let me know what you think in the comments section, or through the usual channels available to contact me.</p>
+<p>
+<div style="padding-bottom: 0px;margin: 0px;padding-left: 0px;padding-right: 0px;float: none;padding-top: 0px" class="wlWriterEditableSmartContent">Tags van Technorati: <a href="http://technorati.com/tags/SCCM" rel="tag">SCCM</a>,<a href="http://technorati.com/tags/ConfigMGr" rel="tag">ConfigMGr</a>,<a href="http://technorati.com/tags/Tasksequence" rel="tag">Tasksequence</a></div></p>
+<p>--</p>
+<p>Enjoy.</p>
+<p>&quot;The M in WMI stands for Magic&quot;    <br />Kim Oppalfens - Sms Expert for lack of any other expertise&#160; <br />System Center Configuration Manager MVP&#160; <br /><a href="http://www.scug.be/blogs/sccm/default.aspx">http://www.scug.be/blogs/sccm/default.aspx</a></p>
+<p><a href="http://www.linkedin.com/in/kimoppalfens">http://www.linkedin.com/in/kimoppalfens</a></p>
+<p><a href="http://twitter.com/thewmiguy">http://twitter.com/thewmiguy</a></p>

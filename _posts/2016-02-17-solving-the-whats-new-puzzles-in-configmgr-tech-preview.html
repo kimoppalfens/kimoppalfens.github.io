@@ -1,0 +1,76 @@
+---
+layout: post
+title: Solving the What’s new puzzles in ConfigMgr tech preview
+date: 2016-02-17 11:40:56.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- ConfigMgr
+- Console Extension
+- Intune
+- RBA
+- SCCM
+tags: []
+meta:
+  _wpas_done_all: '1'
+author:
+  login: kimoppalfens
+  email: kim.oppalfens@oscc.be
+  display_name: The WMI guy
+  first_name: The
+  last_name: WMI guy
+---
+<p>Howdy y'all,</p>
+<p>
+ </p>
+<p>First of all, for people that don't follow my @thewmiguy twitter handle yet, shame on you. For those that do, you might have noticed that Jorgen (@ccmexec) and I fought a fierce battle over who could finish most off the different What's new scenarios in the latest ConfigMgr preview scenarios last week.</p>
+<p>****** Spoiler alert *******</p>
+<p>I beat him to it, but it was a photo finish kind of thing</p>
+<p>
+ </p>
+<p>******End of spoiler alert *****</p>
+<p>Now, both Jorgen, and 2 other people that'll rename unnamed specifically inquired about how I finished the VPP scenario, or the app configuration scenario for that matter, as they couldn't figure out how to do that. The reason they couldn't, and my competitive advantage over Jorgen was that the tech preview lacked certain security roles that come along with these objects to allow you to access them.</p>
+<p>Given my knowledge of AdminUI extension I found this out by looking through the xml's that define the adminui, as well as through the adminui.consolebuilder.exe. Both showed me that the UI nodes for these features were protected by security roles that didn't exist. So the first thing I did was remove the permission requirement using the adminui.consolebuilder.exe. Now, that's not the cleanest way to handle things, as that would mean everybody got to see these nodes, even people that have no business with it whatsoever. But hey, I was on a race against the clock, so gloves were off. After finishing the scenario's and posting the results, I figured out a cleaner way of getting the items lit up. In essence, all you have to do, is create the security roles, and below you'll find the SQL code to do just that.</p>
+<p><span style="color:red">Warning, Modifing the SQL database is still a big NONO, in production. As this issue only exists in Tech Preview 1601, you should be fine. Still might want to take a backup of your lab, as this only comes with the guarantee that there is absolutely no guarantee. Proceed at your own risk, refrigerators in close proximity to your site server might blow up, etc…..<br />
+</span></p>
+<p><span style="font-family:Consolas; font-size:9pt"><br />
+			<span style="color:blue">Insert</span><br />
+			<span style="color:blue">into</span> [dbo]<span style="color:gray">.</span>[RBAC_RoleOperations]<br />
+</span></p>
+<p><span style="font-family:Consolas; font-size:9pt"><br />
+			<span style="color:blue">VALUES <span style="color:gray">(<span style="color:red">N'SMS0001R'<span style="color:gray">,</span> 73<span style="color:gray">,</span> 810550295<span style="color:gray">),</span><br />
+					</span></span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS0002R'<span style="color:gray">,</span> 73<span style="color:gray">,</span> 268435457<span style="color:gray">),</span><br />
+				</span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS0007R'<span style="color:gray">,</span> 73<span style="color:gray">,</span> 809500689<span style="color:gray">),</span><br />
+				</span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS0008R'<span style="color:gray">,</span> 73<span style="color:gray">,</span> 1048577<span style="color:gray">),</span><br />
+				</span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS0009R'<span style="color:gray">,</span> 73<span style="color:gray">,</span> 810550295<span style="color:gray">),</span><br />
+				</span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS000ER'<span style="color:gray">,</span> 73<span style="color:gray">,</span> 810550295<span style="color:gray">),</span><br />
+				</span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS0001R'<span style="color:gray">,</span> 74<span style="color:gray">,</span> 1049623<span style="color:gray">),</span><br />
+				</span></span></span></p>
+<p><span style="color:blue; font-family:Consolas; font-size:9pt"><br />
+			<span style="color:gray">(<span style="color:red">N'SMS000ER'<span style="color:gray">,</span> 74<span style="color:gray">,</span> 1049623<span style="color:gray">);<br />
+</span></span></span></span></p>
+<p>
+ </p>
+<p><span style="color:red">After executing the SQL insert statement above you should be greated by the following additional entries in your Software library workspace<br />
+</span></p>
+<p><img src="{{ site.baseurl }}/assets/021716_1137_SolvingtheW1.png" alt="" /><span style="color:red"><br />
+		</span></p>
+<p>
+ </p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">Enjoy.<br />"The M in WMI stands for Magic"<br />""Everyone is an expert at something" Kim Oppalfens - ConfigMgr Expert for lack of any other expertise<br />System Center Configuration Manager MVP<br />http://www.scug.be/thewmiguy/default.aspx</p>
+<p>http://www.linkedin.com/in/kimoppalfens</p>
+<p>http://twitter.com/thewmiguy</span>
+	</p>

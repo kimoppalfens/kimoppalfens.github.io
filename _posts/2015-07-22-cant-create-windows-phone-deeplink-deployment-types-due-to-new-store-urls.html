@@ -1,0 +1,174 @@
+---
+layout: post
+title: Can’t create Windows Phone deeplink deployment types due to new store URL’s
+date: 2015-07-22 13:53:17.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Intune
+tags: []
+meta:
+  _wpas_done_all: '1'
+author:
+  login: kimoppalfens
+  email: kim.oppalfens@oscc.be
+  display_name: The WMI guy
+  first_name: The
+  last_name: WMI guy
+---
+<p><span style="font-size:12pt"><span style="color:#555555; font-family:Arial">Hi All, </span><span style="font-family:Times New Roman"><br />
+			</span></span></p>
+<h2>Problem Description:<span style="font-size:11pt"><br />
+		</span><br />
+	</h2>
+<h2><span style="font-size:11pt">Update2:<br />
+</span></h2>
+<h2><span style="font-size:11pt">The powershell script below returns the old url when you input the new url in the variable. The old url returned lets you create the app from the admin ui. Again, don't have a windows phone device enrolled in this environment, so can't test an actual deployment.<br />
+</span></h2>
+<p style="background: #012456"><span style="color:orangered; font-family:Lucida Console; font-size:9pt">$newWindowsDeeplinkURL<span style="color:white"><br />
+				<span style="color:lightgrey">=<span style="color:white"><br />
+						<span style="color:palevioletred">'https://www.microsoft.com/en-us/store/apps/onefootball/9wzdncrfj4kx'<span style="color:white"><br />
+								<span style="color:palegreen">#This is the url you can browse to new in internet explorer<span style="color:whitesmoke"><br />
+									</span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:orangered; font-family:Lucida Console; font-size:9pt">$oldwindowshDeeplinkURL<span style="color:white"><br />
+				<span style="color:lightgrey">=<span style="color:white"><br />
+						<span style="color:palevioletred">'http://www.windowsphone.com/en-us/store/app/'<span style="color:white"><br />
+								<span style="color:palegreen"># this is the starting part of the old url, it is followed by the app name a guid<span style="color:whitesmoke"><br />
+									</span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:orangered; font-family:Lucida Console; font-size:9pt">$Links<span style="color:white"><br />
+				<span style="color:lightgrey">=<span style="color:white"><br />
+						<span style="color:lightcyan">Invoke-WebRequest<span style="color:white"><br />
+								<span style="color:violet">https://www.microsoft.com/en-us/store/apps/onefootball/9wzdncrfj4kx<span style="color:white"><br />
+										<span style="color:lightgrey">|<span style="color:white"><br />
+												<span style="color:lightcyan">select<span style="color:white"><br />
+														<span style="color:moccasin">-ExpandProperty<span style="color:white"><br />
+																<span style="color:violet">Links<span style="color:white"><br />
+																		<span style="color:lightgrey">|<span style="color:white"><br />
+																				<span style="color:lightcyan">select<span style="color:white"><br />
+																						<span style="color:violet">href<span style="color:white"><br />
+																								<span style="color:palegreen">#get all links found on the new windows phone url<span style="color:whitesmoke"><br />
+																									</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:lightcyan; font-family:Lucida Console; font-size:9pt">foreach<span style="color:white"><br />
+				<span style="color:whitesmoke">(<span style="color:orangered">$link<span style="color:white"><br />
+							<span style="color:lightcyan">in<span style="color:white"><br />
+									<span style="color:orangered">$links<span style="color:whitesmoke">)<span style="color:white"><br />
+												<span style="color:palegreen">#cycle through all links<span style="color:whitesmoke"><br />
+													</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:whitesmoke; font-family:Lucida Console; font-size:9pt">{<br />
+</span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:lightcyan">if<span style="color:white"><br />
+					<span style="color:whitesmoke">(<span style="color:orangered">$link<span style="color:lightgrey">.<span style="color:whitesmoke">href<span style="color:lightgrey">.<span style="color:whitesmoke">ToString()<span style="color:white"><br />
+												<span style="color:lightgrey">-imatch<span style="color:white"><br />
+														<span style="color:palevioletred">'ms-windows-store\:navigate\?appid=\b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}\b'<span style="color:whitesmoke">)<span style="color:white"><br />
+																	<span style="color:palegreen"># find a link that starts with ms-windows-store and contains a guid behind appid=<span style="color:whitesmoke"><br />
+																		</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:whitesmoke">{<br />
+</span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:orangered">$appguidrough<span style="color:white"><br />
+					<span style="color:lightgrey">=<span style="color:white"><br />
+							<span style="color:orangered">$link<span style="color:lightgrey">.<span style="color:whitesmoke">href<span style="color:lightgrey">.<span style="color:whitesmoke">ToString()<span style="color:white"><br />
+													<span style="color:lightgrey">|<span style="color:white"><br />
+															<span style="color:lightcyan">Select-String<span style="color:white"><br />
+																	<span style="color:moccasin">-Pattern<span style="color:white"><br />
+																			<span style="color:palevioletred">'ms-windows-store\:navigate\?appid=\b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}\b'<span style="color:white"><br />
+																					<span style="color:palegreen">#get the url that is a match for parsing<span style="color:whitesmoke"><br />
+																						</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:orangered">$appguid<span style="color:white"><br />
+					<span style="color:lightgrey">=<span style="color:white"><br />
+							<span style="color:whitesmoke">(<span style="color:orangered">$appguidrough<span style="color:lightgrey">.<span style="color:whitesmoke">ToString()<span style="color:lightgrey">.<span style="color:whitesmoke">Split(<span style="color:palevioletred">'='<span style="color:whitesmoke">))<span style="color:lightgrey">[<span style="color:bisque">1<span style="color:lightgrey">].<span style="color:whitesmoke">Substring(<span style="color:bisque">0<span style="color:lightgrey">,<span style="color:bisque">36<span style="color:whitesmoke">)<span style="color:white"><br />
+																								<span style="color:palegreen"># get the section of the url behing the appid= and take 36 characters from that point, this gives us the guid<span style="color:whitesmoke"><br />
+																									</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:orangered">$appguid<span style="color:whitesmoke"><br />
+				</span></span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:orangered">$appname<span style="color:white"><br />
+					<span style="color:lightgrey">=<span style="color:white"><br />
+							<span style="color:orangered">$newWindowsDeeplinkURL<span style="color:lightgrey">.<span style="color:whitesmoke">Split(<span style="color:palevioletred">'/'<span style="color:whitesmoke">)<span style="color:lightgrey">[<span style="color:bisque">6<span style="color:lightgrey">]<span style="color:white"><br />
+																<span style="color:palegreen"># take the 7th parth from the new url, this gives us the appname<span style="color:whitesmoke"><br />
+																	</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:orangered">$appname<span style="color:whitesmoke"><br />
+				</span></span></span></p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:orangered">$oldwindowshDeeplinkURL<span style="color:white"><br />
+					<span style="color:lightgrey">+<span style="color:white"><br />
+							<span style="color:orangered">$appname<span style="color:white"><br />
+									<span style="color:lightgrey">+<span style="color:white"><br />
+											<span style="color:palevioletred">'/'<span style="color:white"><br />
+													<span style="color:lightgrey">+<span style="color:white"><br />
+															<span style="color:orangered">$appguid<span style="color:white"><br />
+																	<span style="color:palegreen">#concatenate the old starting url + the appname + the guid<span style="color:whitesmoke"><br />
+																		</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p style="background: #012456">
+ </p>
+<p style="background: #012456">
+ </p>
+<p style="background: #012456"><span style="color:white; font-family:Lucida Console; font-size:9pt"><br />
+			<span style="color:whitesmoke">}<br />
+</span></span></p>
+<p style="background: #012456">
+ </p>
+<p style="background: #012456"><span style="color:whitesmoke; font-family:Lucida Console; font-size:9pt">}<br />
+</span></p>
+<p>
+ </p>
+<p>
+ </p>
+<h2><span style="font-size:11pt">Update1: </span><br />
+	</h2>
+<h2><span style="font-size:11pt">Early word is that the below procedure does let you create the app just fine, however installing the app would still fail. If you've tested this and actually deployed the app successfully let me know.</span><br />
+	</h2>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">One for my fresh new ConfigMgr MVP colleagues, Peter van der woude signaled an issue with creating new Windows Phone deeplink deployment types. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">It was signaled to the product team on Connect as well: </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><a href="https://connect.microsoft.com/ConfigurationManagervnext/Feedback/Details/1552799"><span style="font-family:Arial; font-size:9pt">https://connect.microsoft.com/ConfigurationManagervnext/Feedback/Details/1552799</span></a><span style="color:#555555; font-family:Arial; font-size:9pt"><br />
+		</span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">This is caused by the windows phone store URL using a brand new url structured like this: </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><a href="https://www.microsoft.com/en-US/store/apps/Adobe-Reader/9WZDNCRFJ2GH"><span style="font-family:Arial; font-size:9pt">https://www.microsoft.com/en-US/store/apps/Adobe-Reader/9WZDNCRFJ2GH</span></a><span style="color:#555555; font-family:Arial; font-size:9pt"><br />
+		</span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">whereas the old url looked something like this: </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><a href="http://www.windowsphone.com/en-us/store/app/tunein-radio/7f7e3f68-ba3a-e011-854c-00237de2db9e"><span style="font-family:Arial; font-size:9pt">http://www.windowsphone.com/en-us/store/app/tunein-radio/7f7e3f68-ba3a-e011-854c-00237de2db9e</span></a><span style="color:#555555; font-family:Arial; font-size:9pt"><br />
+		</span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><img src="{{ site.baseurl }}/assets/072215_1402_CantcreateW1.png" alt="" /><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">The problem with this is that adminui.appmanfoundation defines a regular expression that validates the url input. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">public static Regex Winphone8DeeplinkUrlPattern; </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">The new url no longer satisfies the regular expression and as such the wizard doesn't let you save your dt as it inspect the content location textbox before continuing. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<h2><span style="font-size:9pt">Resolution/workaround </span><br />
+	</h2>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">As this is a UI thing, as can be identified by the fact that the issue resides in adminUI.appmanfoundation, I quickly assumed that Powershell would "not suffer" from this issue. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">And lo and behold, the following powershell commands will create a windows phone dt happily and add it to a previously created app with the name pswpdeeplinktest. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">(You still won't be able to edit it in the UI afterwards as the validation will kick back in). </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><img src="{{ site.baseurl }}/assets/072215_1402_CantcreateW2.png" alt="" /><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">PS C:\&gt; Add-CMDeploymentType -WinPhone8DeeplinkInstaller -InstallationFileLocation 'https://www.microsoft.com/en-US/store/apps/Adobe-Reader/9WZDNCRFJ2GH' -ApplicationName 'pswpdeeplinktest' </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p>   <br />
+ </p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">Keep in mind that Powershell and/or WMI can often "workaround" adminui limitations. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">Be carefull though as circumventing these limitations can be both a blessing and a curse. </span><span style="font-family:Times New Roman; font-size:12pt"><br />
+		</span></p>
+<p>   <br />
+ </p>
+<p><span style="color:#555555; font-family:Arial; font-size:9pt">Enjoy.<br />"The M in WMI stands for Magic"<br />""Everyone is an expert at something" Kim Oppalfens - ConfigMgr Expert for lack of any other expertise<br />System Center Configuration Manager MVP<br />http://www.scug.be/blogs/sccm/default.aspx</p>
+<p>http://www.linkedin.com/in/kimoppalfens</p>
+<p>http://twitter.com/thewmiguy</span></p>

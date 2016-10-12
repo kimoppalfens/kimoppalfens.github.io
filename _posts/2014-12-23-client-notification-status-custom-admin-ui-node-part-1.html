@@ -1,0 +1,89 @@
+---
+layout: post
+title: Client Notification status custom admin UI Node (Part 1)
+date: 2014-12-23 13:23:02.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- CMCE
+- ConfigMgr
+- Console Extension
+- SCCM
+- SDK
+tags:
+- CMCE
+- ConfigMgr
+- Console Extension
+- SCCM
+- SDK
+meta:
+  _edit_last: '5'
+  _wpas_done_all: '1'
+author:
+  login: kimoppalfens
+  email: kim.oppalfens@oscc.be
+  display_name: The WMI guy
+  first_name: The
+  last_name: WMI guy
+---
+<h3>Summary</h3>
+<p>Hi All,</p>
+<p>This blog post is a follow-up to my tweet around figuring out how-to create custom nodes in the Configuration Manager admin UI. The sample at hand will be based on displaying Client Notification status for clients based on the new Client Notification functionality added in ConfigMgr SP1. I’ll split this post up in 2 sections, one for those of you that are interested in adding the Client Notification Status Node, and one for those that are interested in building their own node(s).</p>
+<h3>The client notification status node explained</h3>
+<p>The client notification status is based on the feature added to System Center Configuration Manager 2012 SP1. The feature is also known as fast channel internally at Microsoft or the Big Green Button. You can’t talk about this feature without mentioning the thoroughly detailed blog on the topic by Randy Xu. You can read up on that here: <a title="http://blogs.technet.com/b/configmgrteam/archive/2012/09/27/fast-channel-for-system-management.aspx" href="http://blogs.technet.com/b/configmgrteam/archive/2012/09/27/fast-channel-for-system-management.aspx">http://blogs.technet.com/b/configmgrteam/archive/2012/09/27/fast-channel-for-system-management.aspx</a></p>
+<p>In the Q&amp;A one of the question’s is: Can I see the online status of clients from the Configuration Manager console? The answer to that has been, Not currently.</p>
+<p>So that’s what I wanted to solve as I was looking for a sample node I could create. The client notification status returns results from the SMS_CN_Clientstatus as mentioned in the blog post. (Funny side note, if you ask me, is that I actually found the blog post based on searching for this class, as I had discovered the class while casually browsing WMI. And yes, I am aware I have a problem :-))</p>
+<p>The node has 5 columns, <strong>client computer name</strong>, <strong>Online Status</strong>, <strong>Channel Type</strong>, <strong>LastStatusTime</strong>, <strong>ServerID</strong></p>
+<h4>NetBIOS Name</h4>
+<p>The Client computer name is self-explanatory.</p>
+<h4></h4>
+<h4>Online Status</h4>
+<p>Online status is the info I really cared about. As that tells you whether client is “Online” Now what does Online actually mean in the context of Client Notification Status? Does that mean the machine is turned on and on the network? Well, the answer to that is “It depends”. When we thoroughly read the aforementioned blog post there’s a couple of caveats.</p>
+<ol>
+<li>There’s a random sleep timer of 10 minutes when starting a machine before it contacts the Client Notification Server (So the machine could be online although it is reported as offline because it hasn’t reported in just yet. </li>
+<li>Client Notification Server is expecting some form of communication every 20 minutes, which means that worst-case a client could be reported as Online, whereas it actually went offline 19 minutes ago. </li>
+</ol>
+<p>So, to summarize this information isn’t really real-time, although it does give you a pretty good indication.</p>
+<h4>Channel Type</h4>
+<p>The Client Notification Status feature can work over TCP (Port 10123 by default) or HTTP. There’s some interesting things to note here as well. Most importantly, the thing that sets Client Notification Status apart from different right-click actions, is the direction of the network traffic. The Fast Channel communication channel is opened from the client towards the “Notification Server or BGB Server”. Now, the Notification Server isn’t a separate role you get to install, every management point post SP1 automagically becomes a BGB server as well. The interesting bit here is the direction, from a firewall perspective opening up communications in one direction or another can be a big deal. A lot of security folks will prefer not opening up any ports towards your clients.</p>
+<p>The other important note in the Q&amp;A section is that fast channel communications happens with the MP in the assigned site. So, when you have clients in a secondary site, they’ll contact the BGB Server in the primary. This might make client notification non-workable in these type of environments unless you are prepared to let that firewall traffic pass.</p>
+<p>Finally, there’s the potential question on, why would I enable TCP when this can pass over https just as well? A question I won’t answer here, a) because it’s a why question :-) and b) because it is thoroughly answered in the product team’s blog.</p>
+<h4>Last Status Time</h4>
+<p>Not entirely sure on this one, but my guess is this is updated whenever a client contacts its BGB server, so that would be on establishing the fast channel. My preliminary tests show out this happens on Client restart, yet not on successfully executing a client notification action.</p>
+<h4></h4>
+<h4>Server ID</h4>
+<p>The Server ID is the actual BGB Server you are having a fast channel with. I am not positive on how interesting this info is, and neither whether this can be different from the management point you are connected to. I’d like for this to display the server name, however, haven’t found a way to get the ID through WMI. I can get it from SQL but that would require special permissions and I am not really in favor of adding ui elements that bypass WMI.</p>
+<p>So this is what it all looks like in the end: (The NetBIOS Name column entries have been masked to hide my lock of creativity in choosing computer names for my lab)</p>
+<p><a href="http://scug.be/thewmiguy/files/2014/12/image.png"><img title="image" style="border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb.png" width="940" height="563" /></a></p>
+<p>&#160;</p>
+<h3>Installing the Client Notification Status Node</h3>
+<p>Installing the custom console node is easy enough, especially for those that have installed extensions before. In essence it means placing some executable/dll in the adminconsole\bin folder, plus adding the right xml to the AdminConsole\XmlStorage\Extensions\Nodes folder. The XML itself needs to be placed in a subfolder of this nodes folder. The subfolder needs the format of a guid, and the location in the admin ui depends on the guid used.</p>
+<p>A lot has been written in the past, on how to figure out what guid to use. For this particular task, I just relied on adminui.consolebuider.exe, one of those nifty hidden tools in the Configuration Manager installation directory.</p>
+<h4>Step by Step</h4>
+<ol>
+<li>Download the ClientNotificationStatus.zip from here: <a title="http://1drv.ms/1zfvwIO" href="http://1drv.ms/1zfvwIO">http://1drv.ms/1zfvwIO</a> </li>
+<li>Extract the zip file to a location of your choice. </li>
+<li>Copy the the client notification status.dll to the adminconsole\bin folder of your admin ui console installation </li>
+<li>Create the Nodes&#160; subfolder in AdminConsole\XmlStorage\Extensions\ if it doesn’t exist already </li>
+<li>Copy the guid folder (ec1eb040-7957-45c3-aad0-a0ef9afba98a) to AdminConsole\XmlStorage\Extensions\Nodes </li>
+<li>Restart the System Center Configuration Manager Admin UI </li>
+<li>The client status node in the Monitoring workspace should now contain a new sub view </li>
+</ol>
+<p>&#160;</p>
+<h3>Known issues / potential future enhancements</h3>
+<h5>These have been pointed to me by a grumpy old man already (Not naming names here)</h5>
+<ol>
+<li>The node isn’t limited to only display 1.000 entries by default </li>
+<li>The node doesn’t have a search box like most other nodes </li>
+</ol>
+<h5>Other items</h5>
+<ul>
+<li>Show the BGB server name you’re connected to. </li>
+<li>see whether I can choose which columns to show by default </li>
+<li>Include some form of RBA? </li>
+</ul>
+<h1></h1>
+<h1></h1>
+<p>-- Enjoy. &quot;The M in WMI stands for Magic&quot;    <br />&quot;Everyone is an expert at something&quot;     <br />Kim Oppalfens - ConfigMgr Expert for lack of any other expertise     <br />System Center Configuration Manager MVP – Belgium MEET member     <br />mail: <a href="mailto:Kim.oppalfens@oscc.be">Kim.oppalfens@oscc.be</a> </p>
+<p><a href="http://www.scug.be/thewmiguy">http://www.scug.be/thewmiguy</a>     <br /><a href="http://www.linkedin.com/in/kimoppalfens">http://www.linkedin.com/in/kimoppalfens</a>     <br /><a href="http://twitter.com/thewmiguy">http://twitter.com/thewmiguy</a></p>
