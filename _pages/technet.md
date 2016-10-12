@@ -7,3 +7,4 @@ permalink: /technet/
 author_profile: true
 ---
 This page will contain the search providers.
+<button type="button">Click Me!</button> 
