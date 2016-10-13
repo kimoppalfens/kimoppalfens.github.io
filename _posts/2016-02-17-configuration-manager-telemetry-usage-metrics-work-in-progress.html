@@ -1,4 +1,4 @@
-﻿Telemetry, what is it about?
+Telemetry, what is it about?
 <h1>Telemetry explained</h1>
 <p>Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: <a href="https://technet.microsoft.com/en-US/library/mt613113.aspx">https://technet.microsoft.com/en-US/library/mt613113.aspx</a>
 	</p>
@@ -11,19 +11,16 @@
 <h2>Tables<br />
 </h2>
 <p>The <strong>telemetry table</strong> contains the names and id's of the stored procedures that are responsible for collecting the telemetry data. In the environments that I've verified this on, there are 150 stored procedures lists in  the telemetry table. You can have a look at this info by running the following query</p>
-<p style="margin-left: 36pt">
- </p>
+<style="margin-left: 36pt">
 <p style="margin-left: 36pt"><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
 			<span style="color:gray">*</span><br />
-			<span style="color:blue">from</span> Telemetry <span style="color:blue">order</span><br />
+			<span style="color:blue">from</span> Telemetry<br/> 
+            <span style="color:blue">order</span>
 			<span style="color:blue">by</span> name<br />
 </span></p>
-<p style="margin-left: 36pt">
- </p>
+<style="margin-left: 36pt">
 <p><span style="font-family:Consolas; font-size:9pt"><br />
 		</span></p>
-<p>
- </p>
 <p>The results are stored in a table called either telemetryresults or TEL_telemetryresults (There seems to be a difference between the techpreview releases and the production releases regarding the table name.) You can look at your own results by running the following query</p>
 <p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
 			<span style="color:gray">*</span><br />
