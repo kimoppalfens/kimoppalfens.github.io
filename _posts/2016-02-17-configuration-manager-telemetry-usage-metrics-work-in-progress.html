@@ -12,15 +12,15 @@ Telemetry, what is it about?
 </h2>
 <p>The <strong>telemetry table</strong> contains the names and id's of the stored procedures that are responsible for collecting the telemetry data. In the environments that I've verified this on, there are 150 stored procedures lists in  the telemetry table. You can have a look at this info by running the following query</p>
 <style="margin-left: 36pt">
-<p style="margin-left: 36pt"><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
+<style="margin-left: 36pt"><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
 			<span style="color:gray">*</span><br />
 			<span style="color:blue">from</span> Telemetry<br/> 
             <span style="color:blue">order</span>
 			<span style="color:blue">by</span> name<br />
-</span></p>
+</span>
 <style="margin-left: 36pt">
-<p><span style="font-family:Consolas; font-size:9pt"><br />
-		</span></p>
+<span style="font-family:Consolas; font-size:9pt"><br />
+		</span>
 <p>The results are stored in a table called either telemetryresults or TEL_telemetryresults (There seems to be a difference between the techpreview releases and the production releases regarding the table name.) You can look at your own results by running the following query</p>
 <p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
 			<span style="color:gray">*</span><br />
