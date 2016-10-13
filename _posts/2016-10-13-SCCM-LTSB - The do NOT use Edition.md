@@ -1,5 +1,10 @@
 ---
-Title: ConfigMgr LTSB, The do NOT Use, Edition
+title:  "ConfigMgr LTSB, The do NOT use Ed.!"
+
+categories: 
+  - SCCM
+tags:
+  - LTSB SCCM
 ---
 Really, I can't be more clear than that, don't ever use it.
 ## Intro ##
