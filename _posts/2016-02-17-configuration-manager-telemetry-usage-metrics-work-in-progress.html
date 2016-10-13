@@ -21,7 +21,7 @@ Telemetry, what is it about?
 <style="margin-left: 36pt">
 <span style="font-family:Consolas; font-size:9pt"><br />
 		</span>
-<p>The results are stored in a table called either telemetryresults or TEL_telemetryresults (There seems to be a difference between the techpreview releases and the production releases regarding the table name.) You can look at your own results by running the following query</p>
+<p>The results are stored in a table called  TEL_telemetryresults. You can look at your own results by running the following query</p>
 <p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
 			<span style="color:gray">*</span><br />
 			<span style="color:blue">from</span> TEL_TelemetryResults<br />
@@ -31,16 +31,6 @@ Telemetry, what is it about?
 </p>
 <p><span style="font-family:Consolas; font-size:9pt">Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchyid that could be used for this purpose. But even that wasn't anoynymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using <strong>SHA256.<br />
 </strong></span></p>
-<p>
- </p>
-<p>
- </p>
-<p>
- </p>
-<p><span style="font-family:Consolas; font-size:9pt"><br />
-		</span></p>
-<p>
- </p>
 <p><span style="font-family:Consolas; font-size:9pt">You can get your own hierarchy id and the accompanying hash to validate this data by running the following query:<br />
 </span></p>
 <p>
