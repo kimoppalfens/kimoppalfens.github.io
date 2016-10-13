@@ -1,5 +1,5 @@
 ---
-title:  "ConfigMgr LTSB, 'The do NOT use Edition.!"
+title:  "ConfigMgr LTSB, 'The do NOT use Edition.'!"
 
 categories: 
   - SCCM
