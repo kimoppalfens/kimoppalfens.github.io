@@ -26,18 +26,15 @@ Telemetry, what is it about?
 			<span style="color:gray">*</span><br />
 			<span style="color:blue">from</span> TEL_TelemetryResults<br />
 </span></p>
-<p><span style="font-family:Consolas; font-size:9pt">        or<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
+<span style="font-family:Consolas; font-size:9pt">        or<br />
+</span>
+<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
 			<span style="color:gray">*</span><br />
 			<span style="color:blue">from</span> TelemetryResults<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt">depending on your environment.<br />
-</span></p>
-<p>
- </p>
-<p><span style="font-family:Consolas; font-size:9pt">Depending upon the level of data you've chosen you should see a number of rows returned. There should be one thing that catches your eye quite swiftly. As you can see in the screenshot below each row has a results column that ends with a returning hash. Which opens up the very first question, what is this hash all about?<br />
-</span></p>
+</span>
+depending on your environment.<br />
+<p>Depending upon the level of data you've chosen you should see a number of rows returned. There should be one thing that catches your eye quite swiftly. As you can see in the screenshot below each row has a results column that ends with a returning hash. Which opens up the very first question, what is this hash all about?<br />
+</p>
 <p><span style="font-family:Consolas; font-size:9pt">Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchyid that could be used for this purpose. But even that wasn't anoynymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using <strong>SHA256.<br />
 </strong></span></p>
 <p>
