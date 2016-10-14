@@ -33,16 +33,16 @@ Telemetry, what is it about?
 </strong></span></p>
 <p><span>You can get your own hierarchy id and the accompanying hash to validate this data by running the following query:<br />
 </span></p>
-<p>
- </p>
-<p><span style="font-family:Consolas; font-size:9pt">     <span style="color:blue">Declare</span> @tenantid <span style="color:blue">as</span><br />
-			<span style="color:blue">nvarchar<span style="color:gray">(<span style="color:fuchsia">max<span style="color:gray">)</span><br />
+
+<p><span style="font-family:Consolas; font-size:9pt">     
+<span style="color:blue">Declare</span> @tenantid <span style="color:blue">as</span>
+			<span style="color:blue">nvarchar<span style="color:gray">(<span style="color:fuchsia">max<span style="color:gray">)</span>
 					</span></span></span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt">     <span style="color:blue">select</span> @TenantId <span style="color:gray">=</span> dbo<span style="color:gray">.</span>fnConvertBinaryToBase64String<span style="color:gray">(</span>dbo<span style="color:gray">.</span>fnMDMCalculateHash<span style="color:gray">(<span style="color:fuchsia">CONVERT<span style="color:gray">(<span style="color:blue">VARBINARY<span style="color:gray">(<span style="color:fuchsia">MAX<span style="color:gray">),</span> [dbo]<span style="color:gray">.</span>[</span>fnGetHierarchyID]()),</span><br />
-							<span style="color:red">'SHA256'<span style="color:gray">)</span><br />
+<p><span style="font-family:Consolas; font-size:9pt">     <span style="color:blue">select</span> @TenantId <span style="color:gray">=</span> dbo<span style="color:gray">.</span>fnConvertBinaryToBase64String<span style="color:gray">(</span>dbo<span style="color:gray">.</span>fnMDMCalculateHash<span style="color:gray">(<span style="color:fuchsia">CONVERT<span style="color:gray">(<span style="color:blue">VARBINARY<span style="color:gray">(<span style="color:fuchsia">MAX<span style="color:gray">),</span> [dbo]<span style="color:gray">.</span>[</span>fnGetHierarchyID]()),</span>
+							<span style="color:red">'SHA256'<span style="color:gray">)</span>
 								<span style="color:gray">)</span><br />
 							</span></span></span></span></span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt">     <span style="color:blue">Declare</span> @hierarchyid <span style="color:blue">as</span><br />
+<p><span style="font-family:Consolas; font-size:9pt">     <span style="color:blue">Declare</span> @hierarchyid <span style="color:blue">as</span>
 			<span style="color:blue">nvarchar<span style="color:gray">(<span style="color:fuchsia">max<span style="color:gray">)</span><br />
 					</span></span></span></span></p>
 <p><span style="font-family:Consolas; font-size:9pt">     <span style="color:blue">select</span> @hierarchyid <span style="color:gray">=</span> [dbo]<span style="color:gray">.</span>[fnGetHierarchyID]<span style="color:gray">()</span><br />
