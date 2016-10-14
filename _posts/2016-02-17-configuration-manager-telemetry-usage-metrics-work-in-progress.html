@@ -96,24 +96,10 @@ Telemetry, what is it about?
 <p>
  </p>
 <p>You could subsequently analyze the stored procedures to see what it is they are collecting, but that is an elaborate exercise. As we've seen that SHA256 is the hashing mechanism of choice I've chosen to check which of these stored procedures use the SHA256 function. I've identified the stored procedures, and linked id's using this query</p>
-<p>
- </p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">SELECT</span><br />
-			<span style="color:blue">DISTINCT</span><br />
-		</span></p>
-<p><span style="font-family:Consolas; font-size:9pt">       o<span style="color:gray">.</span>name <span style="color:blue">AS</span><br />
-			<span style="color:fuchsia">Object_Name<span style="color:gray">,</span> Telemetry<span style="color:gray">.</span>id<span style="color:gray">,</span><br />
-			</span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt">       o<span style="color:gray">.</span>type_desc<span style="color:gray">,</span> m<span style="color:gray">.<span style="color:blue">definition</span><br />
-			</span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt">      <span style="color:blue">FROM</span><br />
-			<span style="color:green">sys<span style="color:gray">.<span style="color:green">sql_modules</span> m </span><br />
-			</span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><br />
-			<span style="color:gray">INNER</span><br />
-			<span style="color:gray">JOIN</span><br />
-			<span style="color:green">sys<span style="color:gray">.<span style="color:green">objects</span> o <span style="color:blue">ON</span> m.<span style="color:fuchsia">object_id</span> =</span> o<span style="color:gray">.<span style="color:fuchsia">object_id</span><br />
-				</span></span></span></p>
+<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">SELECT</span>			<span style="color:blue">DISTINCT</span>       o<span style="color:gray">.</span>name <span style="color:blue">AS</span><span style="color:fuchsia"> Object_Name<span style="color:gray">,</span> Telemetry<span style="color:gray">.</span>id<span style="color:gray">,</span></span></span><span style="font-family:Consolas; font-size:9pt">       o<span style="color:gray">.</span>type_desc<span style="color:gray">,</span> m<span style="color:gray">.<span style="color:blue">definition</span></span></span> 
+<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">FROM </span><span style="color:green">sys<span style="color:gray">.<span style="color:green">sql_modules</span> m </span></span></span><span style="font-family:Consolas; font-size:9pt">
+<span style="color:gray">INNER</span><span style="color:gray">JOIN</span><span style="color:green">sys<span style="color:gray">.<span style="color:green">objects</span> o <span style="color:blue">ON</span> m.<span style="color:fuchsia">object_id</span> =</span> o<span style="color:gray">.<span style="color:fuchsia">object_id</span>
+				</span></span></span>
 <p><span style="font-family:Consolas; font-size:9pt">    <span style="color:gray">inner</span><br />
 			<span style="color:gray">join</span> telemetry <span style="color:blue">on</span> o<span style="color:gray">.</span>name <span style="color:gray">=</span> Telemetry<span style="color:gray">.</span>Name<br />
 </span></p>
