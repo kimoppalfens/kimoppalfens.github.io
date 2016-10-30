@@ -39,7 +39,7 @@ Telemetry, what is it about?
 <span style="color:blue">Declare</span> @tenantid <span style="color:blue">as</span>
 			<span style="color:blue">nvarchar<span style="color:gray">(<span style="color:fuchsia">max<span style="color:gray">)</span>
 					</span></span></span></span></p>
-<p><span style="color:blue">select</span> @TenantId <span style="color:gray">=</span> dbo<span style="color:gray">.</span>fnConvertBinaryToBase64String<span style="color:gray">(</span>dbo<span style="color:gray">.</span>fnMDMCalculateHash<span style="color:gray">(<span style="color:fuchsia">CONVERT<span style="color:gray">(<span style="color:blue">VARBINARY<span style="color:gray">(<span style="color:fuchsia">MAX<span style="color:gray">),</span> [dbo]<span style="color:gray">.</span>[</span>fnGetHierarchyID]()),</span>
+<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span> @TenantId <span style="color:gray">=</span> dbo<span style="color:gray">.</span>fnConvertBinaryToBase64String<span style="color:gray">(</span>dbo<span style="color:gray">.</span>fnMDMCalculateHash<span style="color:gray">(<span style="color:fuchsia">CONVERT<span style="color:gray">(<span style="color:blue">VARBINARY<span style="color:gray">(<span style="color:fuchsia">MAX<span style="color:gray">),</span> [dbo]<span style="color:gray">.</span>[</span>fnGetHierarchyID]()),</span>
 							<span style="color:red">'SHA256'<span style="color:gray">)</span>
 								<span style="color:gray">)</span><br />
 							</span></span></span></span></span></span></p>
