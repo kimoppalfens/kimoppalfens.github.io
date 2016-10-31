@@ -56,7 +56,7 @@ $Package.SelectNodes('def:S[contains(@N,"PackageID")]',$ns).'#Text'
 
 The script takes a driverpackages XML which was generated using the following powershell command:
 
-```Powershell
+```posh
 Get-WmiObject -class sms_driverpackage -Namespace root\sms\site_poc | Select-Object Name,PackageID | export-clixml driverpackages.xml
 ```
 
