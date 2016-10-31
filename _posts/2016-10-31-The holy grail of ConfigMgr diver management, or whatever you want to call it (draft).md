@@ -1,11 +1,10 @@
-# Intro
+﻿# Intro
 Well, I don't think, this is going to be news to people that have followed my blogs over the years. When I started blogging, the plan was to tie things together and do new stuff, that hadn't been blogged before. Typically trying to solve things for which I felt was a need. 
 Given the title, you can expect another one of these posts. 
 I've never written a blog post that could have had so many different titles though: 
 - The best thing since sliced bread for driver management 
 - Why I love download package content in ConfigMgr Current Branch 
 - The case of the undocumented OSDDownloadDownloadPackages tasksequence variable
-
 
  
 # Driver Management desires
