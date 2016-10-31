@@ -37,7 +37,7 @@ On the surface, it seems to lack the ability to do driver packages, and it doesn
 But, that's why this section's title is the Unseen potential of the step. This particular step actually has an **OVERRIDABLE** tasksequence variable called OSDDownloadDownloadPackages, Yes, that's 2 times the word download in one variable. This particular variable takes PackageId's as values, and then goes ahead and download those. And lo and behold, yes, that does include driver packages. (I'll let you in on another secret, it even takes packageid's of applications). 
 So we can dynamically set that variable based on the hardware model and download the relevant driver package to a fixed path locally on the deployed machine. Piece 1 of the puzzle is handled by this script that reads the relevant packageid from an exported listed of available driver packages. 
 
-```PowerShell
+~~~PowerShell
 [xml]$Packages = get-content driverpackages.xml 
 #environment variable call for task sequence only 
 $tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment 
@@ -54,7 +54,7 @@ If ($Package.SelectNodes('def:S[contains(@N,"Name")]',$ns).'#Text' -eq $Model)
 $tsenv.Value('OSDDownloadDownloadPackages') = $Package.SelectNodes('def:S[contains(@N,"PackageID")]',$ns).'#Text' 
 $Package.SelectNodes('def:S[contains(@N,"PackageID")]',$ns).'#Text' 
 } 
-```
+~~~
  
 The script takes a driverpackages XML which was generated using the following powershell command: 
 
