@@ -1,4 +1,4 @@
-﻿# Intro
+# Intro
 Well, I don't think, this is going to be news to people that have followed my blogs over the years. When I started blogging, the plan was to tie things together and do new stuff, that hadn't been blogged before. Typically trying to solve things for which I felt was a need. 
 Given the title, you can expect another one of these posts. 
 I've never written a blog post that could have had so many different titles though: 
@@ -6,13 +6,12 @@ I've never written a blog post that could have had so many different titles thou
 - Why I love download package content in ConfigMgr Current Branch 
 - The case of the undocumented OSDDownloadDownloadPackages tasksequence variable
 
- 
 # Driver Management desires
 
- 
-There's a multitude of ways to handle driver management in Configuration Manager and OSDeployment. 
-But one of the common desires in driver management is to have full control over which drivers get applied during your deployment. 
-Another desire is to install this set of drivers dynamically based on the hardware model deployed. 
+There's a multitude of ways to handle driver management in Configuration Manager and OSDeployment.
+
+But one of the common desires in driver management is to have full control over which drivers get applied during your deployment.
+Another desire is to install this set of drivers dynamically based on the hardware model deployed.
 A third secondary desire is to do all this without actually importing drivers, this comes from Johan's method in 2007 where he introduced "Total Control" without importing drivers. http://deploymentresearch.com/Research/Post/325/MDT-2013-Lite-Touch-Driver-Management and re-created in 2012 by Achim https://www.windows-noob.com/forums/topic/10856-sccm-2012-osd-apply-driver-packages-without-importing-them-to-the-database/ 
 And then my personal desire is to do all that without having to touch my tasksequence(s) each time a new model is introduced at one of my customers. 
 That's why a certain individual filled a User voice request for it, that has 496 votes at present. https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/10099479-allow-for-dynamically-selecting-apply-driver-packa , which puts it in the top 10 of currently listed requests. 
