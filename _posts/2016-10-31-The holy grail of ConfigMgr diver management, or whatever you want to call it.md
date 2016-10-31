@@ -1,4 +1,4 @@
-# Intro  #
+# Intro
 Well, I don't think, this is going to news to people that have followed my blogs over the year. When I started blogging, the plan was to tie things together and do new stuff, that hadn't been blogged before. Typically trying to solve things for which I felt was a need. 
 Given the title, you can expect another one of these posts. 
 I've never written a blog post that could have so many different titles though: 
@@ -7,7 +7,7 @@ I've never written a blog post that could have so many different titles though:
 - The case of the undocumented OSDDownloadDownloadPackages
 
  
-# Driver Management desires  #
+# Driver Management desires
  
 There's a multitude of ways to handle driver management in Configuration Manager and OSDeployment. 
 But one of the common desires in driver management is to have full control over which drivers get applied during your deployment. 
@@ -18,7 +18,7 @@ That's why I certain individual filled a User voice request for it, that has 496
  
 Intrigued yet, let's get started? 
  
-# The unseen potential of Download Package Content  #
+# The unseen potential of Download Package Content
  
 The new Configuration Manager current branch has a new Powershell Tasksequence step called Download Package Content. 
 My MVP pall, Jörgen Nilsson, blogged about it here, http://ccmexec.com/2015/09/configmgr-vnext-feature-download-package-content/, don't mind the comment about someone calling it useless, that going to be funny by the end of this post. 
