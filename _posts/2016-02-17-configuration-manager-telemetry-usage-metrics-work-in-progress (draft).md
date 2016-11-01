@@ -1,4 +1,12 @@
+---
+title:  "ConfigMgr LTSB, 'The do NOT use Edition.'!"
 
+categories: 
+  - SCCM
+tags:
+  - LTSB
+  - SCCM
+---
 Telemetry, what is it about?
 
 Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: [https://technet.microsoft.com/en-US/library/mt613113.aspx ](https://technet.microsoft.com/en-US/library/mt613113.aspx )
@@ -155,13 +163,7 @@ This is just one of the 8 queries that might contain hashed data, but the mechan
 
 Enjoy.  
 "The M in WMI stands for Magic"  
-""Everyone is an expert at something" Kim Oppalfens - ConfigMgr Expert for lack of any other expertise  
-System Center Configuration Manager MVP  
-http://www.scug.be/thewmiguy/default.aspx<p></p>
-
-http://www.linkedin.com/in/kimoppalfens
-
-http://twitter.com/thewmiguy
+"Everyone is an expert at something" Kim Oppalfens - Enterprise Mobility Expert for lack of any other expertise  
 
 [1]: http://i.imgur.com/PakPsmw.png
-  </style="margin-left:></https:>
+
