@@ -9,9 +9,11 @@ tags:
   - Uservoice
 ---
 
+The product documentation for System Center used to have a metatag called AppliesToProduct.
+
 # Intro
 
-﻿The product documentation for System Center used to have a metatag called AppliesToProduct. This allowed Bing searches like the following
+﻿Bing has support for searches like the following
 
 **_"software updates" Meta:Search.MSHAttr.appliesToProduct("System Center 2012 R2 Configuration Manager") site:technet.microsoft.com  
 _**
