@@ -6,6 +6,7 @@ categories:
   - SCCM
 tags:
   - SCCM
+  - Telemetry
 ---
 
 Telemetry, what is it about?
