@@ -1,3 +1,18 @@
+---
+title: "The holy grail of ConfigMgr driver managemement, or whatever you'd like to call it."
+author: Kim Oppalfens
+date: 2016-10-31
+categories:
+  - SCCM
+  - OSD
+tags:
+  - SCCM
+  - Drivers
+---
+
+
+There’s a multitude of ways to handle driver management in Configuration Manager and OSDeployment.
+
 # Intro
 Well, I don't think, this is going to be news to people that have followed my blogs over the years. When I started blogging, the plan was to tie things together and do new stuff, that hadn't been blogged before. Typically trying to solve things for which I felt was a need.
 Given the title, you can expect another one of these posts.
