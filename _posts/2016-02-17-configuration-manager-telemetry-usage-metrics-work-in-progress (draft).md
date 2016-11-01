@@ -10,7 +10,8 @@ tags:
 
 Telemetry, what is it about?
 
-Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: [https://technet.microsoft.com/en-US/library/mt613113.aspx ](https://technet.microsoft.com/en-US/library/mt613113.aspx )
+Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: 
+[https://technet.microsoft.com/en-US/library/mt613113.aspx ](https://technet.microsoft.com/en-US/library/mt613113.aspx )
 
 Below are my findings and additions to that documentation that people are inquiring about, but let me start off with the why, of it all. The new Configuration Manager comes with a brand new servicing mechanism. You should be aware by now that Windows 10 comes with a pretty high release cadence (a new Windows every 4 months). To keep up with that pace, Configuration Manager is planned to follow suit, and more or less follow that same cadence. Now, quite some people are sceptic about that increased cadence and the impact on the different products quality. To answer the challenges that come with this increased pace Microsoft plans to ship fast / fix fast, and that's were telemetry comes in.
 
