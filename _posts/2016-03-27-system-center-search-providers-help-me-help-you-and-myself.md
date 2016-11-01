@@ -15,7 +15,7 @@ The product documentation for System Center used to have a metatag called Applie
 
 ﻿Bing has support for searches like the following
 
-**"software updates" Meta:Search.MSHAttr.appliesToProduct("System Center 2012 R2 Configuration Manager") site:technet.microsoft.com  **
+*"software updates" Meta:Search.MSHAttr.appliesToProduct("System Center 2012 R2 Configuration Manager") site:technet.microsoft.com*
 
 Which in turn allowed me to create search providers, so you don't have to recall the meta-tag search syntax, for Internet Explorer, firefox and Chrome, available here:
 
