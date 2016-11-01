@@ -9,7 +9,6 @@ tags:
   - SCCM
 ---
 Really, I can't be more clear than that, don't ever use it.
-
 ## Intro
 
 The ConfigMgr product team announced a new edition of the latest version of Configuration Manager. In line with the Windows team they decided to call this new edition LTSB. I assume because the message about Windows LTSB was clear as mud and was an excellent example of strong communication.
