@@ -1,4 +1,4 @@
-﻿Telemetry, what is it about?
+Telemetry, what is it about?
 <h1>Telemetry explained</h1>
 <p>Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: <a href="https://technet.microsoft.com/en-US/library/mt613113.aspx">https://technet.microsoft.com/en-US/library/mt613113.aspx</a>
 	</p>
@@ -11,20 +11,21 @@
 <h2>Tables<br />
 </h2>
 <p>The <strong>telemetry table</strong> contains the names and id's of the stored procedures that are responsible for collecting the telemetry data. In the environments that I've verified this on, there are 150 stored procedures lists in  the telemetry table. You can have a look at this info by running the following query</p>
-<style="margin-left: 36pt">
-<style="margin-left: 36pt"><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span>
-			<span style="color:gray">*</span>
-			<span style="color:blue">from</span> Telemetry 
-            <span style="color:blue">order</span>
-			<span style="color:blue">by</span> name
-</span>
+
+```sql
+select * from Telemetry order by name
+```
+
+
 <style="margin-left: 36pt">
 <span style="font-family:Consolas; font-size:9pt"><br />
 		</span>
 <p>The results are stored in a table called  TEL_telemetryresults. You can look at your own results by running the following query</p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span>
-			<span style="color:gray">* </span><span style="color:blue">from</span> TEL_TelemetryResults<br />
-</span></p>
+
+```sql
+select * from TEL_TelemetryResults
+```
+
 <span style="font-style:normal;" depending on your environment.</span><br />
 <p>Depending upon the level of data you've chosen you should see a number of rows returned. There should be one thing that catches your eye quite swiftly. As you can see in the screenshot below each row has a results column that ends with a returning hash. Which opens up the very first question, what is this hash all about?<br />
 </p>
@@ -35,119 +36,92 @@
 
 <p><span>You can get your own hierarchy id and the accompanying hash to validate this data by running the following query:<br />
 </span></p>
-<span style="font-family:Consolas; font-size:9pt">
-<span style="color:blue">Declare</span> @tenantid <span style="color:blue">as</span>
-			<span style="color:blue">nvarchar<span style="color:gray">(<span style="color:fuchsia">max<span style="color:gray">)</span>
-					</span></span></span></span></p>
-<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span> @TenantId <span style="color:gray">=</span> dbo<span style="color:gray">.</span>fnConvertBinaryToBase64String<span style="color:gray">(</span>dbo<span style="color:gray">.</span>fnMDMCalculateHash<span style="color:gray">(<span style="color:fuchsia">CONVERT<span style="color:gray">(<span style="color:blue">VARBINARY<span style="color:gray">(<span style="color:fuchsia">MAX<span style="color:gray">),</span> [dbo]<span style="color:gray">.</span>[</span>fnGetHierarchyID]()),</span>
-							<span style="color:red">'SHA256'<span style="color:gray">)</span>
-								<span style="color:gray">)</span><br />
-							</span></span></span></span></span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">Declare</span> @hierarchyid <span style="color:blue">as</span>
-			<span style="color:blue">nvarchar<span style="color:gray">(<span style="color:fuchsia">max<span style="color:gray">)</span><br />
-					</span></span></span></span></p>
-<p><span style="color:blue">select</span> @hierarchyid <span style="color:gray">=</span> [dbo]<span style="color:gray">.</span>[fnGetHierarchyID]<span style="color:gray">()</span><br />
-		</span></p>
-<p><span style="color:blue">select</span> @hierarchyid<span style="color:gray">,</span> @tenantid<br />
+```sql
+Declare @tenantid as
+nvarchar(max)
+
+select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].fnGetHierarchyID),
+'SHA256')
+)
+
+Declare @hierarchyid as nvarchar(max)
+select @hierarchyid = [dbo].[fnGetHierarchyID]()
+select @hierarchyid, @tenantid
+```
+
 </span></span></p>
 <p>
  </p>
 <h3>Stored procedures<br />
 </h3>
 <p>There are a bunch of stored procedures involved in collecting the telemetry data, and most of them just generate just 1 of the rows in the telemetryresults table. You can find the stored procedures responsible for collecting data by running the following query.</p>
-<p>
- </p>
-<p>    <span style="font-family:Consolas; font-size:9pt"><span style="color:blue">SELECT</span><br />
-			<span style="color:blue">distinct</span> o<span style="color:gray">.</span>name <span style="color:blue">As</span><br />
-			<span style="color:red">'Stored Procedures'<span style="color:gray">,</span>o<span style="color:gray">.*</span><br />
-			</span></span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">FROM</span><br />
-			<span style="color:green">SYSOBJECTS</span> o <span style="color:gray">INNER</span><br />
-			<span style="color:gray">JOIN</span><br />
-			<span style="color:green">SYSCOMMENTS</span> c<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">ON</span> o<span style="color:gray">.</span>id <span style="color:gray">=</span> c<span style="color:gray">.</span>id<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><br />
-			<span style="color:blue">WHERE</span> o<span style="color:gray">.</span>name <span style="color:gray">like</span><br />
-			<span style="color:red">'tel_%'</span><br />
-			<span style="color:gray">and </span>o<span style="color:gray">.</span>xtype <span style="color:gray">=</span><br />
-			<span style="color:red">'P'<br />
-</span></span></p>
+```SQL
+SELECT distinct o.name As 'Stored Procedures',o.*
+FROM SYSOBJECTS o 
+INNER JOIN SYSCOMMENTS c
+ON o.id = c.id WHERE o.name like 'tel_%' and o.xtype = 'P'
+```
 <p>
  </p>
 <p>If you're only interested in the ones that generate data for the <strong>telemetryresults</strong> table run the query below.</p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">SELECT</span><br />
-			<span style="color:blue">distinct</span> o<span style="color:gray">.</span>name <span style="color:blue">As</span><br />
-			<span style="color:red">'Stored Procedures'<span style="color:gray">,</span>o<span style="color:gray">.*</span><br />
-			</span></span></p>
-<p style="margin-left: 36pt"><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">FROM</span><br />
-			<span style="color:green">SYSOBJECTS</span> o <span style="color:gray">INNER</span><br />
-			<span style="color:gray">JOIN</span><br />
-			<span style="color:green">SYSCOMMENTS</span> c<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">ON</span> o<span style="color:gray">.</span>id <span style="color:gray">=</span> c<span style="color:gray">.</span>id<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">WHERE</span> o<span style="color:gray">.</span>name <span style="color:gray">like</span><br />
-			<span style="color:red">'tel_%'</span><br />
-			<span style="color:gray">and </span>o<span style="color:gray">.</span>xtype <span style="color:gray">=</span><br />
-			<span style="color:red">'P' <span style="color:gray">and</span> o<span style="color:gray">.</span>name <span style="color:gray">in<span style="color:blue"><br />
-						<span style="color:gray">(<span style="color:blue">select</span> name <span style="color:blue">from</span> Telemetry)<br />
-</span></span></span></span></span></p>
-<p>
- </p>
+```SQL
+SELECT distinct o.name As Stored Procedures',o.*
+FROM SYSOBJECTS o 
+INNER JOIN SYSCOMMENTS c
+ON o.id = c.id
+WHERE o.name like 'tel_%' and o.xtype = 'P' and o.name in (select name from Telemetry)
+```
 <p>You could subsequently analyze the stored procedures to see what it is they are collecting, but that is an elaborate exercise. As we've seen that SHA256 is the hashing mechanism of choice I've chosen to check which of these stored procedures use the SHA256 function. I've identified the stored procedures, and linked id's using this query</p>
-<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">SELECT</span>			<span style="color:blue">DISTINCT</span>       o<span style="color:gray">.</span>name <span style="color:blue">AS</span><span style="color:fuchsia"> Object_Name<span style="color:gray">,</span> Telemetry<span style="color:gray">.</span>id<span style="color:gray">,</span></span></span><span style="font-family:Consolas; font-size:9pt">       o<span style="color:gray">.</span>type_desc<span style="color:gray">,</span> m<span style="color:gray">.<span style="color:blue">definition</span></span></span> 
-<span style="font-family:Consolas; font-size:9pt"><span style="color:blue">FROM </span><span style="color:green">sys<span style="color:gray">.<span style="color:green">sql_modules</span> m </span></span></span><span style="font-family:Consolas; font-size:9pt">
-<span style="color:gray">INNER</span><span style="color:gray">JOIN</span><span style="color:green">sys<span style="color:gray">.<span style="color:green">objects</span> o <span style="color:blue">ON</span> m.<span style="color:fuchsia">object_id</span> =</span> o<span style="color:gray">.<span style="color:fuchsia">object_id</span>
-				</span></span></span>
-<p><span style="font-family:Consolas; font-size:9pt">    <span style="color:gray">inner</span><br />
-			<span style="color:gray">join</span> telemetry <span style="color:blue">on</span> o<span style="color:gray">.</span>name <span style="color:gray">=</span> Telemetry<span style="color:gray">.</span>Name<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt">    <span style="color:blue">where</span> m<span style="color:gray">.<span style="color:blue">definition</span> like</span><br />
-			<span style="color:red">'%sha256%'</span><br />
-			<span style="color:gray">and</span> o<span style="color:gray">.</span>name <span style="color:gray">like</span><br />
-			<span style="color:red">'tel_%'<br />
-</span></span></p>
+```SQL
+SELECT DISTINCT o.name AS Object_Name, Telemetry.id, o.type_desc, m.definition 
+FROM sys.sql_modules m 
+INNER JOIN sys.objects o ON m.object_id = o.object_id
+INNER join telemetry on o.name = Telemetry.Name
+where m.definition like '%sha256%' and o.name like 'tel_%'
+``` 
+
+
 <p>
  </p>
 <p>This results in the following list of id's</p></p>
-<p>
- </p>
+
+
+|Object Name | Id |
+|:--------|:-------:|
+|TEL_SQL_DBSchema	|0F40B971-AAC7-4A39-8CDA-1E023C833306
+|TEL_App_Requirements	|A0764DB2-8F8B-495A-A143-1F20A58E7A5C
+|TEL_SetupInfo	|E1201168-0A70-41B7-857E-309F8A5FB96B
+|TEL_Content_Package|	69FC4B89-3561-4360-9157-4F8E896F7FB9
+|TEL_Perf_TableSize|	3B694B4A-DA65-4E60-BAE9-5796849A9586
+|TEL_ConfigPack_AssignmentCount|	79861B77-8313-4009-ABF3-5819ABFE4666
+|TEL_Content_DPState|	ACABF386-BCD1-48C5-9C7F-A33DADA6E89D
+|TEL_DCM_BuiltinSettings|	FDC2F647-FE63-471D-903F-AC6DE54F5F58
+|TEL_EAS_Connectors|	942B1F7E-EB3F-4576-8CB8-F8066D31940F
+
 <p>Which in turn lets you focus on the <strong>telemeteryresults </strong>table and the rows that contain hashed information:</p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">select</span><br />
-			<span style="color:gray">*</span><br />
-			<span style="color:blue">from</span> TEL_TelemetryResults<br />
-</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:blue">where</span> id <span style="color:gray">in</span><br />
-		</span></p>
-<p><span style="color:gray; font-family:Consolas; font-size:9pt">(<span style="color:red">'ACABF386-BCD1-48C5-9C7F-A33DADA6E89D'<span style="color:gray">,</span><br />
-				<span style="color:green">--TEL_Content_DPState</span><br />
-			</span></span></p>
-<p><span style="color:red; font-family:Consolas; font-size:9pt">'69FC4B89-3561-4360-9157-4F8E896F7FB9'<span style="color:gray">,</span><br />
-			<span style="color:green">--TEL_Content_Package</span><br />
-		</span></p>
-<p><span style="color:red; font-family:Consolas; font-size:9pt">'2E8CC4FA-738D-4A48-B36F-E981344C97C3'<span style="color:gray">,</span><br />
-			<span style="color:green">--TEL_DCM_BuiltinSettings</span><br />
-		</span></p>
-<p><span style="color:red; font-family:Consolas; font-size:9pt">'942B1F7E-EB3F-4576-8CB8-F8066D31940F'<span style="color:gray">,</span><br />
-			<span style="color:green">--TEL_EAS_Connectors</span><br />
-		</span></p>
-<p><span style="color:red; font-family:Consolas; font-size:9pt">'CD6B1D69-5F70-46B1-BC82-2C99764188B5'<span style="color:gray">,</span><br />
-			<span style="color:green">--TEL_MAM_PolicySettingStatistics4Deployment2Collection</span><br />
-		</span></p>
-<p><span style="color:red; font-family:Consolas; font-size:9pt">'3B694B4A-DA65-4E60-BAE9-5796849A9586'<span style="color:gray">,</span><br />
-			<span style="color:green">--TEL_Perf_TableSize</span><br />
-		</span></p>
-<p><span style="color:red; font-family:Consolas; font-size:9pt">'E1201168-0A70-41B7-857E-309F8A5FB96B'<span style="color:gray">,</span><br />
-			<span style="color:green">--TEL_SetupInfo</span><br />
-		</span></p>
-<p><span style="font-family:Consolas; font-size:9pt"><span style="color:red">'0F40B971-AAC7-4A39-8CDA-1E023C833306'</span><br />
-			<span style="color:gray">)</span><br />
-			<span style="color:green">--TEL_SQL_DBSchema<br />
-</span></span></p>
-<p>
- </p>
+```SQL
+select
+*
+from TEL_TelemetryResults
+where id in
+('ACABF386-BCD1-48C5-9C7F-A33DADA6E89D',
+--TEL_Content_DPState
+'69FC4B89-3561-4360-9157-4F8E896F7FB9',
+--TEL_Content_Package
+'2E8CC4FA-738D-4A48-B36F-E981344C97C3',
+--TEL_DCM_BuiltinSettings
+'942B1F7E-EB3F-4576-8CB8-F8066D31940F',
+--TEL_EAS_Connectors
+'CD6B1D69-5F70-46B1-BC82-2C99764188B5',
+--TEL_MAM_PolicySettingStatistics4Deployment2Collection
+'3B694B4A-DA65-4E60-BAE9-5796849A9586',
+--TEL_Perf_TableSize
+'E1201168-0A70-41B7-857E-309F8A5FB96B',
+--TEL_SetupInfo
+'0F40B971-AAC7-4A39-8CDA-1E023C833306'
+)
+--TEL_SQL_DBSchema
+```
 <p>Or on those that should not contain any hashed information by changing the where clause to use not in instead of in.  This should allow you to quickly check whether the results column still has data you can't understand. (Should that be the case feel free to share the ID of the row and I'll happily look into it.)</p>
 <p>
  </p>
