@@ -1,10 +1,8 @@
 ---
-title:  "ConfigMgr LTSB, 'The do NOT use Edition.'!"
-
+Author: Tom Degreef
 categories: 
   - SCCM
 tags:
-  - LTSB
   - SCCM
 ---
 Telemetry, what is it about?
