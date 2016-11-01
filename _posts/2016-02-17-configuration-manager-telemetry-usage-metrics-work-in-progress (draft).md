@@ -1,6 +1,4 @@
 
-[Source](https://kimoppalfens.github.io/configuration-manager-telemetry-usage-metrics-work-in-progress-(draft)/ "Permalink to Configuration Manager Telemetry Usage Metrics Work In Progress (draft)")
-
 # Configuration Manager Telemetry Usage Metrics Work In Progress (draft)
 
 Telemetry, what is it about?
@@ -51,9 +49,7 @@ SELECT @hierarchyid = [dbo].[fnGetHierarchyID]()
 SELECT @hierarchyid AS Hierarchyid
 	,@CMId AS Hash
 ```
-</span><p></p>
 
-&nbsp;
 
 ### Stored procedures  
 
@@ -66,7 +62,6 @@ INNER JOIN SYSCOMMENTS c ON o.id = c.id
 WHERE o.NAME LIKE 'tel_%'
 	AND o.xtype = 'P'
 ```
-&nbsp;
 
 If you're only interested in the ones that generate data for the **telemetryresults** table run the query below.
 ```sql
@@ -88,11 +83,8 @@ INNER JOIN telemetry ON o.NAME = Telemetry.NAME
 WHERE m.DEFINITION LIKE '%sha256%'
 	AND o.NAME LIKE 'tel_%'
 ```
-&nbsp;
 
 This results in the following list of id's
-
-<p></p>
 
 | Object Name                    | Id                                   |
 | ------------------------------ | ------------------------------------ |
@@ -123,7 +115,6 @@ WHERE id IN (
 ```
 Or on those that should not contain any hashed information by changing the where clause to use not in instead of in. This should allow you to quickly check whether the results column still has data you can't understand. (Should that be the case feel free to share the ID of the row and I'll happily look into it.)
 
-&nbsp;
 
 The last ID '0F40B971-AAC7-4A39-8CDA-1E023C833306' contains the full schema of your Configuration Manager database as collected by the **TEL_SQL_DBSCHEMA** stored procedure. When you look at the stored procedure definition you'll notice that it runs the following query to collect the data:
 
@@ -136,11 +127,9 @@ FROM dbo.DBSchema DS
 INNER JOIN SC_SiteDefinition SDef ON DS.SiteNumber = SDef.SiteNumber
 WHERE ISNULL(SDef.parentsitecode, N'') = N''  
 ```
-&nbsp;
 
 As should be apparent, the objectnames are obfuscated in this stored procedure. Should you like to know what the obfuscated data really means you can modify the query slightly and add another item in the select section of the query to include the data before it is hashed like so:
 
-&nbsp;
 
 ```sql  
 SELECT DS.ObjectName
@@ -153,7 +142,6 @@ INNER JOIN SC_SiteDefinition SS ON DS.SiteNumber = SS.SiteNumber
 WHERE ISNULL(SS.parentsitecode, N'') = N'' 
 ```  
 
-&nbsp;
 
 As you can see, all I did was include the column DS.ObjectName before it was hashed so you could see it in readable format alongside the hashed format. The reason they hash the data in this particular instance is because your're schema could contain your company name, or other privacy sensitive data. The most likely way this would end up in your schema is by including that information in the names of your custom hardware inventory classes.
 
