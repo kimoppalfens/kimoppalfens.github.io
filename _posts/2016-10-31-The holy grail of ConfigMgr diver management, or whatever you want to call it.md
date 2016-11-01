@@ -24,9 +24,7 @@ I've never written a blog post that could have had so many different titles thou
 
 # Driver Management desires
 
-There's a multitude of ways to handle driver management in Configuration Manager and OSDeployment.
-
-But one of the common desires in driver management is to have full control over which drivers get applied during your deployment.
+One of the common desires in driver management is to have full control over which drivers get applied during your deployment.
 Another desire is to install this set of drivers dynamically based on the hardware model deployed.
 A third secondary desire is to do all this without actually importing drivers, this comes from Johan's method in 2007 where he introduced "Total Control" without importing drivers. http://deploymentresearch.com/Research/Post/325/MDT-2013-Lite-Touch-Driver-Management and re-created in 2012 by Achim https://www.windows-noob.com/forums/topic/10856-sccm-2012-osd-apply-driver-packages-without-importing-them-to-the-database/
 And then my personal desire is to do all that without having to touch my tasksequence(s) each time a new model is introduced at one of my customers.
