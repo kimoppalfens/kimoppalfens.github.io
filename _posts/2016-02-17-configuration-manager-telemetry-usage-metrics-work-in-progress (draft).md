@@ -1,6 +1,4 @@
 
-# Configuration Manager Telemetry Usage Metrics Work In Progress (draft)
-
 Telemetry, what is it about?
 
 Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: <https: mt613113.aspx="" library="" en-us="" technet.microsoft.com="">
