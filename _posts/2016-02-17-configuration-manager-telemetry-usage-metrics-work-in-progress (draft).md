@@ -14,14 +14,15 @@ And that's where some of the challenges come in for customers that are privacy s
 ## Tables  
 
 The **telemetry table** contains the names and id's of the stored procedures that are responsible for collecting the telemetry data. In the environments that I've verified this on, there are 150 stored procedures lists in the telemetry table. You can have a look at this info by running the following query
+
 ```sql
 SELECT *
 FROM Telemetry
 ORDER BY NAME
 ```
 
-
 The results are stored in a table called TEL_telemetryresults. You can look at your own results by running the following query
+
 ```sql
 SELECT *
 FROM TEL_TelemetryResults
@@ -34,6 +35,7 @@ Well this particular hash is used to correlate data between the different rows i
 ![][1]
 
 You can get your own hierarchy id and the accompanying hash to validate this data by running the following query:  
+
 ```sql
 DECLARE @CMid AS NVARCHAR(max)
 
@@ -52,6 +54,7 @@ SELECT @hierarchyid AS Hierarchyid
 ### Stored procedures  
 
 There are a bunch of stored procedures involved in collecting the telemetry data, and most of them just generate just 1 of the rows in the telemetryresults table. You can find the stored procedures responsible for collecting data by running the following query.
+
 ```sql
 SELECT DISTINCT o.NAME AS 'Stored Procedures'
 	,o.*
@@ -62,6 +65,7 @@ WHERE o.NAME LIKE 'tel_%'
 ```
 
 If you're only interested in the ones that generate data for the **telemetryresults** table run the query below.
+
 ```sql
 SELECT DISTINCT o.NAME AS 'Stored Procedures',o.*
 FROM SYSOBJECTS o
@@ -69,7 +73,9 @@ INNER JOIN SYSCOMMENTS c ON o.id = c.id
 WHERE o.name
 like 'TEL_%' and o.xtype = 'P' and o.name in (select name from Telemetry)
 ```
+
 You could subsequently analyze the stored procedures to see what it is they are collecting, but that is an elaborate exercise. As we've seen that SHA256 is the hashing mechanism of choice I've chosen to check which of these stored procedures use the SHA256 function. I've identified the stored procedures, and linked id's using this query
+
 ```sql
 SELECT DISTINCT o.NAME AS Object_Name
 	,Telemetry.id
@@ -97,6 +103,7 @@ This results in the following list of id's
 | TEL_EAS_Connectors             | 942B1F7E-EB3F-4576-8CB8-F8066D31940F |
 
 Which in turn lets you focus on the **telemeteryresults **table and the rows that contain hashed information:
+
 ```sql
 SELECT *
 FROM TEL_TelemetryResults
@@ -111,6 +118,7 @@ WHERE id IN (
 		,'0F40B971-AAC7-4A39-8CDA-1E023C833306'
 		)
 ```
+
 Or on those that should not contain any hashed information by changing the where clause to use not in instead of in. This should allow you to quickly check whether the results column still has data you can't understand. (Should that be the case feel free to share the ID of the row and I'll happily look into it.)
 
 
