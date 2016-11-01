@@ -14,3 +14,13 @@ Tom Degreef:
   avatar: "tom_degreef.jpg"
   twitter: "tomdegreef"
   linkedin         : "tom-degreef-7a77881"
+
+Kim Oppalfens:
+  name: "Kim Oppalfens"
+  location: "Belgium / Malta"
+  email: "kim.oppalfens@oscc.be"
+  bio: "EMS MVP for over a decade, focussing on Automation, Hybrid Identity, DevOps enthousiast and overall self-proclaimed nice guy."
+  avatar: "bio-photo.jpg"
+  twitter: "thewmiguy"
+  linkedin         : "kimoppalfens"
+  github           : "kimoppalfens"
