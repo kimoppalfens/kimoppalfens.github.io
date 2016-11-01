@@ -1,11 +1,12 @@
 ---
-title:  "Configuration Manager telemetry, usage metrics, work in progress"
+title: "Configuration Manager telemetry, usage metrics, work in progress"
 Author: Tom Degreef
-categories: 
+categories:
   - SCCM
 tags:
   - SCCM
 ---
+
 Telemetry, what is it about?
 
 Microsoft has quite a bit of information here about its new telemetry data system for SCCM here: [https://technet.microsoft.com/en-US/library/mt613113.aspx ](https://technet.microsoft.com/en-US/library/mt613113.aspx )
