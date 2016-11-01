@@ -1,5 +1,5 @@
 ---
-title: "The holy grail of ConfigMgr driver management, or whatever you'd like to call it."
+title: "The holy grail of ConfigMgr driver management / whatever you'd like to call it."
 author: Kim Oppalfens
 date: 2016-10-31
 categories:
