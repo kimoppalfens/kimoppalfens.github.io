@@ -16,13 +16,13 @@ Microsoft has quite a bit of information here about its new telemetry data syste
 
 # Intro
 
-Below are my findings and additions to that documentation that people are inquiring about, but let me start off with the why, of it all. The new Configuration Manager comes with a brand new servicing mechanism. You should be aware by now that Windows 10 comes with a pretty high release cadence (a new Windows every 4 months). To keep up with that pace, Configuration Manager is planned to follow suit, and more or less follow that same cadence. Now, quite some people are sceptic about that increased cadence and the impact on the different products quality. To answer the challenges that come with this increased pace Microsoft plans to ship fast / fix fast, and that's were telemetry comes in.
+Below are my findings and additions to that documentation that people are inquiring about, but let me start off with the why, of it all. The new Configuration Manager comes with a brand new servicing mechanism. You should be aware by now that Windows 10 comes with a pretty high release cadence (a new Windows every 4 months). To keep up with that pace, Configuration Manager is planned to follow suit, and more or less follow that same cadence. Now, quite some people are skeptic about that increased cadence and the impact on the different products quality. To answer the challenges that come with this increased pace Microsoft plans to ship fast / fix fast, and that's were telemetry comes in.
 
 The general idea is to find the setups and "modus operandi" that are frequently used by a large set of customers and use those in testing. Additionally, the telemetry data should prove to be a shortcut to get troubleshooting data to the product team. In other words, sharing data on the way you use the product should be in your own interest.
 
 # The Hashing of data
 
-Sounds good, but am I supposed to just trust Microsoft in collecting data from my environment that might be privacy sensitive? Well, yes and no. Microsoft takes privacy extremely serious, and so does the Configuration Manager product team. The product team has, imho, very good reasons to make sure the data they collect isn't catalogued as privacy sensitive, as doing so would introduce them to a drastically increased involvement of both legal and auditing, as for any Microsoft service that holds privacy sensitive data. To keep the level of scrutiny they'd have to go through in check, the ConfigMgr team starts off with anonymizing the data. They do that by hashing some of the data, so that any privacy sensitive data isn't readable to them.
+Sounds good, but am I supposed to just trust Microsoft in collecting data from my environment that might be privacy sensitive? Well, yes and no. Microsoft takes privacy extremely serious, and so does the Configuration Manager product team. The product team has, IMHO, very good reasons to make sure the data they collect isn't cataloged as privacy sensitive, as doing so would introduce them to a drastically increased involvement of both legal and auditing, as for any Microsoft service that holds privacy sensitive data. To keep the level of scrutiny they'd have to go through in check, the ConfigMgr team starts off with anonymizing the data. They do that by hashing some of the data, so that any privacy sensitive data isn't readable to them.
 
 And that's where some of the challenges come in for customers that are privacy sensitive and/or have auditing breath down their neck. This hashed data isn't readable to them either, which worries some of them, as they don't know what they are sending out. Below I'll explain, for all the hashed values I found in telemetry results so far how you can make the data human readable alongside the hash so that you can control what the data you are sending out actually means.
 
@@ -45,7 +45,7 @@ FROM TEL_TelemetryResults
 
 Depending upon the level of data you've chosen you should see a number of rows returned. There should be one thing that catches your eye quite swiftly. As you can see in the screenshot below each row has a results column that ends with a returning hash. Which opens up the very first question, what is this hash all about?  
 
-Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchyid that could be used for this purpose. But even that wasn't anoynymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using *SHA256*.
+Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchy id that could be used for this purpose. But even that wasn't anonymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using *SHA256*.
 
 ![][1]
 
@@ -149,7 +149,7 @@ INNER JOIN SC_SiteDefinition SDef ON DS.SiteNumber = SDef.SiteNumber
 WHERE ISNULL(SDef.parentsitecode, N'') = N''  
 ```
 
-As should be apparent, the objectnames are obfuscated in this stored procedure. Should you like to know what the obfuscated data really means you can modify the query slightly and add another item in the select section of the query to include the data before it is hashed like so:
+As should be apparent, the object names are obfuscated in this stored procedure. Should you like to know what the obfuscated data really means you can modify the query slightly and add another item in the select section of the query to include the data before it is hashed like so:
 
 
 ```sql  
@@ -164,13 +164,11 @@ WHERE ISNULL(SS.parentsitecode, N'') = N''
 ```  
 
 
-As you can see, all I did was include the column DS.ObjectName before it was hashed so you could see it in readable format alongside the hashed format. The reason they hash the data in this particular instance is because your're schema could contain your company name, or other privacy sensitive data. The most likely way this would end up in your schema is by including that information in the names of your custom hardware inventory classes.
+As you can see, all I did was include the column DS.ObjectName before it was hashed so you could see it in readable format alongside the hashed format. The reason they hash the data in this particular instance is because your'schema could contain your company name, or other privacy sensitive data. The most likely way this would end up in your schema is by including that information in the names of your custom hardware inventory classes.
 
-This is just one of the 8 queries that might contain hashed data, but the mechanism above is repeatable for the other stored procedures. I'll add the queries needed to represent the cleartext data and the hashed variant over the next couple of days.
+This is just one of the 8 queries that might contain hashed data, but the mechanism above is repeatable for the other stored procedures. I'll add the queries needed to represent the clear text data and the hashed variant over the next couple of days.
 
 Enjoy.  
-"The M in WMI stands for Magic"  
-"Everyone is an expert at something" Kim Oppalfens - Enterprise Mobility Expert for lack of any other expertise  
 
 [1]: http://i.imgur.com/PakPsmw.png
 
