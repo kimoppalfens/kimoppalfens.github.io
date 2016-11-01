@@ -59,17 +59,10 @@ As a final note, just running the prerequisite checker standalone, from this sam
 
 2. The update should arrive and be in the downloading state for a while. You can monitor the download progress in the DMPDownloader.log the log should contains lines similar to:  
 
-_EasySetupDownload thread is starting... $$<09-22-2015 21:21:36.981-120>  
-_
-
-_Download Easy setup payloads~~ $$<09-22-2015 21:21:37.008-120>  
-_
-
-_Get manifest.cab url~~ $$<09-22-2015 21:21:37.012-120>  
-_
-
-_Successfully write the update meta into outbox for package dcd17922-2c96-4bd7-b72d-e9159582cdf2~~ $$<09-22-2015 21:40:36.934-120>  
-_
+EasySetupDownload thread is starting... $$<09-22-2015 21:21:36.981-120>  
+Download Easy setup payloads~~ $$<09-22-2015 21:21:37.008-120>  
+Get manifest.cab url~~ $$<09-22-2015 21:21:37.012-120>  
+Successfully write the update meta into outbox for package dcd17922-2c96-4bd7-b72d-e9159582cdf2~~ $$<09-22-2015 21:40:36.934-120>  
 
 1. This particular update is somewhere between 800 and 900 Mbytes, so depending on your internet connection speed, it might take a while to download everything. In my particular experience, mumbling "patience is a virtue" over and over again had neither a positive nor negative impact on the download speed.  
 
@@ -188,14 +181,6 @@ _
  
 
 Enjoy.  
-"The M in WMI stands for Magic"  
-""Everyone is an expert at something" Kim Oppalfens - ConfigMgr Expert for lack of any other expertise  
-System Center Configuration Manager MVP  
-http://www.scug.be/blogs/sccm/default.aspx
-
-http://www.linkedin.com/in/kimoppalfens
-
-http://twitter.com/thewmiguy
 
 [1]: http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttp:/blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx
 [2]: http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttps:/technet.microsoft.com/library/dn965439.aspx
