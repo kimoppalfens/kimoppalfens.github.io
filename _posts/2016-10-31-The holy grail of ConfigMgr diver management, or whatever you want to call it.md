@@ -1,5 +1,5 @@
 ---
-title: "The holy grail of ConfigMgr driver managemement, or whatever you'd like to call it."
+title: "The holy grail of ConfigMgr driver management, or whatever you'd like to call it."
 author: Kim Oppalfens
 date: 2016-10-31
 categories:
@@ -35,9 +35,9 @@ And then my personal desire is to do all that without having to touch my taskseq
 That's why a certain individual filled a User voice request for it, that has 496 votes at present. https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/10099479-allow-for-dynamically-selecting-apply-driver-packa
 , which puts it in the top 10 of currently listed requests.
 
-In summarization we'll try and create a method that:
+In summary we'll try and create a method that:
 
-- Full controll over the drivers that get installed
+- Full control over the drivers that get installed
 - Dynamically select these drivers based on the detected hardware model
 - Install drivers during OSD without importing them into Configuration Manager
 - Add a new hardware model without modifying your tasksequence in any way
@@ -50,8 +50,8 @@ The new Configuration Manager current branch has a new Powershell Tasksequence s
 My MVP pall, Jörgen Nilsson, blogged about it here, http://ccmexec.com/2015/09/configmgr-vnext-feature-download-package-content/, don't mind the comment about someone calling it useless, that's going to be rather funny by the end of this post.
 Now, I hear you think, how is that going to bring us any closer to that sliced bread for driver management? Well, this new step allows one to download a fixed list of regular packages.
 On the surface, it seems to lack the ability to do driver packages, and it doesn't appear to be Dynamic in any shape or form.
-But, that's why this section's title is the Unseen potential of the step. This particular step actually has an **OVERRIDABLE** tasksequence variable called OSDDownloadDownloadPackages, Yes, that's 2 times the word download in one variable. This particular variable takes PackageId's as values, and then goes ahead and download those. And lo and behold, yes, that does include driver packages. (I'll let you in on another secret, it even takes packageid's of applications).
-So we can dynamically set that variable based on the hardware model and download the relevant driver package to a fixed path locally on the deployed machine. Piece 1 of the puzzle is handled by this script that reads the relevant packageid from an exported listed of available driver packages.
+But, that's why this section's title is the Unseen potential of the step. This particular step actually has an **OVERRIDABLE** tasksequence variable called OSDDownloadDownloadPackages, Yes, that's 2 times the word download in one variable. This particular variable takes Package Id's as values, and then goes ahead and download those. And lo and behold, yes, that does include driver packages. (I'll let you in on another secret, it even takes package id's of applications).
+So we can dynamically set that variable based on the hardware model and download the relevant driver package to a fixed path locally on the deployed machine. Piece 1 of the puzzle is handled by this script that reads the relevant package id from an exported listed of available driver packages.
 
 ```posh
 [xml]$Packages = get-content driverpackages.xml
@@ -72,28 +72,28 @@ $Package.SelectNodes('def:S[contains(@N,"PackageID")]',$ns).'#Text'
 }
 ```
 
-The script takes a driverpackages XML which was generated using the following powershell command:
+The script takes a driver packages XML which was generated using the following Powershell command:
 
 ```posh
 Get-WmiObject -class sms_driverpackage -Namespace root\sms\site_poc | Select-Object Name,PackageID | export-clixml driverpackages.xml
 ```
 
-It starts with reading the xml generated with the command above, and initializes the Tasksequence COM object.
+It starts with reading the XML generated with the command above, and initializes the Tasksequence COM object.
 
 
-The script subesequently grabs the hardware model from wmi, and subsequently  goes through the XML to capture the packageid that goes with that model. In this particular exercise, I just named my driver package after the different hardware models it applied to.
+The script subsequently grabs the hardware model from WMI, and subsequently  goes through the XML to capture the package id that goes with that model. In this particular exercise, I just named my driver package after the different hardware models it applied to.
 You could put the model field in the manufacturer comment or any other field of a package you desire, but you'll have to modify the script above to match that information
 
 The next 4 lines perform an XPath query to get the package node that contains the driver package for which the name corresponds to the hardware model detected.
 
-Note: The above script is Powershell, so your boot image will need to contain powershell, or you'll have to come up with something similar in VBS and CSV files
+Note: The above script is Powershell, so your boot image will need to contain Powershell, or you'll have to come up with something similar in VBS and CSV files
 
-Note2: The parsed xml from export-clixml actually contains a Namespace, the script above shows some Powershell Xpath queries when a $ns namespace is involved
-After finding the necessary packageID it's value is set in the variable 'OSDDownloadDownloadPackages'
+Note 2: The parsed XML from export-clixml actually contains a Namespace, the script above shows some Powershell XPath queries when a $ns Namespace is involved
+After finding the necessary package Id it's value is set in the variable 'OSDDownloadDownloadPackages'
 
 We are now ready to run the download package content step and dynamically download the relevant driver package.
 Dynamically download driver packages, check.
-Once the driver package is downloaded we can Dism apply it to our deployed OS image using the following command:
+Once the driver package is downloaded we can Disk apply it to our deployed OS image using the following command:
 
 ```posh
 DISM.exe /Image:%osdisk%\ /Add-Driver /Driver:c:\drivers\ /Recurse
