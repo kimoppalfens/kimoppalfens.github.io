@@ -19,37 +19,38 @@ And that's where some of the challenges come in for customers that are privacy s
 
 The **telemetry table** contains the names and id's of the stored procedures that are responsible for collecting the telemetry data. In the environments that I've verified this on, there are 150 stored procedures lists in the telemetry table. You can have a look at this info by running the following query
 ```sql
-Select * from Telemetry order by name
+SELECT *
+FROM Telemetry
+ORDER BY NAME
 ```
 
 
 The results are stored in a table called TEL_telemetryresults. You can look at your own results by running the following query
 ```sql
-select * from TEL_TelemetryResults
+SELECT *
+FROM TEL_TelemetryResults
 ```
-
-<span style="font-style:normal;" span="" environment.<="" your="" on="" depending="">  
 
 Depending upon the level of data you've chosen you should see a number of rows returned. There should be one thing that catches your eye quite swiftly. As you can see in the screenshot below each row has a results column that ends with a returning hash. Which opens up the very first question, what is this hash all about?  
 
-Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchyid that could be used for this purpose. But even that wasn't anoynymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using **SHA256.  
-**
+Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchyid that could be used for this purpose. But even that wasn't anoynymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using *SHA256*.
 
 ![][1]
 
 You can get your own hierarchy id and the accompanying hash to validate this data by running the following query:  
+```sql
+DECLARE @CMid AS NVARCHAR(max)
 
-    Declare @tenantid as
-    nvarchar(max)
+SELECT @CMId = dbo.fnConvertBinaryToBase64String(
+dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].fnGetHierarchyID()), 'SHA256'))
 
-    select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].fnGetHierarchyID),
-    'SHA256')
-    )
+DECLARE @hierarchyid AS NVARCHAR(max)
 
-    Declare @hierarchyid as nvarchar(max)
-    select @hierarchyid = [dbo].[fnGetHierarchyID]()
-    select @hierarchyid, @tenantid
+SELECT @hierarchyid = [dbo].[fnGetHierarchyID]()
 
+SELECT @hierarchyid AS Hierarchyid
+	,@CMId AS Hash
+```
 </span><p></p>
 
 &nbsp;
@@ -57,30 +58,36 @@ You can get your own hierarchy id and the accompanying hash to validate this dat
 ### Stored procedures  
 
 There are a bunch of stored procedures involved in collecting the telemetry data, and most of them just generate just 1 of the rows in the telemetryresults table. You can find the stored procedures responsible for collecting data by running the following query.
-
-    SELECT distinct o.name As 'Stored Procedures',o.*
-    FROM SYSOBJECTS o
-    INNER JOIN SYSCOMMENTS c
-    ON o.id = c.id WHERE o.name like 'tel_%' and o.xtype = 'P'
-
+```sql
+SELECT DISTINCT o.NAME AS 'Stored Procedures'
+	,o.*
+FROM SYSOBJECTS o
+INNER JOIN SYSCOMMENTS c ON o.id = c.id
+WHERE o.NAME LIKE 'tel_%'
+	AND o.xtype = 'P'
+```
 &nbsp;
 
 If you're only interested in the ones that generate data for the **telemetryresults** table run the query below.
-
-    SELECT distinct o.name As Stored Procedures',o.*
-    FROM SYSOBJECTS o
-    INNER JOIN SYSCOMMENTS c
-    ON o.id = c.id
-    WHERE o.name like 'tel_%' and o.xtype = 'P' and o.name in (select name from Telemetry)
-
+```sql
+SELECT DISTINCT o.NAME AS 'Stored Procedures',o.*
+FROM SYSOBJECTS o
+INNER JOIN SYSCOMMENTS c ON o.id = c.id
+WHERE o.name
+like 'TEL_%' and o.xtype = 'P' and o.name in (select name from Telemetry)
+```
 You could subsequently analyze the stored procedures to see what it is they are collecting, but that is an elaborate exercise. As we've seen that SHA256 is the hashing mechanism of choice I've chosen to check which of these stored procedures use the SHA256 function. I've identified the stored procedures, and linked id's using this query
-
-    SELECT DISTINCT o.name AS Object_Name, Telemetry.id, o.type_desc, m.definition
-    FROM sys.sql_modules m
-    INNER JOIN sys.objects o ON m.object_id = o.object_id
-    INNER join telemetry on o.name = Telemetry.Name
-    where m.definition like '%sha256%' and o.name like 'tel_%'
-
+```sql
+SELECT DISTINCT o.NAME AS Object_Name
+	,Telemetry.id
+	,o.type_desc
+	,m.DEFINITION
+FROM sys.sql_modules m
+INNER JOIN sys.objects o ON m.object_id = o.object_id
+INNER JOIN telemetry ON o.NAME = Telemetry.NAME
+WHERE m.DEFINITION LIKE '%sha256%'
+	AND o.NAME LIKE 'tel_%'
+```
 &nbsp;
 
 This results in the following list of id's
@@ -100,102 +107,51 @@ This results in the following list of id's
 | TEL_EAS_Connectors             | 942B1F7E-EB3F-4576-8CB8-F8066D31940F |
 
 Which in turn lets you focus on the **telemeteryresults **table and the rows that contain hashed information:
-
-    select
-    *
-    from TEL_TelemetryResults
-    where id in
-    ('ACABF386-BCD1-48C5-9C7F-A33DADA6E89D',
-    --TEL_Content_DPState
-    '69FC4B89-3561-4360-9157-4F8E896F7FB9',
-    --TEL_Content_Package
-    '2E8CC4FA-738D-4A48-B36F-E981344C97C3',
-    --TEL_DCM_BuiltinSettings
-    '942B1F7E-EB3F-4576-8CB8-F8066D31940F',
-    --TEL_EAS_Connectors
-    'CD6B1D69-5F70-46B1-BC82-2C99764188B5',
-    --TEL_MAM_PolicySettingStatistics4Deployment2Collection
-    '3B694B4A-DA65-4E60-BAE9-5796849A9586',
-    --TEL_Perf_TableSize
-    'E1201168-0A70-41B7-857E-309F8A5FB96B',
-    --TEL_SetupInfo
-    '0F40B971-AAC7-4A39-8CDA-1E023C833306'
-    )
-    --TEL_SQL_DBSchema
-
+```sql
+SELECT *
+FROM TEL_TelemetryResults
+WHERE id IN (
+		'ACABF386-BCD1-48C5-9C7F-A33DADA6E89D'
+		,'69FC4B89-3561-4360-9157-4F8E896F7FB9'
+		,'2E8CC4FA-738D-4A48-B36F-E981344C97C3'
+		,'942B1F7E-EB3F-4576-8CB8-F8066D31940F'
+		,'CD6B1D69-5F70-46B1-BC82-2C99764188B5'
+		,'3B694B4A-DA65-4E60-BAE9-5796849A9586'
+		,'E1201168-0A70-41B7-857E-309F8A5FB96B'
+		,'0F40B971-AAC7-4A39-8CDA-1E023C833306'
+		)
+```
 Or on those that should not contain any hashed information by changing the where clause to use not in instead of in. This should allow you to quickly check whether the results column still has data you can't understand. (Should that be the case feel free to share the ID of the row and I'll happily look into it.)
 
 &nbsp;
 
 The last ID '0F40B971-AAC7-4A39-8CDA-1E023C833306' contains the full schema of your Configuration Manager database as collected by the **TEL_SQL_DBSCHEMA** stored procedure. When you look at the stored procedure definition you'll notice that it runs the following query to collect the data:
 
-  
-SELECT dbo.fnConvertBinaryToBase64String(  
+```sql  
+SELECT dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), DS.ObjectName), 'SHA256')) AS ObjectNameHash
+	,DS.ObjectVersion AS ObjectVersion
+	,DS.UpdatedBy AS UpdatedBy
+	,DS.ObjectHash AS ObjectHash
+FROM dbo.DBSchema DS
+INNER JOIN SC_SiteDefinition SDef ON DS.SiteNumber = SDef.SiteNumber
+WHERE ISNULL(SDef.parentsitecode, N'') = N''  
+```
+&nbsp;
 
-  
-dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), DS.ObjectName),  
-'SHA256'))  
-AS ObjectNameHash,  
-
-DS.ObjectVersion AS ObjectVersion,  
-
-DS.UpdatedBy AS UpdatedBy,  
-
-DS.ObjectHash As ObjectHash  
-
-  
-FROM dbo.DBSchema DS  
-
-  
-INNER  
-JOIN SC_SiteDefinition SS  
-
-  
-ON DS.SiteNumber = SS.SiteNumber  
-
-  
-WHERE  
-ISNULL(SS.parentsitecode,  
-N'')  
-= N''  
+As should be apparent, the objectnames are obfuscated in this stored procedure. Should you like to know what the obfuscated data really means you can modify the query slightly and add another item in the select section of the query to include the data before it is hashed like so:
 
 &nbsp;
 
-As should be apparent, the objectnames are obfuscated in this stored procedure. Should you like to know what the obfuscated data really means you can modify the query slightly and another item in the select section of the query to include the data before it is hashed like so:
-
-&nbsp;
-
-  
-SELECT DS.ObjectName, dbo.fnConvertBinaryToBase64String(  
-
-  
-dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), DS.ObjectName),  
-'SHA256'))  
-AS ObjectNameHash,**  
-**
-
-&nbsp;&nbsp;&nbsp;&nbsp; DS.ObjectVersion AS ObjectVersion,  
-
-DS.UpdatedBy AS UpdatedBy,  
-
-DS.ObjectHash As ObjectHash  
-
-  
-FROM dbo.DBSchema DS  
-
-  
-INNER  
-JOIN SC_SiteDefinition SS  
-
-  
-ON DS.SiteNumber = SS.SiteNumber  
-
-  
-WHERE  
-ISNULL(SS.parentsitecode,  
-N'')  
-= N''  
-  
+```sql  
+SELECT DS.ObjectName
+	,dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), DS.ObjectName), 'SHA256')) AS ObjectNameHash
+	,DS.ObjectVersion AS ObjectVersion
+	,DS.UpdatedBy AS UpdatedBy
+	,DS.ObjectHash AS ObjectHash
+FROM dbo.DBSchema DS
+INNER JOIN SC_SiteDefinition SS ON DS.SiteNumber = SS.SiteNumber
+WHERE ISNULL(SS.parentsitecode, N'') = N'' 
+```  
 
 &nbsp;
 
