@@ -26,9 +26,14 @@ I've never written a blog post that could have had so many different titles thou
 
 One of the common desires in driver management is to have full control over which drivers get applied during your deployment.
 Another desire is to install this set of drivers dynamically based on the hardware model deployed.
-A third secondary desire is to do all this without actually importing drivers, this comes from Johan's method in 2007 where he introduced "Total Control" without importing drivers. http://deploymentresearch.com/Research/Post/325/MDT-2013-Lite-Touch-Driver-Management and re-created in 2012 by Achim https://www.windows-noob.com/forums/topic/10856-sccm-2012-osd-apply-driver-packages-without-importing-them-to-the-database/
+A third secondary desire is to do all this without actually importing drivers, this comes from Johan's method in 2007 where he introduced "Total Control" without importing drivers.
+[http://deploymentresearch.com/Research/Post/325/MDT-2013-Lite-Touch-Driver-Management](http://deploymentresearch.com/Research/Post/325/MDT-2013-Lite-Touch-Driver-Management) 
+and re-created in 2012 by Achim 
+[https://www.windows-noob.com/forums/topic/10856-sccm-2012-osd-apply-driver-packages-without-importing-them-to-the-database/
+](https://www.windows-noob.com/forums/topic/10856-sccm-2012-osd-apply-driver-packages-without-importing-them-to-the-database/)
 And then my personal desire is to do all that without having to touch my tasksequence(s) each time a new model is introduced at one of my customers.
-That's why a certain individual filled a User voice request for it, that has 496 votes at present. https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/10099479-allow-for-dynamically-selecting-apply-driver-packa , which puts it in the top 10 of currently listed requests.
+That's why a certain individual filled a User voice request for it, that has 496 votes at present. https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/10099479-allow-for-dynamically-selecting-apply-driver-packa
+, which puts it in the top 10 of currently listed requests.
 
 In summarization we'll try and create a method that:
 
@@ -89,13 +94,21 @@ After finding the necessary packageID it's value is set in the variable 'OSDDown
 We are now ready to run the download package content step and dynamically download the relevant driver package.
 Dynamically download driver packages, check.
 Once the driver package is downloaded we can Dism apply it to our deployed OS image using the following command:
+
+```posh
 DISM.exe /Image:%osdisk%\ /Add-Driver /Driver:c:\drivers\ /Recurse
+```
+
 Another piece of the puzzle, full control of the drivers applied by using dism, check.
 The end result, a holy grail, if you will
 
 The Dism apply drivers step is a simple run command line step, without a package defined, and no filters on any of the options pages.
 The command line contains the command line referenced above:
+
+```posh
 DISM.exe /Image:%osdisk%\ /Add-Driver /Driver:c:\drivers\ /Recurse
+```
+
 And there you have it, no need to modify my tasksequence for a new model, check
 
 Enjoy.
