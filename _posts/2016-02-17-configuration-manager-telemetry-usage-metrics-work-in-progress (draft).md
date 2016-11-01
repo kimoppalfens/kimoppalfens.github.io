@@ -14,9 +14,13 @@ Microsoft has quite a bit of information here about its new telemetry data syste
 
 [https://technet.microsoft.com/en-US/library/mt613113.aspx ](https://technet.microsoft.com/en-US/library/mt613113.aspx )
 
+# Intro
+
 Below are my findings and additions to that documentation that people are inquiring about, but let me start off with the why, of it all. The new Configuration Manager comes with a brand new servicing mechanism. You should be aware by now that Windows 10 comes with a pretty high release cadence (a new Windows every 4 months). To keep up with that pace, Configuration Manager is planned to follow suit, and more or less follow that same cadence. Now, quite some people are sceptic about that increased cadence and the impact on the different products quality. To answer the challenges that come with this increased pace Microsoft plans to ship fast / fix fast, and that's were telemetry comes in.
 
 The general idea is to find the setups and "modus operandi" that are frequently used by a large set of customers and use those in testing. Additionally, the telemetry data should prove to be a shortcut to get troubleshooting data to the product team. In other words, sharing data on the way you use the product should be in your own interest.
+
+# The Hashing of data
 
 Sounds good, but am I supposed to just trust Microsoft in collecting data from my environment that might be privacy sensitive? Well, yes and no. Microsoft takes privacy extremely serious, and so does the Configuration Manager product team. The product team has, imho, very good reasons to make sure the data they collect isn't catalogued as privacy sensitive, as doing so would introduce them to a drastically increased involvement of both legal and auditing, as for any Microsoft service that holds privacy sensitive data. To keep the level of scrutiny they'd have to go through in check, the ConfigMgr team starts off with anonymizing the data. They do that by hashing some of the data, so that any privacy sensitive data isn't readable to them.
 
