@@ -1,7 +1,7 @@
 ---
 title: "Configuration Manager telemetry, usage metrics, work in progress"
 author: Kim Oppalfens
-date: 2016-02-17
+date: 2008-02-17
 categories:
   - SCCM
 tags:
