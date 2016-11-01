@@ -1,5 +1,5 @@
 ---
-title: "SCCM vNext updates and servicing feature!"
+title: "SCCM updates and servicing feature!"
 author: Kim Oppalfens
 date: 2015-09-24
 categories:
