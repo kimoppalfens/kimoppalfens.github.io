@@ -77,7 +77,7 @@ _
 
 2. Once downloaded you should see the update in your **EasySetupPayLoad**  
 
-3.
+3. ![][3]![][4]  
 
 4. If the update arrive your UI should look like the 2 screenshots below, and have the update state listed as Available.  
 
@@ -198,8 +198,8 @@ http://twitter.com/thewmiguy
 
 [1]: http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttp:/blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx
 [2]: http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttps:/technet.microsoft.com/library/dn965439.aspx
-[3]: 
-[4]: ![alt]({{ site.url }}{{ site.baseurl }}/images/sccm-vnext-updates-and-servicing-feature-01.png)
+[3]: http://scug.be/thewmiguy/files/2015/09/092415_1353_SCCMvNextup1.png
+[4]: http://scug.be/thewmiguy/files/2015/09/092415_1353_SCCMvNextup2.png
 [5]: http://scug.be/thewmiguy/files/2015/09/092415_1353_SCCMvNextup3.png
 [6]: http://scug.be/thewmiguy/files/2015/09/092415_1353_SCCMvNextup4.png
 [7]: http://scug.be/thewmiguy/files/2015/09/092415_1353_SCCMvNextup5.png
