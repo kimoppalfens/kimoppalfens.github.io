@@ -70,9 +70,7 @@ Successfully write the update meta into outbox for package dcd17922-2c96-4bd7-b7
 
 2. Once downloaded you should see the update in your **EasySetupPayLoad**  
 
-3. ![alt]({{ site.url }}{{ site.baseurl }}/images/sccm-vnext-updates-and-servicing-feature-01.png) 
-![alt][4] 
- 
+3.
 
 4. If the update arrive your UI should look like the 2 screenshots below, and have the update state listed as Available.  
 
