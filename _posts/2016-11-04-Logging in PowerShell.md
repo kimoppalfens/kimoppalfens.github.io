@@ -34,6 +34,8 @@ For those of you that just want to dive in, below you'll find the simple steps. 
 2. Unzip the Initialize-Logging.zip file to a location you chose.
 3. Create your script
 4. Copy/paste the Initialize-Logging function into your script, and execute the fuction Initialize-Logging, like this:
+
+
 ```posh
 Initialize-Logging
 ```
