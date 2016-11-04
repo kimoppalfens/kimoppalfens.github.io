@@ -40,9 +40,20 @@ For those of you that just want to dive in, below you'll find the simple steps. 
 Initialize-Logging
 ```
 
-You're script should now look like this:
+You're script should, with the function collapsed for brevity,  now look like this:
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/PowerShell-Logging-using-Log4Net-in-CMtrace-format-01.PNG)
+
+5. You can now start using the following lines to start logging
+```posh
+$script:logger.Info("Some info text")
+$script:logger.Warn("Some warning text")
+$script:logger.Error("Some error message text")
+$script:logger.Debug("Some debug text")
+```
+
+That's it, this should result, in all 3 messages showing up in a color coded fashion in the PowerShell console, and in a log file that has the name of your script, stored in %temp%
+
 
 
 
