@@ -41,7 +41,8 @@ Initialize-Logging
 ```
 
 You're script should now look like this:
+
 ![alt]({{ site.url }}{{ site.baseurl }}/assets/images/PowerShell-Logging-using-Log4Net-in-CMtrace-format-01.PNG)
-{% raw %}![alt]({{ site.url }}{{ site.baseurl }}/images/P){% endraw %}
+
 
 
