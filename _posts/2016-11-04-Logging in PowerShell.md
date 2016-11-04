@@ -61,6 +61,7 @@ $script:logger.Debug("Some debug text")
 
 That's it, this should result, in all 3 messages showing up in a color coded fashion in the PowerShell console, and in a CMTrace formatted log file that has the name of your script, stored in %temp%
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/PowerShell-Logging-using-Log4Net-in-CMtrace-format-02.PNG)
 
 
 
