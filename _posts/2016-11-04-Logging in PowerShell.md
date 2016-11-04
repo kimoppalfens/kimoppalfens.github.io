@@ -4,7 +4,6 @@ author: Kim Oppalfens
 date: 2016-11-04
 categories:
   - Powershell
-  - 
 tags:
   - Logging
   - CmTrace
