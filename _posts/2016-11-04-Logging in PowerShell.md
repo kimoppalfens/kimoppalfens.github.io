@@ -31,7 +31,7 @@ A while back, after writing yet another script, that could use decent logging. I
 For those of you that just want to dive in, below you'll find the simple steps. Following these steps should provide you with all the bits needed to log output to console and a logfile.
 
 1. Download the logframework from the Technet Gallery [https://gallery.technet.microsoft.com/Logging-solution-for-all-6894a554](https://gallery.technet.microsoft.com/Logging-solution-for-all-6894a554)
-2. Unzip the Initialize-Logging.zip file to a location you chose.
+2. Unzip the Initialize-Logging.zip file to a location of your choosing.
 3. Open a PowerShell console and navigate to the folder you unzipped to and run
 
 
