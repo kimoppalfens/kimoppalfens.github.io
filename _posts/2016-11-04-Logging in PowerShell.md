@@ -32,6 +32,10 @@ For those of you that just want to dive in, below you'll find the simple steps. 
 
 1. Download the logframework from the Technet Gallery [https://gallery.technet.microsoft.com/Logging-solution-for-all-6894a554](https://gallery.technet.microsoft.com/Logging-solution-for-all-6894a554)
 2. Unzip the Initialize-Logging.zip file to a location you chose.
+3. Open a PowerShell console and navigate to the folder you unzipped to and run
+```posh
+unblock-file *
+```
 3. Create your script
 4. Copy/paste the Initialize-Logging function into your script, and execute the fuction Initialize-Logging, like this:
 
@@ -52,7 +56,7 @@ $script:logger.Error("Some error message text")
 $script:logger.Debug("Some debug text")
 ```
 
-That's it, this should result, in all 3 messages showing up in a color coded fashion in the PowerShell console, and in a log file that has the name of your script, stored in %temp%
+That's it, this should result, in all 3 messages showing up in a color coded fashion in the PowerShell console, and in a CMTrace formatted log file that has the name of your script, stored in %temp%
 
 
 
