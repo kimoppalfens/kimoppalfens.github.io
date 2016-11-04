@@ -45,7 +45,7 @@ unblock-file *
 Initialize-Logging
 ```
 
-You're script should, with the function collapsed for brevity,  now look like this:
+You're script should, ***with the function collapsed for brevity***,  now look like this:
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/PowerShell-Logging-using-Log4Net-in-CMtrace-format-01.PNG)
 
