@@ -33,6 +33,8 @@ For those of you that just want to dive in, below you'll find the simple steps. 
 1. Download the logframework from the Technet Gallery [https://gallery.technet.microsoft.com/Logging-solution-for-all-6894a554](https://gallery.technet.microsoft.com/Logging-solution-for-all-6894a554)
 2. Unzip the Initialize-Logging.zip file to a location you chose.
 3. Open a PowerShell console and navigate to the folder you unzipped to and run
+
+
 ```posh
 unblock-file *
 ```
@@ -49,6 +51,8 @@ You're script should, with the function collapsed for brevity,  now look like th
 ![alt]({{ site.url }}{{ site.baseurl }}/images/PowerShell-Logging-using-Log4Net-in-CMtrace-format-01.PNG)
 
 5. You can now start using the following lines to start logging
+
+
 ```posh
 $script:logger.Info("Some info text")
 $script:logger.Warn("Some warning text")
