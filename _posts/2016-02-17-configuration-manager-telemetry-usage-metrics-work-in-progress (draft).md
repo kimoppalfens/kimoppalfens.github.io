@@ -172,5 +172,5 @@ This is just one of the 8 queries that might contain hashed data, but the mechan
 
 Enjoy.  
 
-[1]: http://i.imgur.com/PakPsmw.png
+
 
