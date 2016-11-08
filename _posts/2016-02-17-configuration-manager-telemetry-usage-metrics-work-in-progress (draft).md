@@ -48,7 +48,8 @@ Depending upon the level of data you've chosen you should see a number of rows r
 
 Well this particular hash is used to correlate data between the different rows in your telemetry results so the product team can store all data coming from one customer together. Given the introduction they need a way to do that without making your company name or anything similar that could identify your environment, and hence they need to anonymize the data. Now, every Configuration Manager environment has a randomly generated hierarchy id that could be used for this purpose. But even that wasn't anonymous enough for the Configuration Manager product team. To anonymize the data they've chosen to hash that hierarchy id using *SHA256*.
 
-![][1]
+![alt]({{ site.url }}{{ site.baseurl }}/images/Telemetry01.png)
+
 
 You can get your own hierarchy id and the accompanying hash to validate this data by running the following query:  
 
