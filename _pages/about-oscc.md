@@ -9,8 +9,7 @@ author_profile: true
 ---
 # About us
 
-​![OSCCD32aR00aP02ZL.png][1] 
-
+​
 OSCC is driven by 2 consultants that combine over 20 years of Systems Management expertise, and over 15 years in the System Center Configuration Manager product (Granted it was still called SMS back in the days). OSCC is operated on 4 core principles:
 
 * **_Customer Focus_**: Our consultants will strive to maintain long-lasting, happy relationships with each of our customers by continually improving our service standards. The goal is to have every customer become a spokesperson for the company.
@@ -18,4 +17,3 @@ OSCC is driven by 2 consultants that combine over 20 years of Systems Management
 * **_Striving for Excellence_**: Our consultants will always strive towards excellence and beyond, by continuous improvement of our knowledge and skills in the systems management landscape and thereby ensuring a constant endeavor to create more exceptional solutions to address the needs of an ever-evolving society at large. Our community work at SCUG.BE is a strong indication of this "strive for excellence", as are the numerours book reviews and mailing list answers.
 * **_Integrity and Transparency_**: The fourth and final principle is the commitment to be honest, consistent and fair in all our dealings. Our business model will be ethical, sincere and open and our integrity will not be compromised upon. OSCC will uphold itselves to the highest standards and deliver on every agreement that is promised.​
 
-[1]: https://oscc1-public.sharepoint.com/SiteAssets/about-us/OSCCD32aR00aP02ZL.png
