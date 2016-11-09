@@ -1,11 +1,3 @@
-Billy Rick:
-  name: "Billy Rick"
-  uri: "http://thewhip.com"
-  email: "billy@rick.com"
-  bio: "What do you want, jewels? I am a very extravagant man."
-  avatar: "bio-photo-3.jpg"
-  twitter: "extravagantman"
-
 Tom Degreef:
   name: "Tom Degreef"
   location: "Belgium"
@@ -24,3 +16,21 @@ Kim Oppalfens:
   twitter: "thewmiguy"
   linkedin         : "kimoppalfens"
   github           : "kimoppalfens"
+
+OSCC:
+  name: "OSCC"
+  location: "Belgium"
+  email: "Info@oscc.be"
+  bio: "OSCC is a systems managment consultancy company that was founded in 2008, by industry expert and long standing Microsoft MVP Kim Oppalfens.
+OSCC serves small, medium and big customers ranging from a couple of hundred users and devices to several thousands. Over the years we have delivered services to major financial players, top companies in the telecom sector, and companies active in the healthcare sector.
+We take great pride in the fact that we deliver professional services tailored to each customer's needs, whether they are big or small."
+  avatar: "bio-photo.jpg"
+
+Billy Rick:
+  name: "Billy Rick"
+  uri: "http://thewhip.com"
+  email: "billy@rick.com"
+  bio: "What do you want, jewels? I am a very extravagant man."
+  avatar: "bio-photo-3.jpg"
+  twitter: "extravagantman"
+
