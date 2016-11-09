@@ -3,14 +3,11 @@ main:
   - title: "Public sessions"
     url: /sessions/
  
-  - title: "Technet Searchlibrary"
+  - title: "Searchlibrary"
     url: /technet/
 
-  - title: "About Kim"
-    url: /about-me/
-
-  - title: "About Tom"
-    url: /about-tom/
+  - title: "tools"
+    url: /tools/
 
   - title: "About OSCC"
     url: /about-oscc/
