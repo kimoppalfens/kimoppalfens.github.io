@@ -1,5 +1,6 @@
 ---
 title: Technet library searchpage
+author: OSCC
 layout: single
 excerpt: "Search the Technet library aka Microsoft's product documentation."
 sitemap: false
