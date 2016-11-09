@@ -1,5 +1,5 @@
 ---
-title: OSCC
+title: About us
 author: OSCC
 layout: single
 excerpt: "Page not found. Your pixels are in another canvas."
@@ -7,8 +7,6 @@ sitemap: false
 permalink: /about-oscc/
 author_profile: true
 ---
-# About us
-
 ​
 OSCC is driven by 2 consultants that combine over 20 years of Systems Management expertise, and over 15 years in the System Center Configuration Manager product (Granted it was still called SMS back in the days). OSCC is operated on 4 core principles:
 
