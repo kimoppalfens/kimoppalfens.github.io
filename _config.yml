@@ -84,7 +84,7 @@ author:
   bio              : "EMS MVP for over a decade, focussing on Automation, Hybrid Identity, DevOps enthousiast and overall self-proclaimed nice guy."
   location         : "Belgium / Malta"
   email            : "kim.oppalfens@oscc.be"
-  uri              : "http://www.voetbalkrant.com"
+  uri              : #"http://www.voetbalkrant.com"
   bitbucket        :
   codepen          :
   dribbble         :

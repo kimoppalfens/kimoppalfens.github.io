@@ -11,3 +11,6 @@ main:
 
   - title: "About Tom"
     url: /about-tom/
+
+  - title: "About OSCC"
+    url: /about-oscc/

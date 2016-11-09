@@ -1,6 +1,6 @@
 ---
 title: "Template Post"
-author: Tom Degreef
+author: OSCC
 date: 2008-12-31
 categories:
   - SCCM
@@ -13,6 +13,7 @@ tags:
 Header Line
 
 # Intro #
+author: Tom Degreef
 
 
 
