@@ -9,5 +9,8 @@ main:
   - title: "Tools"
     url: /tools/
 
+  - title: "Products"
+    url: /products/
+
   - title: "About OSCC"
     url: /about-oscc/
