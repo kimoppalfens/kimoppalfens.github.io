@@ -14,7 +14,7 @@ This is a blog post that is long overdue from my part, as I've been willing to w
 
 ## Current State of affairs
 
-  
+ 
 
 ### Intune Standalone
 
