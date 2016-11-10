@@ -1,6 +1,6 @@
 ---
 title: "Cant Create Windows Phone Deeplink Deployment Types Due To New Store Urls"
-author: OSCC
+author: Kim Oppalfens
 date: 2015-07-22
 categories:
   - SCCM
@@ -10,8 +10,6 @@ tags:
   - ConfigMgr
 ---
 
-
-## Update:
 This issue has been closed as fixed on the connect page. If you're still seeing this issue please install the latest CU updates or upgrade to Configuration Manager current branch.
 
 
