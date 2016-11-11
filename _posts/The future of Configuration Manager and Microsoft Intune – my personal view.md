@@ -64,7 +64,7 @@ You'll notice a theme in this section on things I consider a requirement before 
 4. License management
   
   
-**NOTE: **These 4 features are needed in my perspective for what me and a colleague of mine have starting to name "Open devices". To explain systems management in today's world we've chosen to kitagorize devices as open versus closed, instead of using mobile devices, hybrids, laptops, desktops, etc….
+NOTE: These 4 features are needed in my perspective for what me and a colleague of mine have starting to name "Open devices". To explain systems management in today's world we've chosen to kitagorize devices as open versus closed, instead of using mobile devices, hybrids, laptops, desktops, etc….
 
 Open devices to us are devices that have alternate means of installing software outside of a controlled store, whereas closed devices are devices that can only install software from the corresponding store.  
 
