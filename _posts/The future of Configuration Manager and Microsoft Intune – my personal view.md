@@ -160,17 +160,3 @@ Is Intune going to be replace System Center Configuration Manager, it might, but
 
 How I reached that point of view, is what I tried to explain in this article.
 
-\-- Enjoy. "The M in WMI stands for Magic"  
-"Everyone is an expert at something"
-
-Kim Oppalfens - ConfigMgr Expert for lack of any other expertise  
-System Center Configuration Manager MVP – Belgium MEET member
-
-mail: [Kim.oppalfens@oscc.be][1]  
-
-
-
-
-
-
-[1]: mailto:Kim.oppalfens%40oscc.be
