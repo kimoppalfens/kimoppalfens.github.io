@@ -12,6 +12,7 @@ tags:
 
 This is a blog post that is long overdue from my part, as I've been willing to write this for a long time. I will however start off with a "disclaimer" on this one. These are my personal views, and although I've been rewarded the Enterprise Client Management MVP for 10 years, or a decade if you will, none of this is based on inside information I've received from the product group.  
 
+
 ## Current State of affairs
 
  
