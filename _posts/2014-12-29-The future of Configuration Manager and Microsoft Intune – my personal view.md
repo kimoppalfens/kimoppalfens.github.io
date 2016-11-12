@@ -1,5 +1,5 @@
 ---
-title: "The future of Configuration Manager / Microsoft Intune – my personal view"
+title: "The future of Configuration Manager and Microsoft Intune – my personal view"
 author: Kim Oppalfens
 date: 2014-12-29
 categories:
