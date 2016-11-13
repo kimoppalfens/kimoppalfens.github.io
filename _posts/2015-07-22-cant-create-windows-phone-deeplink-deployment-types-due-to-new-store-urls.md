@@ -53,15 +53,8 @@ $oldwindowshDeeplinkURL + $appname + '/' + $appguid
 }  
 ```
 
-Enjoy.  
-"The M in WMI stands for Magic"  
-""Everyone is an expert at something" Kim Oppalfens - ConfigMgr Expert for lack of any other expertise  
-System Center Configuration Manager MVP  
-http://www.scug.be/blogs/sccm/default.aspx
-
-http://www.linkedin.com/in/kimoppalfens
-
-http://twitter.com/thewmiguy
+Thanks for reading,
+Kim
 
 [1]: https://kimoppalfens.github.io/assets/072215_1402_CantcreateW1.png
 [2]: https://kimoppalfens.github.io/assets/072215_1402_CantcreateW2.png
