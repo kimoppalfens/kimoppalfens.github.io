@@ -9,6 +9,10 @@ tags:
   - Software Updates
 ---
 
+## Update
+Installing the following security update should now resolve the issue, the workarounds should no longer be necessary.
+[https://support.microsoft.com/en-us/kb/3050265](https://support.microsoft.com/en-us/kb/3050265)
+
 A growing number of customers is contacting us about the issue going on below on their Windows 7 32 bit machines. I don't often ask people to distribute my blog information further. But quite a few customers should probably be warned for this issue.
 
 **Problem description**
