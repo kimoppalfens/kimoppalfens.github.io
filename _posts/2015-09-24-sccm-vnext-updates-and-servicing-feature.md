@@ -178,18 +178,6 @@ EXEC spCMUSetUpdatePackageState N'dcd17922-2c96-4bd7-b72d-e9159582cdf2', 262146,
 
 ![][21]  
 
-  
- 
-
-Enjoy.  
-"The M in WMI stands for Magic"  
-""Everyone is an expert at something" Kim Oppalfens - ConfigMgr Expert for lack of any other expertise  
-System Center Configuration Manager MVP  
-http://www.scug.be/blogs/sccm/default.aspx
-
-http://www.linkedin.com/in/kimoppalfens
-
-http://twitter.com/thewmiguy
 
 [1]: http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttp:/blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx
 [2]: http://blogs.technet.com/b/mniehaus/archive/2012/09/02/speed-up-mdt-task-sequences-in-configuration-manager.aspxhttps:/technet.microsoft.com/library/dn965439.aspx
