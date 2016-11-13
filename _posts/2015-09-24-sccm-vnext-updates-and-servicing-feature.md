@@ -144,10 +144,11 @@ If you managed to break the upgrade anyway, have a look at the troubleshooting s
 
 3. Really?  
 
-4. If you goofed up on 1-3 run the following command in SQL Management studio, after typing a full page in Word with the sentence "I am a goof!"  
-
-_EXEC spCMUSetUpdatePackageState N'dcd17922-2c96-4bd7-b72d-e9159582cdf2', 262146, N''  
-_
+4. If you goofed up on 1-3 run the following command in SQL Management studio, after typing a full page in Word with the sentence "I am a goof!"
+  
+```sql
+EXEC spCMUSetUpdatePackageState N'dcd17922-2c96-4bd7-b72d-e9159582cdf2', 262146, N''
+```
 
 ### Wmi  
 
