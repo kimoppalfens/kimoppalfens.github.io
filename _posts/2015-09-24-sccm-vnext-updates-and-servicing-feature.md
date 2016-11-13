@@ -52,8 +52,7 @@ Other limitations: Os language must be English, and you must set your date/time 
 
 New updates are checked for every 7 days, since the install date of the environment. According to the docs a restart of the SMS_executive service triggers the check for updates as well. I'd venture a guess that restarting the SMS_DMP_Downloader might trick it as well, which would be less disruptive. (To be tested).  
 
-Once the updates are downloaded you'll find them in **Administration** > **Cloud Services** > **Updates and Services** as available, you can subsequently click **Install Update Pack  
-**
+Once the updates are downloaded you'll find them in **Administration** > **Cloud Services** > **Updates and Services** as available, you can subsequently click **Install Update Pack**
 
 As a final note, just running the prerequisite checker standalone, from this same node, doesn't work in the current build. Triggering this will perform the install as well.  
 
@@ -61,17 +60,12 @@ As a final note, just running the prerequisite checker standalone, from this sam
 
 2. The update should arrive and be in the downloading state for a while. You can monitor the download progress in the DMPDownloader.log the log should contains lines similar to:  
 
-_EasySetupDownload thread is starting... $$<09-22-2015 21:21:36.981-120>  
-_
-
-_Download Easy setup payloads~~ $$<09-22-2015 21:21:37.008-120>  
-_
-
-_Get manifest.cab url~~ $$<09-22-2015 21:21:37.012-120>  
-_
-
-_Successfully write the update meta into outbox for package dcd17922-2c96-4bd7-b72d-e9159582cdf2~~ $$<09-22-2015 21:40:36.934-120>  
-_
+```plaintext
+EasySetupDownload thread is starting... $$<09-22-2015 21:21:36.981-120>
+Download Easy setup payloads~~ $$<09-22-2015 21:21:37.008-120>
+Get manifest.cab url~~ $$<09-22-2015 21:21:37.012-120>
+Successfully write the update meta into outbox for package dcd17922-2c96-4bd7-b72d-e9159582cdf2~~ $$<09-22-2015 21:40:36.934-120>  
+```
 
 1. This particular update is somewhere between 800 and 900 Mbytes, so depending on your internet connection speed, it might take a while to download everything. In my particular experience, mumbling "patience is a virtue" over and over again had neither a positive nor negative impact on the download speed.  
 
