@@ -1,112 +1,60 @@
 ---
-title: "Serious Windows 7 32bit software update problem"
+title: "Cant Create Windows Phone Deeplink Deployment Types Due To New Store Urls"
 author: Kim Oppalfens
-date: 2015-03-30
+date: 2015-07-22
 categories:
   - SCCM
-  - Known Issue
+  - Configmgr
 tags:
   - SCCM
-  - Software Updates
+  - ConfigMgr
 ---
 
-## Update
-Installing the following security update should now resolve the issue, the workarounds should no longer be necessary.
-[https://support.microsoft.com/en-us/kb/3050265](https://support.microsoft.com/en-us/kb/3050265)
+This issue has been closed as fixed on the connect page. If you're still seeing this issue please install the latest CU updates or upgrade to Configuration Manager current branch.
 
-A growing number of customers is contacting us about the issue going on below on their Windows 7 32 bit machines. I don't often ask people to distribute my blog information further. But quite a few customers should probably be warned for this issue.
 
-**Problem description**
-
-An issues exists at present where Windows 7 32 bit machines will reply compliant/installed on any software update they scan for, even the ones that aren't installed.
-
-I have customers reporting updates failing to install because of this, and one where Cumulative Updates for ConfigMgr started reporting compliant without them creating a deployment for the updated client.
-
-The problem can be seen at the client side in the Windowsupdate.log. When your log contains the following text "
-
-```plaintext
-GetWARNING: ISusInternal::GetUpdateMetadata2 failed, hr=8007000E
-```
-
-You're probably another victim of this terrible issue. The concern here is that a lot of environments might be unaware they have this issue, as nothing will point it out when looking at things centrally from the Admin UI. Clients will just report compliant on all their software update deployments.
-
-**Identifying the problem in your environment**
-
-The easiest way I could come up with to identify this problem in your environment is to create a configuration item to detect it. To do this:  
-
-  
-
-1. create a script configuration item. 
-
-2. Select All Windows 7 32 bit as the supported platform  
-
-3. Use String as the data type  
-
-4. Choose powershell as your script language of choice  
-
-5. Paste the following text in the discovery script:
+The powershell script below returns the old url when you input the new url in the variable. The old url returned lets you create the app from the admin ui. Again, don't have a windows phone device enrolled in this environment, so can't test an actual deployment.  
 
 ```posh
-select-string-pattern'GetWARNING: ISusInternal::GetUpdateMetadata2 failed, hr=8007000E'-path"$env:windirwindowsupdate.log" 
-```  
+$newWindowsDeeplinkURL='https://www.microsoft.com/en-us/store/apps/onefootball/9wzdncrfj4kx'  
+#This is the url you can browse to new in internet explorer  
 
-6. Add the configuration item to a Configuration baseline 
+$oldwindowshDeeplinkURL = 'http://www.windowsphone.com/en-us/store/app/'  
+# this is the starting part of the old url, it is followed by the app name a guid  
 
-7. Deploy the configuration baseline to All Windows 7 32bit machines  
+$Links = Invoke-WebRequest https://www.microsoft.com/en-us/store/apps/onefootball/9wzdncrfj4kx  
+|  select -ExpandProperty  
+Links |select href  
+#get all links found on the new windows phone url  
 
-8. The report list of assets by compliance state for a given baseline is a good report to check the results.  
+foreach ($link in $links)  
+#cycle through all links  
+{  
+  if ($link.href.ToString() -imatch 'ms-windows-store:navigate?appid=b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}b')  
+# find a link that starts with ms-windows-store and contains a guid behind appid=  
+{  
+  $appguidrough = $link.href.ToString() | 
+Select-String  
+-Pattern  
+'ms-windows-store:navigate?appid=b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}b'  
+#get the url that is a match for parsing  
 
-9. !!!! **Any machines reporting compliant to this baseline have a serious issue as they won't install any software updates, yet report compliant on all !!!!**  
+$appguid =  ($appguidrough.ToString().Split('='))[1].Substring(0,36)  
+# get the section of the url behing the appid= and take 36 characters from that point, this gives us the guid  
+
+$appguid  
+$appname = $newWindowsDeeplinkURL.Split('/')[6]  
+# take the 7th parth from the new url, this gives us the appname  
   
- 
+$appname  
+$oldwindowshDeeplinkURL + $appname + '/' + $appguid  
+#concatenate the old starting url + the appname + the guid  
+}  
+}  
+```
 
-**Possible workarounds**  
+Thanks for reading,
+Kim
 
-  
-  
-
-    1. Decline unneeded updates within the WSUS server (Declined updates do not get offered to clients during scans.)  
-  
-
-        1. Unneeded updates include superseded updates, updates for products and/or classifications that are not present in the client environment, and expired updates.
-  
-
-        2. You can manually decline the updates within the WSUS console or use a script method . **NOTE:  Always backup the WSUS database (SUSDB) prior to performing any changes like this.**
-  
-
-        3. After declining unneeded updates, re-index the susdb, and run WSUS Server Cleanup Wizard:
-  
-  
-
-* ****Set user VA to 3072 MB: **bcdedit /set IncreaseUserVA 3072 ******  
-  
-
-    1. This will free up another GB of memory in user space..
-  
-
-    2. This does require a restart of the machine.
-  
-
-    3. It's possible some machines or applications may have problems when this setting is enabled
-  
-
-1. Move wuauserv to its own SVCHost instance running following commands in elevated command prompt:  
-  
-
-    1. Net stop wuauserv
-  
-
-    2. 'sc config wuauserv type= own'
-  
-
-    3. Net start wuauserv
-  
-  
-
-  
-  
-**More details:**
-
-You can find the nitty gritty details and soulmates in this forum post.
-
-https://social.technet.microsoft.com/Forums/en-US/cf8fbe28-714d-49d3-b2ce-5cc5f6f79c63/some-clients-not-updating-reporting-compliant-hr8007000e-error-in-windowsupdatelog?forum=configmanagersecurity
+[1]: https://kimoppalfens.github.io/assets/072215_1402_CantcreateW1.png
+[2]: https://kimoppalfens.github.io/assets/072215_1402_CantcreateW2.png
