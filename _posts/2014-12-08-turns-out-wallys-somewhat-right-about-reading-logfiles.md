@@ -14,6 +14,9 @@ So why do I consider this the best log file viewer available? There are a couple
 
 So here's, what I was able to do with the assistance of the new Support Center Logfile viewer:
 
+```posh
+.\CMLogViewer.exe ‘\\client\c$\windows\ccm\logs\inventoryagent.log, '\\mpsup1\e$\SMS_CCM\Logs\MP_Hinv.log' , '\\mpsup2\e$\SMS_CCM\Logs\MP_Hinv.log', '\\SiteServer\e$\program files\Microsoft Configuration Manager\Logs\dataldr.log'
+```
 As you might have noted, all I did was specify the UNC paths to the relevant logfiles and comma separated them. This opens all logfiles I needed merged, without me having to know which mp's the client used to actually send it's hardware inventory along. There's pleny of scenarios where this is useful. Multiple sms providers is another that comes to mind.
 
 PS: There's still a small issue in the Support Center Logfile viewer where it crashes when you specify an inaccessible logfile in this way.
