@@ -4,6 +4,7 @@ author: Kim Oppalfens
 date: 2015-03-30
 categories:
   - SCCM
+  - Known Issue
 tags:
   - SCCM
   - Software Updates
