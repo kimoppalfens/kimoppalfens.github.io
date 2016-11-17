@@ -2,6 +2,10 @@
 title: "The holy grail of ConfigMgr driver management / whatever you'd like to call it."
 author: Kim Oppalfens
 date: 2016-10-31
+layout: single
+excerpt: "Page not found. Your pixels are in another canvas."
+sitemap: false
+author_profile: true
 permalink: /Blog/Post/15/The-holy-grail-of-ConfigMgr-diver-management,-or-whatever-you%E2%80%99d-like-to-call-it
 categories:
   - SCCM
