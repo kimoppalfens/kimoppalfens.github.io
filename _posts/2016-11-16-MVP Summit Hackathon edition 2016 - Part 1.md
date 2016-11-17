@@ -1,6 +1,6 @@
 ---
 title: "MVP Summit hackathon edition 2016-Part 1"
-author: OSCC
+author: Kim Oppalfens
 date: 2016-11-16
 categories:
   - SCCM
