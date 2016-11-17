@@ -7,4 +7,4 @@ sitemap: false
 permalink: /training/permalink/blog/page
 author_profile: true
 ---
-Under Construction 
+Under Construction permalink
