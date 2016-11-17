@@ -1,5 +1,5 @@
 ---
-title: "MVP Summit hackathon edition 2016 - Part 1"
+title: "MVP Summit hackathon edition 2016-Part 1"
 author: OSCC
 date: 2016-11-16
 categories:
