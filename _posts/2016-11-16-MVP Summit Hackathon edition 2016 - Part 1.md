@@ -21,7 +21,7 @@ When the concept was first introduced to us, most of us, if not all had never he
 This year's edition had no less than 14 different little hacks. So let's start by introducing them one by one.
 
 ## Client Analytic's dashboard / Donuts ##
-Team that had the largest MVP count to engineer ration. This hackathon is about making a ton of additional information about a machine available in a client analytic's dashboard. Could show the following information (Example and nothing guaranteed)
+The client analytic's team that had the largest MVP count to engineer ration. This hackathon is about making a ton of additional information about a machine available in a client analytic's dashboard. Could show the following information (Example and nothing guaranteed)
 - Pending Reboots
 - SwUpdate deployment status
 - Other deployment statuses
@@ -36,7 +36,7 @@ Could be made available for mobile devices as well
 ## Implicit uninstall ##
 This team was coding till the very last minute of their demo. The functionality they bring to the table is uninstalls being triggered when a deployment is no longer targeted at a given device. As a bonus they included the ability to uninstall when a software has not been used in X amount of time (Requires the SCCM Admin to specify which process executable are considered the application as used.) For apps that need approval, the previously approved request could be dynamically deleted.
 
-**Related uservoice items**:[https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/8344038-option-to-uninstall-an-application-when-a-user-or](https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/8344038-option-to-uninstall-an-application-when-a-user-or) (313 votes)
+**Related uservoice items**: [https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/8344038-option-to-uninstall-an-application-when-a-user-or](https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/8344038-option-to-uninstall-an-application-when-a-user-or) (313 votes)
 
 
 
@@ -46,7 +46,7 @@ I was partially involved in this project where you get two for the price of one 
 As this is powerful, and as a result risky from a feature perspective this is coupled with a new Reviewer RBA role to have the scripts approved before sending. This could optionally require 2-key approval, where an author can't approve his own scripts. To be workable this project needs quite a bit of architectural changes which might mean we'll have to wait for this one a bit longer
 
 ## MS Graph access to the SMS Provider  ##
-This was the team I spend most of my time with. Microsoft Graph is a unified API endpoint, for accessing data, intelligence, and insights coming from the Microsoft cloud or on-premise graph enabled applications. This might not mean much to many IT Pro's but this projects ties a number of cloud services together alongside with all the data we have available in SCCM. I am incredibly excited about this as it would open up access to and from:
+The engineers responsible for MS Graph are the engineers I spend most of my time with. Microsoft Graph is a unified API endpoint, for accessing data, intelligence, and insights coming from the Microsoft cloud or on-premise graph enabled applications. This might not mean much to many IT Pro's but this projects ties a number of cloud services together alongside with all the data we have available in SCCM. I am incredibly excited about this as it would open up access to and from:
 
 - Power BI
 - The Internet
