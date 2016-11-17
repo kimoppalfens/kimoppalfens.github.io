@@ -47,6 +47,7 @@ As this is powerful, and as a result risky from a feature perspective this is co
 
 ## MS Graph access to the SMS Provider  ##
 This was the team I spend most of my time with. Microsoft Graph is a unified API endpoint, for accessing data, intelligence, and insights coming from the Microsoft cloud or on-premise graph enabled applications. This might not mean much to many IT Pro's but this projects ties a number of cloud services together alongside with all the data we have available in SCCM. I am incredibly excited about this as it would open up access to and from:
+
 - Power BI
 - The Internet
 - Azure
