@@ -1,16 +1,20 @@
 # main links links
 main:
-  - title: "Public sessions"
-    url: /sessions/
- 
-  - title: "Searchlibrary"
-    url: /technet/
-
-  - title: "Tools"
-    url: /tools/
-
   - title: "Training"
     url: /training/
 
+  - title: "Public sessions"
+    url: /sessions/
+ 
   - title: "OSCC services"
     url: /about-oscc/
+
+  - title: "Products"
+    url: /tools/
+
+  - title: "Searchlibrary"
+    url: /technet/
+
+
+
+
