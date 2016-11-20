@@ -23,7 +23,12 @@ Admin Password ramdomizer is a tool that randomizes the Local Administrator pass
 - Allows protection of password using DACL on Active Directory property
 - Use existing property or schema extension property as you see fit
 - Use Active Directory auditing or SCCM auditing to monitor clear text password requests
+- Control Character set including the ability to avoid ambiguous characters
 - Integrates into SCCM, the number 1 systems management tool
+	- Allows for easy scheduling
+	- Monitoring the success of applying policies
+	- Integration into your staging process
+
 
 {% include gallery id="gallery3" caption="The Admin password randomizer extends SCCM with a tasksequence step, and an admin UI extension to request the passwords." %}
 
