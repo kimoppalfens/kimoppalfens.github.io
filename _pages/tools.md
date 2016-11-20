@@ -14,6 +14,7 @@ gallery3:
 ## Admin Password randomizer SCCM Extension ##
 
 Admin Password ramdomizer is a tool that randomizes the Local Administrator password and stores it in an encrypted manor in Active Directory and/or SCCM.
+
 - Uses public / private keys to encrypt password
 - Can update password in IBCM or new cloud management gateway environments
 - Can update password directly in Active Directory on corpnet
