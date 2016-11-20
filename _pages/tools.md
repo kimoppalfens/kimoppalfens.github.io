@@ -25,9 +25,6 @@ Admin Password ramdomizer is a tool that randomizes the Local Administrator pass
 
 {% include gallery id="gallery3" caption="The Admin password randomizer extends SCCM with a tasksequence step." %}
 
-
-### Comparison with Microsoft LAPS ###
-
-
+![alt]({{ site.url }}{{ site.baseurl }}/images/AdminPasswordRandomizer-CMTSStep2.png)
 
 ## Free Tools ##
