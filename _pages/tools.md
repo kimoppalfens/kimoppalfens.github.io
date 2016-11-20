@@ -9,6 +9,8 @@ author_profile: true
 gallery3:
   - image_path: AdminPasswordRandomizer-CMTSStep.png
     alt: "placeholder image 2"
+  - image_path: AdminPasswordRandomizer-CMTSStep2.png
+    alt: "placeholder image 2"
 ---
 
 ## Admin Password randomizer SCCM Extension ##
@@ -23,8 +25,7 @@ Admin Password ramdomizer is a tool that randomizes the Local Administrator pass
 - Use Active Directory auditing or SCCM auditing to monitor clear text password requests
 - Integrates into SCCM, the number 1 systems management tool
 
-{% include gallery id="gallery3" caption="The Admin password randomizer extends SCCM with a tasksequence step." %}
+{% include gallery id="gallery3" caption="The Admin password randomizer extends SCCM with a tasksequence step, and an admin UI extension to request the passwords." %}
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/AdminPasswordRandomizer-CMTSStep2.png)
 
 ## Free Tools ##
