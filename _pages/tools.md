@@ -12,7 +12,7 @@ gallery3:
 ---
 
 ## Admin Password randomizer SCCM Extension ##
-{% include gallery id="gallery3" class="full" caption="The Admin password randomizer extends SCCM with a tasksequence step." %}
+{% include gallery id="gallery3" caption="The Admin password randomizer extends SCCM with a tasksequence step." %}
 
 
 
