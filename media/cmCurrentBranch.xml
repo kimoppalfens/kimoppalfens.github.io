@@ -5,7 +5,7 @@
 <ShortName>CMCurrent</ShortName>
 <Description>Search the Configuration Manager Current Branch docs doclibrary</Description>
 
-<!--Image height="24" width="24" type="image/icon">http://www.oscc.be/images/ConfigMgr.ico</Image-->
+<Image height="24" width="24" type="image/icon">http://www.oscc.be/images/favicon.ico</Image>
 
 <Url type="text/html" template="http://www.bing.com/search?q={searchTerms}+site%3Adocs.microsoft.com%2Fen-us%2Fsccm&amp;source=IE"/>
 
