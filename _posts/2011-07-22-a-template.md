@@ -14,7 +14,7 @@ Header Line
 
 # Intro #
 author: Tom Degreef
-
+![alt]({{ site.url }}{{ site.baseurl }}/images/upgradeanalytics.PNG)
 
 
 
