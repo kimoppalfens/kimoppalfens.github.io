@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
+
+<ShortName>CMCurrent</ShortName>
+<Description>Search the Configuration Manager Current Branch docs doclibrary</Description>
+
+<Image height="24" width="24" type="image/icon">http://www.oscc.be/images/intune.ico</Image>
+
+<Url type="text/html" template="http://www.bing.com/search?q={searchTerms}+site%3Adocs.microsoft.com%2Fen-us%2Fintune&amp;source=IE"/>
+
+
+</OpenSearchDescription>
