@@ -2,8 +2,8 @@
 
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
 
-<ShortName>CMCurrent</ShortName>
-<Description>Search the Configuration Manager Current Branch docs doclibrary</Description>
+<ShortName>Intune</ShortName>
+<Description>Search the Intune docs doclibrary</Description>
 
 <Image height="24" width="24" type="image/icon">http://www.oscc.be/images/intune.ico</Image>
 
