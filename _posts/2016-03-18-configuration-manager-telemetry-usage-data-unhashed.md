@@ -41,7 +41,7 @@ GROUP BY [ContentID]
 ORDER BY [ContentID] ASC ,[State] ASC
 ```
 
-###Query Including the Unhashed data alongside the hashed data (ContentID Field is hashed)
+### Query Including the Unhashed data alongside the hashed data (ContentID Field is hashed)
 
 ```sql
 SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [HashedContentID]
