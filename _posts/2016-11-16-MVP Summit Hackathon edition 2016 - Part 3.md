@@ -27,10 +27,10 @@ I've lost count of how many hackathon projects I've already covered, but next on
 ## Monitoring automation aka Better SCCM + OMS Integration ##
 This team's intro was SCCM + OMS Makes dreams comes true. I guess this one is for those folks out there that dream about OMS. The idea is to make a lot of data that CM has actionable in OMS, and allow for the correlation of SCCM data with all the other data that OMS can consume.
 
-The current thinking is to use Azure datacollector Rest API's to have a JSON uploader send data to the OMS analytics service. The demo wasn't as sexy as using cortana used in the MSGraph hackathon, but the whole idea of having the data in OMS and allowing one to create actionable alerts using webhooks or runbook does show a lot of promise. One example where this could be useful is to action and remediate compliance based on the data collected and correlated.
+The current thinking is to use Azure datacollector Rest API's to have a JSON uploader send data to the OMS analytics service. The demo wasn't as sexy as using cortana used in the MSGraph hackathon, but the whole idea of having the data in OMS and allowing one to create actionable alerts using webhooks or runbook does show a lot of promise. One example where this could be useful is to action and re-mediate compliance based on the data collected and correlated.
 
 ## The special team - Patch at Shutdown  ##
-This team was mainly tasked with getting the 1610 build out of the door for us to install when we arrived back at our offices after an exhausting MVP Summit. Because of this, they didn't manage to actually write a ton of code, and largely sticked to powerpoint.
+This team was mainly tasked with getting the 1610 build out of the door for us to install when we arrived back at our offices after an exhausting MVP Summit. Because of this, they didn't manage to actually write a ton of code, and largely stuck to PowerPoint.
 
 What was clear is that this brainstorming was done by technical folks, and the marketing team hadn't been involved yet. This became apparent by the current "technical name" of the feature. Some features get a technical name, that is later reworked by the marketing department. A recent well-known example is the Big Green Button that was given the "Fast notification channel name" Or Bits-enabled distribution points in a less recent past that were originally called Drizzle points. This team called their feature "Patch when I am heading home". 
 
@@ -45,8 +45,10 @@ PS: I thought it was rather interesting that this item had the Number of the bea
 
 ## The end score ##
 ### First 3 features by Number of votes ###
-1. 2nd MVP Hackathon Summit Grand Champion - **The tasksequence debugger** aka genesis team
-2. Client Analytics
+###2nd MVP Hackathon Summit Grand Champion ###
+1.  **The tasksequence debugger** aka *genesis* team
+
+2. Client Analytics Dashboard
 3. Microsoft Graph - Coming to a CM Admin UI soon(ish)
 
 ### Feature that received the largest number of "*Ship first votes *"
