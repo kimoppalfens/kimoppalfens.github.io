@@ -27,8 +27,7 @@ This blog post is an attempt to list all the stored procedures that contain hash
 The stored procedures that contain hashed data are:
 
  
-
-## TEL_Content_DPState ##    
+## TEL_Content_DPState ##  
 
 ### Original Query ###
 
