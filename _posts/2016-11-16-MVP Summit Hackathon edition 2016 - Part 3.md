@@ -47,7 +47,6 @@ PS: I thought it was rather interesting that this item had the Number of the bea
 
 ### First 3 features by Number of votes ###
 
-###2nd MVP Hackathon Summit Grand Champion ###
 
 1.  **The tasksequence debugger** aka *genesis* team
 
@@ -60,7 +59,7 @@ PS: I thought it was rather interesting that this item had the Number of the bea
 1. The implicit uninstall team
 2. The MS Graph team
 
-So, my team eventually came in 3rd, but from the looks of it we'll all be winners if this podium makes it into a build in the (very) near future.
+So, my team eventually came in 3rd, but from the looks of it we'll all be winners if this podium makes it into a build in the (very) near future. The *genesis* team can call themselves **2nd MVP Hackathon Summit Grand Champion** for the rest of the year. 
 
 
 
