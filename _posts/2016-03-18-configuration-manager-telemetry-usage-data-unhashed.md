@@ -109,6 +109,7 @@ FROM [SMSPackages_G] WITH (NOLOCK)
 
 ### Original Query
 
+```sql
 ;WITH RefSettingList AS
 
 (
@@ -194,6 +195,7 @@ SELECT TOP 1000
     GROUP BY st.Setting_UniqueID 
 
     ORDER BY CountDeployedCIs DESC
+```
 
 ### Query Including the Unhashed data alongside the hashed data
 
