@@ -44,14 +44,18 @@ PS: I thought it was rather interesting that this item had the Number of the bea
 
 
 ## The end score ##
+
 ### First 3 features by Number of votes ###
+
 ###2nd MVP Hackathon Summit Grand Champion ###
+
 1.  **The tasksequence debugger** aka *genesis* team
 
 2. Client Analytics Dashboard
 3. Microsoft Graph - Coming to a CM Admin UI soon(ish)
 
 ### Feature that received the largest number of "*Ship first votes *"
+
 2 teams ex-aequo'ed for the largest number of Ship first votes:
 1. The implicit uninstall team
 2. The MS Graph team
