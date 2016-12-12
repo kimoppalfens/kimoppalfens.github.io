@@ -41,10 +41,6 @@ GROUP BY [ContentID]
 ORDER BY [ContentID] ASC ,[State] ASC
 ```
 
-```sql
-
-``` 
-
 ###Query Including the Unhashed data alongside the hashed data (ContentID Field is hashed)
 
 ```sql
