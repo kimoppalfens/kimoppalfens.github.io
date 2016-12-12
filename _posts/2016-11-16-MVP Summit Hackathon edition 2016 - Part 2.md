@@ -1,13 +1,12 @@
 ---
 title: "MVP Summit hackathon edition 2016-Part 2"
 author: Kim Oppalfens
+related: true
 date: 2016-11-20
 categories:
   - SCCM
   - Configmgr
 tags:
-  - SCCM
-  - ConfigMgr
   - Hackathon
 ---
 
