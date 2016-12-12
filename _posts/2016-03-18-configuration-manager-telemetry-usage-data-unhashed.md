@@ -32,8 +32,8 @@ The stored procedures that contain hashed data are:
 
 ### Original Query ###
 
-```sql
 
+```sql
 SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [ContentID]
 	,[State]
 	,COUNT([State]) AS [StateCount]
@@ -47,69 +47,66 @@ ORDER BY [ContentID] ASC
 
 ### Query Including the Unhashed data alongside the hashed data (ContentID Field is hashed)
 
-SELECT
-
-dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [HashedContentID], ContentID,
-
-[State],
-
-COUNT([State]) AS [StateCount] 
-
-FROM [ContentDPMap] WITH(NOLOCK)
-
-WHERE [AccessType] = 1 
-
-GROUP BY [ContentID], [State] 
-
-ORDER BY [ContentID] ASC, [State] ASC
-
+```sql
+SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [HashedContentID]
+	,ContentID
+	,[State]
+	,COUNT([State]) AS [StateCount]
+FROM [ContentDPMap] WITH (NOLOCK)
+WHERE [AccessType] = 1
+GROUP BY [ContentID]
+	,[State]
+ORDER BY [ContentID] ASC
+	,[State] ASC
+```
  
 
-## TEL_Content_Package
+## TEL_Content_Package ##
 
-### Original Query
+### Original Query ###
 
-SELECT
 
-dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [PkgID],
-
-[SourceSize],
-
-[ShareType],
-
-[PackageType],
-
-[PkgFlags],
-
-[LastRefresh],
-
-[SourceVersion],
-
-(CASE WHEN [AlternateContentProviders] = '' OR [AlternateContentProviders] IS NULL THEN 0 ELSE 1 END) AS [AlternateContentProviders] 
-
-FROM [SMSPackages_G] WITH(NOLOCK)
+```sql
+SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [PkgID]
+	,[SourceSize]
+	,[ShareType]
+	,[PackageType]
+	,[PkgFlags]
+	,[LastRefresh]
+	,[SourceVersion]
+	,(
+		CASE 
+			WHEN [AlternateContentProviders] = ''
+				OR [AlternateContentProviders] IS NULL
+				THEN 0
+			ELSE 1
+			END
+		) AS [AlternateContentProviders]
+FROM [SMSPackages_G] WITH (NOLOCK)
+```
 
 ### Query Including the Unhashed data alongside the hashed data
 
-SELECT
+```sql
+SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [HashedPkgID]
+	,PkgID
+	,[SourceSize]
+	,[ShareType]
+	,[PackageType]
+	,[PkgFlags]
+	,[LastRefresh]
+	,[SourceVersion]
+	,(
+		CASE 
+			WHEN [AlternateContentProviders] = ''
+				OR [AlternateContentProviders] IS NULL
+				THEN 0
+			ELSE 1
+			END
+		) AS [AlternateContentProviders]
+FROM [SMSPackages_G] WITH (NOLOCK)
+```
 
-dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [HashedPkgID], PkgID,
-
-[SourceSize],
-
-[ShareType],
-
-[PackageType],
-
-[PkgFlags],
-
-[LastRefresh],
-
-[SourceVersion],
-
-(CASE WHEN [AlternateContentProviders] = '' OR [AlternateContentProviders] IS NULL THEN 0 ELSE 1 END) AS [AlternateContentProviders] 
-
-FROM [SMSPackages_G] WITH(NOLOCK)
 
 ## TEL_DCM_BuiltinSettings
 
