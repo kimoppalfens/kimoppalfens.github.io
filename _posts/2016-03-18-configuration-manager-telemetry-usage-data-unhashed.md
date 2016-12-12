@@ -83,6 +83,7 @@ SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [Pk
 			END
 		) AS [AlternateContentProviders]
 FROM [SMSPackages_G] WITH (NOLOCK)
+
 ```
 
 ### Query Including the Unhashed data alongside the hashed data
