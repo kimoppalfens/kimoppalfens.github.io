@@ -27,9 +27,15 @@ This blog post is an attempt to list all the stored procedures that contain hash
 The stored procedures that contain hashed data are:
 
  
-##TEL_Content_DPState
+## TEL_Content_DPState
 
-###Original Query
+### Original Query
+
+```sql
+SELECT *
+FROM Telemetry
+ORDER BY NAME
+```
 
 ```sql
 SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [ContentID]
