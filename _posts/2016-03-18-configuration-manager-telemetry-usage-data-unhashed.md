@@ -199,6 +199,7 @@ SELECT TOP 1000
 
 ### Query Including the Unhashed data alongside the hashed data
 
+```sql
 ;WITH RefSettingList AS
 
 (
@@ -284,6 +285,8 @@ SELECT TOP 1000
     GROUP BY st.Setting_UniqueID 
 
     ORDER BY CountDeployedCIs DESC
+```
+
 
 ## TEL_EAS_Connectors
 
