@@ -2,7 +2,7 @@
 title: "SCCM Telemetry data unhashed – revisited for Security Auditors"
 author: Kim Oppalfens
 related: true
-date: 2016-18-03
+date: 2016-03-18
 categories:
   - SCCM
   - Configmgr
