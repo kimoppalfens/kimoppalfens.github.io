@@ -41,8 +41,7 @@ FROM [ContentDPMap] WITH (NOLOCK)
 WHERE [AccessType] = 1
 GROUP BY [ContentID]
 	,[State]
-ORDER BY [ContentID] ASC
-	,[State] ASC
+ORDER BY [ContentID] ASC ,[State] ASC
 ``` 
 
 ### Query Including the Unhashed data alongside the hashed data (ContentID Field is hashed)
