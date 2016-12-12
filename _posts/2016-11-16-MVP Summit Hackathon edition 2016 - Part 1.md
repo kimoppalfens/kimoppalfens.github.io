@@ -18,7 +18,7 @@ A fun and amazing part of that conference, that was introduced last year, and re
 When the concept was first introduced to us, most of us, if not all had never heard of a Hackathon. In short, it's a development exercise, where a certain feature is whipped up in a short time frame. A more extensive explanation can be found on Wikipedia:
 [https://en.wikipedia.org/wiki/Hackathon](https://en.wikipedia.org/wiki/Hackathon)
 
-This year's edition had no less than 14 different little hacks. So let's start by introducing them one by one.
+This year's edition had no less than 13 different little hacks. So let's start by introducing them one by one.
 
 ## Client Analytic's dashboard / Donuts ##
 The client analytic's team that had the largest MVP count to engineer ration. This hackathon is about making a ton of additional information about a machine available in a client analytic's dashboard. Could show the following information (Example and nothing guaranteed)

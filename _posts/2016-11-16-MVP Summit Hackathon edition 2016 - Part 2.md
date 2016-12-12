@@ -16,7 +16,7 @@ This years MVP summit took place a little bit over a week ago, and I believe I'v
 # Intro #
 A fun and amazing part of that conference, that was introduced last year, and repeated this year, is the Hackathon. You can read about the first part of my reporting on this amazing event here: [http://www.oscc.be/sccm/configmgr/MVP-Summit-Hackathon-edition-2016-Part-1/](http://www.oscc.be/sccm/configmgr/MVP-Summit-Hackathon-edition-2016-Part-1/)
 
-This year's edition had no less than 14 different little hacks. So let's start by introducing some more.
+This year's edition had no less than 13 different little hacks. So let's start by introducing some more.
 
 ## OMA Uri Settings for Native ConfigMgr client ##
 The new modern management of Windows 10 allows the management of a Windows 10 device through an open standard for Mobile device management called OMA. [https://en.wikipedia.org/wiki/OMA_Device_Management](https://en.wikipedia.org/wiki/OMA_Device_Management) 
