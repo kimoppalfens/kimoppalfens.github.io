@@ -32,12 +32,6 @@ The stored procedures that contain hashed data are:
 ### Original Query
 
 ```sql
-SELECT *
-FROM Telemetry
-ORDER BY NAME
-```
-
-```sql
 SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [ContentID]
 	,[State]
 	,COUNT([State]) AS [StateCount]
@@ -46,6 +40,10 @@ WHERE [AccessType] = 1
 GROUP BY [ContentID]
 	,[State]
 ORDER BY [ContentID] ASC ,[State] ASC
+```
+
+```sql
+
 ``` 
 
 ###Query Including the Unhashed data alongside the hashed data (ContentID Field is hashed)
