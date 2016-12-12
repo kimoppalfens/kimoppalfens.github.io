@@ -10,10 +10,6 @@ tags:
   - Telemetry
 ---
 
-
-[Source](http://oscc1-public.sharepoint.com/Blog/Post/8/SCCM-Telemetry-data-unhashed-–-revisited-for-Security-Auditors "Permalink to SCCM Telemetry data unhashed – revisited for Security Auditors")
-
-
 A while ago, I wrote a pretty extensive blog on telemetry, 
 
 How it worked,
@@ -32,11 +28,12 @@ The stored procedures that contain hashed data are:
 
  
 
-## TEL_Content_DPState    
+## TEL_Content_DPState ##    
 
-### Original Query
+### Original Query ###
 
 ```sql
+
 SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [ContentID]
 	,[State]
 	,COUNT([State]) AS [StateCount]
