@@ -111,90 +111,46 @@ FROM [SMSPackages_G] WITH (NOLOCK)
 
 ```sql
 ;WITH RefSettingList AS
-
 (
-
-    SELECT st.Setting_UniqueID, dcm_ci.CI_ID                 
-
+    SELECT st.Setting_UniqueID
+      , dcm_ci.CI_ID                 
     FROM v_CISettings st 
-
     JOIN CI_SettingReferences ref on ref.Setting_ID = st.Setting_ID 
-
     JOIN CI_Rules rl on rl.Rule_ID = ref.Rule_ID         
-
     JOIN CI_ConfigurationItems settings_ci on settings_ci.CI_ID = st.CI_ID 
-
     JOIN CI_ConfigurationItems dcm_ci on dcm_ci.CI_ID = rl.CI_ID 
-
     WHERE dcm_ci.IsLatest = 1 and dcm_ci.IsTombstoned = 0 and dcm_ci.IsExpired = 0 /* Limit to latest CI references */
-
      and settings_ci.IsLatest = 1 and settings_ci.IsTombstoned = 0 and settings_ci.IsExpired = 0 
-
      and settings_ci.IsUserDefined = 0 /* Limit to built-in setting definition CIs */
-
 ),
-
 DeployedSettingList AS
-
 (
-
-    \--Cover direct CI deployments 
-
+    --Cover direct CI deployments 
     SELECT sl.Setting_UniqueID, sl.CI_ID 
-
     FROM RefSettingList sl 
-
     JOIN CI_AssignmentTargetedCIs cit on cit.CI_ID = sl.CI_ID     
-
     JOIN CI_CIAssignments cia on cia.AssignmentID = cit.AssignmentID 
-
     WHERE cia.IsTombstoned = 0 
-
-     
-
     UNION
-
-     
-
-    \--Cover CI deployments via Baseline 
-
+    --Cover CI deployments via Baseline 
     SELECT sl.Setting_UniqueID, sl.CI_ID 
-
     FROM RefSettingList sl 
-
     JOIN CI_ConfigurationItemRelations cir on cir.ToCI_ID = sl.CI_ID 
-
     JOIN CI_ConfigurationItems baseline on baseline.CI_ID = cir.FromCI_ID     
-
     JOIN CI_AssignmentTargetedCIs cit on cit.CI_ID = baseline.CI_ID     
-
     JOIN CI_CIAssignments cia on cia.AssignmentID = cit.AssignmentID 
-
     WHERE cia.IsTombstoned = 0 
-
      and baseline.CIType_ID = 2 and baseline.IsLatest = 1 and baseline.IsExpired = 0 
-
      and baseline.IsTombstoned = 0 and baseline.IsEnabled = 1 
-
 )     
-
- 
-
-\--Set upper bound in case built-in set expands rapidly 
-
+--Set upper bound in case built-in set expands rapidly 
 SELECT TOP 1000 
-
-    dbo.fnConvertBinaryToBase64String(
-
-        dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), st.Setting_UniqueID), 'SHA256')) AS Setting_UniqueID,             
-
-    COUNT(distinct st.CI_ID) AS CountDeployedCIs 
-
-    FROM DeployedSettingList st     
-
-    GROUP BY st.Setting_UniqueID 
-
-    ORDER BY CountDeployedCIs DESC
+  dbo.fnConvertBinaryToBase64String(
+    dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), st.Setting_UniqueID), 'SHA256')) AS Setting_UniqueID,             
+  COUNT(distinct st.CI_ID) AS CountDeployedCIs 
+FROM DeployedSettingList st     
+GROUP BY st.Setting_UniqueID 
+ORDER BY CountDeployedCIs DESC
 ```
 
 ### Query Including the Unhashed data alongside the hashed data
