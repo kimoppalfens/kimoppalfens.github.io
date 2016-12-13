@@ -8,6 +8,8 @@ categories:
   - Configmgr
 tags:
   - Telemetry
+header:
+  overlay_image: Telemetry-Post2-HD.jpg
 ---
 
 A while ago, I wrote a pretty extensive blog on telemetry, 
