@@ -9,7 +9,7 @@ categories:
 tags:
   - Telemetry
 header:
-  overlay_image: Telemetry-Post2-HD.jpg
+  overlay_image: /media/Telemetry-Post2-HD.jpg
 ---
 
 A while ago, I wrote a pretty extensive blog on telemetry, 
