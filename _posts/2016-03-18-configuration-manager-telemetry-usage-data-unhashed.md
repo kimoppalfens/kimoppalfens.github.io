@@ -331,123 +331,71 @@ GROUP BY eas.ExchangeServer
 
  
 
-    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+```sql
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SET NOCOUNT ON
+/* Clarification for the return values:
+MAMPolicyName: the name of MAM policy
+MAMAppDeploymentCount: How many deployment used this MAM policy
+DistributeCollectionCount: How many collections are target for this MAM policy
+*/
 
-    SET NOCOUNT ON
-
- 
-
-    /* Clarification for the return values: 
-
-     MAMPolicyName: the name of MAM policy 
-
-     MAMAppDeploymentCount: How many deployment used this MAM policy 
-
-     DistributeCollectionCount: How many collections are target for this MAM policy 
-
-    */
-
- 
-
-    ;WITH MAM_DCMDIGEST_SIMPLEVERSION AS
-
-    (
-
-        SELECT    ci.CI_ID AS MAMPOLICY_CIID,
-
-            ci.SDMPackageDigest.value(
-
-                    'declare namespace dcm="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/07/10/DesiredConfiguration"; 
-
+;WITH MAM_DCMDIGEST_SIMPLEVERSION
+AS
+(
+	SELECT ci.CI_ID                                                                                                                               AS MAMPOLICY_CIID
+	,      ci.SDMPackageDigest.value(
+	'declare namespace dcm="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/07/10/DesiredConfiguration"; 
                      declare namespace name="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/06/14/Rules"; 
+                     (/dcm:DesiredConfigurationDigest/dcm:AbstractConfigurationItem/name:Annotation/name:DisplayName/@Text)[1]', 'NVARCHAR(MAX)') AS MAMPOLICY_Name
+	FROM CI_ConfigurationItems ci
+	WHERE ci.CIType_ID = 70
+)
+,     ASSIGNMENT_CIS_MAPPING
+AS
+(
+	SELECT ciAssignment.AssignmentID      
+	,      ciAssignment.ParentAssignmentID
+	,      ciAssignmentTarget.CI_ID        AS FromCI_ID
+	,      ciRelation.ToCI_ID              AS ToCI_ID
+	,      ciAssignment.AssignmentName    
+	,      ciAssignment.TargetCollectionID
+	FROM       CI_CIAssignments              ciAssignment      
+	INNER JOIN vCI_AssignmentTargetedCIs     ciAssignmentTarget ON ciAssignmentTarget.AssignmentID = ciAssignment.AssignmentID
+	INNER JOIN CI_ConfigurationItemRelations ciRelation         ON ciAssignmentTarget.CI_ID = ciRelation.FromCI_ID
+	WHERE ciAssignment.ParentAssignmentID IS NOT NULL
+)
+,     MAM_POLICY_MAPPING
+AS
+(
+	SELECT ciRelation.FromCI_ID AS FromCI_MAMID
+	,      ciRelation.ToCI_ID   AS ToCI_MAMID
+	FROM       CI_ConfigurationItemRelations ciRelation
+	INNER JOIN CI_ConfigurationItems         ci         ON ciRelation.ToCI_ID = ci.CI_ID
+	WHERE ciRelation.RelationType=23 AND ci.CIType_ID = 70
+)
+,     MAM_DCMDIGEST
+AS
+(
+	SELECT mamPolicy.ToCI_MAMID             AS MAMPOLICY_CIID
+	,      mamAssignment.FromCI_ID          AS MAMPOLICY_BLID
+	,      mamAssignment.ToCI_ID            AS MAMPOLICY_APPID
+	,      mamProperty.MAMPOLICY_Name      
+	,      mamAssignment.AssignmentID       AS MAMAPP_AssignmentID
+	,      mamAssignment.ParentAssignmentID AS MAMAPP_ParentAssignmentID
+	,      mamAssignment.TargetCollectionID AS TargetCollectionID
+	FROM       MAM_POLICY_MAPPING          mamPolicy    
+	INNER JOIN ASSIGNMENT_CIS_MAPPING      mamAssignment ON (mamPolicy.FromCI_MAMID = mamAssignment.ToCI_ID)
+	INNER JOIN MAM_DCMDIGEST_SIMPLEVERSION mamProperty   ON (mamPolicy.ToCI_MAMID = mamProperty.MAMPOLICY_CIID)
+)
+SELECT dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), MAMPOLICY_Name), 'SHA256')) AS MAMPolicyName
+,      COUNT(MAMAPP_AssignmentID)                                                                                   AS MAMAppDeploymentCount
+,      COUNT(TargetCollectionID)                                                                                    AS DistributedCollectionCount
+FROM MAM_DCMDIGEST
+GROUP BY MAMPOLICY_Name
+ORDER BY MAMPOLICY_Name
+```
 
-                     (/dcm:DesiredConfigurationDigest/dcm:AbstractConfigurationItem/name:Annotation/name:DisplayName/@Text)[1]', 'NVARCHAR(MAX)') AS MAMPOLICY_Name             
-
-        FROM    CI_ConfigurationItems ci 
-
-        WHERE    ci.CIType_ID = 70 
-
-    ), ASSIGNMENT_CIS_MAPPING AS
-
-    (
-
-        SELECT    ciAssignment.AssignmentID,
-
-                ciAssignment.ParentAssignmentID,
-
-                ciAssignmentTarget.CI_ID AS FromCI_ID,
-
-                ciRelation.ToCI_ID AS ToCI_ID,
-
-                ciAssignment.AssignmentName,
-
-                ciAssignment.TargetCollectionID 
-
-        FROM CI_CIAssignments ciAssignment 
-
-        INNER JOIN vCI_AssignmentTargetedCIs ciAssignmentTarget ON ciAssignmentTarget.AssignmentID = ciAssignment.AssignmentID 
-
-        INNER JOIN CI_ConfigurationItemRelations ciRelation ON ciAssignmentTarget.CI_ID = ciRelation.FromCI_ID 
-
-        WHERE ciAssignment.ParentAssignmentID IS NOT NULL
-
-    ), MAM_POLICY_MAPPING AS
-
-    (
-
-        SELECT    ciRelation.FromCI_ID AS FromCI_MAMID,
-
-            ciRelation.ToCI_ID AS ToCI_MAMID 
-
-        FROM    CI_ConfigurationItemRelations ciRelation 
-
-        INNER JOIN CI_ConfigurationItems ci 
-
-            ON ciRelation.ToCI_ID = ci.CI_ID 
-
-        WHERE ciRelation.RelationType=23 AND ci.CIType_ID = 70 
-
-    ), MAM_DCMDIGEST AS
-
-    (
-
-        SELECT    mamPolicy.ToCI_MAMID AS MAMPOLICY_CIID,
-
-                mamAssignment.FromCI_ID AS MAMPOLICY_BLID,
-
-                mamAssignment.ToCI_ID AS MAMPOLICY_APPID,
-
-                mamProperty.MAMPOLICY_Name,
-
-                mamAssignment.AssignmentID AS MAMAPP_AssignmentID,
-
-                mamAssignment.ParentAssignmentID AS MAMAPP_ParentAssignmentID,
-
-                mamAssignment.TargetCollectionID AS TargetCollectionID 
-
-        FROM MAM_POLICY_MAPPING mamPolicy 
-
-        INNER JOIN ASSIGNMENT_CIS_MAPPING mamAssignment ON (mamPolicy.FromCI_MAMID = mamAssignment.ToCI_ID)
-
-        INNER JOIN MAM_DCMDIGEST_SIMPLEVERSION mamProperty ON (mamPolicy.ToCI_MAMID = mamProperty.MAMPOLICY_CIID)
-
-    )
-
-    SELECT    dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), MAMPOLICY_Name), 'SHA256')) AS MAMPolicyName,
-
-            COUNT(MAMAPP_AssignmentID) AS MAMAppDeploymentCount,
-
-            COUNT(TargetCollectionID) AS DistributedCollectionCount 
-
-    FROM MAM_DCMDIGEST 
-
-    GROUP BY MAMPOLICY_Name 
-
-    ORDER BY MAMPOLICY_Name 
-
- 
-
- 
 
 ### Query Including the Unhashed data alongside the hashed data
 
