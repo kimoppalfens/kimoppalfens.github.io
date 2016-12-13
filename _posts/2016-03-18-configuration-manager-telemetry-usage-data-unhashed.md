@@ -63,44 +63,37 @@ ORDER BY [ContentID] ASC
 
 
 ```sql
-
 SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [PkgID]
-	,[SourceSize]
-	,[ShareType]
-	,[PackageType]
-	,[PkgFlags]
-	,[LastRefresh]
-	,[SourceVersion]
-	,(
-		CASE 
-			WHEN [AlternateContentProviders] = ''
-				OR [AlternateContentProviders] IS NULL
-				THEN 0
-			ELSE 1
-			END
-		) AS [AlternateContentProviders]
+,      [SourceSize]                                                      
+,      [ShareType]                                                       
+,      [PackageType]                                                     
+,      [PkgFlags]                                                        
+,      [LastRefresh]                                                     
+,      [SourceVersion]                                                   
+,      (
+CASE WHEN [AlternateContentProviders] = ''
+	OR [AlternateContentProviders] IS NULL THEN 0
+                                           ELSE 1
+END ) AS [AlternateContentProviders]
 FROM [SMSPackages_G] WITH (NOLOCK)
 ```
 
 ### Query Including the Unhashed data alongside the hashed data
 
 ```sql
-SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [HashedPkgID]
-	,PkgID
-	,[SourceSize]
-	,[ShareType]
-	,[PackageType]
-	,[PkgFlags]
-	,[LastRefresh]
-	,[SourceVersion]
-	,(
-		CASE 
-			WHEN [AlternateContentProviders] = ''
-				OR [AlternateContentProviders] IS NULL
-				THEN 0
-			ELSE 1
-			END
-		) AS [AlternateContentProviders]
+SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [PkgID]), 'SHA256') AS [PkgID]
+,	   PkgID
+,      [SourceSize]                                                      
+,      [ShareType]                                                       
+,      [PackageType]                                                     
+,      [PkgFlags]                                                        
+,      [LastRefresh]                                                     
+,      [SourceVersion]                                                   
+,      (
+CASE WHEN [AlternateContentProviders] = ''
+	OR [AlternateContentProviders] IS NULL THEN 0
+                                           ELSE 1
+END ) AS [AlternateContentProviders]
 FROM [SMSPackages_G] WITH (NOLOCK)
 ```
 
