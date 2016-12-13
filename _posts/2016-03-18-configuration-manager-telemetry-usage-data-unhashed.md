@@ -19,6 +19,7 @@ You can read that blog here: [http://www.oscc.be/sccm/configuration-manager-tele
 I ended that blog on an open note, and with a couple of stored procedures that generated telemetry data containing hashed data that still needed SQL queries to see the unhashed data.
 
 **Update: This is the list of stored procedures validated up until 1606**
+
 This blog post is an attempt to list all the stored procedures that contain hashed data, and the corresponding modified SQL statement to see the data unhashed.
 
 The stored procedures that contain hashed data are:
