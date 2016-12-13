@@ -630,6 +630,17 @@ select @LicenseType           as LicenseType
 ### Original Query
 
 ```sql
+SELECT dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [ContentID]), 'SHA256') AS [ContentID]
+	,[State]
+	,COUNT([State]) AS [StateCount]
+FROM [ContentDPMap] WITH (NOLOCK)
+WHERE [AccessType] = 1
+GROUP BY [ContentID]
+	,[State]
+ORDER BY [ContentID] ASC ,[State] ASC
+```
+
+```sql
 SET NOCOUNT ON
 /* Clarification for the return values: 
 Schema version and whether customer did any customization 
