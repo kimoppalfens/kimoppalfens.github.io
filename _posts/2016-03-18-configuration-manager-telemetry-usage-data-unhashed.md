@@ -523,128 +523,107 @@ INNER JOIN sys.schemas        a3 ON (a2.schema_id = a3.schema_id)
 WHERE a2.type <> N'S' and a2.type <> N'IT'
 ORDER BY a1.data DESC
 ```
- 
- 
 
 ## TEL_SetupInfo
 
 ### Original Query
 
-    \-- nolock for scope of procedure 
+```sql
+-- nolock for scope of procedure
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SET NOCOUNT ON
+DECLARE @LicenseType INT
+DECLARE @Version Nvarchar(20)
+DECLARE @SysCenterId Nvarchar(MAX)
+DECLARE @TenantId Nvarchar(MAX)
+DECLARE @TelemetryLevel INT
+DECLARE @OfflineMode INT
+DECLARE @SiteNumber INT = dbo.fnGetSiteNumber();
 
-    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+select top 1 @LicenseType=value1
+from SetupInfo
+where id=N'Type'
 
-    SET NOCOUNT ON
+select top 1 @Version=string1
+from SetupInfo
+where id=N'VERSION'
 
-    DECLARE @LicenseType INT
+select top 1 @SysCenterId=string1
+from SetupInfo
+where id=N'SYSCENTERID'
 
-    DECLARE @Version Nvarchar(20)
+select @TelemetryLevel = scp.Value3
+FROM       SC_Component          sc 
+INNER JOIN SC_Component_Property scp ON scp.ComponentID = sc.ID
+WHERE sc.SiteNumber = @SiteNumber
+	AND sc.ComponentName = 'SMS_REPLICATION_CONFIGURATION_MONITOR'
+	AND scp.Name = 'TelemetryLevel';
+select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX)
+,	 [dbo].[fnGetHierarchyID]()), 'SHA256') )
 
-    DECLARE @SysCenterId Nvarchar(MAX)
+select @OfflineMode = scp.Value3
+from       SC_SysResUse          sc 
+inner join SC_SysResUse_Property scp on sc.ID = scp.SysResUseID
+Where sc.RoleTypeID = 23 and (Name = 'OfflineMode')
 
-    DECLARE @TenantId Nvarchar(MAX)
-
-    DECLARE @TelemetryLevel INT
-
-    DECLARE @OfflineMode INT
-
-    DECLARE @SiteNumber INT = dbo.fnGetSiteNumber();
-
- 
-
-    select top 1 @LicenseType=value1 from SetupInfo where id=N'Type'
-
-select top 1 @Version=string1 from SetupInfo where id=N'VERSION'
-
-    select top 1 @SysCenterId=string1 from SetupInfo where id=N'SYSCENTERID'
-
- 
-
-    select @TelemetryLevel =
-
-        scp.Value3 
-
-     FROM SC_Component sc 
-
-     INNER JOIN SC_Component_Property scp ON scp.ComponentID = sc.ID 
-
-     WHERE
-
-        sc.SiteNumber = @SiteNumber 
-
-        AND sc.ComponentName = 'SMS_REPLICATION_CONFIGURATION_MONITOR'
-
-        AND scp.Name = 'TelemetryLevel';
-
- 
-
-     select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].[fnGetHierarchyID]()), 'SHA256') )
-
-     
-
-     select @OfflineMode = scp.Value3 from SC_SysResUse sc inner join SC_SysResUse_Property scp on sc.ID = scp.SysResUseID Where sc.RoleTypeID = 23 and (Name = 'OfflineMode')
-
-     select @LicenseType as LicenseType, @Version as Version, @SysCenterId as SysCenterId, @TelemetryLevel as TelemetryLevel, @TenantId as TenantId, isnull(@OfflineMode,0) as OfflineMode 
+select @LicenseType           as LicenseType
+,      @Version               as Version
+,      @SysCenterId           as SysCenterId
+,      @TelemetryLevel        as TelemetryLevel
+,      @TenantId              as TenantId
+,      isnull(@OfflineMode,0) as OfflineMode
+```
 
  
 
 ### Query Including the Unhashed data alongside the hashed data
 
-    \-- nolock for scope of procedure 
+```sql
+-- nolock for scope of procedure
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SET NOCOUNT ON
+DECLARE @LicenseType INT
+DECLARE @Version Nvarchar(20)
+DECLARE @SysCenterId Nvarchar(MAX)
+DECLARE @TenantId Nvarchar(MAX)
+DECLARE @TelemetryLevel INT
+DECLARE @OfflineMode INT
+DECLARE @SiteNumber INT = dbo.fnGetSiteNumber();
 
-    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+select top 1 @LicenseType=value1
+from SetupInfo
+where id=N'Type'
 
-    SET NOCOUNT ON
+select top 1 @Version=string1
+from SetupInfo
+where id=N'VERSION'
 
-    DECLARE @LicenseType INT
+select top 1 @SysCenterId=string1
+from SetupInfo
+where id=N'SYSCENTERID'
 
-    DECLARE @Version Nvarchar(20)
+select @TelemetryLevel = scp.Value3
+FROM       SC_Component          sc 
+INNER JOIN SC_Component_Property scp ON scp.ComponentID = sc.ID
+WHERE sc.SiteNumber = @SiteNumber
+	AND sc.ComponentName = 'SMS_REPLICATION_CONFIGURATION_MONITOR'
+	AND scp.Name = 'TelemetryLevel';
+select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX)
+,	 [dbo].[fnGetHierarchyID]()), 'SHA256') )
 
-    DECLARE @SysCenterId Nvarchar(MAX)
+select @OfflineMode = scp.Value3
+from       SC_SysResUse          sc 
+inner join SC_SysResUse_Property scp on sc.ID = scp.SysResUseID
+Where sc.RoleTypeID = 23 and (Name = 'OfflineMode')
 
-    DECLARE @TenantId Nvarchar(MAX)
-
-    DECLARE @TelemetryLevel INT
-
-    DECLARE @OfflineMode INT
-
-    DECLARE @SiteNumber INT = dbo.fnGetSiteNumber();
-
- 
-
-    select top 1 @LicenseType=value1 from SetupInfo where id=N'Type'
-
-select top 1 @Version=string1 from SetupInfo where id=N'VERSION'
-
-    select top 1 @SysCenterId=string1 from SetupInfo where id=N'SYSCENTERID'
-
- 
-
-    select @TelemetryLevel =
-
-        scp.Value3 
-
-     FROM SC_Component sc 
-
-     INNER JOIN SC_Component_Property scp ON scp.ComponentID = sc.ID 
-
-     WHERE
-
-        sc.SiteNumber = @SiteNumber 
-
-        AND sc.ComponentName = 'SMS_REPLICATION_CONFIGURATION_MONITOR'
-
-        AND scp.Name = 'TelemetryLevel';
-
- 
-
-     select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].[fnGetHierarchyID]()), 'SHA256') )
-
-     
-
-     select @OfflineMode = scp.Value3 from SC_SysResUse sc inner join SC_SysResUse_Property scp on sc.ID = scp.SysResUseID Where sc.RoleTypeID = 23 and (Name = 'OfflineMode')
-
-     select @LicenseType as LicenseType, @Version as Version, @SysCenterId as SysCenterId, @TelemetryLevel as TelemetryLevel, @TenantId as TenantId, [dbo].[fnGetHierarchyID]() as Unhashed_HierarchyID, isnull(@OfflineMode,0) as OfflineMode 
+select @LicenseType           as LicenseType
+,      @Version               as Version
+,      @SysCenterId           as SysCenterId
+,      @TelemetryLevel        as TelemetryLevel
+,      @TenantId              as TenantId
+,		[dbo].[fnGetHierarchyID]() AS [TenantId Unhashed]
+,      isnull(@OfflineMode,0) as OfflineMode
+```
 
 ## TEL_SQL_DBSchema
 
