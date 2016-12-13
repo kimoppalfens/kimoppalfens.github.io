@@ -259,152 +259,70 @@ GROUP BY eas.ExchangeServer
 
 ### Query Including the Unhashed data alongside the hashed data
 
-DECLARE @ConnectorId TABLE
+```sql
+DECLARE @ConnectorId TABLE ( ConnectorID nvarchar(40) not null )
 
-(
+DECLARE @ExchangeConnectorTable TABLE ( ConnectorID              nvarchar(40) not null
+,                                       ConfiguredExchangeServer nvarchar(256) not null
+,                                       IsHosted                 int not null )
 
-    ConnectorID nvarchar(40) not null
+DECLARE @ExchangePolicyTable TABLE ( ConnectorID      nvarchar(40) not null
+,                                    IsPolicyDeployed bit not null )
 
-)
-
- 
-
-DECLARE @ExchangeConnectorTable TABLE
-
-(
-
-    ConnectorID nvarchar(40) not null,
-
-    ConfiguredExchangeServer nvarchar(256) not null,
-
-    IsHosted int not null
-
-)
-
- 
-
-DECLARE @ExchangePolicyTable TABLE
-
-(
-
-    ConnectorID nvarchar(40) not null,
-
-    IsPolicyDeployed bit not null
-
- 
-
-)
-
- 
-
-\-- Get unique IDs for exchange connectors     
-
-INSERT INTO @ConnectorID 
-
+-- Get unique IDs for exchange connectors
+INSERT INTO @ConnectorID
 SELECT DISTINCT SUBSTRING(scpl.Name,17, len(scpl.Name))
+FROM       SC_Component                    as sc  
+INNER JOIN vSMS_SC_Component_PropertyLists    scpl on scpl.ID=sc.ID
+WHERE sc.ComponentName LIKE '%Exchange%'
+	AND scpl.Name LIKE 'ConnectorConfig%'
 
-    FROM SC_Component as sc 
+-- Get Exchange Server and IsHosted infromation from ConnectorConfig_ property list for each exchange connector
+INSERT INTO @ExchangeConnectorTable
+SELECT DISTINCT conID.ConnectorID       
+,               SCPL.Value               AS ConfiguredExchangeServer
+,               CAST(SCPL2.Value AS INT) AS IsHosted
+FROM       SC_Component                    AS SC   
+INNER JOIN vSMS_SC_Component_PropertyLists AS SCPL  ON SC.ID=SCPL.ID AND SCPL.ValueIndex=0
+INNER JOIN vSMS_SC_Component_PropertyLists AS SCPL2 ON SCPL.PropertyListID=SCPL2.PropertyListID AND SCPL2.ValueIndex=1
+INNER JOIN @ConnectorId                       conID ON SCPL.Name like '%' + conID.ConnectorID + '%'
+WHERE (SC.ComponentName = 'SMS_EXCHANGE_CONNECTOR' AND SCPL.Name like 'Connector%')
 
-    INNER JOIN vSMS_SC_Component_PropertyLists scpl on scpl.ID=sc.ID 
+--Get IsPolicyDeployed information from ConfiguredSettings_ property list for each exchange connector
+INSERT INTO @ExchangePolicyTable
+SELECT DISTINCT conID.ConnectorID                          
+,               (case when SCPL3.Value is NULL THEN 0
+                                               ELSE 1 END ) AS IsManagedBySCCM
+FROM       SC_Component                    AS SC   
+INNER JOIN vSMS_SC_Component_PropertyLists AS SCPL3 ON SC.ID=SCPL3.ID
+INNER JOIN @ConnectorId                       conID ON SCPL3.Name like '%' + conID.ConnectorID + '%'
+WHERE (SC.ComponentName = 'SMS_EXCHANGE_CONNECTOR' AND SCPL3.Name like 'Configured%')
 
-    WHERE
-
-    sc.ComponentName LIKE '%Exchange%'
-
-    AND scpl.Name LIKE 'ConnectorConfig%'
-
- 
-
-\-- Get Exchange Server and IsHosted infromation from ConnectorConfig_ property list for each exchange connector 
-
-INSERT INTO @ExchangeConnectorTable 
-
-SELECT DISTINCT conID.ConnectorID, SCPL.Value AS ConfiguredExchangeServer, CAST(SCPL2.Value AS INT) AS IsHosted 
-
-    FROM SC_Component AS SC 
-
-    INNER JOIN vSMS_SC_Component_PropertyLists AS SCPL ON SC.ID=SCPL.ID AND SCPL.ValueIndex=0 
-
-    INNER JOIN vSMS_SC_Component_PropertyLists AS SCPL2 ON SCPL.PropertyListID=SCPL2.PropertyListID AND SCPL2.ValueIndex=1 
-
-    INNER JOIN @ConnectorId conID ON SCPL.Name like '%' + conID.ConnectorID + '%'
-
-    WHERE (SC.ComponentName = 'SMS_EXCHANGE_CONNECTOR' AND SCPL.Name like 'Connector%')
-
-     
-
-\--Get IsPolicyDeployed information from ConfiguredSettings_ property list for each exchange connector 
-
-INSERT INTO @ExchangePolicyTable 
-
-SELECT DISTINCT conID.ConnectorID, (case when SCPL3.Value is NULL THEN 0 ELSE 1 END) AS IsManagedBySCCM 
-
-    FROM SC_Component AS SC 
-
-    INNER JOIN vSMS_SC_Component_PropertyLists AS SCPL3 ON SC.ID=SCPL3.ID 
-
-    INNER JOIN @ConnectorId conID ON SCPL3.Name like '%' + conID.ConnectorID + '%'
-
-    WHERE (SC.ComponentName = 'SMS_EXCHANGE_CONNECTOR' AND SCPL3.Name like 'Configured%')
-
-         
-
-SELECT
-
-(CASE
-
-    WHEN COUNT(*) = 1 THEN NULL
-
-    ELSE COUNT(*)
-
-    END) as DeviceCount,
-
-(CASE
-
-    WHEN eas.ExchangeServer IS NULL THEN NULL
-
-    ELSE (dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), eas.ExchangeServer ), 'SHA256')))
-
-    END) AS DeviceReportedExchangeServer,
-
-(CASE
-
-    WHEN eas.ExchangeServer IS NULL THEN NULL
-
-    ELSE (eas.ExchangeServer)
-
-    END) AS DeviceReportedExchangeServer,
-
-(CASE
-
-    WHEN ect.ConfiguredExchangeServer IS NULL THEN NULL
-
-    ELSE (dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), ect.ConfiguredExchangeServer ), 'SHA256')))
-
-    END) AS ConfiguredExchangeServer,
-
-(CASE
-
-    WHEN ect.ConfiguredExchangeServer IS NULL THEN NULL
-
-    ELSE (ect.ConfiguredExchangeServer)
-
-    END) AS ConfiguredExchangeServer,
-
-ect.IsHosted,
-
-ept.IsPolicyDeployed 
-
-FROM EAS_Property eas 
-
+SELECT (CASE WHEN COUNT(*) = 1 THEN NULL
+                               ELSE COUNT(*)
+END )                       as DeviceCount
+,      (CASE WHEN eas.ExchangeServer IS NULL THEN NULL
+                                             ELSE (dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), eas.ExchangeServer ), 'SHA256')))
+END )                       AS DeviceReportedExchangeServer
+,      (CASE WHEN eas.ExchangeServer IS NULL THEN NULL
+                                             ELSE (eas.ExchangeServer)
+END )                       AS DeviceReportedExchangeServer
+,      (CASE WHEN ect.ConfiguredExchangeServer IS NULL THEN NULL
+                                                       ELSE (dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), ect.ConfiguredExchangeServer ), 'SHA256')))
+END )                       AS ConfiguredExchangeServer
+,      (CASE WHEN ect.ConfiguredExchangeServer IS NULL THEN NULL
+                                                       ELSE (ect.ConfiguredExchangeServer)
+END )                       AS ConfiguredExchangeServer
+,      ect.IsHosted        
+,      ept.IsPolicyDeployed
+FROM      EAS_Property            eas
 FULL JOIN @ExchangeConnectorTable ect ON ect.ConfiguredExchangeServer like '%'+ eas.ExchangeServer + '%'
-
-FULL JOIN @ExchangePolicyTable ept ON ept.ConnectorID = ect.ConnectorID 
-
-GROUP BY eas.ExchangeServer, ect.ConfiguredExchangeServer, ect.IsHosted, ept.IsPolicyDeployed 
-
- 
-
+FULL JOIN @ExchangePolicyTable    ept ON ept.ConnectorID = ect.ConnectorID
+GROUP BY eas.ExchangeServer
+,        ect.ConfiguredExchangeServer
+,        ect.IsHosted
+,        ept.IsPolicyDeployed
+```
  
 
 ## TEL_MAM_PolicySettingsStatistics4Deployment2Collection
