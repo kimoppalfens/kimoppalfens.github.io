@@ -52,13 +52,6 @@ layout: default
 
       {% if page.share %}{% include social-share.html %}{% endif %}
 
-      {% include post_pagination.html %}
-    </div>
-
-    {% if site.comments.provider and page.comments %}
-      {% include comments.html %}
-    {% endif %}
-  </article>
  {% comment %}<!-- show posts by related tags when `related: true` -->{% endcomment %}
   {% if page.related %}
     {% assign n_posts = 0 %}
@@ -85,3 +78,12 @@ layout: default
       </div>
     {% endif %}
   {% endif %}
+
+      {% include post_pagination.html %}
+    </div>
+
+    {% if site.comments.provider and page.comments %}
+      {% include comments.html %}
+    {% endif %}
+  </article>
+
