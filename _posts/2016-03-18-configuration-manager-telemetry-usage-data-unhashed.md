@@ -1,5 +1,7 @@
 ---
 title: "SCCM Telemetry data unhashed – revisited for Security Auditors"
+header:
+  overlay_image: Telemetry-Post2-HD.jpg
 author: Kim Oppalfens
 related: true
 date: 2016-03-18
@@ -8,8 +10,7 @@ categories:
   - Configmgr
 tags:
   - Telemetry
-header:
-  overlay_image: /media/Telemetry-Post2-HD.jpg
+
 ---
 
 A while ago, I wrote a pretty extensive blog on telemetry, 
