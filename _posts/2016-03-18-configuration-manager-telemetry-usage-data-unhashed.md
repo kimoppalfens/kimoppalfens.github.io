@@ -629,88 +629,45 @@ select @LicenseType           as LicenseType
 
 ### Original Query
 
- 
-
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-
+```sql
 SET NOCOUNT ON
-
- 
-
 /* Clarification for the return values: 
-
 Schema version and whether customer did any customization 
-
 */
-
- 
-
-\-- Setup Version 
-
+-- Setup Version 
 SELECT dbo.fnConvertBinaryToBase64String(
-
 dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), DS.ObjectName), 'SHA256')
-
-) AS ObjectNameHash,
-
+) AS ObjectNameHash
+,DS.ObjectName AS [ObjectName unhashed],
 DS.ObjectVersion AS ObjectVersion,
-
 DS.UpdatedBy AS UpdatedBy,
-
 DS.ObjectHash As ObjectHash 
-
 FROM dbo.DBSchema DS 
-
 INNER JOIN SC_SiteDefinition SS 
-
 ON DS.SiteNumber = SS.SiteNumber 
-
 WHERE ISNULL(SS.parentsitecode, N'') = N''
-
- 
-
- 
+``` 
 
 ### Query Including the Unhashed data alongside the hashed data
 
+```sql
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-
 SET NOCOUNT ON
-
- 
-
 /* Clarification for the return values: 
-
 Schema version and whether customer did any customization 
-
 */
-
- 
-
-\-- Setup Version 
-
+-- Setup Version 
 SELECT dbo.fnConvertBinaryToBase64String(
-
 dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), DS.ObjectName), 'SHA256')
-
-) AS ObjectNameHash, DS.ObjectName,
-
+) AS ObjectNameHash,
 DS.ObjectVersion AS ObjectVersion,
-
 DS.UpdatedBy AS UpdatedBy,
-
 DS.ObjectHash As ObjectHash 
-
 FROM dbo.DBSchema DS 
-
 INNER JOIN SC_SiteDefinition SS 
-
 ON DS.SiteNumber = SS.SiteNumber 
-
 WHERE ISNULL(SS.parentsitecode, N'') = N''
-
- 
-
+``` 
 ## Identifier at the end of each Results entry
 
 ### Original Query
@@ -719,29 +676,13 @@ Not Applicable
 
 ### Query Including the unhashed data alongside the hashed data
 
+```sql
 Declare @tenantid as nvarchar(max)
+select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].[fnGetHierarchyID]()), 'SHA256') )
+Declare @hierarchyid as nvarchar(max)
+select @hierarchyid = [dbo].[fnGetHierarchyID]()
+select @hierarchyid 
+,      @tenantid
 
-     select @TenantId = dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), [dbo].[fnGetHierarchyID]()), 'SHA256') )
+```
 
-     Declare @hierarchyid as nvarchar(max)
-
-     select @hierarchyid = [dbo].[fnGetHierarchyID]()
-
-     select @hierarchyid, @tenantid
-
-Enjoy.  
-"The M in WMI stands for Magic"  
-"Everyone is an expert at something" Kim Oppalfens – Enterprise client management Expert for lack of any other expertise  
-Enterprise Client Management MVP  
-
-
-
-
-
-
- 
-
-[1]: /Blog/Post/5/Configuration-Manager-telemetry---usage-metrics-(work-in-progress)
-
-  
- Night Mode
