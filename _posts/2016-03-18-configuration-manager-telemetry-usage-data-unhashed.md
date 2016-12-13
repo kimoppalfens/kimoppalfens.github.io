@@ -2,6 +2,7 @@
 title: "SCCM Telemetry data unhashed – revisited for Security Auditors"
 header:
   overlay_image: Telemetry-Post2-HD.jpg
+  teaser: Telemetry-Post2-HD512x384.jpg
 author: Kim Oppalfens
 related: true
 date: 2016-03-18
