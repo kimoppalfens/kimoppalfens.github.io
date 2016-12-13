@@ -387,12 +387,12 @@ AS
 	INNER JOIN MAM_DCMDIGEST_SIMPLEVERSION mamProperty   ON (mamPolicy.ToCI_MAMID = mamProperty.MAMPOLICY_CIID)
 )
 SELECT dbo.fnConvertBinaryToBase64String(dbo.fnMDMCalculateHash(CONVERT(VARBINARY(MAX), MAMPOLICY_Name), 'SHA256')) AS MAMPolicyName
-,	   MAMPOLICY_Name as [MAMPolicyName Unhashed]	
 ,      COUNT(MAMAPP_AssignmentID)                                                                                   AS MAMAppDeploymentCount
 ,      COUNT(TargetCollectionID)                                                                                    AS DistributedCollectionCount
 FROM MAM_DCMDIGEST
 GROUP BY MAMPOLICY_Name
-ORDER BY MAMPOLICY_Name```
+ORDER BY MAMPOLICY_Name
+```
 
 
 ### Query Including the Unhashed data alongside the hashed data
@@ -410,9 +410,7 @@ AS
 (
 	SELECT ci.CI_ID                                                                                                                               AS MAMPOLICY_CIID
 	,      ci.SDMPackageDigest.value(
-	'declare namespace dcm="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/07/10/DesiredConfiguration"; 
-                     declare namespace name="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/06/14/Rules"; 
-                     (/dcm:DesiredConfigurationDigest/dcm:AbstractConfigurationItem/name:Annotation/name:DisplayName/@Text)[1]', 'NVARCHAR(MAX)') AS MAMPOLICY_Name
+	'declare namespace dcm="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/07/10/DesiredConfiguration";declare namespace name="http://schemas.microsoft.com/SystemsCenterConfigurationManager/2009/06/14/Rules";(/dcm:DesiredConfigurationDigest/dcm:AbstractConfigurationItem/name:Annotation/name:DisplayName/@Text)[1]', 'NVARCHAR(MAX)') AS MAMPOLICY_Name
 	FROM CI_ConfigurationItems ci
 	WHERE ci.CIType_ID = 70
 )
@@ -461,7 +459,6 @@ FROM MAM_DCMDIGEST
 GROUP BY MAMPOLICY_Name
 ORDER BY MAMPOLICY_Name
 ```
-
 ## TEL_Perf_TableSize
 
 ### Original Query
