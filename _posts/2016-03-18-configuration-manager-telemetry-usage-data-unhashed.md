@@ -646,7 +646,7 @@ FROM dbo.DBSchema DS
 INNER JOIN SC_SiteDefinition SS 
 ON DS.SiteNumber = SS.SiteNumber 
 WHERE ISNULL(SS.parentsitecode, N'') = N''
-``` 
+```
 
 ### Query Including the Unhashed data alongside the hashed data
 
@@ -667,7 +667,8 @@ FROM dbo.DBSchema DS
 INNER JOIN SC_SiteDefinition SS 
 ON DS.SiteNumber = SS.SiteNumber 
 WHERE ISNULL(SS.parentsitecode, N'') = N''
-``` 
+```
+
 ## Identifier at the end of each Results entry
 
 ### Original Query
