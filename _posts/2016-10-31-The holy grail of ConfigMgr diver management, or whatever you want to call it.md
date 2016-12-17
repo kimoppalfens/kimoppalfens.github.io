@@ -1,6 +1,9 @@
 ---
 title: "The holy grail of ConfigMgr driver management / whatever you'd like to call it."
 author: Kim Oppalfens
+header:
+  overlay_image: drivers1280x960.jpg.jpg
+  teaser: Tdrivers.jpg.jpg
 date: 2016-10-31
 categories:
   - SCCM
