@@ -1,6 +1,9 @@
 ---
 title: "MVP Summit hackathon edition 2016-Part 3"
 author: Kim Oppalfens
+header:
+  overlay_image: Telemetry-Post2-HD.jpg
+  teaser: Telemetry-Post2-HD512x384.jpg
 related: true
 date: 2016-12-12
 categories:
