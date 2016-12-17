@@ -1,5 +1,8 @@
 ---
 title:  "ConfigMgr LTSB, 'The do NOT use Edition.'!"
+header:
+  overlay_image: donotuse1280x960.jpg
+  teaser: donotuse512x384.jpg
 author: Kim Oppalfens
 date: 2016-10-13
 categories: 
