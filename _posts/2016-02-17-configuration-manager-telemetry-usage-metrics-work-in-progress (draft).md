@@ -1,5 +1,8 @@
 ---
 title: "Configuration Manager telemetry, usage metrics, work in progress"
+header:
+  overlay_image: Telemetry-Post2-HD.jpg
+  teaser: Telemetry-Post2-HD512x384.jpg
 author: Kim Oppalfens
 date: 2016-02-17
 categories:
