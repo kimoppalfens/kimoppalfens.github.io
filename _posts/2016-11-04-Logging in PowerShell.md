@@ -1,6 +1,9 @@
 ---
 title: "PowerShell Logging using Log4Net in CMtrace format"
 author: Kim Oppalfens
+header:
+  overlay_image: logging1280x960.jpg
+  teaser: logging512x384.jpg
 date: 2016-11-04
 categories:
   - Powershell
