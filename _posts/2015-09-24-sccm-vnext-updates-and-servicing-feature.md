@@ -1,6 +1,9 @@
 ---
 title: "SCCM updates and servicing feature!"
 author: Kim Oppalfens
+header:
+  overlay_image: updatesandservicing1280x960.jpg
+  teaser: updatesandservicing512x384.jpg
 date: 2015-09-24
 categories:
   - SCCM
