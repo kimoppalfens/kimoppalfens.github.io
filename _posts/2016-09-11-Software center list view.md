@@ -24,7 +24,7 @@ The script below will launch the tool, wait for a second, then send the keyseque
 PS: The Set foreground window part is code I found online somewhere, but can't recall where. If you see this as your code, credit where credit is due, contact me on twitter and I'll add a reference.
 
 
-```powershell 
+```posh
 $ClientLogDirectory = (Get-CimInstance -Namespace root\ccm\policy\machine\actualconfig -ClassName ccm_logging_globalconfiguration).LogDirectory 
 $ClientDir = $ClientLogDirectory.SUbstring(0,$ClientLogDirectory.Length-5) 
 $scclient = $ClientDir+'\ClientUX\SCClient.exe' 
