@@ -75,3 +75,6 @@ Equally interesting in this part of the blogpost is the relation of a collection
 If you're still awake, and following, the reason all of this is important is that since Configuration Manager 2012 R2, any collection evaluation calculates "the graph". This graph, in my comprehension is sort of a map of collections that will be triggered for evaluation based on the collection evaluation that has set things in motion. Again, you should be aware by now that triggering a collection update a certain level in your collection chain/hierarchy triggers a collection update on all collections limited to the initiating collection, and so on throughout the entire chain. That part is well-known and documented by now. From a technical point of view though that statement really means that the graph/map is build based upon the collection-dependencies in your environment. As you can see in the picture above, and gather from the explanation, include and exclude rules are equally part of that graph. Now, you can take my word from that, or go on an investigation challenge and look through the vCollectionDepencyChain view, to verify all of this.
 
 This roughly brings me to slide 14 of this session, and I'll sign out for now. Expect part 2, in less time than you all had to wait for part 1.
+
+
+[1]: http://oscc1-public.sharepoint.com/Lists/Photos/082416_1317_CollectionE1.png
