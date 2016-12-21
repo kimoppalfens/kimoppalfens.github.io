@@ -15,7 +15,7 @@ Another post that is long overdue, based on a session Jason Sandys and I deliver
 
 With the 2016 MMS and such we did have good reasons not to find the time to get around to posting these. (Yes, reasons, I am calling them reasons, they are not excuses, and I am sticking to that). However, after the Policies A through Z session I delivered with Tom Degreef I had an attendee step up to me to remind me about that promise. (Mental note: That's a serious downside of not having a speaker room at MMS, as a speaker you can't hide, and people step up to you and confront you with promises you haven't delivered on. I either need to be more careful on what I promise, or find a good disguise. Somehow thinking of a pink bunny custome, right now)
 
-Ok, snapping out of mental picks and the introduction, Collections is the topic at hand. The session started off by explaining why collections are this important. I am not going to cover that in this blogpost as you should either already know that, or you can download the powerpoint slides from the link above, and should be able to make sense out of that part from the slides and notes, but in short, collections are everywhere in System Center Configuration Manager
+Ok, snapping out of mental pictures and the introduction, Collections is the topic at hand. The session started off by explaining why collections are this important. I am not going to cover that in this blogpost as you should either already know that, or you can download the powerpoint slides from the link above, and should be able to make sense out of that part from the slides and notes, but in short, collections are everywhere in System Center Configuration Manager
 
 Collections have different rule types:
 
