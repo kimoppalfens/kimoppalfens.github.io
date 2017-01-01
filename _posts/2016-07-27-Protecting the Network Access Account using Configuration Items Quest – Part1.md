@@ -19,13 +19,18 @@ First, this blogpost, is an answer to a year-old blog post by my highly valued M
 
 
 
-In that blogpost, he suggests some options to control the usage of the network access account, and refers to a technet article on how to secure the NAA. The technet article  briefly states the following Grant this account the minimum appropriate permissions on the content that the client requires to access the software. 
+In that blogpost, he suggests some options to control the usage of the network access account, and refers to a technet article on how to secure the NAA. 
 
-"_The account must have the **Access this computer from the network** right on the distribution point or other server that holds the package content."  _
+The technet article  briefly states the following Grant this account the minimum appropriate permissions on the content that the client requires to access the software. 
 
-_"Do not grant this account interactive logon rights" _
+> The account must have the **Access this computer from the network** right on the distribution point or other server that holds the package content."
 
-_"Do not grant this account the right to join computers to the domain. If you must join computers to the domain during a task sequence, use the Task Sequence Editor Domain Joining Account." _
+
+> Do not grant this account interactive logon rights"
+
+
+
+> Do not grant this account the right to join computers to the domain. If you must join computers to the domain during a task sequence, use the Task Sequence Editor Domain Joining Account."
 
  
 
@@ -46,6 +51,7 @@ Create Configuration Item CI's that remediate the following settings on **NON-**
 This will essentially avoid any potential logins with the Network Access Account.
 
 For Distribution points the CI's are identical with the exception that these absolutely need **Access this computer from the network** as per the Technet Article. So the effective permissions there are:
+
 * Deny logon as a batch job
 * Deny logon as a service
 * Deny logon locally
@@ -61,16 +67,17 @@ Hurray for Tony, and given the present candidates, "Tony Pombo for President!" W
 
 As I split out the different items into different CI's I'll just list the most important bits of the discovery script:
 
+```posh
 if ((Get-UserRightsGrantedToAccount -Account 'domainNetworkAccessAccount').Right -eq 'SeDenyNetworkLogonRight') 
-
-{ Write-host 'ok'}
-
+  { Write-host 'ok'}
 Else
-
-{ Write-Host 'NOT OK'}
+  { Write-Host 'NOT OK'}
+```
 
 **Remediation Script **
 
+```posh
 Grant-UserRight -Account 'domainNetworkAccessAccount' -Right SeDenyNetworkLogonRight
+```
 
-Enjoy.
+
