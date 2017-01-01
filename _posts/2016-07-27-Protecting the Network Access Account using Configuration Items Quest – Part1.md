@@ -73,6 +73,7 @@ if ((Get-UserRightsGrantedToAccount -Account 'domainNetworkAccessAccount').Right
 Else
   { Write-Host 'NOT OK'}
 ```
+
 ## Remediation Script
 
 ```posh
