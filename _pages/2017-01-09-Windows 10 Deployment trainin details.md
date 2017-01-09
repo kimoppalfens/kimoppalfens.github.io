@@ -7,7 +7,6 @@ excerpt: "OSCC Advanced Windows 10 Deployment and SCCM/ConfigMgr training."
 sitemap: false
 permalink: /Blog/Post/15/Win10Deploymenttraining
 author_profile: true
-share:true
 ---
 
 ### Abstract
