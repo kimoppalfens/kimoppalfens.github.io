@@ -5,9 +5,9 @@ date: 2017-01-09
 layout: single
 excerpt: "OSCC Advanced Windows 10 Deployment and SCCM/ConfigMgr training."
 sitemap: false
-share:true
 permalink: /Blog/Post/15/Win10Deploymenttraining
 author_profile: true
+share:true
 ---
 
 ### Abstract
