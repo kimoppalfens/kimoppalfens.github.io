@@ -5,6 +5,7 @@ date: 2017-01-09
 layout: single
 excerpt: "OSCC Advanced Windows 10 Deployment and SCCM/ConfigMgr training."
 sitemap: false
+share:true
 permalink: /Blog/Post/15/Win10Deploymenttraining
 author_profile: true
 ---
@@ -19,9 +20,10 @@ System Center Configuration Manager (SCCM) will be used during the training as t
 The material is custom developed by 2 experienced consultants with both over a decade of experience in this field under their belt. One has been a Microsoft Valued Professional for over a decade, while the other is a former Microsoft Support Escalation Engineer. Both have been speakers at national and international events around the very topic of this training and are considered subject matter experts worldwide.
 
 The material consists of:
-	• A set of virtual machines hosted on a Hyper-v host per trainee that is made available during the training
-	• Slide hand-outs to take personal notes
-	• Lab manual to assist in finishing the exercises
+
+- A set of virtual machines hosted on a Hyper-v host per trainee that is made available during the training
+- Slide hand-outs to take personal notes
+- Lab manual to assist in finishing the exercises
 
 ### Prerequisites
 
