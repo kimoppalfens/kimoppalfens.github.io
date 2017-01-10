@@ -8,7 +8,7 @@ permalink: /training/
 author_profile: true
 ---
 
-##Next class
+## Next class
 4 days - 21-24/03/2017 - Leuven
 
 ## Abstract ##
