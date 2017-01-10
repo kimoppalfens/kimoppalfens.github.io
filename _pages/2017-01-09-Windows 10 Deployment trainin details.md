@@ -1,6 +1,6 @@
 ---
 title: "Mastering Windows 10 deployment & Management in the Enterprise."
-author: Win10 training
+author: Win10 Training
 date: 2017-01-09
 layout: single
 excerpt: "OSCC Advanced Windows 10 Deployment and SCCM/ConfigMgr training."
@@ -11,7 +11,7 @@ author_profile: true
 ---
 
 ## Schedule
-4 days - 21-24/03/2017 - Leuven
+4 days - 21-24/03/2017 - Louvain
 
 ### Abstract
 
