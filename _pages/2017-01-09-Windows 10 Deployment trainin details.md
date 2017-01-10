@@ -67,6 +67,7 @@ Basic SCCM administration knowledge is a nice to have
 		- ESD Files?
 
 **Management & Security**
+
 - 	Modern Management
 	- 	CSP (Configuration Service Providers)
 	- 	OMA-URI's The WMI Bridge 	
