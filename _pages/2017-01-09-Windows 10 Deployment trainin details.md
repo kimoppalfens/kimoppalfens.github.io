@@ -10,7 +10,7 @@ permalink: /Blog/Post/15/Win10Deploymenttraining
 author_profile: true
 ---
 
-##Schedule
+## Schedule
 4 days - 21-24/03/2017 - Leuven
 
 ### Abstract
@@ -67,10 +67,10 @@ Basic SCCM administration knowledge is a nice to have
 		- ESD Files?
 
 **Management & Security**
-
 - 	Modern Management
 	- 	CSP (Configuration Service Providers)
-	- 	OMA-URI's The WMI Bridge
+	- 	OMA-URI's The WMI Bridge 	
+- 	Configuration Manager Current branch cloud management gateway
 - 	Windows 10 GPO Settings 
 - 	Windows store for business
 - 	(Azure) Active Directory Join
@@ -82,3 +82,7 @@ Basic SCCM administration knowledge is a nice to have
 - 	Credential guard
 - 	Windows Passport / Hello (for business)
 - Applocker/Device Guard
+
+
+
+
