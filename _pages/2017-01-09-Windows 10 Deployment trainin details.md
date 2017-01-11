@@ -12,6 +12,7 @@ author_profile: true
 
 ## Schedule
 4 days - 21-24/03/2017 - Louvain
+
 For registration or additional questions email: [info@oscc.be](mailto:info@oscc.be)
 
 ### Abstract
