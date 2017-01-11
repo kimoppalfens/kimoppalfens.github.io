@@ -1,6 +1,6 @@
 ---
 title: Mastering Windows 10 deployment & Management in the Enterprise
-author: OSCC
+author: Win10 Training 
 layout: single
 excerpt: "OSCC Advanced Windows 10 Deployment and SCCM/ConfigMgr training."
 sitemap: false
