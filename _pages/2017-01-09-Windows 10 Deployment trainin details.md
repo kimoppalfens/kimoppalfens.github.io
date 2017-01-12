@@ -82,7 +82,7 @@ Basic SCCM administration knowledge is a nice to have
 	- 	UEFI & Partitioning impact
 	- 	Secure boot, Measured boot, Device Health attestation
 - 	Bitlocker/MBAM
-- 	Windows Hello for business
+- 	Windows Hello for Business
 - 	Applocker
 - 	Device Guard
 - 	Credential Guard
