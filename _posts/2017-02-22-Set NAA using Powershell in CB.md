@@ -1,8 +1,8 @@
 ---
 title: "Set Network Access account in SCCM Current Branch using PowerShell"
 header:
-  overlay_image: template1280x960.jpg
-  teaser: template512x384.jpg
+  overlay_image: PowerShell1280x960.png
+  teaser: PowerShell512x384.png
 author: Tom Degreef
 date: 2017-02-22
 categories:
