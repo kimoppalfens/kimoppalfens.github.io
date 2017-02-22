@@ -21,12 +21,12 @@ Hello World ! My First blog-post on OSCC on setting a NAA in SCCM CB using Power
 
 # Intro #
 
-As you can see in this post [Mastering Windows 10 deployment & Management in the Enterprise](http://www.oscc.be/Blog/Post/15/Win10Deploymenttraining), Kim and myself are creating a training on Windows 10 management using Configuration Manager Current Branch.
+As you can see in this Blogpost [Mastering Windows 10 deployment & Management in the Enterprise](http://www.oscc.be/Blog/Post/15/Win10Deploymenttraining), Kim and myself are creating a training on Windows 10 management using Configuration Manager Current Branch.
 
-In order to provide every trainee his own lab-environment, we wanted to automate the build as much as possible. Once our setup is fully up and running I will create a few other blog posts detailing how we did it and why.
-One of the (many) challenges was configuring the SCCM environment in each lab. 
+In order to provide every trainee his own lab-environment, we wanted to automate the build as much as possible. Once our setup is fully up and running I will create a few other blog posts detailing how we did it and why in a certain way <spoiler> We use a lot of PowerShell Direct </spoiler>.
+One of the (many) challenges was automating the configuration of the SCCM environment in each lab. 
 
-To be able to execute a task sequence I needed to create/set a "Network Access Account".
+To be able to execute a task sequence in Configmgr I needed to create/set a "Network Access Account".
 
 Luckily David O'Brien has done the legwork [here](https://david-obrien.net/2012/10/create-a-network-access-accountconfiguration-manager-2012/) and I was able to use most of his code.
 
