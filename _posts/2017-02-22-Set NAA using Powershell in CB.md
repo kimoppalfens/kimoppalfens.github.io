@@ -63,15 +63,16 @@ New-CMAccount -Name $NAA -Password $pwd -Sitecode $SiteCode.Name
 #Step 3 - make the created user account your new Network Access Account
 
 $component = gwmi -class SMS_SCI_ClientComp -Namespace "root\sms\site_$($SiteCode.Name)"  | Where-Object {$_.ItemName -eq "Software Distribution"}
-
 $props = $component.PropLists
-
 $prop = $props | where {$_.PropertyListName -eq "Network Access User Names"}
 
+	# Create a new instance of the Embedded Propertylist
+$new = [WmiClass] "root\sms\site_$($SiteCode.name):SMS_EmbeddedPropertyList"
+$embeddedproperylist = $new.CreateInstance()
+
+$embeddedproperylist.PropertyListName = "Network Access User Names"
 $prop.Values = $NAA
-
 $component.PropLists = $props
-
 $component.Put() | Out-Null
 
 ```
