@@ -1,3 +1,4 @@
+
 ---
 title: "Setting up an SCCM Labo using Powershell Direct - Part 1"
 header:
@@ -8,15 +9,15 @@ categories:
   - SCCM
   - Configmgr
   - PowerShell
-  - Powershell Direct
+  - PowerShell Direct
 tags:
   - SCCM
   - ConfigMgr
   - PowerShell
-  - Powershell Direct
+  - PowerShell Direct
 ---
 
-Automating a full SCCM Labo setup using Powershell Direct. Part 1 focuses on setting up router virtual machine
+Automating a full SCCM Labo setup using PowerShell Direct. Part 1 focuses on setting up router virtual machine
 
 # Intro #
 
@@ -24,30 +25,29 @@ We just finished the first iteration of our windows 10 training ([Mastering Wind
 
 In the following few blogposts I will try to explain how we accomplished this automated setup and why.
 
-Most of the work on configuring each virtual machine was done using Powershell Direct. 
+Most of the work on configuring each virtual machine was done using PowerShell Direct. 
 
-The reason we have chosen Powershell Direct over any available hydration kit is it's flexibility. As you'll hopefully notice at the end of this series I can easily adjust the configuration of any of the servers by adding/removing or adjusting a building block. This would be a lot harder to achieve using a Hydration Kit.
+The reason we have chosen PowerShell Direct over any available hydration kit is it's flexibility. As you'll hopefully notice at the end of this series I can easily adjust the configuration of any of the servers by adding/removing or adjusting a building block. This would be a lot harder to achieve using a Hydration Kit.
 
-## Powershell Direct ##
+## PowerShell Direct ##
 
 You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
 
-There are 3 ways to run PowerShell Direct: 
+There are 3 ways to run PowerShell Direct:
+ 
 
-As an interactive session
-
-As a single-use session to execute a single command or script
-
-As a persistant session
+- As an interactive session
+- As a single-use session to execute a single command or script
+- As a persistent session
 
 
-Operating system requirements:
+### Operating system requirements: ###
 
-Host: Windows 10 or Windows Server 2016, or later running Hyper-V.
+Host: Windows 10 or Windows Server 2016 or later, running Hyper-V.
 
-Guest/Virtual Machine: Windows 10, Windows Server Windows Server 2016, or later.
+Guest/Virtual Machine: Windows 10, Windows Server Windows Server 2016 or later.
 
-Configuration requirements: 
+### Configuration requirements: 
 
 The virtual machine must be running locally on the host.
 
@@ -57,13 +57,13 @@ You must be logged into the host computer as a Hyper-V administrator.
 
 You must supply valid user credentials for the virtual machine.
 
-In all of the scripts I created i am singe a Single-Use session to execute a bunch of steps on the hyper-v virtual machine.
+In all of the scripts I created I am using a Single-Use session to execute a bunch of steps on the hyper-v virtual machine.
 
 ## Lab Layout ##
 
 Our SCCM Labs are powered by an Intel NUC 6th generation Core-i5 with 32GB of ram and a 480GB SSD.
 
-As per the requirements for Powershell Direct, the Hyper-V Host is running on Windows Server 2016.
+As per the requirements for PowerShell Direct, the Hyper-V Host is running on Windows Server 2016.
 
 On the Hyper-V host I created 2 virtual Switches :
 
@@ -73,7 +73,7 @@ On the Hyper-V host I created 2 virtual Switches :
  
 the internet access itself is being handled by a virtual machine doing NAT between the internal and external network. 
 
-This blogpost is on how this "router" is setup.
+This blogpost details how this "router" is setup.
 
 The setup of the Hyper-V host itself was also automated and I'll detail that in a later post.
 
@@ -99,11 +99,11 @@ $Localadminpwd = "MyHyper$3curePwd!"
 ```
 The first part is the "configuration Part".
 
-I created a bunch of Powershell variables that will be used later on throught the script for the configuration of the Virtual machine itself and the configuration of the OS.
+In this part, a bunch of PowerShell variables that will be used later on through the script for the configuration of the Virtual machine itself and the configuration of the OS.
 
 Modifying these variables has a direct effect on the machine that it will create.
 
-Most are self-explaining I think. 
+Most are self-explanatory I think. 
 
 
 $SwitchExternal & $SwitchPrivate contain the "names" of the two virtual switches created on the Hyper-V host. (see Lab Layout)
@@ -143,7 +143,7 @@ until ($x -eq $true)
 
 ```
 
-The above piece of code is used to test if a virtual machine is up and running before continuing with the script. I started out with start-sleeps but this allows much more flexibility (Thanks Kim for helping out here!)
+The above piece of code is a function to test if a virtual machine is up and running before continuing with the script. I started out with start-sleeps but this allows much more flexibility (Thanks Kim for helping out here!)
 
 The script takes 3 parameters :
 
@@ -182,9 +182,9 @@ SET-VM -VMName $VMName -DynamicMemory -MemoryMaximumBytes $memory
 Start-VM $vmname
 ```
 
-I'll start off with duplicating the sysprepped Server 2016 VHDX listed in the pre-reqs and renaming it so it has the same name as the VM it will be used in.
+This part starts off with duplicating the sysprepped Server 2016 VHDX listed in the pre-reqs and renaming it so it has the same name as the VM it will be used in.
 
-The next steps are for creating the virtual machine and configuring it all using the properties from Step 1
+The next steps are for creating the virtual machine and configuring it based on the properties in Step 1
 
 Once all configuration is done we start the Virtual machine.
 
@@ -204,13 +204,13 @@ $script = {
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-Once the machine has booted up for the very first time (and we verified that using our function), I'll restart this VM just once more. If I didn't do this I had issues running powershell direct on the client.
+Once the machine has booted up for the very first time (and we verified that using our function), I'll restart this VM just once more. Prior to doing this I had issues running PowerShell direct on the client.
 
-Again, we test using our function and after that it the first block of powershell direct.
+Again, we test using our function whether the machine is up, and when it is the first block of PowerShell direct code is executed.
 
-Basically anthing in between the { } is code that will be executed locally on the client virtual machine.
+Basically anything in between the { } is code that will be executed locally on the client virtual machine.
 
-Yes, this looks very very much like powershell remoting but the biggest difference is that I don't need network access to my virtual machine.
+Yes, this looks very very much like PowerShell remoting, but the biggest difference is that I don't need network access to my virtual machine.
 
 
 The first thing I do is rename the machine to a more meaningful name (that is being passed on as a parameter) and after a rename we need again to reboot the machine.
@@ -261,11 +261,11 @@ $script = {
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-The last piece of code in this script is add a few windows features needed to Routing and Remote access to work.
+The last piece of code in this script is adding a few windows features needed for Routing and Remote access to work.
 
 Once those are installed, I configure routing and remote access using the 4 netsh commands written here above.
 
-The unfortunate downside using netsh to configure NAT is that you can't use the routing and remote access console anymore as it complains that legacy mode is disabled.
+The unfortunate downside of using netsh to configure NAT is that you can't use the routing and remote access console anymore as it complains that legacy mode is disabled.
 
 Unfortunately I haven't been able to figure out (yet) how to accomplish this step using native powershell commandlets. If anybody knows .. I'm happy to update my code ;-)
 
