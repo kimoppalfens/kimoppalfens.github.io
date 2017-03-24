@@ -35,20 +35,26 @@ You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Win
 There are 3 ways to run PowerShell Direct: 
 
 As an interactive session
+
 As a single-use session to execute a single command or script
+
 As a persistant session
 
-Requirements
+
 Operating system requirements:
 
 Host: Windows 10 or Windows Server 2016, or later running Hyper-V.
+
 Guest/Virtual Machine: Windows 10, Windows Server Windows Server 2016, or later.
 
 Configuration requirements: 
 
 The virtual machine must be running locally on the host.
+
 The virtual machine must be turned on and running with at least one configured user profile.
+
 You must be logged into the host computer as a Hyper-V administrator.
+
 You must supply valid user credentials for the virtual machine.
 
 In all of the scripts I created i am singe a Single-Use session to execute a bunch of steps on the hyper-v virtual machine.
@@ -58,6 +64,7 @@ In all of the scripts I created i am singe a Single-Use session to execute a bun
 Our SCCM Labs are powered by an Intel NUC 6th generation Core-i5 with 32GB of ram and a 480GB SSD.
 
 As per the requirements for Powershell Direct, the Hyper-V Host is running on Windows Server 2016.
+
 On the Hyper-V host I created 2 virtual Switches :
 
  	* A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
@@ -65,6 +72,7 @@ On the Hyper-V host I created 2 virtual Switches :
  	* An External switch (used to provide internet access to the SCCM Lab)
  
 the internet access itself is being handled by a virtual machine doing NAT between the internal and external network. 
+
 This blogpost is on how this "router" is setup.
 
 The setup of the Hyper-V host itself was also automated and I'll detail that in a later post.
@@ -92,7 +100,9 @@ $Localadminpwd = "MyHyper$3curePwd!"
 The first part is the "configuration Part".
 
 I created a bunch of Powershell variables that will be used later on throught the script for the configuration of the Virtual machine itself and the configuration of the OS.
+
 Modifying these variables has a direct effect on the machine that it will create.
+
 Most are self-explaining I think. 
 
 
@@ -251,7 +261,8 @@ $script = {
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-The last piece of code in this script is add a few windows features needed to Routing and Remote access to work
+The last piece of code in this script is add a few windows features needed to Routing and Remote access to work.
+
 Once those are installed, I configure routing and remote access using the 4 netsh commands written here above.
 
 The unfortunate downside using netsh to configure NAT is that you can't use the routing and remote access console anymore as it complains that legacy mode is disabled.
