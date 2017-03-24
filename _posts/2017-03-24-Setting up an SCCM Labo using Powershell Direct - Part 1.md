@@ -16,7 +16,7 @@ tags:
   - Powershell Direct
 ---
 
-Automating a full SCCM Labo setup using Powershell Direct.
+Automating a full SCCM Labo setup using Powershell Direct. Part 1 focuses on setting up router virtual machine
 
 # Intro #
 
@@ -57,6 +57,7 @@ Our SCCM Labs are powered by an Intel NUC 6th generation Core-i5 with 32GB of ra
 
 As per the requirements for Powershell Direct, the Hyper-V Host is running on Windows Server 2016.
 On the Hyper-V host I created 2 virtual Switches :
+
  	* A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
  	* An External switch (used to provide internet access to the SCCM Lab)
  
@@ -85,10 +86,12 @@ $IP = "172.30.150.253" #set correct IP
 $Localadminpwd = "MyHyper$3curePwd!"
 
 ```
-The first part is the "configuration Part"
+The first part is the "configuration Part".
+
 I created a bunch of Powershell variables that will be used later on throught the script for the configuration of the Virtual machine itself and the configuration of the OS.
 Modifying these variables has a direct effect on the machine that it will create.
 Most are self-explaining I think. 
+
 $SwitchExternal & $SwitchPrivate contain the "names" of the two virtual switches created on the Hyper-V host. (see Lab Layout)
 $IP is the fixed IP address the router will use on the private-part of the network
 $Localadminpwd is the password to logon as a local administrator on the router
@@ -125,12 +128,16 @@ until ($x -eq $true)
 ```
 
 The above piece of code is used to test if a virtual machine is up and running before continuing with the script. I started out with start-sleeps but this allows much more flexibility (Thanks Kim for helping out here!)
+
 The script takes 3 parameters :
+
 	$Vmname is the virtual machine name that we will test
 	$Argumentlist will be the service that we are testing for. If this service can be queried, we assume the machine is up. (we mostly use remote registry to test but any service that starts up late in the boot process should be usable)
 	$Credential will contain the securely stored credentials used to authenticate on the virtual machine
 
+
 We start out with a pause of 30 seconds since it will probably take that amount of time anyway for a virtual machine to come online. If we can then reach our service the function will stop and the rest of the configuration script will continue.
+
 If we fail on reaching that service, we will sleep for 2 seconds and then try again until we are successful.
 
 The commandline to call the script looks like this : 
@@ -158,7 +165,9 @@ Start-VM $vmname
 ```
 
 I'll start off with duplicating the sysprepped Server 2016 VHDX listed in the pre-reqs and renaming it so it has the same name as the VM it will be used in.
+
 The next steps are for creating the virtual machine and configuring it all using the properties from Step 1
+
 Once all configuration is done we start the Virtual machine.
 
 ## Step 4 ##
@@ -178,9 +187,13 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 ```
 
 Once the machine has booted up for the very first time (and we verified that using our function), I'll restart this VM just once more. If I didn't do this I had issues running powershell direct on the client.
+
 Again, we test using our function and after that it the first block of powershell direct.
+
 Basically anthing in between the { } is code that will be executed locally on the client virtual machine.
+
 Yes, this looks very very much like powershell remoting but the biggest difference is that I don't need network access to my virtual machine.
+
 
 The first thing I do is rename the machine to a more meaningful name (that is being passed on as a parameter) and after a rename we need again to reboot the machine.
 
