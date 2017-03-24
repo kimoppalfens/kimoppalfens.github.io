@@ -26,6 +26,8 @@ In the following few blogposts I will try to explain how we accomplished this au
 
 Most of the work on configuring each virtual machine was done using Powershell Direct. 
 
+The reason we have chosen Powershell Direct over any available hydration kit is it's flexibility. As you'll hopefully notice at the end of this series I can easily adjust the configuration of any of the servers by adding/removing or adjusting a building block. This would be a lot harder to achieve using a Hydration Kit.
+
 ## Powershell Direct ##
 
 You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
