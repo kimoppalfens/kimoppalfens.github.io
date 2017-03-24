@@ -59,6 +59,7 @@ As per the requirements for Powershell Direct, the Hyper-V Host is running on Wi
 On the Hyper-V host I created 2 virtual Switches :
 
  	* A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
+ 	
  	* An External switch (used to provide internet access to the SCCM Lab)
  
 the internet access itself is being handled by a virtual machine doing NAT between the internal and external network. 
@@ -226,7 +227,9 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 ```
 
 In this block of code I start off with renaming the network adapter to an easier distinguishable name as we need to add a second one for routing to work.
+
 That's what the Add-VMNetworkAdapter step does :)
+
 The second block of code is to rename that second adapter and configure it with the IP address configured in Step 1.
 
 ## Step 6 ##
@@ -248,13 +251,17 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 
 The last piece of code in this script is add a few windows features needed to Routing and Remote access to work
 Once those are installed, I configure routing and remote access using the 4 netsh commands written here above.
+
 The unfortunate downside using netsh to configure NAT is that you can't use the routing and remote access console anymore as it complains that legacy mode is disabled.
+
 Unfortunately I haven't been able to figure out (yet) how to accomplish this step using native powershell commandlets. If anybody knows .. I'm happy to update my code ;-)
 
 ## Wrap up ##
 
 You can find the full script here at the end of the blogpost.
+
 I'll detail the setup of the domain controller in the next post but it uses similar techniques.
+
 
 Feel free to comment or let me know if something isn't clear for you or isn't working out at all.
 
