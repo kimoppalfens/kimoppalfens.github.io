@@ -92,8 +92,11 @@ I created a bunch of Powershell variables that will be used later on throught th
 Modifying these variables has a direct effect on the machine that it will create.
 Most are self-explaining I think. 
 
+
 $SwitchExternal & $SwitchPrivate contain the "names" of the two virtual switches created on the Hyper-V host. (see Lab Layout)
+
 $IP is the fixed IP address the router will use on the private-part of the network
+
 $Localadminpwd is the password to logon as a local administrator on the router
 
 ## Step 2 ##
@@ -132,7 +135,9 @@ The above piece of code is used to test if a virtual machine is up and running b
 The script takes 3 parameters :
 
 	$Vmname is the virtual machine name that we will test
+
 	$Argumentlist will be the service that we are testing for. If this service can be queried, we assume the machine is up. (we mostly use remote registry to test but any service that starts up late in the boot process should be usable)
+
 	$Credential will contain the securely stored credentials used to authenticate on the virtual machine
 
 
