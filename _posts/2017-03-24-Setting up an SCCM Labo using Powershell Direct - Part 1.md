@@ -26,7 +26,7 @@ In the following few blogposts I will try to explain how we accomplished this au
 
 Most of the work on configuring each virtual machine was done using PowerShell Direct. 
 
-The reason we have chosen PowerShell Direct over any available hydration kit is it's flexibility. As you'll hopefully notice at the end of this series I can easily adjust the configuration of any of the servers by adding/removing or adjusting a building block. This would be a lot harder to achieve using a Hydration Kit.
+The reason we have chosen PowerShell Direct over any available hydration kit is because this allows us to deploy the lab environment(s) for training completely Zero-touch. All of the scripts I blog in these series are used in a tasksequence in our "Master" environment to completely prepare the NUCs.
 
 ## PowerShell Direct ##
 
@@ -65,8 +65,8 @@ As per the requirements for Powershell Direct, the Hyper-V Host is running on Wi
 
 On the Hyper-V host I created 2 virtual Switches :
 
- 	- A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
- 	- An External switch (used to provide internet access to the SCCM Lab)
+- A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
+- An External switch (used to provide internet access to the SCCM Lab)
  
 the internet access itself is being handled by a virtual machine doing NAT between the internal and external network. 
 
@@ -264,7 +264,7 @@ Once those are installed, I configure routing and remote access using the 4 nets
 
 The unfortunate downside using netsh to configure NAT is that you can't use the routing and remote access console anymore as it complains that legacy mode is disabled.
 
-Unfortunately I haven't been able to figure out (yet) how to accomplish this step using native powershell commandlets. If anybody knows .. I'm happy to update my code ;-)
+Unfortunately I haven't been able to figure out (yet) how to accomplish this step using native PowerShell commandlets. If anybody knows .. I'm happy to update my code ;-)
 
 ## Wrap up ##
 
