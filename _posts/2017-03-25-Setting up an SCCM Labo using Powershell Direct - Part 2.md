@@ -16,8 +16,7 @@ tags:
   - PowerShell Direct
 ---
 
-Automating a full SCCM Labo setup using PowerShell Direct.
-Part 2 will be on setting up and configuring the Domain Controller.
+Automating a full SCCM Labo setup using PowerShell Direct. Part 2 will be on setting up and configuring the Domain Controller.
 
 # Intro #
 
