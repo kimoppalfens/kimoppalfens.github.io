@@ -47,21 +47,19 @@ Guest/Virtual Machine: Windows 10, Windows Server Windows Server 2016, or later.
 
 ### Configuration requirements: 
 
-The virtual machine must be running locally on the host.
-
-The virtual machine must be turned on and running with at least one configured user profile.
-
-You must be logged into the host computer as a Hyper-V administrator.
+- The virtual machine must be running locally on the host.
+- The virtual machine must be turned on and running with at least one configured user profile.
+- You must be logged into the host computer as a Hyper-V administrator.
 
 You must supply valid user credentials for the virtual machine.
 
-In all of the scripts I created i am singe a Single-Use session to execute a bunch of steps on the hyper-v virtual machine.
+In all of the scripts I created i am using a Single-Use session to execute a bunch of steps on the hyper-v virtual machine.
 
 ## Lab Layout ##
 
 Our SCCM Labs are powered by an Intel NUC 6th generation Core-i5 with 32GB of ram and a 480GB SSD.
 
-As per the requirements for Powershell Direct, the Hyper-V Host is running on Windows Server 2016.
+As per the requirements for PowerShell Direct, the Hyper-V Host is running on Windows Server 2016.
 
 On the Hyper-V host I created 2 virtual Switches :
 
@@ -76,9 +74,9 @@ The setup of the Hyper-V host itself was also automated and I'll detail that in 
 
 ## The Script ##
 
-We need a few pre-requisites for the script to run successfully :
+We have a single pre-requisite for the script to run successfully :
 
-1) A sysprepped VHDX with Server 2016
+1) A sysprepped VHDX with Server 2016 installed
 
 ## Step 1 ##
 
@@ -96,11 +94,11 @@ $Localadminpwd = "MyHyper$3curePwd!"
 ```
 The first part is the "configuration Part".
 
-I created a bunch of PowerShell variables that will be used later on through the script for the configuration of the Virtual machine itself and the configuration of the OS.
+Here, a bunch of PowerShell variables that will be used later on throughout the script are defined for the configuration of the Virtual machine itself and the configuration of the OS.
 
 Modifying these variables has a direct effect on the machine that it will create.
 
-Most are self-explanatory I think. 
+Most are self-explanatory I think, but you can fine the details on them in the next paragraph. 
 
 
 $SwitchExternal & $SwitchPrivate contain the "names" of the two virtual switches created on the Hyper-V host. (see Lab Layout)
@@ -140,13 +138,13 @@ until ($x -eq $true)
 
 ```
 
-The above piece of code is used to test if a virtual machine is up and running before continuing with the script. I started out with start-sleeps but this allows much more flexibility (Thanks Kim for helping out here!)
+The above piece of code is used to test if a virtual machine is up and running before continuing with the next scriptblock. I started out with start-sleeps but finding the right balance for how long to sleep became a bit of a challenge. (Thanks Kim for helping out here!)
 
 The script takes 3 parameters :
 
 	$Vmname is the virtual machine name that we will test
 
-	$Argumentlist will be the service that we are testing for. If this service can be queried, we assume the machine is up. (we mostly use remote registry to test but any service that starts up late in the boot process should be usable)
+	$Argumentlist will be the service that we are testing for. If this service can be queried, we assume the machine is up. (Most of the time we use remote registry to test, but any service that starts up late in the boot process should be usable)
 
 	$Credential will contain the securely stored credentials used to authenticate on the virtual machine
 
@@ -179,7 +177,7 @@ SET-VM -VMName $VMName -DynamicMemory -MemoryMaximumBytes $memory
 Start-VM $vmname
 ```
 
-I'll start off with duplicating the sysprepped Server 2016 VHDX listed in the pre-reqs and renaming it so it has the same name as the VM it will be used in.
+The script starts off with duplicating the sysprepped Server 2016 VHDX listed in the pre-reqs and renaming it so it has the same name as the VM it will be used in.
 
 The next steps are for creating the virtual machine and configuring it all using the properties from Step 1
 
@@ -203,14 +201,14 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 
 Once the machine has booted up for the very first time (and we verified that using our function), The VM gets rebooted just once more. Prior to doing this I had issues running PowerShell direct on the client.
 
-Again, we test using our function and after that it the first block of PowerShell direct.
+Again, we test using our function whether the machine has booted and when it has, the first block of PowerShell direct code is run.
 
 Basically anything in between the { } is code that will be executed locally on the client virtual machine.
 
-Yes, this looks very very much like powershell remoting but the biggest difference is that I don't need network access to my virtual machine.
+Yes, this looks very very much like PowerShell remoting but the biggest difference is that I don't need network access to my virtual machine.
 
 
-The first thing I do is rename the machine to a more meaningful name (that is being passed on as a parameter) and after a rename we need again to reboot the machine.
+The first thing I do is rename the machine to a more meaningful name (that is being passed on as a parameter) and after a rename we need to reboot the machine once more.
 
 ## Step 5 ##
 
@@ -258,7 +256,7 @@ $script = {
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-The last piece of code in this script is add a few windows features needed to Routing and Remote access to work.
+The last piece of code in this script is adding a few windows features needed for Routing and Remote access to work.
 
 Once those are installed, I configure routing and remote access using the 4 netsh commands written here above.
 
