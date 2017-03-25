@@ -8,15 +8,15 @@ categories:
   - SCCM
   - Configmgr
   - PowerShell
-  - Powershell Direct
+  - PowerShell Direct
 tags:
   - SCCM
   - ConfigMgr
   - PowerShell
-  - Powershell Direct
+  - PowerShell Direct
 ---
 
-Automating a full SCCM Labo setup using Powershell Direct. Part 1 focuses on setting up router virtual machine
+Automating a full SCCM Labo setup using PowerShell Direct. Part 1 focuses on setting up router virtual machine
 
 # Intro #
 
@@ -24,30 +24,28 @@ We just finished the first iteration of our windows 10 training ([Mastering Wind
 
 In the following few blogposts I will try to explain how we accomplished this automated setup and why.
 
-Most of the work on configuring each virtual machine was done using Powershell Direct. 
+Most of the work on configuring each virtual machine was done using PowerShell Direct. 
 
-The reason we have chosen Powershell Direct over any available hydration kit is it's flexibility. As you'll hopefully notice at the end of this series I can easily adjust the configuration of any of the servers by adding/removing or adjusting a building block. This would be a lot harder to achieve using a Hydration Kit.
+The reason we have chosen PowerShell Direct over any available hydration kit is it's flexibility. As you'll hopefully notice at the end of this series I can easily adjust the configuration of any of the servers by adding/removing or adjusting a building block. This would be a lot harder to achieve using a Hydration Kit.
 
-## Powershell Direct ##
+## PowerShell Direct ##
 
 You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
 
 There are 3 ways to run PowerShell Direct: 
 
-As an interactive session
-
-As a single-use session to execute a single command or script
-
-As a persistant session
+- As an interactive session 
+- As a single-use session to execute a single command or script 
+- As a persistent session
 
 
-Operating system requirements:
+### Operating system requirements:
 
 Host: Windows 10 or Windows Server 2016, or later running Hyper-V.
 
 Guest/Virtual Machine: Windows 10, Windows Server Windows Server 2016, or later.
 
-Configuration requirements: 
+### Configuration requirements: 
 
 The virtual machine must be running locally on the host.
 
