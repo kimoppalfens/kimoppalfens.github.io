@@ -65,9 +65,8 @@ As per the requirements for Powershell Direct, the Hyper-V Host is running on Wi
 
 On the Hyper-V host I created 2 virtual Switches :
 
- 	* A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
- 	
- 	* An External switch (used to provide internet access to the SCCM Lab)
+ 	- A Private Virtual switch (used to isolate all machines in the SCCM Lab from the rest of the network)
+ 	- An External switch (used to provide internet access to the SCCM Lab)
  
 the internet access itself is being handled by a virtual machine doing NAT between the internal and external network. 
 
@@ -77,7 +76,7 @@ The setup of the Hyper-V host itself was also automated and I'll detail that in 
 
 ## The Script ##
 
-We need a few pre-requisites for the script to run succesfully :
+We need a few pre-requisites for the script to run successfully :
 
 1) A sysprepped VHDX with Server 2016
 
@@ -97,11 +96,11 @@ $Localadminpwd = "MyHyper$3curePwd!"
 ```
 The first part is the "configuration Part".
 
-I created a bunch of Powershell variables that will be used later on throught the script for the configuration of the Virtual machine itself and the configuration of the OS.
+I created a bunch of PowerShell variables that will be used later on through the script for the configuration of the Virtual machine itself and the configuration of the OS.
 
 Modifying these variables has a direct effect on the machine that it will create.
 
-Most are self-explaining I think. 
+Most are self-explanatory I think. 
 
 
 $SwitchExternal & $SwitchPrivate contain the "names" of the two virtual switches created on the Hyper-V host. (see Lab Layout)
@@ -202,11 +201,11 @@ $script = {
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-Once the machine has booted up for the very first time (and we verified that using our function), I'll restart this VM just once more. If I didn't do this I had issues running powershell direct on the client.
+Once the machine has booted up for the very first time (and we verified that using our function), The VM gets rebooted just once more. Prior to doing this I had issues running PowerShell direct on the client.
 
-Again, we test using our function and after that it the first block of powershell direct.
+Again, we test using our function and after that it the first block of PowerShell direct.
 
-Basically anthing in between the { } is code that will be executed locally on the client virtual machine.
+Basically anything in between the { } is code that will be executed locally on the client virtual machine.
 
 Yes, this looks very very much like powershell remoting but the biggest difference is that I don't need network access to my virtual machine.
 
