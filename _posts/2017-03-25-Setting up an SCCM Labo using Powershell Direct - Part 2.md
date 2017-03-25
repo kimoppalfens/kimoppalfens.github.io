@@ -16,20 +16,20 @@ tags:
   - PowerShell Direct
 ---
 
-Automating a full SCCM Labo setup using PowerShell Direct. Part 1 focused on setting up router virtual machine and can be found [here](http://www.oscc.be/sccm/configmgr/powershell/powershell%20direct/Setting-up-an-SCCM-Labo-using-Powershell-Direct-Part-1/).
+Automating a full SCCM Labo setup using PowerShell Direct.
 Part 2 will be on setting up and configuring the Domain Controller.
 
 # Intro #
 
-Just like in Part 1 I'll break down the script into several blocks to explain what each part does.
-The beginning of the script is identical to setting up the router VM and also any following vm in next posts, so I won't go into to much detail there.
+Just like in [Part 1 - Setting up a Router VM](http://www.oscc.be/sccm/configmgr/powershell/powershell%20direct/Setting-up-an-SCCM-Labo-using-Powershell-Direct-Part-1), I'll break down the script into several blocks to explain what each part does.
+The beginning of the script is identical to setting up the router VM and also any following virtual machine in next posts, so I won't go into to much detail there.
 
 ## The Script ##
 
 The Pre-requisites for the script to run successfully :
 
-1) A sysprepped VHDX with Server 2016 installed
-2) The SCCM 1606 ISO (to be able to extend the AD schema)
+1. A sysprepped VHDX with Server 2016 installed
+2. The SCCM 1606 ISO (to be able to extend the AD schema)
 
 ## Step 1 ##
 
@@ -143,10 +143,10 @@ $script = {
 LoopInvoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 As you can see this looks very identical to the Router script. Four new variables have been added :
- *	DomainadminPwd -> The domain admin password of your new domain
- *	DomainName -> the actual FQDN of your new domain
- *	NetbiosName  -> the netbios version of your domainname
- *	UserPwd -> we are going to add a few users to our domain and give them all the same password (This is lab environment anyway)
+- DomainadminPwd -> The domain admin password of your new domain
+- DomainName -> the actual FQDN of your new domain
+- NetbiosName  -> the netbios version of your domainname
+- UserPwd -> we are going to add a few users to our domain and give them all the same password (This is lab environment anyway)
 
 We did add a second function (LoopInvoke-Command) to test if a certain script-block has finished running. This works very similar to the function on testing if a Virtual machine is up and running. We use this new function to stop the "main" script from going forward after a command has been launched that "releases control" immediately. As a result the next command would execute already while the initial one is still running.
 
@@ -248,11 +248,11 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 ```
 
 We continue with creating a few domain users that will be used later on in SCCM :
-	* CMInstall : used for setting up SCCM. Our SuperAdmin
-	* SCCM_NAA : The network Access Account in SCCM.
-	* SCCM_DomainJoin : This account will be configured so it can be used to join machines to the domain but only on a specific OU (see further down)
-	* SCCM_ErrorLog : Account used to centralize error logging in case a task sequence fails
-	* SCCM_Reporting : The acocunt needed to setup the reporting role in SCCM
+- CMInstall : used for setting up SCCM. Our SuperAdmin
+- SCCM_NAA : The network Access Account in SCCM.
+- SCCM_DomainJoin : This account will be configured so it can be used to join machines to the domain but only on a specific OU (see further down)
+- SCCM_ErrorLog : Account used to centralize error logging in case a task sequence fails
+- SCCM_Reporting : The acocunt needed to setup the reporting role in SCCM
 Finally I add a new OU. This is the OU that SCCM_DomainJoin can use to join computers in the domain.
 
 In order to extend the AD Schema for SCCM our VM Needs a virtual DVD Drive. Once that is added we mount the SCCM 1606 DVD so we can access it in our VM.
@@ -280,7 +280,7 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 ```
 
 We're nearly there ! To allow SCCM to publish data to SCCM we need the "System Management" Container.
-This block does that. Once the actual container has been created using the "New-ADObject" commandlet, I create an ad group called "CMServers". Once my SCCM Server is set up, i can add it to this group and it will have the appropriate rights to publish in this container.
+This block does that. Once the actual container has been created using the "New-ADObject" commandlet, I create an ad group called "CMServers". Once my SCCM Server is set up, I can add it to this group and it will have the appropriate rights to publish in this container.
 Setting the appropriate rights was a challenge and took a lot of fidling. Eventually I succeeded with a combination of multiple blogposts found on the internet (that I can't recall the source of anymore)
 
 ## Step 7 ##
