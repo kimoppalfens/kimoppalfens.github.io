@@ -278,9 +278,9 @@ $script = {
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-We're nearly there ! To allow SCCM to publish data to SCCM we need the "System Management" Container.
-This block does that. Once the actual container has been created using the "New-ADObject" commandlet, I create an ad group called "CMServers". Once my SCCM Server is set up, I can add it to this group and it will have the appropriate rights to publish in this container.
-Setting the appropriate rights was a challenge and took a lot of fidling. Eventually I succeeded with a combination of multiple blogposts found on the internet (that I can't recall the source of anymore)
+We're nearly there ! To allow SCCM to publish data to Active Directory we need the "System Management" Container.
+This block does that. Once the actual container has been created using the "New-ADObject" commandlet, I create an ad group called "CMServers". Once my SCCM Server is set up and joined to the domain, I can add it to this group and it will have the appropriate Permissions to publish in this container.
+Setting the appropriate Permissions was a challenge and took a lot of fiddling. Eventually I succeeded with a combination of multiple blogposts found on the internet (that I can't recall the source of anymore. If you recognize your code I'm happy to link this to you).
 
 ## Step 7 ##
 
@@ -553,7 +553,7 @@ Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentL
 ```
 
 The last block of code is taken from Bill Stewart's page. He wrote a script to grant Permissions to join the domain. ([Link](http://windowsitpro.com/windows-server/powershell-granting-computer-join-permissions))
-We had to adopt it to work for our needs but truth to be told, Kim made those modifications as this was beyond my PowerShell knowledge. But the result is that we can grant account the appropriate permissions to an OU.
+We had to adopt it to work for our needs but truth to be told, Kim made those modifications as this was beyond my PowerShell knowledge. But the result is that we can grant an account the appropriate permissions to an OU.
 
 ## Wrap up ##
 
