@@ -21,7 +21,9 @@ Automating a full SCCM Labo setup using PowerShell Direct. Part 3 is the setup a
 # Intro #
 
 [Part 1 - Setting up a Router VM](http://www.oscc.be/sccm/configmgr/powershell/powershell%20direct/Setting-up-an-SCCM-Labo-using-Powershell-Direct-Part-1)
+
 [Part 2 - Setting up a Domain Controller](http://www.oscc.be/sccm/configmgr/powershell/powershell%20direct/Setting-up-an-SCCM-Labo-using-Powershell-Direct-Part-2/)
+
 In this part we will setup the SCCM Server including all pre-requisites for a fully unattended installation and configuration.
 Just like in the previous parts the beginning of the script is identical. We duplicate the sysprepped harddisk, rename the machine, configure the network settings and join the domain.
 
