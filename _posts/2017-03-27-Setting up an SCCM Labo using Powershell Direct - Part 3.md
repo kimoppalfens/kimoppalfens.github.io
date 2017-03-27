@@ -246,6 +246,7 @@ Test-IsVMUP -VmName $vmname -Argumentlist "Remote Registry" -Credential $cred
 $password = ConvertTo-SecureString $Cminstallpwd -AsPlainText -Force
 $cred= New-Object System.Management.Automation.PSCredential ("training\CMInstall", $password )
 ```
+
 We mount the Server 2016 Iso so we can reference it for our DotNet 3.5 installation. We add the "CMInstall" account (created during the Domain controller setup) to the local administrators group.
 Finally we install the Remote Server Administration Tools for AD management so we can add ourselves to the CMServers AD group. Just like the CMInstall account,this group was also created during the Domain Controller setup.
 We reboot and create a new credential variable so we can continue installation with the CMInstall account.
@@ -306,6 +307,7 @@ $script = {
 }
 LoopInvoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
+
 The SQL DVD is mounted and we test that we can find setup.exe using our loopinvoke-command function. 
 For SQL setup to run successfully we also need a folder where SQL may download updated setup files to.
 
