@@ -45,7 +45,7 @@ I added sometimes a few other files to those ISO's not to have to many different
 
 ## Step 1 ##
 
-```Posh
+```posh
 $VMName = "SCCM_Primary"
 $Memory = 12GB
 $NewVHD = "D:\VM\VHD\" +$VMName + ".vhdx"
@@ -197,7 +197,7 @@ This should look rather familiar by now, although a few things have been changed
 This virtual machine is created without the "DynamicMemory" option as this seemed to have a negative impact on the SQL setup performance.
 The following section is new as well :
 
-```Posh
+```posh
 $NewVHD = "D:\VM\VHD\" +$VMName + "_D.vhdx"
 $VHDSize = "100000000000"
 
@@ -221,7 +221,7 @@ Once the VM is domain joined we create a new credential variable for the domain 
 
 ## Step 2 ##
 
-```Posh
+```posh
 Set-VMDvdDrive -VMname $vmname -Path D:\Sources\en_windows_server_2016_x64_dvd_9327751.iso
 
 $script = {
@@ -253,7 +253,7 @@ We reboot and create a new credential variable so we can continue installation w
 
 ## Step 3 ##
 
-```Posh
+```posh
 Set-VMDvdDrive -VMname $vmname -Path D:\Sources\en_sql_server_2016_standard_with_service_pack_1_x64_dvd_9540929.iso
 
 $script = {
@@ -311,7 +311,7 @@ LoopInvoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -Argum
 The SQL DVD is mounted and we test that we can find setup.exe using our loopinvoke-command function. 
 For SQL setup to run successfully we also need a folder where SQL may download updated setup files to.
 
-```Posh
+```posh
 new-item -Path C:\SQLUpdates -itemtype Directory
 ```
 
@@ -324,7 +324,7 @@ After that, we mount our own created iso with the Management studio setup and la
 
 ## Step 4 ##
 
-```Posh
+```posh
 Set-VMDvdDrive -VMname $vmname -Path D:\Sources\ADK1607.iso
 
 $script = {
@@ -369,7 +369,7 @@ The ADK Setup is kicked off and we monitor the existance of the "adksetup.exe" p
 
 ## Step 5 ##
 
-```Posh
+```posh
 Set-VMDvdDrive -VMname $vmname -Path D:\Sources\CMUpdates.iso
 
 $script = {
@@ -410,7 +410,7 @@ we monitor the setupwpf process for completion of the SCCM Installation.
 
 ## Step 6 ##
 
-```Posh
+```posh
 $script = {
   param($remotevmname)
   Install-WindowsFeature -ComputerName $remotevmname -ConfigurationFilePath C:\CMUpdates\DeploymentConfigTemplate.xml
@@ -423,7 +423,7 @@ this is done with the use of an XML file. The process is again similar to SQL an
 
 ## Step 7 ##
 
-```Posh
+```posh
 $script = {
   param($remotevmname)
   Start-Process "C:\Program Files (x86)\Microsoft Configuration Manager\AdminConsole\bin\Microsoft.ConfigurationManagement.exe"
@@ -594,7 +594,7 @@ Adding a row with these properties results in your collection being added to the
 
 ## Step 8 ##
 
-```Posh
+```posh
 $script = {
 
   Install-WindowsFeature FS-DFS-Namespace, FS-DFS-Replication, RSAT-DFS-Mgmt-Con
@@ -687,7 +687,7 @@ The end is in sight! This block creates, just like the previous one, a set of fo
 
 ## Step 9 ##
 
-```Posh
+```posh
 $script = {
   Import-Module $env:SMS_ADMIN_UI_PATH.Replace("\bin\i386","\bin\configurationmanager.psd1") -force                       
   $SiteCode = Get-PSDrive -PSProvider CMSITE                                                                        
