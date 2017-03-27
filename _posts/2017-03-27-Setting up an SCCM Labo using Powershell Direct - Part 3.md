@@ -45,7 +45,7 @@ I added sometimes a few other files to those ISO's not to have to many different
 
 ## Step 1 ##
 
-```posh
+```Posh
 $VMName = "SCCM_Primary"
 $Memory = 12GB
 $NewVHD = "D:\VM\VHD\" +$VMName + ".vhdx"
@@ -214,13 +214,14 @@ $script = {
 }
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
+
 I create first a 100GB (dynamic) VHDX file, add it to the virtual machine and then format it. This harddrive will be used as a sources share for any SCCM Related installation binaries.
 
 Once the VM is domain joined we create a new credential variable for the domain administrator.
 
 ## Step 2 ##
 
-```posh
+```Posh
 Set-VMDvdDrive -VMname $vmname -Path D:\Sources\en_windows_server_2016_x64_dvd_9327751.iso
 
 $script = {
@@ -307,10 +308,12 @@ LoopInvoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -Argum
 ```
 The SQL DVD is mounted and we test that we can find setup.exe using our loopinvoke-command function. 
 For SQL setup to run successfully we also need a folder where SQL may download updated setup files to.
+
 ```Posh
 new-item -Path C:\SQLUpdates -itemtype Directory
 ```
-Once that all is in place we start SQL Setup with the Engine installation, Reporting server and Tools.
+
+SQL Setup is launched with the SQL Engine installation, Reporting server and Tools.
 The easiest for creating the setup commandline is running SQL Setup manually using the parameters that you need in your environment. After the configuration wizard is finished, an INI file is created with the full unattended setup command.
 
 As long as we see setup running (with our loopinvoke-command function) we halt the script.
@@ -350,7 +353,8 @@ $script = {
 }
 ```
 
-We prepared and "offline" ADK setup and put all files in the ADK Iso.
+We prepared an "offline" ADK setup and put all files in the ADK Iso.
+
 In addition, the following windows features are installed to allow the successfull installation of the ADK & SCCM Setup :
 - Remote Differential Compression
 - WSUS (updateServices-api)
