@@ -91,22 +91,22 @@ cmd /c Dism.exe /image:%OSDisk%\ /Enable-Feature /FeatureName:Microsoft-Hyper-V 
 ## Step 3 ##
 
 - Setup Windows and Configuration Manager
-- Enable Wireless
 - Enable Hyper-V
+- Enable Wireless
 - Restart Computer
 - Configure Hyper-V
 - Move Setup sources to D:\Sources
+
+The second part of getting Hyper-V up and running is again running a commandline step :
+
+```
+powershell.exe -executionpolicy bypass -command add-windowsfeature Hyper-v    -IncludeAllSubFeature -IncludeManagementTools
+```
 
 In Server 2016, if you want to use Wifi, you need to add it as a feature. The "Enable Wireless" step is a run commandline step that makes that happen :
 
 ```
 powershell.exe -executionpolicy bypass -command add-windowsfeature Wireless-Networking
-```
-
-The second part of getting Hyper-V up and running is again a running a commandline step :
-
-```
-powershell.exe -executionpolicy bypass -command add-windowsfeature Hyper-v    -IncludeAllSubFeature -IncludeManagementTools
 ```
 
 After a reboot we call a small powershell script to configure Hyper-V.
