@@ -178,7 +178,7 @@ We convert domain password to a secure string, import the module needed to confi
 
 ## Step 3 ##
 
-```Posh
+```posh
 $password = ConvertTo-SecureString $Domainadminpwd -AsPlainText -Force
 $cred= New-Object System.Management.Automation.PSCredential ("$netbiosName\administrator", $password )
 
@@ -201,7 +201,7 @@ Setting up the actual domain requires some time. We are querying the DNS Server 
 
 ## Step 4 ##
 
-```Posh
+```posh
 $script = {
   param($remotevmname,$myip,$domname)
   import-module DhcpServer
@@ -221,7 +221,7 @@ This step could use some cleaning up in deriving the DHCP settings from the DC's
 
 ## Step 5 ##
 
-```Posh
+```posh
 $script = {
   param($remotevmname,$userpassword)
   Import-Module ActiveDirectory
@@ -260,7 +260,7 @@ Extending the AD Schema is a simple as running "ExtADSch" from the SCCM DVD with
 
 ## Step 6 ##
 
-```Posh
+```posh
 $script = {
   param($remotevmname)
   Import-Module ActiveDirectory
@@ -284,7 +284,7 @@ Setting the appropriate Permissions was a challenge and took a lot of fiddling. 
 
 ## Step 7 ##
 
-```Posh
+```posh
 $script = {
   [CmdletBinding(SupportsShouldProcess=$true)]
   param(
