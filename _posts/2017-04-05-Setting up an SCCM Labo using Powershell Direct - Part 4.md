@@ -38,6 +38,7 @@ In this final part I'll detail the outlines of the task sequence that ties all t
 The Pre-requisites for the script to run successfully :
 
 1. All the source-files that are referenced in the Powershell Direct Scripts (see previous posts)
+2. Drivers for the machine you are deploying
 
 As detailed in Part 1, we are running these labs on Intel NUC's 6th gen so obviously we have to provide the correct drivers for server 2016 (the main OS that runs the lab)
 
@@ -51,18 +52,18 @@ As detailed in Part 1, we are running these labs on Intel NUC's 6th gen so obvio
 - Apply Operating System
 - Apply Windows Settings
 - Apply Network Settings
--- APPLY NUC DRIVERS
-	- Allow Unsigned Drivers
-	- Download Package Content
-	- Dism Apply Drivers
-	- Dism Apply Drivers
+	- APPLY NUC DRIVERS
+        - Allow Unsigned Drivers
+        - Download Package Content
+        - Dism Apply Drivers
+        - Dism Apply Drivers
 
 Really not that much spcial here. This is the beginning of any basic Configmgr OSD Task sequence.
 
 The partitioning steps have been modified to create a 60GB OS disk and the remaining space is just a new primary partition (our data drive).
 
 You might notice that the section for the drivers looks a bit different than the basic "Apply Driver package" step.
-That's because we've used Kim's holy grail for drivermanagement. Read up on it [here](http://www.oscc.be/sccm/osd/The-holy-grail-of-ConfigMgr-diver-management,-or-whatever-you-want-to-call-it/).
+That's because we've used Kim's holy grail for driver management. Read up on it [here](http://www.oscc.be/sccm/osd/The-holy-grail-of-ConfigMgr-diver-management,-or-whatever-you-want-to-call-it/).
 
 
 ## Step 2 ##
@@ -70,7 +71,7 @@ That's because we've used Kim's holy grail for drivermanagement. Read up on it [
 - Download Package Content (sourcefiles)
 - Inject Hyper-V into offline image
 
-All the sourcefiles needed in any of the scripts have been grouped togehter in a single SCCM Package (without program). A "download package content" step is used to download all these sourcefiles locally to the harddisk of the NUC.
+All the sourcefiles needed in any of the scripts have been grouped together in a single SCCM Package (without program). A "download package content" step is used to download all these sourcefiles locally to the harddisk of the NUC.
 
 The location is saved to a variable called "sources" so we can re-use this location later in the task-sequence to move the files to where we want them to be.
 
@@ -79,7 +80,7 @@ The reason why this download is happening in WIN-PE, is to be able to use multic
 One of the main challenges in this task sequence was to get Hyper-V up and running.
 Just enabling the feature with Add-Windowsfeature,or any other way in the live OS, was failing because during the setup of Hyper-V, the server reboots twice "unattended" and this breaks the task sequence.
 
-The solution here was break it up in 2 parts, First, we inject the Hyper-V code with DISM in the WIN-PE phase using a run commandline step :
+The solution here was break it up in 2 parts. First, we inject the Hyper-V code with DISM. This is done in the WIN-PE phase using a run commandline step :
 
 ```
 cmd /c Dism.exe /image:%OSDisk%\ /Enable-Feature /FeatureName:Microsoft-Hyper-V /LogPath:%_SMSTSLogPath%\Hyper-V.log
@@ -102,7 +103,7 @@ In Server 2016, if you want to use Wifi, you need to add it as a feature. The "E
 powershell.exe -executionpolicy bypass -command add-windowsfeature Wireless-Networking
 ```
 
-The second part of getting Hyper-V up and running is again a run commandline step :
+The second part of getting Hyper-V up and running is again a running a commandline step :
 
 ```
 powershell.exe -executionpolicy bypass -command add-windowsfeature Hyper-v    -IncludeAllSubFeature -IncludeManagementTools
@@ -127,8 +128,8 @@ Set-VMHost -VirtualHardDiskPath $VHDPath -VirtualMachinePath $vmpath
 $ethernet = Get-NetAdapter -Name ethernet
 $wifi = Get-NetAdapter -Name wi-fi
 
-New-VMSwitch -Name externalSwitch -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes ‘Parent OS, VMs, LAN’
-New-VMSwitch -Name privateSwitch -SwitchType Private -Notes ‘Internal VMs only’
+New-VMSwitch -Name ExternalSwitch -NetAdapterName $ethernet.Name -AllowManagementOS $true -Notes ‘Parent OS, VMs, LAN’
+New-VMSwitch -Name PrivateSwitch -SwitchType Private -Notes ‘Internal VMs only’
 ```
 
 The different folders for storing the virtual machines, virtual harddisks and our source-binaries are created first.
@@ -141,7 +142,7 @@ All of the scripts in these blog posts were grouped together in a single package
 
 just enter the name of the PS1 file in the script name section and update the execution policy to bypass and you're good to go.
 
-Once the necessary folders are created we can move our previously dowloaded "source content" (with location captured in a variable) to the correct location so that the next scripts can reference it.
+Once the necessary folders are created we can move our previously dowloaded "source content" (with the location captured in a variable) to the correct location so that the next scripts can reference it.
 
 The "Move Setup sources to D:\Sources" is a run commandline step :
 
@@ -152,9 +153,9 @@ cmd.exe /c move /y  %sources01%\*.* D:\Sources
 ## Step 4 ##
 
 - Set up the lab
--- Create Router VM
--- Create Domain Controller VM
--- Create CM VM
+    - Create Router VM
+    - Create Domain Controller VM
+    - Create CM VM
 
 These 3 steps kick off the scripts created in the first 3 parts of this series.
 Like the "Configure Hyper-V" script these are "Run Powershell Script" steps that call each of the scripts without any parameters and the execution policy set to "bypass".
