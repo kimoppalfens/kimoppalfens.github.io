@@ -40,8 +40,8 @@ The Pre-requisites for the script to run successfully :
 5. "Offline" ADK setup files
 6. CMUpdates (During SCCM installation you need the downloaded updates)
 
-The Pre-reqs that don't come in an Iso like the ADK setup files, CMupdates, SSMS,... were converted manually to an iso using any tool available on the internet.
-I added sometimes a few other files to those ISO's not to have to many different sources but I'll detail that once that section comes up.
+The Pre-reqs that don't come in an Iso like the ADK setup files, CMupdates, SSMS,... were converted to an iso using any tool available on the internet.
+I sometimes added a few other files to those ISO's not to have to many different sources but I'll detail that once that section comes up.
 
 ## Step 1 ##
 
