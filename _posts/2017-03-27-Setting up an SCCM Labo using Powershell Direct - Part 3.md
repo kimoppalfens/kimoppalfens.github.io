@@ -414,12 +414,14 @@ we monitor the setupwpf process for completion of the SCCM Installation.
 $script = {
   param($remotevmname)
   Install-WindowsFeature -ComputerName $remotevmname -ConfigurationFilePath C:\CMUpdates\DeploymentConfigTemplate.xml
+"C:\Program Files\Update Services\Tools\wsusutil.exe postinstall CONTENT_DIR=C:\WSUS sql_instance_name=$remotevmname"
 }
 Invoke-Command -VMName $vmname -credential $cred -ScriptBlock $script -ArgumentList $vmname
 ```
 
-Allthough we already installed the WSUS components a few steps earlier, you still need to finish the wsus wizard before we can actually use it in a Software update point.
-this is done with the use of an XML file. The process is again similar to SQL and SCCM. Run the setup once manually and at the end you can export an XML file to automate the setup. Once you have the XML, add it to one of your ISO's so you can re-use it. I choose to add it to my CMUpdates ISO but any other will do just fine.
+When we installed the WSUS-API a few steps ago, it was to pass the pre-req test.
+This code-block triggers the actuall full installation of the WSUS component with the use of an XML file. The process is again similar to SQL and SCCM. Run the setup once manually and at the end you can export an XML file to automate the setup. Once you have the XML, add it to one of your ISO's so you can re-use it. I choose to add it to my CMUpdates ISO but any other will do just fine.
+Installing WSUS isn't enough as it also requires some post-install steps. Those are accomplished by using the wsusutil tool.
 
 ## Step 7 ##
 
