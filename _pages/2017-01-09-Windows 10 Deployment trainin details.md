@@ -11,7 +11,7 @@ author_profile: true
 ---
 
 ## Schedule
-4 days - 21-24/03/2017 - Louvain
+5 days - 25-30/06/2017 - Louvain
 
 For registration or additional questions email: [info@oscc.be](mailto:info@oscc.be)
 
