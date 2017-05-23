@@ -4,7 +4,7 @@ author: OSCC
 layout: single
 excerpt: "Search the Technet library aka Microsoft's product documentation."
 sitemap: false
-permalink: /ContactUs/
+permalink: /Contactus/
 author_profile: true
 ---
 
