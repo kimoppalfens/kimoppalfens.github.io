@@ -7,6 +7,11 @@ sitemap: false
 permalink: /ContactUs/
 author_profile: true
 ---
-Test
+
+<form action="https://formspree.io/info@oscc.be" method="POST">
+    <input type="text" name="name">
+    <input type="email" name="_replyto">
+    <input type="submit" value="Send">
+</form>
 
 
