@@ -1,5 +1,5 @@
 ---
-title: Contact Us
+title: Get in touch with OSCC
 author: OSCC
 layout: single
 excerpt: "Search the Technet library aka Microsoft's product documentation."
