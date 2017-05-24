@@ -152,7 +152,7 @@ Again, all of this is what is happening in the background when you are pushing t
 
 **Note** : If you would leave a component in the Stopped state, eg in a troubleshooting scenario where you want to see the files in the inboxes before they are being processed immediatly by that particular component, you will notice that after a while (5 minutes by default) the component is re-initialized automatically and will be running again even though you never started it manually.
 
-A quick way around this would be to rename the DLL in the DLL field to eg, \Bin\X54\colleval.old. Since this DLL doesn't exist in real life, Configmr won't be able to find it and start Colleval again. Once you finished troubleshooting, rename it back to colleval.dll and start the component manually to resume operation.
+A quick way around this would be to stop the Site Component monitor as this is the component that will monitor and start components again. (stopping the site component monitor is done using the same method as described above)
 
 That's all there is to it. Just make sure to undo those changes once troubleshooting is over! 
 Enjoy and be carefull when playing around with these settings ;-)
