@@ -22,7 +22,7 @@ tags:
   - MMSMOA
 ---
 
-Enabling more logging on Configmgr. (a follow-up on this session from MMS2017)
+Enabling more logging on Configuration Manager (server & client side)
 
 # Intro #
 
