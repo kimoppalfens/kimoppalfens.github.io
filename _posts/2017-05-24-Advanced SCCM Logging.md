@@ -1,6 +1,7 @@
 ---
 title: "Follow up on MMSMOA Session - Configmgr Advanced Logging"
 header:
+  overlay_image: logging1280x960.jpg
   teaser: Logging512x384.png
 author: Tom Degreef
 date: 2017-05-24
