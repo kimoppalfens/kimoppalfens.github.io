@@ -53,6 +53,35 @@ So we can dynamically set that variable based on the hardware model and download
     .EXAMPLE
     Another example of how to use this cmdlet
 #>
+
+[CmdletBinding()]
+param (
+    # Param1 help description
+    [Parameter(ValueFromPipelineByPropertyName,
+    Position = 0)]
+    [string]
+    $MatchProperty = 'MifName',
+
+    # Param1 help description
+    [Parameter(ValueFromPipelineByPropertyName,
+    Position = 1)]
+    [string]
+    $ModelName = (Get-WmiObject -Class win32_computersystemproduct -Namespace root\cimv2).Name,
+
+
+    # Param2 help description
+    [Parameter(ValueFromPipelineByPropertyName,
+    Position = 2)]
+    [string]
+    $PackageXMLLibrary = ".\packages.xml",
+
+        # Param3 help description
+    [Parameter(ValueFromPipelineByPropertyName,
+    Position = 3)]
+    [ValidateSet("Windows 7 X64","Windows 7 X32","Windows 8 X32","Windows 8 X64","Windows 8.1 X64","Windows 8.1 X32","Windows 10 X64","Windows 10 X32","")]
+    [string]
+    $OSVersion = ""
+)
 function Get-CMCEDynamicPackage
 {
   [OutputType([string])]
@@ -80,7 +109,7 @@ function Get-CMCEDynamicPackage
         # Param3 help description
     [Parameter(ValueFromPipelineByPropertyName,
     Position = 3)]
-    [ValidateSet("Windows 7 X64","Windows 7 X32","Windows 8 X32","Windows 8 X64","Windows 8.1 X64","Windows 8.1 X32","Windows 10 X64","Windows 10 X32")]
+    [ValidateSet("Windows 7 X64","Windows 7 X32","Windows 8 X32","Windows 8 X64","Windows 8.1 X64","Windows 8.1 X32","Windows 10 X64","Windows 10 X32","")]
     [string]
     $OSVersion = ""
   )
@@ -108,6 +137,9 @@ function Get-CMCEDynamicPackage
   }
 
 }
+
+Get-CMCEDynamicPackage -MatchProperty $MatchProperty -ModelName $ModelName -PackageXMLLibrary $PackageXMLLibrary
+
 ```
 
 The script takes the following optional parameters:
