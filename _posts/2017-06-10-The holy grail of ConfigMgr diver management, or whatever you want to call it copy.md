@@ -175,7 +175,38 @@ Get-WmiObject -class sms_package -Namespace root\sms\site_$sitecode | Select-Obj
 NOTE: In a follow-up post, we'll specify an easy way to create packages for new hardware as well as a way of migrating your existing driver packages to this new model.
 
 #### Adding the tasksequence steps ####
+The tasksequence itself needs 3 steps to implement the dynamic nature of applying drivers. That's the only edit needed ever. Adding addiotional models no longer requires editing the tasksequence.
 
+##### Step 1.Set the PackageID of the Package holding the drivers to download
+The first step can be added prior to the partitoning steps in your tasksequence. This is a Run PowerShell Script step with the following settings:
+- Package: Package containing the get-CMCEDynamicPackage.PS1 script
+- ScriptName: Get-CMCEDynamicPackage.PS!
+- Parameters: -OSVersion 'Windows 10 X64'
+- PowerShell Execution Policy: Bypass
+
+The OS Version parameter is optional, when it's not specified the packages won't be filtered by OS Version.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/HolyDrivers01.png)
+
+##### Step 2. Dynamically download drivers
+The second step is added after the partitioning, and before the Setup Windows and ConfigMgr step. This is a download package content step.
+- Package ID: Choose a single package to download. The package you select is irrelevant, as the script in step 1 will have overridden the packageID.
+- Custom Path: %_SMSTSMDataPath%\Drivers
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/HolyDrivers02.png)
+
+##### Step 3. Dism apply the downloaded drivers
+The third and last step is added after the Setup Windows and ConfigMgr step. This is a run command line step.
+- Command Line: DISM.exe /Image:%OSDTargetSystemDrive%\ /Add-Driver /Driver:%_SMSTSMDataPath%\Drivers /Recurse /logpath:%_SMSTSLogPath%\dism.log
+
+All other parameters including the package are undefined.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/HolyDrivers03.png)
+
+On the Options tab of this step, add error code 50 as a success code.
+Success code 50 = DISM trying to install an unsigned driver while this is not allowed when not specifying the /forceunsigned parameter. The step shouldn't fail because your package might contain unsigned drivers, that you don’t want to install.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/HolyDrivers04.png)
 
 #### Automatically generate the XML usin status filter rules ####
 Status filter rules are an incredible SCCM feature that don't get the love they deserve. They're incredible in automating SCCM stuff event-driven though. For this particular blog, we'll create 3 status filter rules to automate the management of the Packages.XML  we mentioned earlier.
