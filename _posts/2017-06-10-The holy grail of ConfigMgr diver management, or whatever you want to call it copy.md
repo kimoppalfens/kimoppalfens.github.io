@@ -1,5 +1,5 @@
 ---
-title: "Modern driver management in Configuration Manager Current Branchs"
+title: "Modern driver management in Configuration Manager Current Branch"
 author: Kim Oppalfens
 header:
   overlay_image: drivers1280x960.jpg
