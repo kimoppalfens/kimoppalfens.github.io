@@ -40,7 +40,7 @@ My MVP pall, Jörgen Nilsson, blogged about it here, http://ccmexec.com/2015/09/
 On the surface, the step seems to lack the ability to do driver packages, and it doesn't appear to be Dynamic in any shape or form.
 But, that's why this section's title is the Unseen potential of the step. This particular step actually has an **OVERRIDABLE** tasksequence variable called OSDDownloadDownloadPackages. This particular variable takes Package Id's as values, and then goes ahead and download those.
 
-So we can dynamically set that variable based on the hardware model and download the relevant driver package to a fixed path locally on the deployed machine. Piece 1 of the puzzle is handled by a script that reads the relevant package id from an exported listed of available driver packages.
+So we can dynamically set that variable based on the hardware model and download the relevant package to a fixed path locally on the deployed machine. Piece 1 of the puzzle is handled by a script that reads the relevant package id from an exported listed of available packages.
 
 ```posh
 <#
@@ -138,7 +138,7 @@ Get-WmiObject -class sms_package -Namespace root\sms\site_$sitecode | Select-Obj
 The script starts with reading the XML generated with the command above, and initializing the Tasksequence COM object.
 
 
-The script subsequently grabs the hardware model from WMI, and subsequently  goes through the XML to capture the package id that goes with that model.
+The script subsequently grabs the hardware model from WMI, it then goes through the XML to capture the package id that goes with that model.
 
 The script expects the hardware model to be present in the MifName Field of a regular SCCM Package by default, if that doesn't suit your needs, this config can be overridden by defining your own matchproperty
 
@@ -146,10 +146,10 @@ Note: The above script is Powershell, so your boot image will need to contain Po
 
 The script ends by setting the OSDDownloadDownloadPackages variable used in the Download package content step. (WistjeDatje: This tasksequence variable takes a comma seperated list of packages to download)
 
-We are now ready to run the download package content step and dynamically download the relevant driver package.
+We are now ready to run the download package content step and dynamically download the relevant package.
 
 
-Once the driver package is downloaded we can Disk apply it to our deployed OS image using the following command:
+Once the package is downloaded we can DISM apply it to our deployed OS image using the following command:
 
 ```posh
 DISM.exe /Image:%OSDTargetSystemDrive%\ /Add-Driver /Driver:%_SMSTSMDataPath%\Drivers /Recurse /logpath:%_SMSTSLogPath%\dism.log
@@ -171,7 +171,8 @@ Get-WmiObject -class sms_package -Namespace root\sms\site_$sitecode | Select-Obj
 #### Creating the packages for the drivers manually ####
 1. Create Packages for the drivers to support the different hardware models you want to support
 2. Packages should contain the extracted drivers and .Inf files
-NOTE: Later on in this document we'll specify an easy way to create packages for new hardware as well as a way of migrating your existing driver packages to this new model.
+
+NOTE: In a follow-up post, we'll specify an easy way to create packages for new hardware as well as a way of migrating your existing driver packages to this new model.
 
 #### Adding the tasksequence steps ####
 
