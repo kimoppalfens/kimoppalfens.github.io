@@ -175,12 +175,12 @@ Get-WmiObject -class sms_package -Namespace root\sms\site_$sitecode | Select-Obj
 NOTE: In a follow-up post, we'll specify an easy way to create packages for new hardware as well as a way of migrating your existing driver packages to this new model.
 
 #### Adding the tasksequence steps ####
-The tasksequence itself needs 3 steps to implement the dynamic nature of applying drivers. That's the only edit needed ever. Adding addiotional models no longer requires editing the tasksequence.
+The tasksequence itself needs 3 steps to implement the dynamic nature of applying drivers. That's the only edit needed ever. Adding additional models no longer requires editing the tasksequence.
 
 ##### Step 1.Set the PackageID of the Package holding the drivers to download
 The first step can be added prior to the partitoning steps in your tasksequence. This is a Run PowerShell Script step with the following settings:
 - Package: Package containing the get-CMCEDynamicPackage.PS1 script
-- ScriptName: Get-CMCEDynamicPackage.PS!
+- ScriptName: Get-CMCEDynamicPackage.PS1
 - Parameters: -OSVersion 'Windows 10 X64'
 - PowerShell Execution Policy: Bypass
 
