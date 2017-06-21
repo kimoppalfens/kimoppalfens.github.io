@@ -131,9 +131,22 @@ function Get-CMCEDynamicPackage
       $tsenvInitialized = $false
     }
     if ($OSVersion -eq "")
-      {(Import-Clixml $PackageXMLLibrary | ? {$_.$MatchProperty.Split(',').Contains($ModelName)}).PackageID}
+      {
+        $PackageID = (Import-Clixml $PackageXMLLibrary | ? {$_.$MatchProperty.Split(',').Contains($ModelName)}).PackageID
+        $PackageID
+          if ($tsenvInitialized)
+          {
+            $tsenv.Value('OSDDownloadDownloadPackages') = $PackageID
+          }
       else
-      {(Import-Clixml $PackageXMLLibrary | ? {$_.$MatchProperty.Split(',').Contains($ModelName) -and $_.MifVersion -eq $OSVersion}).PackageID}
+      {
+        $PackageID = (Import-Clixml $PackageXMLLibrary | ? {$_.$MatchProperty.Split(',').Contains($ModelName) -and $_.MifVersion -eq $OSVersion}).PackageID}
+        $PackageID
+          if ($tsenvInitialized)
+          {
+            $tsenv.Value('OSDDownloadDownloadPackages') = $PackageID
+          }
+      }
   }
 
 }
