@@ -53,7 +53,7 @@ We are particulary interested in "LogLevel" (with a default value of 1). Updatin
 
 However, updating just that one value isn't enough on the client. You also need to create a new registry key under HKLM\Software\Microsoft\CCM\Logging called "DebugLogging"
 (make sure to create that new KEY directly under HKLM\Software\Microsoft\CCM\Logging and *NOT* under HKLM\Software\Microsoft\CCM\Logging\@Global)
--	'Right-click the CCM-key, select New and then Key' and change the name to "DebugLogging"
+-	'Right-click the Logging-subkey, select New and then Key' and change the name to "DebugLogging"
 
 Under that newly created key HKLM\Software\Microsoft\CCM\Logging\DebugLogging, create a new 'String' Value with the name "Enabled" and a value of "Yes".
 Once that is done it should look like this
