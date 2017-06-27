@@ -20,6 +20,6 @@ author: Tom Degreef
 ![alt]({{ site.url }}{{ site.baseurl }}/images/upgradeanalytics.PNG)
 
 
-![File](file.png)
+![File](../images/file.png)
 
 
