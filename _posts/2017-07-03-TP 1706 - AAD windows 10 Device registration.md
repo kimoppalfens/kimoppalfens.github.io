@@ -26,7 +26,7 @@ Register Windows 10 devices with Azure Active Directory explained and demoed
 
 # Intro #
 
-In a "normal" corporate environment, most devices are joined to your on-premise active directory. This allows you to have singe sign on to access various on-premise resources. However, with the increasing popularity of Office 365, you are most likely also accessing cloud-based resources in that same corporate environment and chances are that you need to authenticate each time you access them. 
+In a "normal" corporate environment, most devices are joined to your on-premise active directory. This allows you to have single sign on to access various on-premise resources. However, with the increasing popularity of Office 365, you are most likely also accessing cloud-based resources in that same corporate environment and chances are that you need to authenticate each time you access them. 
 
 A solution there would be to register your device also in Azure Active Directory and as such also experience SSO for cloud-based resources like the Office 365 portal or other federated Azure apps (myapps.office.com).
 
