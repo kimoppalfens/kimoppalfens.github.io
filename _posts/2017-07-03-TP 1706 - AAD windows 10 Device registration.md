@@ -65,7 +65,7 @@ It's the "DSRegCMD" command being executed under system context each time any us
 
 If you have all the Pre-requisites enabled (an active Azure AD subscription and Azure AD Connect to extend the on-premises directory to Azure AD) to have device registration succeed and you run the commandline "DSREGCMD /Status" , you should see the following result after a while : 
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_DR_succeeded.PNG.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_DR_succeeded.PNG)
 
 The result is that when I browse to outlook.office365.com , I don't get any prompt anymore to authenticate and thus I'm enjoying SSO to my cloud-based resources !
 
