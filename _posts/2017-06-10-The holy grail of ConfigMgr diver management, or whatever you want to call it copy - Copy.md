@@ -1,4 +1,4 @@
----
+﻿---
 title: "Modern driver management in Configuration Manager Current Branch"
 author: Kim Oppalfens
 header:
@@ -241,7 +241,7 @@ The second step is added after the partitioning, and before the Setup Windows an
 ![alt]({{ site.url }}{{ site.baseurl }}/images/HolyDrivers02.png)
 
 ##### Step 3. Dism apply the downloaded drivers
-The third and last step is added after the Setup Windows and ConfigMgr step. This is a run command line step.
+The third and last step is added after the Dynamically download of the drivers, but before the Setup Windows and ConfigMgr step. This is a run command line step.
 - Command Line: DISM.exe /Image:%OSDTargetSystemDrive%\ /Add-Driver /Driver:%_SMSTSMDataPath%\Drivers /Recurse /logpath:%_SMSTSLogPath%\dism.log
 
 All other parameters including the package are undefined.
