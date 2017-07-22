@@ -1,4 +1,4 @@
----
+﻿---
 title: "Template Post"
 header:
   overlay_image: template1280x960.jpg
@@ -19,5 +19,7 @@ Header Line
 author: Tom Degreef
 ![alt]({{ site.url }}{{ site.baseurl }}/images/upgradeanalytics.PNG)
 
+
+![File](../images/file.png)
 
 
