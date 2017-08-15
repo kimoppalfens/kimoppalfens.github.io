@@ -23,15 +23,15 @@ Android and iOS Enrollment Restrictions explained and demoed
 # Intro #
 
 This Blog-post is a bit over-due due to the reason that the highlighted feature was not working when released.
-We started testing this feature around the end of June 2017 but it appeared not fully functional at that time.
+We started testing this feature around the end of June 2017 but it was not fully functional at that time.
 
 After checking every few days it appeared that we were not going to get a quick fix until... today ;-)
 
 Interesting to notice is, that this feature, in the meantime already got added to the latest Current-Branch release (1706) without being functional.
 
-That this "suddenly" started working without any additonal code-change on the Configmgr-product indicates that some changes were made at the backend Intune Service.
+The fact that it "suddenly" started working without any additonal code-change on the Configmgr-product indicates that some changes were made at the backend Intune Service.
 
-So, we are going to take a look at another (long) awaited feature , the ability to block users from enrolling personal devices in a hybrid environment.
+So, without further ado, we are going to take a look at another (long) awaited feature , the ability to block users from enrolling personal devices in a hybrid environment.
 
 An obvious pre-requisite here is that you need to have a working intune subscription.
 
@@ -63,13 +63,13 @@ There are exceptions to this process where changes are triggered nearly instant,
 
 # The results #
 
-So let's see the effects. I'll first try to enroll a device that has not been configured as company owned.
+So let's see the effects. I'll first try to enroll an Android device that has not been configured as company owned. Additionaly, I did not enable that all Android devices need to be treated as "Android for work"
 
 If necessary, download the "Company Portal" app from the appropriate store and log in with an account that is allowed to enroll devices into Intune.
 
 Follow the on-screen instructions.
 
-The process is identical with out without this blocking of personal devices and you get the same warnings (eg, that you might need to set a passcode, or have your device encrypted).
+The process is identical with or without this blocking of personal devices and you get the same warnings (eg, that you might need to set a passcode, or have your device encrypted).
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Enrollment_1.png)
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Enrollment_2.png)
@@ -108,7 +108,7 @@ After refreshing the view in my Admin-UI, we can see that our new device has bee
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_adminui_predeclared.PNG)
 
 Before proceeding, make sure that your changes have been uploaded to the cloud. Check DMPUploader.Log for entries like shown below.
-It shouldn't be a big deal since sync happens every 5 minutes, buf if you eagerly waiting to test out features, 5 minutes could feel like an eternity ;-)
+It shouldn't be a big deal, buf if you eagerly waiting to test out features, 5 minutes could feel like an eternity ;-)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_DMPUpload.PNG)
 
@@ -120,12 +120,12 @@ Checking back the Admin-UI, it now shows my device as being enrolled.
 
 # Various notes #
 
-**At the time of writing not all seems perfect yet. Once you have defined a device as a corporate owned device by predeclaring it, and you later remove the entry from the predeclared devices, you are still able to enroll that device although it's no longer predeclared. Seems that not all settings are replicated properly toward the Intune backend.**
+*   **At the time of writing not all seems perfect yet. Once you have defined a device as a corporate owned device by predeclaring it, and you later remove the entry from the predeclared devices, you are still able to enroll that device although it's no longer predeclared. Seems that not all settings are replicated properly toward the Intune backend.**
 
 
-Predeclared devices are stored in SQL in the MDMCorpOwnedDevices table (or in WMI in SMS_MDMCorpOwnedDevices).
+*   Predeclared devices are stored in SQL in the MDMCorpOwnedDevices table (or in WMI in SMS_MDMCorpOwnedDevices).
 
-The format for importing through a CSV is : IMEI number (no spaces), IOS Serial number, Operating system, Details.
+*   The format for importing through a CSV is : IMEI number (no spaces), IOS Serial number, Operating system, Details.
 
 Only IMEI & Operating system (Windows, IOS or Android) are required. Eg :
 
@@ -134,3 +134,5 @@ Only IMEI & Operating system (Windows, IOS or Android) are required. Eg :
 222222222222222, ,IOS ,
 
 333333333333333, ,Android ,
+
+That's it for now !
