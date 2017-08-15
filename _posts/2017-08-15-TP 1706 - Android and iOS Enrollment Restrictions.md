@@ -2,7 +2,7 @@
 title: "Technical Preview 1706 & Current Branch 1706 feature highlight : Android and iOS Enrollment Restrictions"
 header:
 author: Tom Degreef
-date: 2007-08-11
+date: 2017-08-15
 categories:
   - SCCM
   - Configmgr
@@ -121,6 +121,8 @@ Checking back the Admin-UI, it now shows my device as being enrolled.
 # Various notes #
 
 *   **At the time of writing not all seems perfect yet. Once you have defined a device as a corporate owned device by predeclaring it, and you later remove the entry from the predeclared devices, you are still able to enroll that device although it's no longer predeclared. Seems that not all settings are replicated properly toward the Intune backend.**
+
+* **Another interesting thing that showed up during my tests is, if you enable "Android for work", the settings to block personal devices is ignored. I was able to fully enroll a device that was not predeclared. This issue has been reported to Microsoft and we are awaiting feedback. As soon as we receive it, I"ll update this blogpost.**
 
 
 *   Predeclared devices are stored in SQL in the MDMCorpOwnedDevices table (or in WMI in SMS_MDMCorpOwnedDevices).
