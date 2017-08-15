@@ -99,7 +99,7 @@ It shouldn't be a big deal since sync happens every 5 minutes, buf if you eagerl
 After all was synced, I could properly enroll my device.
 Checking back the Admin-UI, it now shows my device as being enrolled.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_IMEI_Enrolled.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_IMEI_enrolled.PNG)
 
 
 # Various notes #
