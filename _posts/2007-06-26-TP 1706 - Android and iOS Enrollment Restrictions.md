@@ -24,12 +24,15 @@ Android and iOS Enrollment Restrictions explained and demoed
 
 This Blog-post is a bit over-due due to the reason that the highlighted feature was not working when released.
 We started testing this feature around the end of June 2017 but it appeared not fully functional at that time.
+
 After checking every few days it appeared that we were not going to get a quick fix until... today ;-)
 
 Interesting to notice is, that this feature, in the meantime already got added to the latest Current-Branch release (1706) without being functional.
+
 That this "suddenly" started working without any additonal code-change on the Configmgr-product indicates that some changes were made at the backend Intune Service.
 
 So, we are going to take a look at another (long) awaited feature , the ability to block users from enrolling personal devices in a hybrid environment.
+
 An obvious pre-requisite here is that you need to have a working intune subscription.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Hybrid_Uncompleted.PNG)
@@ -37,8 +40,11 @@ An obvious pre-requisite here is that you need to have a working intune subscrip
 # Setting it all up #
 
 Completing the actual challenge (or setup in CB) is not that difficult. Navigate to the Administration pane and select "Microsoft Intune Subscriptions" under the "Cloud Services".
+
 Either Right-click your subscription , select Configure Platforms and choose "Android" (or do the same from the quick action toolbar).
+
 Tick the box that's labeled "Block Personally Owned devices"
+
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_BlockAndroidpersonal.PNG)
 
@@ -51,25 +57,34 @@ That's it ! Congratulations, you've completed another challenge in last month's 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Hybrid_completed.PNG)
 
 Keep in mind that each configuration change can take up to 5 minutes to get processed. DMP-Uploader, the process that is responsible for uploading data to the cloud runs every 5 minutes.
+
 There are exceptions to this process where changes are triggered nearly instant, such as wiping a device.
 
 
 # The results #
 
 So let's see the effects. I'll first try to enroll a device that has not been configured as company owned.
+
 If necessary, download the "Company Portal" app from the appropriate store and log in with an account that is allowed to enroll devices into Intune.
 
 Follow the on-screen instructions.
 
 The process is identical with out without this blocking of personal devices and you get the same warnings (eg, that you might need to set a passcode, or have your device encrypted).
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Enrollment_1.png)
+![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Enrollment_2.png)
+
 When you click the "Enroll" button, you also need to activate the device administrator and at that point the enrollment process starts.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Enrollment_3.png)
+
 The device tries to workplace Join and after a few moments you get the notification that your device couldn't be enrolled. The detailed message is :
 
 "Couldn't enroll your device.
 
 Your IT administrator has not authorized this device to enroll. Contact your IT administrator for help."
 
-
+![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_Enrollment_Error.png)
 
 Now, let's register my test-device as a corporate owned device and try the entire process again.
 
@@ -78,6 +93,7 @@ In the Assets and Compliance node, go to the "All Corporate-owned Devices" entry
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_predeclared.PNG)
 
 Right-Click and select "Create Predeclared Devices" (or select it from the quick action toolbar).
+
 Select "Manually add IMEI or serial numbers and details" and select Next.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_manually_add.PNG)
