@@ -48,6 +48,8 @@ Tick the box that's labeled "Block Personally Owned devices"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_BlockAndroidpersonal.PNG)
 
+**Note :** If you have configured your Intune subscription to handle all Android devices as "Android for work", this feature will not work. Microsoft has confirmed that for now, only "non-Android for work" devices are supported in this scenario.
+
 Repeat the process for iOS. in the Popup, select the 2nd tab called "Enrollment Restrictions" and tick that same box to block personally owned devices
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_BlockiOSpersonal.PNG)
@@ -121,9 +123,6 @@ Checking back the Admin-UI, it now shows my device as being enrolled.
 # Various notes #
 
 *   **At the time of writing not all seems perfect yet. Once you have defined a device as a corporate owned device by predeclaring it, and you later remove the entry from the predeclared devices, you are still able to enroll that device although it's no longer predeclared. Seems that not all settings are replicated properly toward the Intune backend.**
-
-* **Another interesting thing that showed up during my tests is, if you enable "Android for work", the settings to block personal devices is ignored. I was able to fully enroll a device that was not predeclared. This issue has been reported to Microsoft and we are awaiting feedback. As soon as we receive it, I"ll update this blogpost.**
-
 
 *   Predeclared devices are stored in SQL in the MDMCorpOwnedDevices table (or in WMI in SMS_MDMCorpOwnedDevices).
 
