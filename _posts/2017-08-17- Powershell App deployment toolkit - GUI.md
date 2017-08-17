@@ -2,7 +2,7 @@
 title: "Powershell App Deployment Tookit - GUI"
 header:
 author: Tom Degreef
-date: 2017-08-17
+date: 2007-08-17
 categories:
   - SCCM
   - Configmgr
@@ -38,7 +38,7 @@ One of the issues I ran into when using the toolkit for the first times, besides
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-<Screenshot>
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui.PNG)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
