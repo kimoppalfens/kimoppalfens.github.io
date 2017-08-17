@@ -31,3 +31,134 @@ A very good alternative is to start using the [Powershell App Deployment Toolkit
 It is basically a (free) solution that allows you to standardize the way you deploy applications (and packages if you want to). It offers great flexibility and takes away most of the gaps that are left in the app-model.
 
 However, if you have never used it before, it could be a bit overwhelming at first since there are so many different options available.
+
+# The GUI #
+
+One of the issues I ran into when using the toolkit for the first times, besides finding out what option I needed, was typo's...if you forget a quote, the script won't run. Additionally, edditing the Deploy-Application.PS1 file takes time as you have to scroll a lot to the correct location to perform the functions that you want/need.
+
+To prevent this, I started this project to create a GUI that does most of the legwork for you.
+
+<Screenshot>
+
+At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
+
+The functionality at this point in time is :
+- Fully unattended generation of the Deploy-Application.PS1 file
+- Merging of your source binaries with the PS App toolkit on a destination Share (must be UNC)
+- Creating the SCCM Application + Deployment Type
+- Adding a Software ID tag and using this as a detection mechanism.
+
+# Pre-requisites #
+
+As this is the first (beta) version of the GUI, not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best Powershell coder out there anyway ;-) So it's a "learn as you go" project.
+
+For now, I assume that the account that launches the GUI has access to the folder that holds your source binaries (the files you want to intall) and to the UNC path where we will copy the merged application to (explained below).
+
+If you want to use the GUI to create the SCCM Application as well, you'll also need the appropriate rights in Configmgr and the GUI must run on your primary site server.
+
+Logging is included in the GUI and if you have Powershell 5, it will try to install [Kim's Logging module](http://www.oscc.be/powershell/Logging-in-PowerShell/) so that logging is done in the CMtrace format.
+If that fails, logging will be done to a regular text file.
+
+The location of the logs for now is c:\temp\PSAPPgui
+
+# Using the GUI #
+
+When you start the GUI (by launching PSAPP_GUI.PS1) you should see the interface that allows you to create a new application.
+There are a few required fields :
+
+- Application Vendor
+- Application Name
+- Application Version
+- Application Architecture 
+- Software ID Tag
+- Source Path
+- Destination Path
+
+The first 4 should be self-explanatory and I'll cover the Software ID tag later in this blogpost.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui.PNG)
+
+On the Installation section, there is a dropdown box to allow you to switch between MSI or Script.
+
+## MSI ##
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/MSI.PNG)
+
+Enter the full filename of the MSI you want to install, eg 7zip.Msi and in the parameters box the MSI parameters you want to apply, eg /passive or /qn.
+
+In the Uninstall section, provide the name for the application as you see it in Add/Remove Programs. The App deployment toolkit will do a search for that name and perform the uninstallation.
+
+## Script ##
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/Script.PNG)
+
+for Scripts (or .exe based installs) the process is similar. Provide the filename that you want to run, eg setup.exe and the parameters to have it unattended (eg, /S).
+
+For the uninstallation, provide the full uninstall command line.
+
+## Source & Destination ##
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/sources.PNG)
+
+In the Package binaries path, provide the full path to where your source binaries that include the setup file you provided earlier are stored. This can be a local or network path.
+
+The destination package path must be a network path (\\server\share). The GUI will create a subfolder there with the name of the Vendor and a subfolder in there with the name of the Application + Version
+
+In my screenshot the result would be \\SCCM_Server\SCCM_Files\Applications\Vendor\Applicationname_Version
+
+The actual toolkit will be copied into that final subfolder and your application binaries in the "Files" subfolder of the Toolkit
+
+## The Buttons ##
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/Buttons.PNG)
+
+Clicking the "Generate Package" button will first "validate" all the fields and highlight in Green what is Ok and in Red what is not OK. 
+
+Nothing will happen untill all required fields are filled out properly.
+
+Once that is done, the GUI will create the subfolders as explained above and merge the files and finally it will generate the Deploy-Application.PS1 file that will contain the installation logic.
+
+"Import into SCCM" will try to detect the SCCM Environment you are running and will then create the application + deployment type using the information provided in the GUI.
+
+# Software ID Tags #
+
+A software identification tag is an XML file that’s installed alongside software, and which uniquely identifies the software, providing data for software inventory and asset management.
+With the introduction of industry-standard software identification tags, it becomes possible to automate the processes of gathering software inventory data for use in reporting and in other initiatives such as managing software entitlement compliance.
+
+Software identification tags are stored on the computers on which software is installed. The standard allows for operating system vendors to specify where software identification tags are located.
+On Windows Vista machines and later, SWID Tags are stored under %Programdata%\
+
+On of the key-elements of the software ID tag is the "RegID-File". The file is generated based on when the domain name from the vendor of the application was first registered. Eg, if we lookup "Adobe.com" on [www.whois.net](www.whois.net), we can see that it was first registered/created on 
+November 1986.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/adobe.PNG)
+
+The SWID-Tag will be stored in a subfolder under %programdata%. This subfolder for Adobe will be : Regid.1986-11.Com.Adobe 
+
+This will always be the structure. It starts with the word "RegID" followed by a dot ".", then the year when the domainname was first registered, a dash "-" and the month when the domainname was registered. Then another dot "." and finally the domainname in reversed order.
+If we take www.Oscc.Be as an example, the subfolder would be : Regid.2008-03.Be.Oscc
+
+The key here is obviously to look this information up properly so that all applications from a specific vendor will always end up in the same subfolder.
+
+In that subfolder, the actual SWID-Tag will be created. The file starts with the same string as the subfolder, followed by and Underscore "_", the Applicationname, another underscore "_" and the application version. The extention of the file is .swidtag
+
+Basically this is just an XML file that contains a few details on your application. SCCM Will automatically pick up these SWID tags if you enable them in the Asset Intelligence node.
+
+Enable the inventory class "SMS_SoftwareTag" and once the data is collected you can run reports 14A, 14B & 14C that are specifically created to handle SWID-tags.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/Asset_Intelligence.PNG)
+
+Back to the GUI. With all the information it should be clear what needs to be filled out in the Software ID Tag fields. Look up the domainname for your vendor, enter the year, month and domainname in reverse order.
+
+If you tick the checkbox, a flag will be set to "False" indicating that this is software that is free to use. If you don't tick the box, the SWID-tag will be created with Entitlement Required = True, indicating that a license is needed.
+
+
+By default, the powershell App deployment toolkit doesn't support the creation of SWID-tags, but Kim wrote an extention (that's included with the GUI) to enable this functionality.
+
+
+That should be all there is to it ! Again, for now it only supports basic functionality but once you have your destination package generated, nothing is stopping you from opening up that Deploy-Application.PS1 file and making the adjustments you want/need.
+
+I'll do my very best to update the GUI with additional features on both the toolkit and the SCCM side. Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
+
+
+That's it ! Enjoy ...
