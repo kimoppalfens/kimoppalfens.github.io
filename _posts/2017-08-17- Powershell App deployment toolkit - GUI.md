@@ -146,7 +146,7 @@ Basically this is just an XML file that contains a few details on your applicati
 
 Enable the inventory class "SMS_SoftwareTag" and once the data is collected you can run reports 14A, 14B & 14C that are specifically created to handle SWID-tags.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Asset_Intelligence.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/asset_intelligence.PNG)
 
 Back to the GUI. With all the information it should be clear what needs to be filled out in the Software ID Tag fields. Look up the domainname for your vendor, enter the year, month and domainname in reverse order.
 
