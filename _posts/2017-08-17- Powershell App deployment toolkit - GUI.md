@@ -38,7 +38,7 @@ One of the issues I ran into when using the toolkit for the first times, besides
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_.gif)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
@@ -84,7 +84,7 @@ There are a few required fields :
 
 The first 4 should be self-explanatory and are all related to the application you want to "package" and deploy with SCCM. I'll cover the Software ID tag later in this blogpost.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_.gif)
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui.PNG)
 
 On the Installation section, there is a dropdown box to allow you to switch between MSI or Script.
 
@@ -179,8 +179,11 @@ Currently on my roadmap for future versions (not necessarily in this order)
 # Download #
 
 Current Version : 0.9
-Download here : <>
-MD5 Checksum : 
+
+[Download here](/Files/PSAppGui.zip)
+
+CRC32 Checksum : FA1625FA
+
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
 
