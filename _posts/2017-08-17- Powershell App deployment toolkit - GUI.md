@@ -56,14 +56,22 @@ For now, I assume that the account that launches the GUI has access to the folde
 
 If you want to use the GUI to create the SCCM Application as well, you'll also need the appropriate rights in Configmgr and the GUI must run on your primary site server.
 
-Logging is included in the GUI and if you have Powershell 5, it will try to install [Kim's Logging module](http://www.oscc.be/powershell/Logging-in-PowerShell/) so that logging is done in the CMtrace format.
+Logging is included in the GUI and if you have Powershell 5 (or greater), it will try to install [Kim's Logging module](https://gallery.technet.microsoft.com/scriptcenter/Log4Net-Powershell-Module-0d7deacd) so that logging is done in the CMtrace format.
 If that fails, logging will be done to a regular text file.
 
 The location of the logs for now is c:\temp\PSAPPgui
 
 # Using the GUI #
 
-When you start the GUI (by launching PSAPP_GUI.PS1) you should see the interface that allows you to create a new application.
+First things first, Copy the entire content of the GUI, for now, to your SCCM Primary site. That should include the following files/Folders :
+
+- Toolkit (subfolder - holds the full PS App deployment toolkit)
+- Deploy-Application.PS1 (The template I build upon)
+- MainWindow.XAML (My GUI file)
+- OSCCLogo.jpg (needs no further explanation)
+- PSAPP_GUI.PS1 (The file you need to run !)
+
+When you start the GUI (by launching PSAPP_GUI.PS1 from a Powershell cmd prompt) you should see the interface that allows you to create a new application.
 There are a few required fields :
 
 - Application Vendor
@@ -74,9 +82,9 @@ There are a few required fields :
 - Source Path
 - Destination Path
 
-The first 4 should be self-explanatory and I'll cover the Software ID tag later in this blogpost.
+The first 4 should be self-explanatory and are all related to the application you want to "package" and deploy with SCCM. I'll cover the Software ID tag later in this blogpost.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_.gif)
 
 On the Installation section, there is a dropdown box to allow you to switch between MSI or Script.
 
@@ -156,9 +164,24 @@ If you tick the checkbox, a flag will be set to "False" indicating that this is 
 By default, the powershell App deployment toolkit doesn't support the creation of SWID-tags, but Kim wrote an extention (that's included with the GUI) to enable this functionality.
 
 
-That should be all there is to it ! Again, for now it only supports basic functionality but once you have your destination package generated, nothing is stopping you from opening up that Deploy-Application.PS1 file and making the adjustments you want/need.
+That should be all there is to it ! Again, for now it only supports basic functionality but once you have your destination package generated, nothing is stopping you from opening up that freshly generated Deploy-Application.PS1 file and making the adjustments you want/need.
 
-I'll do my very best to update the GUI with additional features on both the toolkit and the SCCM side. Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
+# Roadmap #
 
+Currently on my roadmap for future versions (not necessarily in this order)
+
+- Distribute Content to SCCM DP's
+- Create Collections and Deployments
+- Create AD-Groups and link to Collections
+- Browse buttons
+- More Built-in Toolkit actions
+
+# Download #
+
+Current Version : 0.9
+Download here : <>
+MD5 Checksum : 
+
+Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
 
 That's it ! Enjoy ...
