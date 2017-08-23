@@ -151,7 +151,7 @@ If we take www.Oscc.Be as an example, the subfolder would be : Regid.2008-03.Be.
 
 The key here is obviously to look this information up properly so that all applications from a specific vendor will always end up in the same subfolder.
 
-In that subfolder, the actual SWID-Tag will be created. The file starts with the same string as the subfolder, followed by and Underscore "_", the Applicationname, another underscore "_" and the application version. The extention of the file is .swidtag
+In that subfolder, the actual SWID-Tag will be created. The file starts with the same string as the subfolder, followed by and Underscore, the Applicationname, another underscore and the application version. The extention of the file is .swidtag
 
 Basically this is just an XML file that contains a few details on your application. SCCM Will automatically pick up these SWID tags if you enable them in the Asset Intelligence node.
 
