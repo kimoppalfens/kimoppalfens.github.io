@@ -50,7 +50,7 @@ The functionality at this point in time is :
 
 # Pre-requisites #
 
-As this is the first (beta) version of the GUI, not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best Powershell coder out there anyway ;-) So it's a "learn as you go" project.
+**Disclaimer :** As this is the first (beta) version of the GUI, not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best Powershell coder out there anyway ;-) So it's a "learn as you go" project.
 
 For now, I assume that the account that launches the GUI has access to the folder that holds your source binaries (the files you want to intall) and to the UNC path where we will copy the merged application to (explained below).
 
@@ -83,6 +83,7 @@ There are a few required fields :
 - Destination Path
 
 The first 4 should be self-explanatory and are all related to the application you want to "package" and deploy with SCCM. I'll cover the Software ID tag later in this blogpost.
+(See the animated gif in the beginning of the blogpost for a demo)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui.PNG)
 
@@ -112,7 +113,9 @@ In the Package binaries path, provide the full path to where your source binarie
 
 The destination package path must be a network path (\\server\share). The GUI will create a subfolder there with the name of the Vendor and a subfolder in there with the name of the Application + Version
 
-In my screenshot the result would be \\SCCM_Server\SCCM_Files\Applications\Vendor\Applicationname_Version
+In my screenshot the result would be \\SCCM_Server\SCCM_Files\Applications\Vendor\Applicationname_Version_Bitness
+
+**Note :** Bitness = X86 or X64
 
 The actual toolkit will be copied into that final subfolder and your application binaries in the "Files" subfolder of the Toolkit
 
