@@ -141,7 +141,7 @@ Once that is done, the GUI will create the subfolders as explained above and mer
 
 After that, the 2nd tab becomes available for you to continue the SCCM-Part.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Connect.png)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Button_ConnectSCCM.PNG)
 
 Click "Connect to SCCM" to automatically connect to the detected SCCM Environment. Once that succeeds, all DP's (and groups) will be enumerated and you will be able to progress with the import.
 
