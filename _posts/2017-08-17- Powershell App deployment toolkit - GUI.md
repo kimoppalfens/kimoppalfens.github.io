@@ -24,17 +24,25 @@ If you are working with ConfigMgr, you will probably create Applications once in
 
 Although the current Application model is great and allows for much greater flexibility than we had with Packages/Programs , there are still situations where the Application model isn't sufficient.
 
-A lot of the things that are not possible with the App model, are probably fixed now by writing custom scripts.
+A lot of the things that are not possible with the App model, are probably fixed in your own environment by writing custom scripts.
 
 A very good alternative is to start using the [Powershell App Deployment Toolkit](http://psappdeploytoolkit.com/).
 
 It is basically a (free) solution that allows you to standardize the way you deploy applications (and packages if you want to). It offers great flexibility and takes away most of the gaps that are left in the app-model.
 
+Some of it features are :
+
+- An interface to prompt the user to close specified applications that are open prior to starting the application deployment
+- The ability to allow the user to defer an installation X number of times, X number of days or until a deadline date is reached
+- The ability to prevent the user from launching the applications that need to be closed while the application installation is in progress
+- Balloon tip notifications to indicate the beginning and end of an installation and the success or failure of an installation.
+- and many more
+
 However, if you have never used it before, it could be a bit overwhelming at first since there are so many different options available.
 
 # The GUI #
 
-One of the issues I ran into when using the toolkit for the first times, besides finding out what option I needed, was typo's...if you forget a quote, the script won't run. Additionally, edditing the Deploy-Application.PS1 file takes time as you have to scroll a lot to the correct location to perform the functions that you want/need.
+One of the issues I ran into when using the toolkit for the first times, besides finding out what option I needed, were typo's...if you forget a quote, the script won't run. Additionally, edditing the Deploy-Application.PS1 file takes time as you have to scroll a lot to the correct location to perform the functions that you want/need.
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
@@ -47,6 +55,8 @@ The functionality at this point in time is :
 - Merging of your source binaries with the PS App toolkit on a destination Share (must be UNC)
 - Creating the SCCM Application + Deployment Type
 - Adding a Software ID tag and using this as a detection mechanism.
+- Enumerating all DP & DP-Groups and distribute content to them
+- Generate Install & Uninstall collections based on the Application's Name
 
 # Pre-requisites #
 
@@ -129,7 +139,15 @@ Nothing will happen untill all required fields are filled out properly.
 
 Once that is done, the GUI will create the subfolders as explained above and merge the files and finally it will generate the Deploy-Application.PS1 file that will contain the installation logic.
 
-"Import into SCCM" will try to detect the SCCM Environment you are running and will then create the application + deployment type using the information provided in the GUI.
+After that, the 2nd tab becomes available for you to continue the SCCM-Part.
+
+Click "Connect to SCCM" to automatically connect to the detected SCCM Environment. Once that succeeds, all DP's (and groups) will be enumerated and you will be able to progress with the import.
+
+"Import into SCCM" will then create the application + deployment type using the information provided in the GUI.
+
+The list of DP's and DP-Groups is multi-selectable, so just hold CTRL and select the DP and/or DP-groups you want to start the distribution to and click "Distribute Content"
+
+Finally, you can generate 2 collections based on the Application-Name with the suffixes "-Install" & "-Uninstall". They can be further customized with a pre & suffix of your choice.
 
 # Software ID Tags #
 
@@ -173,19 +191,25 @@ That should be all there is to it ! Again, for now it only supports basic functi
 
 Currently on my roadmap for future versions (not necessarily in this order)
 
-- Distribute Content to SCCM DP's
-- Create Collections and Deployments
+- Create Deployments
 - Create AD-Groups and link to Collections
+- Saved settings such as target folder, selected DP's,SWID-tags, ...
 - Browse buttons
 - More Built-in Toolkit actions
+- Multi-threaded GUI
+
+# Bugs #
+
+- The Collection "preview" is missing an "underscore" between the application vendor and application name. However they are created correctly
+- The GUI can become unresponsive when copying large files or importing into SCCM. Be patient as the process is running in the background in single-threaded mode.
 
 # Download #
 
-Current Version : 0.9
+Current Version : 1.0
 
 [Download here](/Files/PSAppGui.zip)
 
-CRC32 Checksum : FA1625FA
+MD5 Checksum : fad30def9fd35cf7bd0e17af73c6a1d0
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
