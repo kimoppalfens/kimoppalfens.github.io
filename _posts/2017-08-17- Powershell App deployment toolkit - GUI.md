@@ -46,7 +46,7 @@ One of the issues I ran into when using the toolkit for the first times, besides
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_.gif)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_1.0.gif)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
@@ -131,7 +131,7 @@ The actual toolkit will be copied into that final subfolder and your application
 
 ## The Buttons ##
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Buttons.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Generate.png)
 
 Clicking the "Generate Package" button will first "validate" all the fields and highlight in Green what is Ok and in Red what is not OK. 
 
@@ -141,7 +141,11 @@ Once that is done, the GUI will create the subfolders as explained above and mer
 
 After that, the 2nd tab becomes available for you to continue the SCCM-Part.
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Connect.png)
+
 Click "Connect to SCCM" to automatically connect to the detected SCCM Environment. Once that succeeds, all DP's (and groups) will be enumerated and you will be able to progress with the import.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Import.png)
 
 "Import into SCCM" will then create the application + deployment type using the information provided in the GUI.
 
