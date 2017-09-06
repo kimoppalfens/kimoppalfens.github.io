@@ -54,9 +54,10 @@ The functionality at this point in time is :
 - Fully unattended generation of the Deploy-Application.PS1 file
 - Merging of your source binaries with the PS App toolkit on a destination Share (must be UNC)
 - Creating the SCCM Application + Deployment Type
-- Adding a Software ID tag and using this as a detection mechanism.
+- Adding a Software ID tag and using this as a detection mechanism (with experimental lookup function).
 - Enumerating all DP & DP-Groups and distribute content to them
 - Generate Install & Uninstall collections based on the Application's Name
+
 
 # Pre-requisites #
 
@@ -130,6 +131,12 @@ In my screenshot the result would be \\SCCM_Server\SCCM_Files\Applications\Vendo
 The actual toolkit will be copied into that final subfolder and your application binaries in the "Files" subfolder of the Toolkit
 
 ## The Buttons ##
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/Button_lookup.png)
+
+If you provide the URL of your vendor's website, eg adobe.com and click the lookup button, the GUI will try to detect when that website was registered and pre-fill the RegID information.
+
+Only Com,Org,Edu & Net domains are supported. (Proxy-support is not built-in at this moment)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Generate.png)
 
@@ -209,11 +216,11 @@ Currently on my roadmap for future versions (not necessarily in this order)
 
 # Download #
 
-Current Version : 1.0
+Current Version : 1.1
 
 [Download here](/Files/PSAppGui.zip)
 
-MD5 Checksum : d6359a99b20edb1f40fa53460fe135b2
+MD5 Checksum : df661350b13f5341e9e75fb9424726a9
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
