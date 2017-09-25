@@ -47,12 +47,11 @@ Basic SCCM administration knowledge is a nice to have
 - 	Upgrade Analytics Explained
 - 	Image Customization
 	- 	Windows 10 WSIM unattend files
-	- 	Start Layout XML
+	- 	Start Layout XML & Taskbar customization
 - 	Bare-Metal
 - 	Migration
-	- 	USMT
+	- 	USMT & UE-V
 - 	Driver management framework
-- 	Best-Practices
 - 	Customizing Deployments with UI++
 
 **Servicing**
@@ -74,7 +73,6 @@ Basic SCCM administration knowledge is a nice to have
 	- 	CSP (Configuration Service Providers)
 	- 	OMA-URI's The WMI Bridge 	
 - 	Configuration Manager Current branch cloud management gateway
-- 	Windows 10 GPO Settings 
 - 	Windows store for business
 - 	(Azure) Active Directory Join
 - 	TPM Chip explained
@@ -83,9 +81,13 @@ Basic SCCM administration knowledge is a nice to have
 	- 	Secure boot, Measured boot, Device Health attestation
 - 	Bitlocker/MBAM
 - 	Windows Hello for Business
-- 	Applocker
+
+** Windows 10 Defender & Friends **
 - 	Device Guard
 - 	Credential Guard
+- 	Application Guard
+- 	Exploit Guard
+- 	Advanced Threat Protection (ATP)
 
 
 
