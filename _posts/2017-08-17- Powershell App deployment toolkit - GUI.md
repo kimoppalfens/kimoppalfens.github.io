@@ -216,11 +216,11 @@ Currently on my roadmap for future versions (not necessarily in this order)
 
 # Download #
 
-Current Version : 1.1
+Current Version : 1.2
 
 [Download here](/Files/PSAppGui.zip)
 
-MD5 Checksum : df661350b13f5341e9e75fb9424726a9
+MD5 Checksum : c133e066c5aeb7ab604d954a30dc5579
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
