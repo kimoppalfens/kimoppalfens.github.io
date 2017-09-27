@@ -230,7 +230,7 @@ Current Version : 1.2
 
 [Download here](/Files/PSAppGui.zip)
 
-MD5 Checksum : c133e066c5aeb7ab604d954a30dc5579
+MD5 Checksum : 9559557fc0dd61b2796a99d1a80ea5c7
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
