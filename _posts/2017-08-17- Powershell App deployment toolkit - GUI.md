@@ -50,6 +50,8 @@ To prevent this, I started this project to create a GUI that does most of the le
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
+For now, see it as a tool to merge your files together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stoppinng your from editing that file to embed more complex stuff.
+
 The functionality at this point in time is :
 - Fully unattended generation of the Deploy-Application.PS1 file
 - Merging of your source binaries with the PS App toolkit on a destination Share (must be UNC)
@@ -58,9 +60,6 @@ The functionality at this point in time is :
 - Caching of previously looked up Reg-ID's and previously used source & destination paths
 - Enumerating all DP & DP-Groups and distribute content to them
 - Generate Install & Uninstall collections based on the Application's Name
-
-Yes, I am fully aware that only a very small percentage of the toolkit's functionality is embedded in this GUI. For now, see it as a tool to merge your files together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stoppinng your from editing that file to embed more complex stuff.
-
 
 # Pre-requisites #
 
