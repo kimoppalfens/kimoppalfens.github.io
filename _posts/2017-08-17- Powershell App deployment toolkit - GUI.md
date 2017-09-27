@@ -59,6 +59,8 @@ The functionality at this point in time is :
 - Enumerating all DP & DP-Groups and distribute content to them
 - Generate Install & Uninstall collections based on the Application's Name
 
+Yes, I am fully aware that only a very small percentage of the toolkit's functionality is embedded in this GUI. For now, see it as a tool to merge your files together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stoppinng your from editing that file to embed more complex stuff.
+
 
 # Pre-requisites #
 
@@ -85,6 +87,8 @@ First things first, Copy the entire content of the GUI, for now, to your SCCM Pr
 - PSAPP_GUI.PS1 (The file you need to run !)
 
 When you start the GUI (by launching PSAPP_GUI.PS1 from a Powershell cmd prompt) you should see the interface that allows you to create a new application.
+(Run as administrator the first time to allow the logging module to be downloaded/installed. This is not required for the GUI functionality)
+
 There are a few required fields :
 
 - Application Vendor
