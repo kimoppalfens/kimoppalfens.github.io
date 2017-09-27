@@ -50,7 +50,8 @@ To prevent this, I started this project to create a GUI that does most of the le
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
-For now, see it as a tool to merge your files together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stoppinng your from editing that file to embed more complex stuff.
+For now, see it as a tool to merge your source-binaries together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stopping your from editing that file to embed more complex stuff.
+Also, feel free to update the AppDeployToolkitBanner.png in the Toolkit subfolder with your own company logo !
 
 The functionality at this point in time is :
 - Fully unattended generation of the Deploy-Application.PS1 file
