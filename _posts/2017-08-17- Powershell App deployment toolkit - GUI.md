@@ -46,7 +46,7 @@ One of the issues I ran into when using the toolkit for the first times, besides
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui_Optimized.Gif)
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui_Optimized.gif)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
