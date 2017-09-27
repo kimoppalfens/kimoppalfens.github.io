@@ -2,7 +2,7 @@
 title: "Powershell App Deployment Tookit - GUI"
 header:
 author: Tom Degreef
-date: 2007-09-27
+date: 2017-09-27
 categories:
   - SCCM
   - Configmgr
@@ -170,6 +170,8 @@ Click "Connect to SCCM" to automatically connect to the detected SCCM Environmen
 
 "Import into SCCM" will then create the application + deployment type using the information provided in the GUI.
 
+As a detection method, we check for the presence of the SWID-Tag file. Since it's generated after a succesfull installation, and removed again on uninstallation, it's safe to use this and removes all complexity on finding an appropriate detection method.
+
 The list of DP's and DP-Groups is multi-selectable, so just hold CTRL and select the DP and/or DP-groups you want to start the distribution to and click "Distribute Content"
 
 Finally, you can generate 2 collections based on the Application-Name with the suffixes "-Install" & "-Uninstall". They can be further customized with a pre & suffix of your choice.
@@ -182,7 +184,7 @@ With the introduction of industry-standard software identification tags, it beco
 Software identification tags are stored on the computers on which software is installed. The standard allows for operating system vendors to specify where software identification tags are located.
 On Windows Vista machines and later, SWID Tags are stored under %Programdata%\
 
-On of the key-elements of the software ID tag is the "RegID-File". The file is generated based on when the domain name from the vendor of the application was first registered. Eg, if we lookup "Adobe.com" on [www.whois.net](www.whois.net), we can see that it was first registered/created on 
+One of the key-elements of the software ID tag is the "RegID-File". The file is generated based on when the domain name from the vendor of the application was first registered. Eg, if we lookup "Adobe.com" on [www.whois.net](www.whois.net), we can see that it was first registered/created on 
 November 1986.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/adobe.PNG)
