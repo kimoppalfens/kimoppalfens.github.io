@@ -2,7 +2,7 @@
 title: "Powershell App Deployment Tookit - GUI"
 header:
 author: Tom Degreef
-date: 2007-08-17
+date: 2017-09-27
 categories:
   - SCCM
   - Configmgr
@@ -46,22 +46,25 @@ One of the issues I ran into when using the toolkit for the first times, besides
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_1.0.gif)
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui_Optimized.gif)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
+
+For now, see it as a tool to merge your source-binaries together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stopping your from editing that file to embed more complex stuff.
+Also, feel free to update the AppDeployToolkitBanner.png in the Toolkit subfolder with your own company logo !
 
 The functionality at this point in time is :
 - Fully unattended generation of the Deploy-Application.PS1 file
 - Merging of your source binaries with the PS App toolkit on a destination Share (must be UNC)
 - Creating the SCCM Application + Deployment Type
 - Adding a Software ID tag and using this as a detection mechanism (with experimental lookup function).
+- Caching of previously looked up Reg-ID's and previously used source & destination paths
 - Enumerating all DP & DP-Groups and distribute content to them
 - Generate Install & Uninstall collections based on the Application's Name
 
-
 # Pre-requisites #
 
-**Disclaimer :** As this is the first (beta) version of the GUI, not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best Powershell coder out there anyway ;-) So it's a "learn as you go" project.
+**Disclaimer :** As this is the first (beta) version of the GUI (don't let the version number fool you), not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best Powershell coder out there anyway ;-) So it's a "learn as you go" project.
 
 For now, I assume that the account that launches the GUI has access to the folder that holds your source binaries (the files you want to intall) and to the UNC path where we will copy the merged application to (explained below).
 
@@ -80,9 +83,12 @@ First things first, Copy the entire content of the GUI, for now, to your SCCM Pr
 - Deploy-Application.PS1 (The template I build upon)
 - MainWindow.XAML (My GUI file)
 - OSCCLogo.jpg (needs no further explanation)
+- Prefs.XML (caching of regid's and other settings)
 - PSAPP_GUI.PS1 (The file you need to run !)
 
 When you start the GUI (by launching PSAPP_GUI.PS1 from a Powershell cmd prompt) you should see the interface that allows you to create a new application.
+(Run as administrator the first time to allow the logging module to be downloaded/installed. This is not required for the GUI functionality)
+
 There are a few required fields :
 
 - Application Vendor
@@ -100,21 +106,29 @@ The first 4 should be self-explanatory and are all related to the application yo
 
 On the Installation section, there is a dropdown box to allow you to switch between MSI or Script.
 
-## MSI ##
+## Intallation ##
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/MSI.PNG)
 
+### MSI ###
+
 Enter the full filename of the MSI you want to install, eg 7zip.Msi and in the parameters box the MSI parameters you want to apply, eg /passive or /qn.
 
-In the Uninstall section, provide the name for the application as you see it in Add/Remove Programs. The App deployment toolkit will do a search for that name and perform the uninstallation.
-
-## Script ##
-
-![alt]({{ site.url }}{{ site.baseurl }}/images/Script.PNG)
+### Script ###
 
 for Scripts (or .exe based installs) the process is similar. Provide the filename that you want to run, eg setup.exe and the parameters to have it unattended (eg, /S).
 
-For the uninstallation, provide the full uninstall command line.
+## Uninstallation ##
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/Script.PNG)
+
+### Add/Remove Programs ###
+
+In the Uninstall section, provide the name for the application as you see it in Add/Remove Programs, eg "Adobe Reader X". The App deployment toolkit will do a search for that name and perform the uninstallation.
+
+### Command Line ###
+
+If needed, provide the full uninstall command line, eg "Setup.exe /uninstall".
 
 ## Source & Destination ##
 
@@ -126,7 +140,7 @@ The destination package path must be a network path (\\server\share). The GUI wi
 
 In my screenshot the result would be \\SCCM_Server\SCCM_Files\Applications\Vendor\Applicationname_Version_Bitness
 
-**Note :** Bitness = X86 or X64
+**Note :** Bitness = Application Architecture = X86 or X64
 
 The actual toolkit will be copied into that final subfolder and your application binaries in the "Files" subfolder of the Toolkit
 
@@ -156,6 +170,8 @@ Click "Connect to SCCM" to automatically connect to the detected SCCM Environmen
 
 "Import into SCCM" will then create the application + deployment type using the information provided in the GUI.
 
+As a detection method, we check for the presence of the SWID-Tag file. Since it's generated after a succesfull installation, and removed again on uninstallation, it's safe to use this and removes all complexity on finding an appropriate detection method.
+
 The list of DP's and DP-Groups is multi-selectable, so just hold CTRL and select the DP and/or DP-groups you want to start the distribution to and click "Distribute Content"
 
 Finally, you can generate 2 collections based on the Application-Name with the suffixes "-Install" & "-Uninstall". They can be further customized with a pre & suffix of your choice.
@@ -168,7 +184,7 @@ With the introduction of industry-standard software identification tags, it beco
 Software identification tags are stored on the computers on which software is installed. The standard allows for operating system vendors to specify where software identification tags are located.
 On Windows Vista machines and later, SWID Tags are stored under %Programdata%\
 
-On of the key-elements of the software ID tag is the "RegID-File". The file is generated based on when the domain name from the vendor of the application was first registered. Eg, if we lookup "Adobe.com" on [www.whois.net](www.whois.net), we can see that it was first registered/created on 
+One of the key-elements of the software ID tag is the "RegID-File". The file is generated based on when the domain name from the vendor of the application was first registered. Eg, if we lookup "Adobe.com" on [www.whois.net](www.whois.net), we can see that it was first registered/created on 
 November 1986.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/adobe.PNG)
@@ -190,7 +206,7 @@ Enable the inventory class "SMS_SoftwareTag" and once the data is collected you 
 
 Back to the GUI. With all the information it should be clear what needs to be filled out in the Software ID Tag fields. Look up the domainname for your vendor, enter the year, month and domainname in reverse order.
 
-If you tick the checkbox, a flag will be set to "False" indicating that this is software that is free to use. If you don't tick the box, the SWID-tag will be created with Entitlement Required = True, indicating that a license is needed.
+When you select "License Required : No", a flag will be set to "False" indicating that this is software that is free to use. If you select "Yes", the SWID-tag will be created with Entitlement Required = True, indicating that a license is needed.
 
 
 By default, the powershell App deployment toolkit doesn't support the creation of SWID-tags, but Kim wrote an extention (that's included with the GUI) to enable this functionality.
@@ -204,7 +220,7 @@ Currently on my roadmap for future versions (not necessarily in this order)
 
 - Create Deployments
 - Create AD-Groups and link to Collections
-- Saved settings such as target folder, selected DP's,SWID-tags, ...
+- Saved settings such as target folder, selected DP's, ...
 - Browse buttons
 - More Built-in Toolkit actions
 - Multi-threaded GUI
@@ -216,11 +232,11 @@ Currently on my roadmap for future versions (not necessarily in this order)
 
 # Download #
 
-Current Version : 1.1
+Current Version : 1.2
 
 [Download here](/Files/PSAppGui.zip)
 
-MD5 Checksum : df661350b13f5341e9e75fb9424726a9
+MD5 Checksum : 9559557fc0dd61b2796a99d1a80ea5c7
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
