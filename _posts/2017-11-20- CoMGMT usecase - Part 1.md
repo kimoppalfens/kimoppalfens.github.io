@@ -34,9 +34,8 @@ These possibilities lead us to an interesting scenario. What if we would leverag
 To enable the scenario above, we need to fulfill a few technical requirements :
  -	Windows 10 1709 build (Fall Creators Update)
  -	Configmgr 1710 Current Branch
-
-  -- Cloud Management Gateway on SCCM
-  -- Co-management enabled on SCCM
+    - Cloud Management Gateway on SCCM
+    - Co-management enabled on SCCM
  - Intune Stand-Alone
 
 I'll go over the complete setup, end-to-end, to get this scenario working, but with all the moving parts in play I need to split it up in several posts.
@@ -48,9 +47,9 @@ The most complex part of the entire setup is getting the Configmgr Cloud Managem
 **Requirements for cloud management gateway**
 
 - Client computers and the site system server running the cloud management gateway connector point.
-- Custom SSL certificates from the internal CA - used to encrypt communication from the client computers and authenticate the identity of the cloud management gateway service.
+- Custom SSL certificates from the internal CA (used to encrypt communication from the client computers and authenticate the identity of the cloud management gateway service.)
 - Azure subscription for cloud services.
-- Azure management certificate - used to authenticate Configuration Manager with Azure.
+- Azure management certificate (used to authenticate Configuration Manager with Azure.)
 
 **Specifications for cloud management gateway**
 
@@ -122,7 +121,9 @@ Once Enrolled, Select the Certificate you just created, right-click it and selec
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CA_Export.PNG)
 
-Because we have issued the certificates from our own PKI infrastructure, we need to have an export of the Root and subordinate CA's certificates as well. There are a few ways to get this accomplished, but the easiest is selecting one of our CMG certificates again from the certificates MMC snap-in. Double-click it to open it and navigate to the Certifications Path-Tab.
+Because we have issued the certificates from our own PKI infrastructure, we need to have an export of the Root and subordinate CA's certificates as well. There are a few ways to get this accomplished, but the easiest is selecting one of our CMG certificates again from the certificates MMC snap-in. 
+
+Double-click it to open it and navigate to the Certifications Path-Tab.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CA_certpath.PNG)
 
@@ -135,11 +136,16 @@ Last, but not least, also export your public Cloud management gateway certificat
 ### Uploading our certificates to Azure ###
 
 Ok, now that we got the required certificates from our own PKI infra, let's get them to Azure. Logon to HTTP://Portal.azure.com.
+
 On the left hand side, at the bottom select "More Services" and in the new window select "Subscriptions".
 
  ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_azure_subscriptions.PNG)
 
- **Note** If at this point, you don't see any subscription, this means that you don't have a valid Azure subscription to create virtual machines. You can always , Add a "Pay-As-You-Go" subscription to test out the CMG functionality. You will be only billed for what you use and for a CMG, this cost is very limited ! In our test lab, running a CMG for a few clients was less than 100€ / month. The additional cost for more clients is just a bit of processing power and network traffic. Both very limited for a management point !!
+ **Note** If at this point, you don't see any subscription, this means that you don't have a valid Azure subscription to create virtual machines. 
+ 
+ You can always , Add a "Pay-As-You-Go" subscription to test out the CMG functionality. You will be only billed for what you use and for a CMG, this cost is very limited ! 
+ 
+ In our test lab, running a CMG for a few clients was less than 100€ / month. The additional cost for more clients is just a bit of processing power and network traffic. Both very limited for a management point !!
 
  Anyway, if you do have a valid subscription, or you just created one, note down the Subscription ID 
 
@@ -158,12 +164,15 @@ Ok, all prerequisites are taken care off, let's create ourselves a shiny CMG in 
 On your primary site, being it the latest tech preview or a production build where you enabled the Cloud management gateway as a pre-release feature.
 
 In your Configuration manager Admin-UI, navigate to the Administration Pane, Cloud Services, Cloud Management Gateway. Select "Create Cloud management Gateway" from the quick access toolbar.
+
 Provide the subscription ID you noted down earlier and select the Management certificate with the private key (PFX-file) as the management certificate and click Next.
+
 At this point you "allow" your primary site to make changes in Azure without using a username & password. These certificates replace user credentials if you will.
 
   ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMGWizard1.PNG)
 
 On the Settings page, ignore for now the "Service name". This will be automatically filled in for you. (yes, it's confusing with the exclamation mark next to it !).
+
 Select your appropriate region and in the Certification file, provide the Cloud Management Gateway public certificate with the private key (PFX-file). (not the management one we used earlier)
 
 Once you've selected the PFX file, the Service name and Service FQDN will be filled out for you.
@@ -171,19 +180,23 @@ Once you've selected the PFX file, the Service name and Service FQDN will be fil
  ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMGWizard2.PNG)
 
  Still on that same Settings page, click the "Certificates" button and add your root and subordinate certificates (if appropriate). Make sure to select the appropriate store for each certificate. eg, Trusted root for your root and Intermediate for your subordinate. If your CRL's aren't reachable from the internet, make sure to uncheck the "Verify Client Certificate Revocation" checkbox.
+
  Select OK on this screen and Next to continue the wizard.
  
  ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMGWizard3.PNG)
 
  Finish the wizard with the default settings (or adjust to your liking). Once the wizard is completed, the creation of your virtual machine in Azure will start. This will take some time and in your Admin-UI it will show as "Provisioning" for status.
- ** Note ** At this point in time, a "classic service/Gen1" virtual machine will be created. In one of the following releases of ConfigMgr Current branch, we expect that the newer Gen2 virtual machines will be useable. The result of this, for now, is that if you would suspend your CMG functionality from the ConfigMgr Admin-UI, you will still be charged for the virtual machine itself. This should be different for the newer Gen2 machines.
+
+ **Note** At this point in time, a "classic service/Gen1" virtual machine will be created. In one of the following releases of ConfigMgr Current branch, we expect that the newer Gen2 virtual machines will be useable. The result of this, for now, is that if you would suspend your CMG functionality from the ConfigMgr Admin-UI, you will still be charged for the virtual machine itself. This should be different for the newer Gen2 machines.
 
  You can rely on the CloudMgr.Log file to check what is happening in the background or troubleshooting if something fails during setup.
 
  ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMGProvisioning.PNG)
 
 During Provisioning, we can continue with the rest of the setup.
+
  Next step is to add a Cloud management gateway connection point. In your Admin-UI, navigate to the administration pane / Site Configuration / Servers and site system roles and right-click your primary site. Select "Add site system Role" and select the box next to "Cloud management gateway connection point".
+
  The log file for this specific role is called "SMS_Cloud_Proxyconnector.Log"
  
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMG_connectionpointrole.PNG)
@@ -199,6 +212,7 @@ Repeat this process for the Software Update Point (if wanted/needed).
 With a bit of luck, the creation of our CMG virtual machine in azure is ready in the meantime. The status should display "Ready" in the cloud management gateway node.
 
 **Side-Track**
+
 Given that our Cloud management gateway is an actual virtual machine in Azure, it could come in handy if we could log on to it for troubleshooting purposes. In order to do that, we need to enable the RDP service.
 
 In your azure subscription, check the "All services" node. You should see there a "Cloud Service (classic)" entry for your CMG. Select it.
@@ -210,14 +224,17 @@ In the new menu, select "Remote desktop" and set it to "Enabled". Provide a user
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMG_RDP2.PNG)
 
 Now, in order to log on to this virtual machine, you can't simply start an RDP session to the public IP.
+
 Once you selected your CMG, on the overview pane, you should see a "ProxyService in 0" with the status "Running". 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMG_RDP3.PNG)
 
 Click that link (the Proxyservice in 0) and then you can click the Connect button. This will download a .RDP file that you can use to start an RDP session to your CMG.
+
 Provide the username and password you created earlier and you should be presented with , in my case, the desktop of a Server 2012 R2 machine.
 
 On the E-Drive there is a folder called "Approot" that seems to hold most of the CMG related components and logs.
+
 Depending on what you are trying to troubleshoot, it could also be interesting to take a look at the IIS logs. In my case those were found on D:\Inetpub
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMG_RDP4.PNG)
@@ -232,30 +249,32 @@ Make sure your test-client has a computer certificate delivered by the same PKI 
 
 You can verify that your client is aware about the existence of the CMG by running the following PowerShell command from a client :
 
-´´´
+```posh
 gwmi -namespace root\ccm\locationservices -class SMS_ActiveMPCandidate | Select-Object -Property MP
-´´´
+```
 
 The output should show you all available management points including the CMG 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/Posh_CMG.PNG)
 
 Once you verified that the client is "CMG-Aware", switch it to a public internet connection and verify connectivity again.
-** note ** Once in a while I hear people asking how a client determines if it is on-premise or on the internet. The simple answer is that a client will try to resolve your Global Catalog Server (AD). If that is possible, then it will assume it is on-premise, if not, it will be on the internet.
+
+**note** Once in a while I hear people asking how a client determines if it is on-premise or on the internet. The simple answer is that a client will try to resolve your Global Catalog Server (AD). If that is possible, then it will assume it is on-premise, if not, it will be on the internet.
 
 You can verify connectivity to your CMG by using the following PowerShell commands (obviously replace the URL with your own DNS entry for your CMG)
 
-´´´
+```posh
 $certs = dir Cert:\LocalMachine\My\
 Invoke-WebRequest -uri "https://MYTRAININGCMG.CLOUDAPP.NET/CCM_Proxy_MutualAuth/72057594037927939/SMS_MP/.sms_pol?SRC10000.SHA256:2D59C6D6AE51F38C7B179E794AECE84753BAE08C5A85111176BE01D02B1A1912" -Certificate $certs 
-´´´
+```
 
 If the entire setup was successful, you should see the following result 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/request_basepolicy.PNG)
 
 What you have done in reality, is request a valid policy (just like your client would if it were on-premise). This specific policy that we requested is one that is available (and identical) on every ConfigMgr environment.
-** note ** You can actually use this same policy request against every MP as a way of validating that your MP is working properly !
+
+**note** You can actually use this same policy request against every MP as a way of validating that your MP is working properly !
 
 On your Primary site, if you would check back to your cloud management gateway under the Administration Node, you would equally see there that some requests came through.
 
