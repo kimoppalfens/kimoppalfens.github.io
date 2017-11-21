@@ -279,5 +279,7 @@ What you have done in reality, is request a valid policy (just like your client 
 On your Primary site, if you would check back to your cloud management gateway under the Administration Node, you would equally see there that some requests came through.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CMG_Requests_Summary.PNG)
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CMG_Requests.PNG)
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CMG_Role_endpoints.PNG)
