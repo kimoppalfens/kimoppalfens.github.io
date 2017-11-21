@@ -10,6 +10,8 @@ categories:
   - Co-Management
   - Cloud Management Gateway
   - CMG
+  - Azure AD
+  - AAD
 
 
 tags:
@@ -30,11 +32,11 @@ In [Part 1](www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%2
 Before you can enable Co-Management, you need to make sure that you have met the following pre-requisites :
 
 - Configuration Manager 1710 Current Branch or Technical Preview version 1709 (or later)
-- Azure AD 
+- Azure AD & Azure AD Discovery
 - EMS or Intune license for all users
 - Intune subscription (MDM authority in Intune set to Intune)
 
-It is beyond the scope of this blog to cover these pre-requisites but once you have all of that in place we can continue with the setup of co-management.
+It is beyond the scope of this blog to cover these pre-requisites but we will focus in this post on configuring Azure AD Discovery.
 
 ## Configure Azure AD Discovery ##
 
@@ -54,7 +56,7 @@ Click "Create" to create a new Web app.
 
 Provide a name for your App and sign in with your Azure AD Admin account.
 
-You can leave the Homepage URL & App ID URI as they are (https://ConfigMGrService).
+You can leave the Homepage URL & App ID URI as they are (https://ConfigMGrService). Those are not really relevant from a ConfigMgr point of view and do not need to resolve to anything in your environment.
 
 Change the validity period if you like. 
 
