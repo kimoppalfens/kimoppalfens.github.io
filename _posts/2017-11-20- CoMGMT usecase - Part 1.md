@@ -46,8 +46,8 @@ The most complex part of the entire setup is getting the Configmgr Cloud Managem
 
 **Requirements for cloud management gateway**
 
-- Client computers and the site system server running the cloud management gateway connector point.
-- Custom SSL certificates from the internal CA (used to encrypt communication from the client computers and authenticate the identity of the cloud management gateway service.)
+- A site system server running the cloud management gateway connector point.
+- Custom SSL certificates from the internal CA or AAD token Authentication (used to encrypt communication from the client computers and authenticate the identity of the cloud management gateway service.)
 - Azure subscription for cloud services.
 - Azure management certificate (used to authenticate Configuration Manager with Azure.)
 
@@ -77,9 +77,9 @@ The following features in Configuration Manager are currently unsupported for cl
 
 ### Getting the necessary Certificates ###
 
-As you have seen in the requirements, we need 2 certificates, 1 to authenticate Configuration Manager with Azure and one to identify our CMG on the internet (the public one). The public one, you can buy one from any of the online certificate authorities or you can generate one from your own PKI if you have it available. The management one can ofcorse also be bought but a self-signed is equally supported.
+As you have seen in the requirements, we need 2 certificates, 1 to authenticate Configuration Manager with Azure and one to identify our CMG on the internet (the public one). The public one, you can buy one from any of the online certificate authorities or you can generate one from your own PKI if you have it available. The management one can ofcourse also be bought but a self-signed is equally supported.
 
-Although technically it is possible, it is very much not advised to use the same certificate for both needs !
+Although it is technically possible, it is very much not advised to use the same certificate for both needs !
 
 In my Lab, I have a two-tier PKI setup and I'll leverage that to generate the certificates I need. We need a certificate with an exportable private key that supports server authentication, so let's create that template first. Log on to your issuing Certificate authority and open the "Certificate Authority" snap-in from MMC.
 
@@ -143,9 +143,9 @@ On the left hand side, at the bottom select "More Services" and in the new windo
 
  **Note** If at this point, you don't see any subscription, this means that you don't have a valid Azure subscription to create virtual machines. 
  
- You can always , Add a "Pay-As-You-Go" subscription to test out the CMG functionality. You will be only billed for what you use and for a CMG, this cost is very limited ! 
+ You can always , Add a "Pay-As-You-Go" subscription to test out the CMG functionality. You will only be billed for what you use and for a CMG, this cost is very limited ! 
  
- In our test lab, running a CMG for a few clients was less than 100€ / month. The additional cost for more clients is just a bit of processing power and network traffic. Both very limited for a management point !!
+ In our test lab, running a CMG for a few clients, the cost was less than 100€ / month. The additional cost for more clients is just a bit of processing power and network traffic. Both very limited for a management point !!
 
  Anyway, if you do have a valid subscription, or you just created one, note down the Subscription ID 
 
@@ -159,9 +159,9 @@ On the left hand side, at the bottom select "More Services" and in the new windo
 
 ### Creating the Cloud Management Gateway service in ConfigMgr ###
 
-Ok, all prerequisites are taken care off, let's create ourselves a shiny CMG in Azure !
+Ok, with all prerequisites taken care off, let's create ourselves a shiny CMG in Azure !
 
-On your primary site, being it the latest tech preview or a production build where you enabled the Cloud management gateway as a pre-release feature.
+On your primary site, being it the latest tech preview or a production build (1706 or later) where you enabled the Cloud management gateway as a pre-release feature.
 
 In your Configuration manager Admin-UI, navigate to the Administration Pane, Cloud Services, Cloud Management Gateway. Select "Create Cloud management Gateway" from the quick access toolbar.
 
@@ -187,9 +187,9 @@ Once you've selected the PFX file, the Service name and Service FQDN will be fil
 
  Finish the wizard with the default settings (or adjust to your liking). Once the wizard is completed, the creation of your virtual machine in Azure will start. This will take some time and in your Admin-UI it will show as "Provisioning" for status.
 
- **Note** At this point in time, a "classic service/Gen1" virtual machine will be created. In one of the following releases of ConfigMgr Current branch, we expect that the newer Gen2 virtual machines will be useable. The result of this, for now, is that if you would suspend your CMG functionality from the ConfigMgr Admin-UI, you will still be charged for the virtual machine itself. This should be different for the newer Gen2 machines.
+ **Note** At this point in time, a “classic service” deployment, which includes a virtual machine will be created. In one of the following releases of ConfigMgr Current branch, we expect that the newer ARM based objects will be useable. The result of this, for now, is that if suspend your CMG functionality from the ConfigMgr Admin-UI, you will still be charged for the virtual machine itself even though it is turned off. This should be different for the newer Azure Resource manager based resources. 
 
- You can rely on the CloudMgr.Log file to check what is happening in the background or troubleshooting if something fails during setup.
+ You can rely on the CloudMgr.Log file to check what is happening in the background or for troubleshooting if something fails during setup.
 
  ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CoMgmt_CMGProvisioning.PNG)
 
@@ -241,7 +241,7 @@ Depending on what you are trying to troubleshoot, it could also be interesting t
 
 ### Verifying CMG Connectivity ###
 
-Since our clients will use the CMG if they are on "the internet", they will need some form of authentication. This is possible in 2 ways. Either you can use client certificates, delivered by the PKI infrastructure we already have in place or we can use token-authentication. For now, this specific post will focus on using client certificates. A follow up post will come later explaining the same process using token authentication.
+Since our clients will use the CMG if they are on "the internet", they will need some form of authentication. This is possible in 2 ways. Either you can use client certificates, delivered by the PKI infrastructure we already have in place or we can use Azure AD token-authentication. For now, this specific post will focus on using client certificates. A follow up post will come later explaining the same process using token authentication.
 
 There are 2 ways your client will know about the existence of your cloud management gateway. They will either receive this information when they are on-premise during a regular policy-request, or you can use a specific command line to (re-)install your client and make it CMG-aware. This could be useful if a client has no access to on-premise infrastructure.
 
@@ -264,8 +264,8 @@ Once you verified that the client is "CMG-Aware", switch it to a public internet
 You can verify connectivity to your CMG by using the following PowerShell commands (obviously replace the URL with your own DNS entry for your CMG)
 
 ```posh
-$certs = dir Cert:\LocalMachine\My\
-Invoke-WebRequest -uri "https://MYTRAININGCMG.CLOUDAPP.NET/CCM_Proxy_MutualAuth/72057594037927939/SMS_MP/.sms_pol?SRC10000.SHA256:2D59C6D6AE51F38C7B179E794AECE84753BAE08C5A85111176BE01D02B1A1912" -Certificate $certs 
+$cert = ((gci Cert:\LocalMachine\My) | ? {$_.EnhancedKeyUsageList -like '*Client Authentication*'})
+Invoke-WebRequest -uri "https://MYTRAININGCMG.CLOUDAPP.NET/CCM_Proxy_MutualAuth/72057594037927939/SMS_MP/.sms_pol?SRC10000.SHA256:2D59C6D6AE51F38C7B179E794AECE84753BAE08C5A85111176BE01D02B1A1912" -Certificate $cert
 ```
 
 If the entire setup was successful, you should see the following result 
@@ -278,4 +278,6 @@ What you have done in reality, is request a valid policy (just like your client 
 
 On your Primary site, if you would check back to your cloud management gateway under the Administration Node, you would equally see there that some requests came through.
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CMG_Requests_Summary.PNG)
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CMG_Requests.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images/CMG/CMG_Role_endpoints.PNG)
