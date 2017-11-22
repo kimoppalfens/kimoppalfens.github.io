@@ -2,7 +2,7 @@
 title: "An interesting use-case for Intune and SCCM Co-Management - Part 2"
 header:
 author: Tom Degreef
-date: 2007-11-21
+date: 2017-11-21
 categories:
   - SCCM
   - Configmgr
@@ -114,7 +114,7 @@ You should be able to see the 2 apps you previously created, 1 web app and 1 nat
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/AzureADsync14.PNG)
 
-Click on the "Grant Permissions" button to "Approve" the required permissions for this App.
+Click on the "Grant Permissions" button to "Approve" the requested permissions for this App.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/AzureADsync15.PNG)
 
@@ -127,9 +127,9 @@ If the permissions were granted successfully, you should see a confirmation in t
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/AzureADsync17.PNG)
 
-**Note** As you have noticed, both the Apps need some permissions to function, however it would not make sense that they would approve their own requested permissions, hence these extra steps that give you the final control over what happens or not.
+**Note** As you have noticed, both the Apps need some permissions to function, however it would not make sense that they would approve their own requested permissions, hence these extra steps that give you the final control over what happens.
 
-Once that is done, you can trigger a full Sync in the Admin UI. Synchronisation details are found in the "SMS_AzureAD_Discovery_Agent.Log"
+Once that is done, you can trigger a full Sync in the Admin UI. Synchronization details are found in the "SMS_AzureAD_Discovery_Agent.Log"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/AzureADsync18.PNG)
 
