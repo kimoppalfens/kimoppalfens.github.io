@@ -27,7 +27,7 @@ Real-World scenario on where Intune and SCCM Co-management could come in handy
 
 # Intro #
 
-In [Part 1](www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1) we configured the Cloud Management Gateway. With that Pre-Req out of the way, we can now focus on Co-Management and Intune.
+In ([Part 1](www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1)) we configured the Cloud Management Gateway. With that Pre-Requisite out of the way, we can now focus on Co-Management and Intune.
 
 Before you can enable Co-Management, you need to make sure that you have met the following pre-requisites :
 
