@@ -40,7 +40,7 @@ Sign in with your Intune Admin account and click next.
 
 Select if you want to automatically enroll into Intune. If you enable this feature, all devices that are already managed by your on-premise ConfigMgr setup will automatically be enrolled into Intune.
 
-Given that we are setting up Co-Management, the end-result would be that the device is both accessible for Intune & ConfigMgr. For sake of this blog, let's put it on 'All'. However, keep in mind that a few pre-requisites on the client side need to be in place for this to work.
+Given that we are setting up Co-Management, the end-result would be that the device is both accessible for Intune & ConfigMgr. For the sake of this blog, let's put it on 'All'. However, keep in mind that a few pre-requisites on the client side need to be in place for this to work.
 
 Those pre-requisites are (but might not be limited to) :
 
@@ -52,7 +52,8 @@ Those pre-requisites are (but might not be limited to) :
 
 We'll cover de technical details of these options later in this blog when we check out the result on an actual client.
 
-Also, while you are on this screen, make sure to copy (and save!) the Command line you need later on if you want to install the Configmgr agent using Intune. If, for some reason, you don't see this command line and are greeted by a "Requirements not met" window, it probably means you missed something that I configured in Part 1 or 2.
+Also, while you are on this screen, make sure to copy (and save!) the Command line you need later on if you want to install the Configmgr agent using Intune.
+If, for some reason, you don't see this command line and are greeted by a "Requirements not met" window, it probably means you missed something that we configured in Part 1 or 2.
 
 Make sure to check back and very each step.
 
@@ -60,10 +61,13 @@ Make sure to check back and very each step.
 
 For each of the 3 available workloads, configure if you want them managed by ConfigMgr, Intune, or start a pilot for Intune. Later on you can define a "Pilot" Collection.
 
-Important to notice here is that there will be only 1 pilot collection available. This collection will be used for each workload you select on this screen and configure it for Pilot, but it will equally be used in the previous step if you chose "Pilot" instead of all for the automatic Intune enrollment.
+Important to notice here is that there will be only 1 pilot collection available. This collection will be used for each workload you select on this screen and configured for Pilot.
+
+This Pilot collection will equally be used in the previous step if you chose "Pilot" instead of all for the automatic Intune enrollment.
+
 Unless you are very familiar with each workload and how management difference between Intune and Configmgr, I would advise to start 1 workload at a time in Pilot. This allows you to evaluate each and every workload separately and doesn't overly complicates troubleshooting (if needed)
 
-In my particular case I start with "Compliance Policies" in Pilot.
+In my particular case I will start with "Compliance Policies" in Pilot.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt3.PNG)
 
@@ -75,10 +79,15 @@ Review your summary and finish the Wizard.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt5.PNG)
 
-If, for some reason you want to modify what entity manages what workload, get that install Command line again or change your pilot collection, Select "Properties" from the Quick access toolbar while you have your Co-management entry selected.
+If, for some reason, you want to modify what entity manages what workload or, get that install Command line again or, change your pilot collection. 
+
+Select "Properties" from the Quick access toolbar while you have your Co-management entry selected.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt6.PNG)
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt7.PNG)
+
+That's it from a ConfigMgr point of view !
 
 ## Some Additional pre-requisites ##
 
@@ -89,20 +98,27 @@ Select "Mobility (MDM and MAM)" and if all is well, Intune is pre-created as an 
 
 Set the MDM user scope to "All" and save your configuration.
 
-As for the Multi Factor Authentication (MFA). The [Microsoft docs](https://docs.microsoft.com/en-us/intune/windows-enroll#enable-windows-10-automatic-enrollment) mention it as "recommended", they don't list it as required. However, from my own tests, I can conclude that without any form of MFA, I wasn't able to get auto-enrollment working at all. I would even get an error-message in the eventlog that indicated an MFA-Error.
+As for the Multi Factor Authentication (MFA). The [Microsoft docs](https://docs.microsoft.com/en-us/intune/windows-enroll#enable-windows-10-automatic-enrollment) mention it as "recommended", they don't list it as required. 
+
+However, from my own tests, I can conclude that without any form of MFA, I wasn't able to get auto-enrollment working at all. 
+I would even get an error-message in the eventlog that indicated an MFA-Error.
 
 For my specific tests, I setup a Hello for Business profile from within Configmgr and deployed that to my test-machine and enrolled in Hello for Business. It's beyond the scope of this blog to go into the details for setting up hello for business.
 
 ## Verifying the results on a Windows 10 - 1709 Machine ##
 
 Let's first verify the Client Requirements.
-Logon to your Windows 10 - 1709 client and make sure that it is Azure AD Registered. Do this by opening and Admin Command prompt and typing the following command : DSREGCMD /Status. You should see something similar to this 
+
+Logon to your Windows 10 - 1709 client and make sure that it is Azure AD Registered.
+Do this by opening and Admin Command prompt and typing the following command : "DSREGCMD /Status". 
+You should see something similar to this 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/TP1706_DR_succeeded.PNG)
 
 Obviously, also make sure that your ConfigMgr client agent is up to the latest version (in production, it would need to be Configmgr 1710 or later)
 
-If all of the pre-requisites are good, we can check if our enrollment in Intune has succeeded. There are a few places to check, but I found the CoManagementHandler.Log (under c:\windows\ccm\logs) to be the easiest.
+If all of the pre-requisites are good, we can check if our enrollment in Intune has succeeded.
+There are a few places to check, but I found the CoManagementHandler.Log (under c:\windows\ccm\logs) to be the easiest.
 
 A few things I noticed about auto-enrollment is that once the policy is received by the client, it will not automatically start the enrollment process. There is some delay built-in to the mechanism that seems to randomize this from a few minutes to a few hours.
 
@@ -112,7 +128,7 @@ If, like me, you are a very patient person, you can sit out the time for the aut
 
 Then run : "DeviceEnrollment /c /AutoEnrollMDM"
 
-The command itself won't give any feedback but you should see some results in the Eventlog (Microsoft / Windows / DeviceManagement-Enterprise- Diagnostics-Provider / Admin).
+The command itself won't give any feedback but you should see some results in the Eventlog (Microsoft / Windows / DeviceManagement-Enterprise- Diagnostics-Provider / Admin).  
 Look for EventID "75 - Auto MDM Enroll: Succeeded"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt17.PNG)
@@ -164,3 +180,5 @@ Click OK to confirm the App.
 And then finally "Add" to Save and configure the App in Intune.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt12.PNG)
+
+That's it for today ! We will configure conditional Access in Part 4! Enjoy Reading.
