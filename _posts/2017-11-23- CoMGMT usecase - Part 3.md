@@ -2,7 +2,7 @@
 title: "An interesting use-case for Intune and SCCM Co-Management - Part 3"
 header:
 author: Tom Degreef
-date: 2007-11-21
+date: 2017-11-27
 categories:
   - SCCM
   - Configmgr
@@ -65,7 +65,8 @@ This Pilot collection will equally be used in the previous step if you chose "Pi
 
 Unless you are very familiar with each workload and how management difference between Intune and Configmgr, I would advise to start 1 workload at a time in Pilot. This allows you to evaluate each and every workload separately and doesn't overly complicates troubleshooting (if needed).  
 
-In my particular case I will start with "Compliance Policies" in Pilot.
+In my particular case I will start with "Compliance Policies" in Pilot.  
+In the follow-up Blog posts we will continue with "Conditional Access" and that will handle more in depth why we started with the "Compliance Policies" workload.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt3.PNG)
 
@@ -86,18 +87,18 @@ Select "Properties" from the Quick access toolbar while you have your Co-managem
 
 That's it from a ConfigMgr point of view !
 
-## An Additional pre-requisites ##
+## An Additional pre-requisite ##
 
-For Multi Factor Authentication (MFA). The [Microsoft docs](https://docs.microsoft.com/en-us/intune/windows-enroll#enable-windows-10-automatic-enrollment) mention it as "recommended", they don't list it as required. 
+For Multi Factor Authentication (MFA). The [Microsoft docs](https://docs.microsoft.com/en-us/intune/windows-enroll#enable-windows-10-automatic-enrollment) mention it as "recommended" but they don't list it as required. 
 
 However, from my own tests, I can conclude that without any form of MFA, I wasn't able to get auto-enrollment working at all.  
-I would even get an error-message in the eventlog that indicated an MFA-Error.
+I would even get an error-message in the eventlog that specified "MFA Required".
 
-For my specific tests, I setup a Hello for Business profile from within Configmgr and deployed that to my test-machine and enrolled in Hello for Business. It's beyond the scope of this blog to go into the details for setting up hello for business.
+For my specific tests, I setup a Hello for Business profile from within Configmgr and deployed that to my test-machine and enrolled in Hello for Business. It's beyond the scope of this blog to go into the details of setting up hello for business. But this, or any other form of MFA should be sufficient. 
 
 ## Verifying the results on a Windows 10 - 1709 Machine ##
 
-Let's first verify the Client Requirements.
+Let's first verify that the Client Requirements are met.
 
 Logon to your Windows 10 - 1709 client and make sure that it is Azure AD Registered.  
 Do this by opening and Admin Command prompt and typing the following command : "DSREGCMD /Status".  
@@ -110,6 +111,7 @@ Obviously, also make sure that your ConfigMgr client agent is up to the latest v
 If all of the pre-requisites are good, we can check if our enrollment in Intune has succeeded.  
 There are a few places to check, but I found the CoManagementHandler.Log (under c:\windows\ccm\logs) to be the easiest.
 
+**Note:**  
 A few things I noticed about auto-enrollment is that once the policy is received by the client, it will not automatically start the enrollment process. There is some delay built-in to the mechanism that seems to randomize this from a few minutes to a few hours.
 
 If enrollment fails (because not all requirements are met), it will retry 3 times with a 15 minute interval. If after that it still didn't succeed in enrolling, it will not try again until the computer is rebooted (or the sms agent host got restarted).
