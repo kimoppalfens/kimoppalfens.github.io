@@ -66,7 +66,7 @@ This Pilot collection will equally be used in the previous step if you chose "Pi
 Unless you are very familiar with each workload and how management difference between Intune and Configmgr, I would advise to start 1 workload at a time in Pilot. This allows you to evaluate each and every workload separately and doesn't overly complicates troubleshooting (if needed).  
 
 In my particular case I will start with "Compliance Policies" in Pilot.  
-In the follow-up Blog posts we will continue with "Conditional Access" and that will handle more in depth why we started with the "Compliance Policies" workload.
+In the follow-up blog posts we will continue with "Conditional Access" and that will explain more in depth why we started with the "Compliance Policies" workload here.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Comgmt3.PNG)
 
