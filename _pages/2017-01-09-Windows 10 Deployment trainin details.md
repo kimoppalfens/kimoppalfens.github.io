@@ -11,7 +11,7 @@ author_profile: true
 ---
 
 ## Schedule
-5 days - 16-20/10/2017 - Louvain
+5 days - Date to be announced - Louvain
 
 For registration or additional questions email: [info@oscc.be](mailto:info@oscc.be)
 
