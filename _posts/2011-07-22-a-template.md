@@ -18,7 +18,8 @@ Header Line
 # Intro #
 author: Tom Degreef
 ![alt](../images/upgradeanalytics.PNG)
-Image
+
+afsluittekst
 
 
 
