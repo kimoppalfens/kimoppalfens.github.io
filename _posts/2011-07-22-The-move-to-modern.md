@@ -13,7 +13,7 @@ tags:
   - ConfigMgr
 ---
 
-My take on moving to modern and the Co-Management bridge
+The Co-Management bridge and moving to Modern.
 # Intro #
 Unless you've been living under a rock since the release of Windows 10 you should've heard the hype around moving to Modern in the Microsoft Stack. In this post, which might turn into a post series, as this is a topic I can talk/write about quite a bit, I'll share my personal view on this.
 
