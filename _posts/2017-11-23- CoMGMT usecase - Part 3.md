@@ -23,7 +23,7 @@ tags:
   - CMG
 ---
 
-Real-World scenario on where Intune and SCCM Co-management could come in handy
+Real-World scenario on where Intune and SCCM Co-management could come in handy.  Enabling the Co-management feature
 
 # Intro #
 

@@ -21,7 +21,7 @@ tags:
   - CMG
 ---
 
-Real-World scenario on where Intune and SCCM Co-management could come in handy
+Real-World scenario on where Intune and SCCM Co-management could come in handy. Setting up the Cloud Management Gateway.
 
 # Intro #
 

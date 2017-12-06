@@ -22,7 +22,7 @@ tags:
   - CMG
 ---
 
-Real-World scenario on where Intune and SCCM Co-management could come in handy
+Real-World scenario on where Intune and SCCM Co-management could come in handy.  Configuring Azure AD Discovery
 
 # Intro #
 
