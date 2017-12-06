@@ -23,7 +23,7 @@ tags:
   - CMG
 ---
 
-Real-World scenario on where Intune and SCCM Co-management could come in handy
+Real-World scenario on where Intune and SCCM Co-management could come in handy. Deploying the Configmgr Agent through Intune.
 
 # Intro #
 
@@ -75,7 +75,7 @@ Click the "Assignments" Button and then "Select Groups"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Intune01.PNG)
 
-Select a group that holds the users you want to target for ConfigmgrClient Installation and make it a required install.
+Select a group that holds the users you want to target for Configmgr Client installation and make it a required install.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Intune02.PNG)
 
