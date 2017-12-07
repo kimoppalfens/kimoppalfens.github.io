@@ -2,7 +2,7 @@
 title: "An interesting use-case for Intune and SCCM Co-Management - Part 4"
 header:
 author: Tom Degreef
-date: 2007-11-27
+date: 2017-12-07
 categories:
   - SCCM
   - Configmgr
