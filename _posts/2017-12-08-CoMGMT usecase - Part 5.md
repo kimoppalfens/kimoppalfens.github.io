@@ -23,20 +23,20 @@ tags:
   - CMG
 ---
 
-Real-World scenario on where Intune and SCCM Co-management could come in handy.  Configuring Conditional Access.
+Real-World scenario on where Intune and SCCM Co-management could come in handy.  Configuring compliance and Conditional Access.
 
 # Intro #
 
-[Part 1 - Cloud management Gateway](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/)
-[Part 2 - AAD Discovery](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/azure%20ad/aad/CoMGMT-usecase-Part-2/)
-[Part 3 - Co management](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/azure%20ad/aad/CoMGMT-usecase-Part-3/)
+[Part 1 - Cloud management Gateway](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/)  
+[Part 2 - AAD Discovery](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/azure%20ad/aad/CoMGMT-usecase-Part-2/)  
+[Part 3 - Co management](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/azure%20ad/aad/CoMGMT-usecase-Part-3/)  
 [Part 4 - Deploying the ConfigMgr Agent through Intune](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/azure%20ad/aad/CoMGMT-usecase-Part-4/)
 
 Let's bring these Co-Management blog series to an end and tie it all together with conditional access.
 As you could see in Part 3, we have configured "Compliance policies" as our first (and only) workload to pilot.
 
 There is actually a specific reason for choosing Compliance Policies. 
-If you have enabled the pre-release feature called "Conditional access for managed PC's" , you can actually create Compliance policies for Configuration Manager managed Pc's. 
+If you have enabled the pre-release feature called "Conditional access for managed PC's" , you can actually create Compliance policies for Configuration Manager managed Pc's.  
 However, if you compare the list of available policies to the list of policies that we have in Intune, there is a rather large gap.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl1.PNG)
@@ -58,14 +58,14 @@ In the scenario that we have been working on the past few blogposts, we can have
 In this particular case, it is rather obvious that Intune excels in the amount of compliance policies available, so it makes a lot of sense to have Intune manage that part and use ConfigMgr for the other workloads.
 
 We will be using Configmgr reporting website as the resource we want to access using Conditional Access.  
-In my scenario, my Reporting point is co-located on my primary site and as such only available on-premise. However, the Azure AD Application proxy can be used to make on-premise resources available through "the cloud", and as an additional benefit, we can apply some conditional access rules on it.
+In my scenario, my Reporting point is co-located on my primary site and as such only available on-premise. However, the Azure AD Application proxy can be used to make on-premise resources available through "the cloud", and as an additional benefit, we can apply some conditional access rules on it. 
 Setting up the Azure AD Application proxy is not part of this blogpost, but I used partially [this](https://www.petervanderwoude.nl/post/conditional-access-for-published-configmgr-reports/) blog to guide me through. 
 
-# Preparing for Conditional Access #
+## Preparing for Conditional Access ##
 
 Before we move on, make sure that the Windows 10 machine you were testing with (and that should be in a Co-Managed state) is part of that Pilot collection we used in Part 3. That way, we make sure that compliance policies are managed through Intune for that machine.
 
-## Setting up Compliance Policies ##
+# Setting up Compliance Policies #
 
 Logon to your Azure Portal and navigate to Intune. 
 Select "Device Compliance"
@@ -94,7 +94,8 @@ Create a compliance policy to fits what you need in your environment. For my blo
 - System Security
     - Encryption of data storage on device (Require)
 
-**Note :** for OS version checks, make sure that you use whatever "Winver" returns as an OS Version. For Windows 10, this would be, "10.0." + the buildnumber, so for Windows 10 - 1709 this translates into : 10.0.16299.
+**Note :** for OS version checks, make sure that you use whatever "Winver" returns as an OS Version.  
+For Windows 10, this would be, "10.0." + the buildnumber, so for Windows 10 - 1709 this translates into : 10.0.16299.
 
 The result looks like this 
 
@@ -111,7 +112,7 @@ Make sure to Save your assignment.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl11.PNG)
 
-Important to notice here is that if these rules are validated by the client, the machine ends up in either the "Compliant" state or the "Not Compliant" state. This is important as we go forward !
+Important to notice here is that, once these rules are validated by the client, the machine ends up in either the "Compliant" state or the "Not Compliant" state. This is important as we go forward !
 
 ## Validating our Compliancy ##
 
@@ -131,7 +132,9 @@ On the Intune portal, we can equally see that our test-device isn't compliant.
 
 Conditional access, as the name implies, allows you to access a certain resource if you meet all of the required conditions. One of those conditions can be that you need to be marked as "Compliant" (see previous steps).  
 It basically prevents access to your company resources if you do not meet a set of required conditions and that is a bit of a paradigm shift in how IT works.  
+
 We used to have this method of trying to protect the device as much as we can (anti-virus, anti-theft, ...) but with conditional access we shift that away from the device and to the data.  
+
 This makes a lot more sense as users are now able to access corporate data from a lot more devices than in a "traditional" world and we might not have full control over all those devices anymore.  
 With conditional access in play, we don't need to have full control. We just lay out some ground rules, and if those are met, we trust the device secure enough to access the corporate data. If not, users won't have access to their mail, files, ... or whatever you want to protect.
 
@@ -145,7 +148,7 @@ In the new windows, create a new policy
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl13.PNG)
 
-Provide again a meaningful name for the policy you are creating (you can create different policies for different resources). Select the users you want to assign it to (it makes sense to at least target the same users you target with the compliance policy) and select the cloud apps you want to protect. 
+Provide again a meaningful name for the policy you are creating (you can create different policies for different resources). Select the users you want to assign it to (it makes sense to at least target the same users you target with the compliance policy) and select the cloud apps you want to protect.  
 In my case, that would be the Configmgr Reporting website I have published through the Azure AD application proxy.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl14.PNG)
@@ -174,7 +177,7 @@ That should be all there is to it. Let's verify if indeed this has the wanted ef
 
 # The results #
 
-We verified before that our test-machine isn't compliant, so the result should be that we don't have access to our reporting if we access it through the cloud. When I browse to "Myapps.Microsoft.Com", I see the list of "enterprise applications" that are made available to me, and CM Reporting is one of them. (A nice "touch" is that I get single-sign-on to this website because my device is Azure Ad joined)  
+We verified before that our test-machine isn't compliant, so the result should be that we don't have access to our reporting if we access it through the cloud. When I browse to "Myapps.Microsoft.Com", I see the list of "enterprise applications" that are made available to me, and CM Reporting is one of them. (A nice touch is that I get single-sign-on to this website because my device is Azure Ad joined)  
 
 Upon selecting my CM Reporting app from the "MyApps" portal, I am notified that my device isn't able to access this resource.
 
@@ -195,6 +198,8 @@ And as my final result... I have now access to my Configmgr Reporting !!
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl22.PNG)
 
-That's it folks ! I tried to cover an end-to-end scenario where co-management could be useful for you. I hope you enjoyed reading the series as I had writing them.  Let me know if you run into any issues or if you were able to replicate the setup in your own environment.
+That's it folks !
+
+I tried to cover an end-to-end scenario where co-management could be useful for you. I hope you enjoyed reading the series as I had writing them.  Let me know if you run into any issues or if you were able to replicate the setup in your own environment.
 
 Take care !
