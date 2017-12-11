@@ -2,7 +2,7 @@
 title: "An interesting use-case for Intune and SCCM Co-Management - Part 5"
 header:
 author: Tom Degreef
-date: 2007-11-27
+date: 2017-12-11
 categories:
   - SCCM
   - Configmgr
@@ -51,19 +51,19 @@ If we compare that to what's available in Intune :
 
 As you can judge for yourself, a rather large gap ! 
 
-There is however 1 "work-around" here and that is going to the "Hybrid" scenario and having your windows 10 pc's managed "only" through Intune. Then, the same set of policies is available from within the ConfigMgr Admin UI.  
-This is only available in "Hybrid-Mode", thus you have to decide if you want your Windows 10 pc's managed by **Intune OR ConfigMrg**  
+As an alternative, you could go to "Hybrid" mode and have your windows 10 machines managed by Intune, but managed through the Configmgr Admin UI.  
+Yes, you get the single pane of glass, but in the end the machine is managed by Intune (and only Intune).  This means, no deployment of classic apps (win32), no custom hardware inventory, no OSD, ...
 
-In the scenario that we have been working on the past few blogposts, we can have a PC managed by **Intune AND ConfigMgr**, making the best of both worlds available to us.  
+In the Co-Management scenario that we have been working on the past few blogposts, we can have a PC managed by **Intune AND ConfigMgr**, making the best of both worlds available to us.  
 In this particular case, it is rather obvious that Intune excels in the amount of compliance policies available, so it makes a lot of sense to have Intune manage that part and use ConfigMgr for the other workloads.
 
-We will be using Configmgr reporting website as the resource we want to access using Conditional Access.  
-In my scenario, my Reporting point is co-located on my primary site and as such only available on-premise. However, the Azure AD Application proxy can be used to make on-premise resources available through "the cloud", and as an additional benefit, we can apply some conditional access rules on it. 
-Setting up the Azure AD Application proxy is not part of this blogpost, but I used partially [this](https://www.petervanderwoude.nl/post/conditional-access-for-published-configmgr-reports/) blog to guide me through. 
+We will be using the Configmgr reporting website as the resource we want to protect using Conditional Access.  
+In my scenario, my Reporting point is co-located on my primary site and as such only available on-premise. However, the Azure AD Application proxy can be used to make on-premise resources available through "the cloud", and as an additional benefit, we can apply conditional access rules on it. 
+Setting up the Azure AD Application proxy is not part of this blogpost, but I used [this](https://www.petervanderwoude.nl/post/conditional-access-for-published-configmgr-reports/) blog to guide me through. 
 
 ## Preparing for Conditional Access ##
 
-Before we move on, make sure that the Windows 10 machine you were testing with (and that should be in a Co-Managed state) is part of that Pilot collection we used in Part 3. That way, we make sure that compliance policies are managed through Intune for that machine.
+Before we move on, make sure that the Windows 10 machine you are testing with (and that should be in a Co-Managed state) is part of that Pilot collection we used in Part 3. That way, we make sure that compliance policies are managed through Intune for that machine.
 
 # Setting up Compliance Policies #
 
@@ -85,7 +85,7 @@ The 3 subparts available here contain the set of compliance rules I posted in th
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl8.PNG)
 
-Create a compliance policy to fits what you need in your environment. For my blog I'll go with the following :
+Create a compliance policy to fit with what you need. For my blog I'll go with the following :
 
 - Device Health
     - N/A
@@ -136,7 +136,7 @@ It basically prevents access to your company resources if you do not meet a set 
 We used to have this method of trying to protect the device as much as we can (anti-virus, anti-theft, ...) but with conditional access we shift that away from the device and to the data.  
 
 This makes a lot more sense as users are now able to access corporate data from a lot more devices than in a "traditional" world and we might not have full control over all those devices anymore.  
-With conditional access in play, we don't need to have full control. We just lay out some ground rules, and if those are met, we trust the device secure enough to access the corporate data. If not, users won't have access to their mail, files, ... or whatever you want to protect.
+With conditional access in play, we don't need to have full control. We just lay out some ground rules, and if those are met, we trust the device is secure enough to access the corporate data. If not, users won't have access to their mail, files, ... or whatever you decided to protect.
 
 Let's enable this fantastic feature !
 
@@ -148,7 +148,7 @@ In the new windows, create a new policy
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl13.PNG)
 
-Provide again a meaningful name for the policy you are creating (you can create different policies for different resources). Select the users you want to assign it to (it makes sense to at least target the same users you target with the compliance policy) and select the cloud apps you want to protect.  
+Provide a meaningful name for the policy you are creating (you can create different policies for different resources). Select the users you want to assign it to (it makes sense to at least target the same users you target with the compliance policy) and select the cloud apps you want to protect.  
 In my case, that would be the Configmgr Reporting website I have published through the Azure AD application proxy.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CoMgmt/Compl14.PNG)
@@ -200,6 +200,6 @@ And as my final result... I have now access to my Configmgr Reporting !!
 
 That's it folks !
 
-I tried to cover an end-to-end scenario where co-management could be useful for you. I hope you enjoyed reading the series as I had writing them.  Let me know if you run into any issues or if you were able to replicate the setup in your own environment.
+I tried to cover an end-to-end scenario where co-management could be useful for you. I hope you enjoyed reading the series as much as I had writing them.  Let me know if you run into any issues or if you were able to replicate the setup in your own environment.
 
 Take care !
