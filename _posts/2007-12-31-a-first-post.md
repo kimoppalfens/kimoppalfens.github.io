@@ -2,7 +2,7 @@
 title: "Collection based on pending reboot"
 header:
   overlay_image: template1280x960.jpg
-  teaser: template512x384.jpg
+  teaser: Reboot_400x400.jpg
 author: Tom Degreef
 date: 2017-12-13
 categories:
