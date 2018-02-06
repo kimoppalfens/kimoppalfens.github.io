@@ -1,19 +1,19 @@
 ---
-title: "Powershell App Deployment Tookit - GUI"
+title: "Powershell App Deployment Tookit - GUI (Updated version 1.3)"
 header:
 author: Tom Degreef
-date: 2017-09-27
+date: 2018-02-06
 categories:
   - SCCM
   - Configmgr
   - Powershell
-  - Posh
+  - PoSh
 
 tags:
   - SCCM
   - Configmgr
   - Powershell
-  - Posh
+  - PoSh
 ---
 
 GUI for creating applications using the Powershell App Deployment Toolkit, including creating Software ID Tags for easier License Management.
@@ -42,18 +42,18 @@ However, if you have never used it before, it could be a bit overwhelming at fir
 
 # The GUI #
 
-One of the issues I ran into when using the toolkit for the first times, besides finding out what option I needed, were typo's...if you forget a quote, the script won't run. Additionally, edditing the Deploy-Application.PS1 file takes time as you have to scroll a lot to the correct location to perform the functions that you want/need.
+One of the issues I ran into when using the toolkit for the first times, besides finding out what option I needed, were typo's...if you forget a quote, the script won't run. Additionally, editing the Deploy-Application.PS1 file takes time as you have to scroll a lot to the correct location to perform the functions that you want/need.
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/PSAppGui_Optimized.gif)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_1.3.gif)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
 For now, see it as a tool to merge your source-binaries together with the toolkit and generate the "basic" Deploy-Application.PS1. Once that is done, nothing is stopping your from editing that file to embed more complex stuff.
 Also, feel free to update the AppDeployToolkitBanner.png in the Toolkit subfolder with your own company logo !
 
-The functionality at this point in time is :
+The functionality at this point in time is (Version 1.2) :
 - Fully unattended generation of the Deploy-Application.PS1 file
 - Merging of your source binaries with the PS App toolkit on a destination Share (must be UNC)
 - Creating the SCCM Application + Deployment Type
@@ -62,15 +62,21 @@ The functionality at this point in time is :
 - Enumerating all DP & DP-Groups and distribute content to them
 - Generate Install & Uninstall collections based on the Application's Name
 
+Added functionality in Version 1.3 :
+- If enabled, the tool can now automatically connect to your SCCM environment, create the application, collections and distribute the content (saving you clicks and time)
+- If the PoSh AD module is available, the tool can now create the AD security groups and link them to your collection
+- A text message can be shown at the end of an installation
+- Bugfix where uninstallation wouldn't delete the RegID file.
+
 # Pre-requisites #
 
-**Disclaimer :** As this is the first (beta) version of the GUI (don't let the version number fool you), not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best Powershell coder out there anyway ;-) So it's a "learn as you go" project.
+**Disclaimer :** As this is the first (beta) version of the GUI (don't let the version number fool you), not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best PowerShell coder out there anyway ;-) So it's a "learn as you go" project.
 
-For now, I assume that the account that launches the GUI has access to the folder that holds your source binaries (the files you want to intall) and to the UNC path where we will copy the merged application to (explained below).
+For now, I assume that the account that launches the GUI has access to the folder that holds your source binaries (the files you want to install) and to the UNC path where we will copy the merged application to (explained below).
 
 If you want to use the GUI to create the SCCM Application as well, you'll also need the appropriate rights in Configmgr and the GUI must run on your primary site server.
 
-Logging is included in the GUI and if you have Powershell 5 (or greater), it will try to install [Kim's Logging module](https://gallery.technet.microsoft.com/scriptcenter/Log4Net-Powershell-Module-0d7deacd) so that logging is done in the CMtrace format.
+Logging is included in the GUI and if you have PowerShell 5 (or greater), it will try to install [Kim's Logging module](https://gallery.technet.microsoft.com/scriptcenter/Log4Net-Powershell-Module-0d7deacd) so that logging is done in the CMtrace format.
 If that fails, logging will be done to a regular text file.
 
 The location of the logs for now is c:\temp\PSAPPgui
@@ -86,7 +92,7 @@ First things first, Copy the entire content of the GUI, for now, to your SCCM Pr
 - Prefs.XML (caching of regid's and other settings)
 - PSAPP_GUI.PS1 (The file you need to run !)
 
-When you start the GUI (by launching PSAPP_GUI.PS1 from a Powershell cmd prompt) you should see the interface that allows you to create a new application.
+When you start the GUI (by launching PSAPP_GUI.PS1 from a PowerShell cmd prompt) you should see the interface that allows you to create a new application.
 (Run as administrator the first time to allow the logging module to be downloaded/installed. This is not required for the GUI functionality)
 
 There are a few required fields :
@@ -106,7 +112,7 @@ The first 4 should be self-explanatory and are all related to the application yo
 
 On the Installation section, there is a dropdown box to allow you to switch between MSI or Script.
 
-## Intallation ##
+## Installation ##
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/MSI.PNG)
 
@@ -156,7 +162,7 @@ Only Com,Org,Edu & Net domains are supported. (Proxy-support is not built-in at 
 
 Clicking the "Generate Package" button will first "validate" all the fields and highlight in Green what is Ok and in Red what is not OK. 
 
-Nothing will happen untill all required fields are filled out properly.
+Nothing will happen until all required fields are filled out properly.
 
 Once that is done, the GUI will create the subfolders as explained above and merge the files and finally it will generate the Deploy-Application.PS1 file that will contain the installation logic.
 
@@ -170,7 +176,7 @@ Click "Connect to SCCM" to automatically connect to the detected SCCM Environmen
 
 "Import into SCCM" will then create the application + deployment type using the information provided in the GUI.
 
-As a detection method, we check for the presence of the SWID-Tag file. Since it's generated after a succesfull installation, and removed again on uninstallation, it's safe to use this and removes all complexity on finding an appropriate detection method.
+As a detection method, we check for the presence of the SWID-Tag file. Since it's generated after a successful installation, and removed again on uninstallation, it's safe to use this and removes all complexity on finding an appropriate detection method.
 
 The list of DP's and DP-Groups is multi-selectable, so just hold CTRL and select the DP and/or DP-groups you want to start the distribution to and click "Distribute Content"
 
@@ -196,7 +202,7 @@ If we take www.Oscc.Be as an example, the subfolder would be : Regid.2008-03.Be.
 
 The key here is obviously to look this information up properly so that all applications from a specific vendor will always end up in the same subfolder.
 
-In that subfolder, the actual SWID-Tag will be created. The file starts with the same string as the subfolder, followed by and Underscore, the Applicationname, another underscore and the application version. The extention of the file is .swidtag
+In that subfolder, the actual SWID-Tag will be created. The file starts with the same string as the subfolder, followed by and Underscore, the Applicationname, another underscore and the application version. The extension of the file is .swidtag
 
 Basically this is just an XML file that contains a few details on your application. SCCM Will automatically pick up these SWID tags if you enable them in the Asset Intelligence node.
 
@@ -209,7 +215,7 @@ Back to the GUI. With all the information it should be clear what needs to be fi
 When you select "License Required : No", a flag will be set to "False" indicating that this is software that is free to use. If you select "Yes", the SWID-tag will be created with Entitlement Required = True, indicating that a license is needed.
 
 
-By default, the powershell App deployment toolkit doesn't support the creation of SWID-tags, but Kim wrote an extention (that's included with the GUI) to enable this functionality.
+By default, the powershell App deployment toolkit doesn't support the creation of SWID-tags, but Kim wrote an extension (that's included with the GUI) to enable this functionality.
 
 
 That should be all there is to it ! Again, for now it only supports basic functionality but once you have your destination package generated, nothing is stopping you from opening up that freshly generated Deploy-Application.PS1 file and making the adjustments you want/need.
@@ -219,8 +225,8 @@ That should be all there is to it ! Again, for now it only supports basic functi
 Currently on my roadmap for future versions (not necessarily in this order)
 
 - Create Deployments
-- Create AD-Groups and link to Collections
-- Saved settings such as target folder, selected DP's, ...
+- Create AD-Groups and link to Collections (done in 1.3)
+- Saved settings such as target folder, selected DP's, ... (done in 1.3)
 - Browse buttons
 - More Built-in Toolkit actions
 - Multi-threaded GUI
@@ -232,11 +238,11 @@ Currently on my roadmap for future versions (not necessarily in this order)
 
 # Download #
 
-Current Version : 1.2
+Current Version : 1.3
 
 [Download here](/Files/PSAppGui.zip)
 
-MD5 Checksum : 9559557fc0dd61b2796a99d1a80ea5c7
+MD5 Checksum : 0961C98E2CBEDB4F396AC038C9DAA0B3
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
