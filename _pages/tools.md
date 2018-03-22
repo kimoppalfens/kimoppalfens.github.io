@@ -20,6 +20,8 @@ Local Admin Password Actions is a solution that aims to eliminate the need for h
 
 Local Admin Password Actions integrates into System Center Configuration Manager and the admin UI that comes with it to deliver 5 easilly accessible actions:
 
+![alt]({{ site.url }}{{ site.baseurl }}/images//LAPAScreenshot1.PNG)
+
 - Request the local admin password
 - Open the C$ share
 - Open the Admin$ share
