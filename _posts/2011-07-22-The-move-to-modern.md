@@ -96,7 +96,7 @@ In there he makes a couple of good points.
 And another colleague, Tom Degreef, did a series on how to implement Co-Management right here:
 [http://www.oscc.be/tags/#co-management](http://www.oscc.be/tags/#co-management)
 
-##Summary ##
+## Summary ##
 The Bridge, Co-Management, the Configuration Manager Cloud management gateway, they're all pieces of a puzzle to get you to a device that can be managed from anywhere. That being said, a device being manageable from anywhere doesn't necessarily mean you can actually perform work on it from anywhere.
 
 That requires a set of different puzzle pieces:
