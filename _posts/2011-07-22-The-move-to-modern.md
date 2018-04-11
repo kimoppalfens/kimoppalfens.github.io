@@ -117,7 +117,7 @@ And a device like this, preferably, is managed by folks that implement a great d
 
 Those same Configuration Managers, additionaly, avoid medling with settings that restrict users and that don't have a solid compliance reason. As an IT Pro we're typically not good at deciding what is the most convenient way to configure settings for an end user, and there's no reason for us to get involved.
 
-So yes, Intune can play a role in Modern device management. But it isn't the single option, the options aren't exclusive, and if you define moving to Modern as doing everything with Intune or any other MDM than I believe you've missed a large number of opportunities.
+If you want a properly managed Modern Windows 10 device, that can be managed from anywhere. Took a real hard look at the functionality provided by a Configuration Manager client with a Cloud Managemen gateway and compare that to whatever else you had in mind. Keeping in mind that it's not about the tool, but about the functionalities you need, and the functionalities delivered by your choosen solution.
 
 **PS**: Intune licenses offer you the right to install Configuration Manager. If you're managing Windows 10 devices using Intune only now, you might want to take a look at Co-Management and extend your setup with a second, very flexible, systems management agent.
 
