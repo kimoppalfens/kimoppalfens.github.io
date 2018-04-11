@@ -17,7 +17,7 @@ The Co-Management bridge and moving to Modern.
 # Intro #
 Unless you've been living under a rock since the release of Windows 10 you should've heard the hype around moving to Modern in the Microsoft Stack. In this post, which might turn into a post series, as this is a topic I can talk/write about quite a bit, I'll share my personal view on this.
 
-##What?##
+## What? ##
 If you only remember a single thing from this post, let it be the mantra "Define it, define it, define it!"
 
 The term modern is used all-over in our field of work the past months and years, and I have yet to see a comprehensive agreed definition that everyone adheres to. Quite often it is defined as changing tools and using Windows 10's configuration service provider to do your management. Which often comes down to changing your tools and managing your Windows 10 devices as if they were phones or laptops. I can't say I am happy with that explanation as changing tools just for the sake of changing tools is seldomly a sensible idea. 
