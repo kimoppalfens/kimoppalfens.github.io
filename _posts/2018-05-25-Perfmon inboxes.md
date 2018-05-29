@@ -2,7 +2,7 @@
 title: "Getting alerts on Inbox backlogs"
 header:
 author: Tom Degreef
-date: 2007-05-25
+date: 2018-05-29
 categories:
   - SCCM
   - Configmgr
@@ -50,14 +50,14 @@ If we flip that value to 1, our inbox becomes monitored. Once the 15 minute moni
 # Scheduled Tasks #
 
 Yes... good old scheduled tasks :-)
-Out inbox monitoring solution relies on scheduled tasks. Fire up Task Scheduler and create a new task.  
+Our inbox monitoring solution relies on scheduled tasks. Fire up Task Scheduler and create a new task.  
 Give it a meaningful name (you'll need it later), set it to run whether user is logged on or not and make sure it is allowed to run with the highest privileges
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Inboxes3.PNG)
 
 No need to define any triggers as we will use perfmon for that.  
 On the Actions Tab, define a new action that will be executed when the task is triggered.  
-I opted to run a simple PowerShell script that send me a notification email([Source](https://gallery.technet.microsoft.com/scriptcenter/Simple-Powershell-function-8e826d7c)) , but the possibilities are only limited to your imagination (and scripting skills maybe)
+I opted to run a simple PowerShell script that sends me a notification email([Source](https://gallery.technet.microsoft.com/scriptcenter/Simple-Powershell-function-8e826d7c)) , but the possibilities are only limited by your imagination (and scripting skills maybe)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Inboxes4.PNG)
 
@@ -90,7 +90,7 @@ Select the alerting limit and select "Finish"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Inboxes9.PNG)
 
-It's hard to provide guidance on what limit should be used as it is really something that is environment specific. It could very well be that files in the inboxes are processed at different speeds, depending on the day or time or what the site-server is currently processing at that moment in time. You can always go back and tweak the limits if alerts come in to fast (or to slow) at any given time.
+It's hard to provide guidance on what limit should be used as it is really something that is environment specific. It could very well be that files in the inboxes are processed at different speeds, depending on the time of day or what the site-server is currently processing at that moment in time. You can always go back and tweak the limits if alerts come in to fast (or to slow) at any given time.
 
 Once you clicked Finish, select your newly created data collector set in the left-hand pane so that the actual data collector becomes visible
 
@@ -102,7 +102,7 @@ The values of the performance counters are only updated each time the inbox moni
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Inboxes11.PNG)
 
 On the "Alert Task"-Tab, enter the name of the scheduled task you created in the previous step (Copy/Paste to avoid typo's) and Click OK.  
-**note :** You can provide arguments such as counter that triggered the alert. They could be useful to create a more tailored email.
+**note :** You can provide arguments such as the counter that triggered the alert. They could be useful to create a more tailored email.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Inboxes12.PNG)
 
