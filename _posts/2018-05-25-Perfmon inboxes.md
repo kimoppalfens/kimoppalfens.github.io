@@ -25,7 +25,7 @@ Kim was kind enough to announce that I would blog the entire setup, so here we a
 
 # Background #
 
-As we explained during our presentation, most Inboxes should be (nearly) empty or at least clearing up backlog constahttps://mms2018.sched.com/event/EeQx/configmgr-inboxes-a-through-zntly, but the seasoned ConfigMGr admin knows that this is not always the case and that from time to time not all files are processed. Depending on the inbox this is happening on, it could cause issues in your environment like delayed deployment statuses , clients not receiving policy, no up to date hardware inventory, ...
+As we explained during our presentation, most Inboxes should be (nearly) empty or at least clearing up backlog constantly, but the seasoned ConfigMGr admin knows that this is not always the case and that from time to time not all files are processed. Depending on the inbox this is happening on, it could cause issues in your environment like delayed deployment statuses , clients not receiving policy, no up to date hardware inventory, ...
 
 There is the inbox monitor log (inboxmon.log) but apart from showing you the file-count in the "monitored" inboxes, it doesn't generate any alert at all. Besides that, it probably doesn't monitor all the inbox that you are interested in, so it sounds a bit useless. However the inbox monitor is responsible for creating the performance counters that we are going to rely on for receiving alerts. Let's dig deeper !
 
@@ -67,7 +67,7 @@ With that in place, we can move over the the last part of solution
 
 # Performance Monitor #
 
-Open Performance monitor and browse down to "Data Collector Sets | User Defined". Right-click on "User Defined" and select "New | Data collector Set"
+Open Performance monitor and browse down to "Data Collector Sets \ User Defined". Right-click on "User Defined" and select "New \ Data collector Set"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Inboxes5.PNG)
 
