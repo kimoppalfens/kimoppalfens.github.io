@@ -20,7 +20,7 @@ Secure manage is a solution that aims to eliminate the need for highly privilege
 
 Secure Manage integrates into System Center Configuration Manager and the admin UI that comes with it to deliver 5 easilly accessible actions:
 
-![alt]({{ site.url }}{{ site.baseurl }}/images//SecureManage1.PNG)
+![alt]({{ site.url }}{{ site.baseurl }}/images//SecureManage1.png)
 
 - Request the local admin password
 - Open the C$ share
