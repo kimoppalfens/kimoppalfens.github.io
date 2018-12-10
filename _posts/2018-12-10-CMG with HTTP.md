@@ -22,7 +22,7 @@ How to configure a cloud management gateway (CMG) in HTTP modus...(thus without 
 
 So Tom, yet another CMG blog ? Aren't there enough blogs on this topic already ??
 
-Well... I've done a few CMG setups now and altough there are some great blogs out there, I got the feeling that not all topics were properly covered. In my 5 parts series on setting up Co management, I started off with setting up the [CMG](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/). 
+Well... I've done a few CMG setups now and altough there are some great blogs out there, I got the feeling that not all topics were properly covered. In my 5 parts series on setting up Co management, I started off with setting up the [CMG](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/).  
 At this point in time it was a CMG "gen1" and required considerably more effort to get it working. In the meantime, Microsoft released a "gen2" CMG that is a lot easier to set up and best of all, doesn't require your clients to connect over HTTPS
 
 # CMG Functionality #
@@ -329,7 +329,8 @@ This cost will probably be the most difficult to "predict" but in my example, th
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG23.PNG)
 
-So there we have it, if we calculate the total, we come down to $210 for 1 month of CMG usage and, according to me, some rather high assumptions for storage and egress. 
+So there we have it, if we calculate the total, we come down to $210 for 1 month of CMG usage.  
+And, according to me, some rather high assumptions for storage and egress.  
 Make sure to run the numbers for your own company but my advise is, just install the CMG/CDP and let it run for a few months. Chances are indeed that the time you spend on researching the CMG cost and the cost of mail stamps exceed that of the actual CMG cost in the end.
 
 If at the end of the day, the cost is indeed to high for the value you get out of it, you can always uninstall/remove the CMG again, but my bet is that won't be the case.
