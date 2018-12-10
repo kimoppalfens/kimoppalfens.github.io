@@ -4,6 +4,9 @@ header:
 author: Tom Degreef
 date: 2010-05-29
 categories:
+  - CMG
+
+tags:
   - SCCM
   - Configmgr
   - Azure
@@ -11,21 +14,16 @@ categories:
   - CMG
   - HTTP
   - PKI
-
-tags:
-  - SCCM
-  - Configmgr
-  - Inboxes
-  - Perfmon
 ---
 
-How to configure a cloud management gateway (CMG) in HTTP mode...(thus without a PKI infrastructure... sort of)
+How to configure a cloud management gateway (CMG) in HTTP modus...(thus without a PKI infrastructure... sort of)
 
 # Intro #
 
 So Tom, yet another CMG blog ? Aren't there enough blogs on this topic already ??
 
-Well... I've done a few CMG setups now and altough there are some great blogs out there, I got the feeling that not all topics were properly covered. In my 5 parts series on setting up Co management, I started off with setting up the [CMG](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/). At this point in time it was a CMG "gen1" and required considerably more effort to get it working. In the meantime, Microsoft released a "gen2" CMG that is a lot easier to set up and best of all, doesn't require your clients to connect over HTTPS
+Well... I've done a few CMG setups now and altough there are some great blogs out there, I got the feeling that not all topics were properly covered. In my 5 parts series on setting up Co management, I started off with setting up the [CMG](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/). 
+At this point in time it was a CMG "gen1" and required considerably more effort to get it working. In the meantime, Microsoft released a "gen2" CMG that is a lot easier to set up and best of all, doesn't require your clients to connect over HTTPS
 
 # CMG Functionality #
 
@@ -34,7 +32,9 @@ The ability to manage your clients over the internet is such an amazing thing ! 
 Some of the latest aditions are :
 - User-targeted software distribution
 - Windows 10 in-place upgrade task sequences
-- CMPivot for real-time interaction with your clients (also the realtime scripts work over the CMG but that was added in a previous release already)
+- CMPivot for real-time interaction with your clients 
+
+(also the realtime scripts feature works over the CMG but that was added in a previous release already)
 
 As of SCCM 1806, the CMG also support the "cloud distribution point" functionality. This means that you don't have to configure a separate CDP to enjoy the full functionality of the cloud management gateway. The good thing is, Internet-based clients don't rely on boundary groups. They only use internet-facing distribution points or cloud distribution points. If you're only using cloud distribution points to service these types of clients, then you don't need to include them in boundary groups. 
 
@@ -51,7 +51,7 @@ That should show a similar result to this : ![alt]({{ site.url }}{{ site.baseurl
 
 If you notice issues with being Azure AD joined, make sure to check the "workplace join" eventlog, or use your favorite search-engine and search for DSRegCMD troubleshooting. That should set you in the right direction.
 
-Another requirement obviously is an Azure subscription that can "host" our CMG. (a pay as you subscription will do)
+Another requirement obviously is an Azure subscription that can "host" our CMG. (a "pay as you go" subscription will do)
 
 And finally, we still need to talk certificates... Just like our clients need to "prove" their identity, the CMG endpoint needs to do the same so your clients know they are talking to a trusted resource.
 That can be solved in 2 ways :
@@ -63,7 +63,7 @@ Given that I have a PKI in my lab, I will use option 2 since that's the only thi
 # Preparations #
 ## The Certificate requirements - Internal PKI ##
 
-Although we won't need a certificate until further down this blog, I want to tackle this now so you can finish the rest of the blog without issues.
+Although we won't need a certificate until further down this blog, I want to tackle this now so you can finish the rest of the blog without issues. 
 As I've said before, you either need a public certificate or a private one.
 
 Before going down either route, we'll need to verify that our FQDN is still available. Logon to your Azure portal and search all services for "Cloud Services (classic)". Click ADD and type the DNS name that you want to use. In my case it will be CMGOSCC.cloudapp.net (yes, it always has to end on cloudapp.net). If the name you chose is still available, a green tick will show up, if it's a red exclamation mark it means it's already in use and you will have to find another one.
@@ -114,7 +114,9 @@ That's it, that's all we need from a certificate point of view with an internal 
 
 ## The Certificate requirements - Public issues certificate ##
 
-If you don't have an internal PKI you can always purchase a "Server Authentication" certificate from any of the registered certificate authorities (GoDaddy, Verisign, ...) However, you won't be able to get them to issue you a certificate for "CMGOSCC.cloudapp.net" since you don't own cloudapp.net . However, you should be able to purchase something like "CMG.Yourdomain.Com". But as I've stated before, internally our CMG is known as , for me, "CMGOSCC.cloudapp.net", To resolve that "issue", you need to create a CName record with your public DNS provider that will translate "CMG.Yourdomain.Com" to "CMGOSCC.cloudapp.net".
+If you don't have an internal PKI you can always purchase a "Server Authentication" certificate from any of the registered certificate authorities (GoDaddy, Verisign, ...) However, you won't be able to get them to issue you a certificate for "CMGOSCC.cloudapp.net" since you don't own cloudapp.net. 
+However, you should be able to purchase something like "CMG.Yourdomain.Com". But as I've stated before, internally our CMG is known as, for me, "CMGOSCC.cloudapp.net". 
+To resolve that "issue", you need to create a CName record with your public DNS provider that will translate "CMG.Yourdomain.Com" to "CMGOSCC.cloudapp.net".
 
 ## Enhanced HTTP site systems ##
 
@@ -175,7 +177,8 @@ The end-result should look something like this :
 
 Now you are ready to click Next to advance in the Azure Service Wizard.
 
-Select if you want to enable Azure AD User Discovery. This isn't a hard requirement for the Cloud Management Gateway as such, but if you want to target users over your CMG, you need to deploy to Azure AD users. So depending on your needs, you can enable/disable Azure AD User Discovery. (you can always change this later if required !)
+Select if you want to enable Azure AD User Discovery. This isn't a hard requirement for the Cloud Management Gateway as such, but if you want to target users over your CMG, you need to deploy to Azure AD users. 
+So depending on your needs, you can enable/disable Azure AD User Discovery. (you can always change this later if required !)
 
 Click Next twice to finish the wizard.
 
@@ -189,9 +192,11 @@ Finally ! We are ready to create a Cloud Management Gateway. Believe it or not t
 
 Navigate to the Administration workspace, expand Cloud services and select the Cloud Management Gateway. From the Ribbon, select "Create Cloud Management Gateway"
 
-Starting in ConfigMgr 1802, you can create the CMG using an Azure Resource Manager deployment. Azure Resource Manager is a modern platform for managing all solution resources as a single entity, called a resource group. When deploying CMG with Azure Resource Manager, the site uses Azure Active Directory (Azure AD) to authenticate and create the necessary cloud resources. This modernized deployment doesn't require the classic Azure management certificate. 
+Starting in ConfigMgr 1802, you can create the CMG using an Azure Resource Manager deployment. Azure Resource Manager is a modern platform for managing all solution resources as a single entity, called a resource group. 
+When deploying CMG with Azure Resource Manager, the site uses Azure Active Directory (Azure AD) to authenticate and create the necessary cloud resources. 
+This modernized deployment doesn't require the classic Azure management certificate. 
 
-We'll continue this blog using the ARM way, but my previous blog on Co-management and CMG used the classic way. You can check/follow that if for some reason you want to go the classic way [Link](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/).
+We'll continue this blog using the ARM way, but my previous blog on Co-management and CMG used the classic way. You can check/follow that if for some reason you want to go the classic way, but my expectation is that that feature will disappear in the future [Link](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/).
 
 Again, sign in with an AAD account that has sufficient rights to access your Azure subscription. Once you've done that, the rest of the details will be filled out automatically 
 
@@ -199,13 +204,13 @@ Again, sign in with an AAD account that has sufficient rights to access your Azu
 
 Click next to access the next part of the wizard.
 
-Let's start with the certificate again (either a public or a private one that we created before) and click the Browse button. Browse to your PFX file, provide the certificate password and click OK.  
+Let's start with the certificate again (either a public or a private one that we created before) and click the Browse button. Browse to your PFX file, provide the certificate password and click OK. 
 The result should be that your Service name and service FQDN should be filled out now.
 
-Select the region that is appropriate for you and either add it to an already existing resource group or just create a new one with a name that you like. Notice that you can already spin up more than 1 CMG for load balancing if needed,up to 16.  
+Select the region that is appropriate for you and either add it to an already existing resource group or just create a new one with a name that you like. Notice that you can already spin up more than 1 CMG for load balancing if needed,up to 16. 
 **Note : Again, depending on how well your internal PKI is set up, it might be necessary to uncheck the box next to "Verify Client Certificate Revocation"**
 
-Last, but not least, you can choose to enable Cloud DP functionality for your CMG. I would strongly recommend you enable it as this will greatly improve the functionality of your CMG.
+Last, but not least, you can choose to enable Cloud DP functionality for your CMG. I would strongly recommend you enable it as this will greatly improve the functionality of your CMG. 
 If all is well, your screen should look similar to mine : 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG13.PNG)
@@ -250,7 +255,7 @@ Repeat this process for the Software Update Point (if wanted/needed).
 
 ## Client Settings ##
 
-Make sure that all our hard work pays off and verify that your clients are allowed to access the CMG :)
+Make sure that all our hard work pays off and verify that your clients are allowed to access the CMG :) 
 Check your client settings / Cloud Services and enable access to both the CMG and Distribution point 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG17.PNG)
@@ -291,7 +296,7 @@ The above steps should be sufficient to get you started, but there were a few ot
 
 ## Cost ##
 
-One you bring up the Cloud Management Gateway, the question of the variable cost comes up sooner rather than later :)
+One you bring up the Cloud Management Gateway, the question of the variable cost comes up sooner rather than later :) 
 It's becoming a running joke but chances are that you are paying more for regular stamps in your office than you will for the cloud management gateway.
 
 Your CMG cost will be made up out of these 3 components :
@@ -309,7 +314,7 @@ For the Virtual machine, the CMG uses a standard A2 v2 virtual machine. Accordin
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG21.PNG)
 
-For the storage, The Cloud DP uses General purpose Blob storage with LRS redundancy. If I take a capacity of 1TB, it comes down to $22,44.
+For the storage, The Cloud DP uses General purpose Blob storage with LRS redundancy. If I take a capacity of 1TB, it comes down to $22,44. 
 Again, make sure to adjust the numbers to your own needs, but as you can see, storage is not hugely expensive
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG22.PNG)
@@ -324,7 +329,7 @@ This cost will probably be the most difficult to "predict" but in my example, th
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG23.PNG)
 
-So there we have it, if we calculate the total, we come down to $210 for 1 month of CMG usage and, according to me, some rather high assumptions for storage and egress.
+So there we have it, if we calculate the total, we come down to $210 for 1 month of CMG usage and, according to me, some rather high assumptions for storage and egress. 
 Make sure to run the numbers for your own company but my advise is, just install the CMG/CDP and let it run for a few months. Chances are indeed that the time you spend on researching the CMG cost and the cost of mail stamps exceed that of the actual CMG cost in the end.
 
 If at the end of the day, the cost is indeed to high for the value you get out of it, you can always uninstall/remove the CMG again, but my bet is that won't be the case.
@@ -339,8 +344,8 @@ Server Side Logs :
 - CMGHttpHandler.log, CMGService.Log, SMS_Cloud_ProxyConnector.log (client traffic issues) 
 
 Client Side Logs :
-- DALOperationProvider.log (AAD token issues)
+- ADALOperationProvider.log (AAD token issues)
 
-And don't forget that the Cloud Management Gateway Connector Analyzer exists to help you troubleshoot issues between your site server and the CMG. Anoop has a nice blog on SCCM CMG torubleshooting [here](https://www.anoopcnair.com/sccm-cmg-troubleshooting/)
+And don't forget that the Cloud Management Gateway Connector Analyzer exists to help you troubleshoot issues between your site server and the CMG. Anoop has a nice blog on SCCM CMG troubleshooting [here](https://www.anoopcnair.com/sccm-cmg-troubleshooting/)
 
 That's it folks ! Hope you enjoyed reading this blog and feel free to comment if something is not clear.
