@@ -143,7 +143,7 @@ Once the feature is enabled in your environment and you restart your Configmgr A
 
 go to the Administration workspace, expand Site Configuration, and select the Sites node. Select your Primary site and click Properties from the ribbon. On the Client Computer Communication tab, tick the box next to "Use Configuration Manager-generated certificates for HTTP site systems.
 
-If your environment is properly configured and you publish your certificate revokation list online, leave CRL checking enabled. However, if for some reason, this is not the case, it might be necessary to disable CRL checking for your clients. In my lab environment (as it is a LAB environment), I'm going to turn off CRL checking. If you are deploying the CMG in a production environment, be sure to check with the security department on how to handle CRL-checking.
+If your environment is properly configured and you publish your certificate revokation list online, leave CRL checking enabled. However, if for some reason this is not the case, it might be necessary to disable CRL checking for your clients. In my lab environment (as it is a LAB environment), I'm going to turn off CRL checking. If you are deploying the CMG in a production environment, be sure to check with the security department on how to handle CRL-checking.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG03.PNG)
 
