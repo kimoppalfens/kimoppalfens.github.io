@@ -27,16 +27,16 @@ At this point in time it was a CMG "gen1" and required considerably more effort 
 
 # CMG Functionality #
 
-The ability to manage your clients over the internet is such an amazing thing ! It will help keeping your clients more secure than ever, specially those road warriors that hardly ever come into the office without opening up firewall ports that will expose your on-premise infrastructure to the internet. With the rapid release cycles of SCCM current branch we also see that new functionality is added to the CMG with every iteration of SCCM. [See here for more details](https://docs.microsoft.com/en-us/sccm/core/clients/manage/cmg/plan-cloud-management-gateway)
+The ability to manage your clients over the internet is such an amazing thing! It will help keep your clients more secure than ever, especially those road warriors that hardly ever come into the office. All of that without opening up firewall ports that will expose your on-premise infrastructure to the internet. With the rapid release cycles of SCCM current branch, new functionality is added to the CMG with every iteration of SCCM. [See here for more details](https://docs.microsoft.com/en-us/sccm/core/clients/manage/cmg/plan-cloud-management-gateway)
 
-Some of the latest aditions are :
+Some of the latest additions related to CMG are :
 - User-targeted software distribution
 - Windows 10 in-place upgrade task sequences
 - CMPivot for real-time interaction with your clients 
 
-(also the realtime scripts feature works over the CMG but that was added in a previous release already)
+(On top of that, the realtime scripts feature works over the CMG but that was added in a previous release already)
 
-As of SCCM 1806, the CMG also support the "cloud distribution point" functionality. This means that you don't have to configure a separate CDP to enjoy the full functionality of the cloud management gateway. The good thing is, Internet-based clients don't rely on boundary groups. They only use internet-facing distribution points or cloud distribution points. If you're only using cloud distribution points to service these types of clients, then you don't need to include them in boundary groups. 
+As of SCCM 1806, the CMG also supports the "cloud distribution point" functionality. This means that you don't have to configure a separate CDP to enjoy the full functionality of the cloud management gateway. The good thing is, Internet-based clients don't rely on boundary groups. They only use internet-facing distribution points or cloud distribution points. If you're only using cloud distribution points to service these types of clients, then you don't need to include them in boundary groups. 
 
 # Requirements #
 
@@ -55,7 +55,7 @@ Another requirement obviously is an Azure subscription that can "host" our CMG. 
 
 And finally, we still need to talk certificates... Just like our clients need to "prove" their identity, the CMG endpoint needs to do the same so your clients know they are talking to a trusted resource.
 That can be solved in 2 ways :
-1. You use a public certificate that your purchased
+1. You use a public certificate that you purchased
 2. You create 1 certificate from your PKI that you will use to secure your CMG URL.
 
 Given that I have a PKI in my lab, I will use option 2 since that's the only thing we need to do, but I'll provide the instructions for 1 as well so you can install and configure your CMG without any self-created certificate.
@@ -68,9 +68,9 @@ As I've said before, you either need a public certificate or a private one.
 
 Before going down either route, we'll need to verify that our FQDN is still available. Logon to your Azure portal and search all services for "Cloud Services (classic)". Click ADD and type the DNS name that you want to use. In my case it will be CMGOSCC.cloudapp.net (yes, it always has to end on cloudapp.net). If the name you chose is still available, a green tick will show up, if it's a red exclamation mark it means it's already in use and you will have to find another one.
 
-Also, **make sure it is between 3 and 24 characters long and contains only alphanumeric characters.** This DNS name will allow you to use hyphens (-) and other non-alphanumeric characters, but the CMG itself doesn't support it !
+Also, **make sure it is between 3 and 24 characters long and contains only alphanumeric characters.** This DNS name will allow you to use hyphens (-) and other non-alphanumeric characters, but the CMG itself doesn't support i!
 
-**note : DON'T create the cloud service as we don't need it here! This step is just to verify that the DNS entry that we want use is not taken.**
+**note : DON'T create the cloud service as we don't need it here! This step is just to verify that the DNS entry that we want to use is not taken.**
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG11.PNG)
 
@@ -139,23 +139,23 @@ If the "Turn on" button is greyed-out, it most likely means that you haven't giv
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG02.PNG)
 
-Once the feature is turned enabled in your environment and you restarted your Configmgr Admin-ui, we still need to "configure" it.
+Once the feature is enabled in your environment and you restart your Configmgr Admin-ui, we can continue "configuring" it.
 
-go to the Administration workspace, expand Site Configuration, and select the Sites node. Select your Primary site and click Properties from the ribbon. On the Client Computer Communication, tick the box next to "Use Configuration Manager-generated certificates for HTTP site systems.
+go to the Administration workspace, expand Site Configuration, and select the Sites node. Select your Primary site and click Properties from the ribbon. On the Client Computer Communication tab, tick the box next to "Use Configuration Manager-generated certificates for HTTP site systems.
 
-Depending how your environment is configured, it might be necessary to disable CRL checking for your clients as well. In my lab environment, I'm going to turn off CRL checking. If you are deploying the CMG in a production environment, be sure to check with the security department on how to handle CRL-checking.
+If your environment is properly configured and you publish your certificate revokation list online, leave CRL checking enabled. However, if for some reason, this is not the case, it might be necessary to disable CRL checking for your clients. In my lab environment (as it is a LAB environment), I'm going to turn off CRL checking. If you are deploying the CMG in a production environment, be sure to check with the security department on how to handle CRL-checking.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG03.PNG)
 
 ## Cloud Services ##
 
-With the preparations taken care off, we can move on to configure the Azure related services. Navigate to the Administration workspace, expand Cloud services and select the Azure Services node. From the ribbon, select Configure Azure Services.
+With the preparations taken care off, we can move on and configure the Azure related services. Navigate to the Administration workspace, expand Cloud services and select the Azure Services node. From the ribbon, select Configure Azure Services.
 
 Select "Cloud Management" and specify a name to your liking and click Next.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG04.PNG)
 
-If you haven't configured any cloud related services before, you will be presented with an empty web and native client app. Click the Browse button fo the Web app to create a new one :
+If you haven't configured any cloud related services before, you will be presented with an empty web and native client app. Click the Browse button for the Web app to create a new one :
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG05.PNG)
 
@@ -178,7 +178,7 @@ The end-result should look something like this :
 Now you are ready to click Next to advance in the Azure Service Wizard.
 
 Select if you want to enable Azure AD User Discovery. This isn't a hard requirement for the Cloud Management Gateway as such, but if you want to target users over your CMG, you need to deploy to Azure AD users. 
-So depending on your needs, you can enable/disable Azure AD User Discovery. (you can always change this later if required !)
+Chose if you want to enable Azure AD User Discovery. (you can always change this later if required!)
 
 Click Next twice to finish the wizard.
 
@@ -196,7 +196,7 @@ Starting in ConfigMgr 1802, you can create the CMG using an Azure Resource Manag
 When deploying CMG with Azure Resource Manager, the site uses Azure Active Directory (Azure AD) to authenticate and create the necessary cloud resources. 
 This modernized deployment doesn't require the classic Azure management certificate. 
 
-We'll continue this blog using the ARM way, but my previous blog on Co-management and CMG used the classic way. You can check/follow that if for some reason you want to go the classic way, but my expectation is that that feature will disappear in the future [Link](http://www.oscc.be/sccm/configmgr/intune/co-management/cloud%20management%20gateway/cmg/CoMGMT-usecase-Part-1/).
+We'll continue this blog using the ARM way, as the classic way got depricated with SCCM 1810.
 
 Again, sign in with an AAD account that has sufficient rights to access your Azure subscription. Once you've done that, the rest of the details will be filled out automatically 
 
@@ -215,9 +215,9 @@ If all is well, your screen should look similar to mine :
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG13.PNG)
 
-Click Next to continue the wizard. Initially, let the Alerts to the defaults. Once your CMG is in use and up and running, you can monitor those values and adjust the alerts to more appropriate values for your environment. Finish the rest of the wizard.
+Click Next to continue the wizard. Initially, accept the default settings for Alerts. Once your CMG is in use and up and running, you can monitor those values and adjust the alerts to more appropriate values for your environment. Finish the rest of the wizard.
 
-At this point, SCCM will reach out to azure and to create your CMG and storage account. This will take a while to complete and I always wait for this part to be complete (but you don't have to...)  
+At this point, SCCM will reach out to azure and create your CMG and storage account. This will take a while to complete and I always wait for this part to be complete (but you don't have to...)  
 Your status should show that provisioning started : 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/CMG14.PNG)
@@ -235,7 +235,7 @@ If you would check Azure now, you'll find a resource group with the name you sel
 # Wrapping things up #
 ## Cloud management gateway connection point ##
 
-We to add a Cloud management gateway connection point. In your Admin-UI, navigate to the administration pane / Site Configuration / Servers and site system roles and right-click your primary site. Select "Add site system Role" and select the box next to "Cloud management gateway connection point".
+We need to add a Cloud management gateway connection point. In your Admin-UI, navigate to the administration pane / Site Configuration / Servers and site system roles and right-click your primary site. Select "Add site system Role" and select the box next to "Cloud management gateway connection point".
 
 The log file for this specific role is called "SMS_Cloud_Proxyconnector.Log"
  
@@ -296,7 +296,7 @@ The above steps should be sufficient to get you started, but there were a few ot
 
 ## Cost ##
 
-One you bring up the Cloud Management Gateway, the question of the variable cost comes up sooner rather than later :) 
+When you bring up the Cloud Management Gateway, the question of the variable cost comes up sooner rather than later :) 
 It's becoming a running joke but chances are that you are paying more for regular stamps in your office than you will for the cloud management gateway.
 
 Your CMG cost will be made up out of these 3 components :
@@ -304,7 +304,7 @@ Your CMG cost will be made up out of these 3 components :
 - The Azure blog storage cost for the Cloud DP
 - The Egress data 
   - Either clients requesting policy 
-  - Either content being transferred from the cloud DP to your clients
+  - or content being transferred from the cloud DP to your clients
 
 Let's check that with the [Azure pricing calculator](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwjA4YTlhpXfAhXMblAKHUy_AlYQFjAAegQICRAB&url=https%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fpricing%2Fcalculator%2F&usg=AOvVaw1SlHyRjtrV0ORXM4OMf0SX)
 
