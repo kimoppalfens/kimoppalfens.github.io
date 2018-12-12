@@ -20,7 +20,7 @@ A recap of the 2018 Mini-MVP summit and MMS Desert Edition
 For the second time now, the Configmgr & Intune product group organised a "mini-MVP" summit, outside the regular MVP summit schedule.  
 The week started on Monday morning November 26th and ended with hackaton demonstrations on Friday November 30th and had roughly 30 attendees.
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS01.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS01.jpg)
 
 Monday morning consisted mainly of introductions & roadmaps from both the Intune & Configmgr team and included list of hackaton ideas that we could participate in.
 Like last year, all of the sessions were optional and if you wanted to, you could go and sit with the engineers to work on your hackaton project.
@@ -35,11 +35,11 @@ It was even so that some of us delivered a session to the Microsoft Devs/Program
 
 David James held a small "Never gave I ever"-quiz on Configmgr mistakes and milestones and the [last person standing](@MircoColemberg) could ship SCCM CB 1810 
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS02.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS02.jpg)
 
 The attendees also collaborated with the Product team on a [Reddit AMA](https://www.reddit.com/r/SCCM/comments/9ufz3p/ama_with_the_sccm_product_team_1128_3pm_pacific/). Some snacks were provided to keep the creative juices flowing :)
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS04.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS04.jpg)
 
 Kim & I left dark and rainy Seattle on Thursday with the hope to catch some sunshine in Phoenix... (only to see our plane landing in pouring rain). Luckily for us (and the attendees of MMSDE) weather the next few days was a lot better !
 
@@ -49,7 +49,7 @@ I want to give a special thanks to [Brad Anderson](https://twitter.com/Anderson)
 
 Take all the good things about [Midwest Management Summit](https://mmsmoa.com/)  and mix it with a beautiful resort in sunny Phoenix and you get [MMS Desert Edition](https://mmsmoa.com/desertedition.html).
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS10.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS10.jpg)
 
 It was the 4th time that I was attending/speaking and was still as mind blown now as I was the first time. The amount of community brain power that is present at any MMS is unbelievable. Again, the greatest and most respected community members as well as a large portion of the Configmgr product group were present this time.  
 For me, coming to MMS is a bit like coming home to a group of friends. A lot of the attendees and speakers show up for every edition and it's wonderfull to talk to them and catch up.
@@ -65,22 +65,22 @@ This Desert edition was even smaller and had less than 180 speakers, sponsors, a
 
 To make things more "causal", most evenings ended with a "beer-session" for an even more informal session. Monday evening ended with a beer-session called "CM Product team - Drinking & Thinking" and allowed the attendees to ask questions to the product team. (spoiler alert : SCCM is NOT DEAD)
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS03.jpg)
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS05.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS03.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS05.jpg)
 
 Tuesday evening as well with a beer-session, but this time gave all of the attendees an opportunity to win a top of the line Surface Book 2! All they had to do is walk up to the stage, present maximum 3 minutes on a neat trick that they knew and roll the lucky dice. For me, this was one of the most surprising sessions of this edition as I truly learned some fun new tricks in both Windows & Configmgr
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS06.jpg)
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS07.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS06.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS07.jpg)
 
 Another thing that was different in this edition were the Cabana and U&I sessions. 
 The Cabana sessions allowed attendees to book a 20 minute timeslot with any of the speakers (It were always groups of 2 and 3 speakers) in a cabana and basically discuss any topic they wanted. Depending on who you talked to, this was the equivalent of $500+ value of consultancy :)
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS09.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS09.jpg)
 
 The U&I sessions gave you the opportunity to talk to [Chris Sires](https://twitter.com/sirescreek), a Configmgr Dev on any SCCM Admin-UI bug or issues you had. If he could code/fix it in 15 minutes, it might make it in the next release of Configmgr. Speaking of that, one of the [requested features](https://configurationmanager.uservoice.com/forums/300492-ideas/suggestions/36188491-when-double-clicking-on-task-sequence-open-edit-pa) was already merged into the 1812 tech preview.  That's the power of MMS :)
 
-[alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS10.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS10.jpg)
 
 A special shout out to all the amazing people (eg [Brian Mason](https://twitter.com/abetterpc), [Greg Ramsey](https://twitter.com/ramseyg), [April Cook](https://twitter.com/ugeeku)) that made this happen! Each time the crew behind MMS does an outstanding job of creating this community feeling and providing the  opportunity to learn from the best people in the field.
 
