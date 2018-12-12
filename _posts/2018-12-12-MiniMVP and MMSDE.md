@@ -28,6 +28,8 @@ Like last year, all of the sessions were optional and if you wanted to, you coul
 For myself, being the second time in Redmond and walking around the Microsoft Campus still is amazing. The sheer size of the campus alone is unbelievable. It literally is a mini-city with all possible facilities.  
 We were equally given the opportunity to visit the [Azure Cloud Collaboration Center](https://azure.microsoft.com/en-us/blog/the-azure-cloud-collaboration-center-a-first-of-its-kind-facility/) and it felt like being dropped onto a movie set of the latest Mission Impossible movie and Tom Cruise could drop out of the ceiling, suspended by wires at any time :)
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS12.jpg)
+
 Some of the sessions we were presented with, were program managers explaining new developments on the features they were working on, but we equally had sessions where a program manager would walk in and pitch some idea's that they were thinking about implementing, but wanted the honest feedback of the MVP's if it was a good idea or not. 
 
 I really appreciated the fact that we were given the opportunity to help steer the product (or some features) or that you can have a bit of influence on how a feature is developped.  
