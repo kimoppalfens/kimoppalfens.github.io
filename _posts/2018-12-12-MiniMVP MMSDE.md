@@ -35,7 +35,7 @@ Some of the sessions we were presented with, were program managers explaining ne
 I really appreciated the fact that we were given the opportunity to help steer the product (or some features) or that you can have a bit of influence on how a feature is developped.  
 At one point, the roles got switched and some of us delivered a session to the Microsoft Devs/Program managers to show them what the community came up with as addon's or workarounds to the product. This could very well influence the features that are going to be updated in any of the next version (think about "modern" driver management or features that are available in the Powershell App Deployment Toolkit)
 
-David James held a small "Never have I ever"-quiz on Configmgr mistakes and milestones and the [last person standing](https://twitter.com/mirkocolemberg) could ship SCCM CB 1810 
+David James held a small "Never have I ever"-quiz on Configmgr mistakes and/or Configmgr milestones. Think "Who has ever deployed a task sequence to all systems", or "Who has ever installed tech-preview). The [last person standing](https://twitter.com/mirkocolemberg) could ship SCCM CB 1810.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS02.jpg)
 
@@ -87,7 +87,9 @@ The U&I sessions gave you the opportunity to talk to [Chris Sires](https://twitt
 
 A special shout out to all the amazing people (eg [Brian Mason](https://twitter.com/abetterpc), [Greg Ramsey](https://twitter.com/ramseyg), [April Cook](https://twitter.com/ugeeku)) that made this happen! Each time the crew behind MMS does an outstanding job of creating this community feeling and providing the opportunity to learn from the best people in the field.
 
-If you feel like attending the next edition of [MMS (May 2018)](https://mmsmoa.com/), make sure to register ASAP as they are already 50% sold out.
+If you feel like attending the next edition of [MMS (May 2018)](https://mmsmoa.com/), make sure to register ASAP as they are already 50% sold out. An additional heads-up... you might want to start brushing up on your "Curling-Skills"...
+
+<iframe src="https://giphy.com/embed/J8UCy6EEdsaoo" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/J8UCy6EEdsaoo">via GIPHY</a></p>
 
 Disclaimer : Not all pictures used in this blog are mine, most come from a public twitter feed.
 
