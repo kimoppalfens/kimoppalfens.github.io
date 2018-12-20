@@ -2,7 +2,7 @@
 title: "(Mini) MVP summit and MMS Desert edition (2018)"
 header:
 author: Tom Degreef
-date: 2010-12-11
+date: 2010-12-20
 categories:
   - MMSDE
 
@@ -26,7 +26,7 @@ Monday morning consisted mainly of introductions & roadmaps from both the Intune
 Like last year, all of the sessions were optional and if you wanted to, you could go and sit with the engineers to work on your hackaton project.
 
 For myself, being the second time in Redmond and walking around the Microsoft Campus still is amazing. The sheer size of the campus alone is unbelievable. It literally is a mini-city with all possible facilities.  
-We were equally given the opportunity to visit the [Azure Cloud Collaboration Center](https://azure.microsoft.com/en-us/blog/the-azure-cloud-collaboration-center-a-first-of-its-kind-facility/) and it felt like being dropped onto a movie set of the latest Mission Impossible movie and Tom Cruise could drop out of the ceiling, suspended by wires at any time :)
+We were equally given the opportunity to visit the [Azure Cloud Collaboration Center](https://azure.microsoft.com/en-us/blog/the-azure-cloud-collaboration-center-a-first-of-its-kind-facility/) and it felt like being dropped onto a movie set of the latest Mission Impossible movie and Tom Cruise could drop out of the ceiling, suspended by wires :)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS12.jpg)
 
@@ -59,12 +59,12 @@ For me, coming to MMS is a bit like coming home to a group of friends. A lot of 
 For those of you who have never attended the Midwest Management Summit (MMSMOA), it is one of the best conferences out there with a strong focus on Microsoft Systems Management.  
 This obviously includes a lot of Configmgr and Intune,but Windows 10 and Azure also get their share of attention.
 
-Sessions are always 2+ speakers and last about 1h45 minutes! That's roughly 1hour of presentation/demo's and 45 minutes of Q&A. This presents a great opportunity to ask any questions that you might have on the topic you just heard.
+Sessions are always 2+ speakers and last about 1h45 minutes! That's roughly 1hour of presentation/demo's and 45 minutes of Q&A. This presents a great opportunity to ask any questions that you might have on the topic you just heard about.
 
 A regular edition of MMS is capped at around 750 attendees. This is rather small compared to some of the HUGE events that are out there. As such, there is a lot of opportunity for networking and connecting with speakers or the product group.  
 In Minnesota, the product group was always camping just outside the large conference rooms and you could just walk up to David James (Director of Software Engineering @ Microsoft) and discuss your SCCM issues :)
 
-This Desert edition was even smaller and had less than 180 speakers, sponsors, and attendees combined. 
+This Desert edition was even smaller and had 180 people, speakers, sponsors... 
 
 To make things more "causal", there are the informal beer-session. Monday evening ended with a beer-session called "CM Product team - Drinking & Thinking" and allowed the attendees to ask questions to the product team. (spoiler alert : SCCM is NOT DEAD)
 
@@ -85,7 +85,7 @@ The U&I sessions gave you the opportunity to talk to [Chris Sires](https://twitt
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/MVP_MMS10.jpg)
 
-A special shout out to all the amazing people (eg [Brian Mason](https://twitter.com/abetterpc), [Greg Ramsey](https://twitter.com/ramseyg), [April Cook](https://twitter.com/ugeeku)) that made this happen! Each time the crew behind MMS does an outstanding job of creating this community feeling and providing the opportunity to learn from the best people in the field.
+A special shout out to all the amazing people (eg [Brian Mason](https://twitter.com/abetterpc), [Greg Ramsey](https://twitter.com/ramseyg), [April Cook](https://twitter.com/ugeeku)) that made this happen! Each time, the crew behind MMS does an outstanding job of creating this community feeling and providing the opportunity to learn from the best people in the field.
 
 If you feel like attending the next edition of [MMS (May 2018)](https://mmsmoa.com/), make sure to register ASAP as they are already 50% sold out. An additional heads-up... you might want to start brushing up on your "Curling-Skills"...
 
