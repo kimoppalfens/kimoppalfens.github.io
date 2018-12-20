@@ -2,7 +2,7 @@
 title: "(Mini) MVP summit and MMS Desert edition (2018)"
 header:
 author: Tom Degreef
-date: 2010-12-20
+date: 2018-12-20
 categories:
   - MMSDE
 
