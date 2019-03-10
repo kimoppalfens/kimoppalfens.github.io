@@ -186,13 +186,13 @@ There are in total 836 GPO's related to internet explorer settings, so I think t
 
 ## Local Policies Security Options ##
 
-Restrict anonymous access to named pipes and shares
+###Restrict anonymous access to named pipes and shares###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline12.png)
 
 If you don't read the help text, the intention of this setting is clear to me, but when you do read the help text, it gets confusing again as they refer to "Enabled" but the setting allows you to set "Yes" or "Not Configured".
 
-Require client to always digitally sign communications
+###Require client to always digitally sign communications###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline13.png)
 
@@ -202,19 +202,19 @@ They do exist at a GPO level and are enabled by default :
 - Domain member: Digitally encrypt secure channel data (when possible)
 - Domain member: Digitally sign secure channel data (when possible)
 
-Prevent clients from sending unencrypted passwords to third party SMB servers
+###Prevent clients from sending unencrypted passwords to third party SMB servers###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline14.png)
 
 We are starting to see a pattern here. The settings is clear, if you select "Yes", clients won't be able to send unencrypted passwords to 3rd party SMB servers. However, the help text seems to indicate that if you Enable this policy , you DO allow unencrypted passwords to be sent to 3rd party SMB servers.
 
-Require admin approval mode for administrators
+###Require admin approval mode for administrators###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline15.png)
 
 Interestingly enough, here we have references to "Not Configured" in the help text and not Enable/Disable anymore.
 
-Allow remote calls to security accounts manager
+###Allow remote calls to security accounts manager###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline18.png)
 
