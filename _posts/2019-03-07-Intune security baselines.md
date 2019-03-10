@@ -19,7 +19,7 @@ The modern alternative for security baseline GPO's
 
 # Intro #
 
-As a consultant, I haven't come across a single company that doesn't use any GPO's. Actually, it seems more like most company's have so many GPO's that they are afraid to touch them because it might break something... sounds familiar ? 
+As a consultant, I haven't come across a single company that doesn't use any GPO's. Actually, it seems more like most company's have so many GPO's that they are afraid to touch them because it might break something... sounds familiar ?  
 If you are a cloud-only company with no on-premise infrastructure, it is pretty difficult to apply gpo-like settings only through Intune. Yes, you could create custom CSP's or work with powershell scripts, but creating CSP's isn't the most straightforward thing to do and using powershell scripts to replace what GPO's do feels a bit like re-inventing the wheel. 
 
 With every feature-release of Windows 10 (latest iteration when this article is published is Windows 10-1809), Microsoft also releases a set of security baselines.  
@@ -65,14 +65,14 @@ Intune :
 
 GPO alternative :
 
-Policy Setting name : Turn off toast notifications on the lock screen
-Setting : Enabled
-Help Text : "This policy setting turns off toast notifications on the lock screen.
-        If you enable this policy setting, applications will not be able to raise toast notifications on the lock screen.
-        If you disable or do not configure this policy setting, toast notifications on the lock screen are enabled and can be turned off by the administrator or user.
-        No reboots or service restarts are required for this policy setting to take effect."
+**Policy Setting name** : Turn off toast notifications on the lock screen  
+**Setting** : Enabled  
+**Help Text** : "This policy setting turns off toast notifications on the lock screen.  
+        If you enable this policy setting, applications will not be able to raise toast notifications on the lock screen.  
+        If you disable or do not configure this policy setting, toast notifications on the lock screen are enabled and can be turned off by the administrator or user.  
+        No reboots or service restarts are required for this policy setting to take effect." 
 
-As you can see, the Intune team changed the name and help text for this particular setting. I assume the goal here is to make it more clear for the Intune administrators as to what this setting is about.
+As you can see, the Intune team changed the name and help text for this particular setting. I assume the goal here is to make it more clear for the Intune administrators as to what this setting is about.  
 I personally have no preference for the intune or the GPO version, so both are equally good I would say.
 
 Let's take the next example 
@@ -84,13 +84,13 @@ Intune :
 
 GPO alternative :
 
-Policy Setting name : Enables or disables Windows Game Recording and Broadcasting
-Setting : Disabled
-Help Text : "Windows Game Recording and Broadcasting.
-This setting enables or disables the Windows Game Recording and Broadcasting features. If you disable this setting, Windows Game Recording will not be allowed.
-If the setting is enabled or not configured, then Recording and Broadcasting (streaming) will be allowed."
+**Policy Setting name** : Enables or disables Windows Game Recording and Broadcasting  
+**Setting** : Disabled  
+**Help Text** : "Windows Game Recording and Broadcasting.  
+This setting enables or disables the Windows Game Recording and Broadcasting features. If you disable this setting, Windows Game Recording will not be allowed.  
+If the setting is enabled or not configured, then Recording and Broadcasting (streaming) will be allowed."  
 
-Now for me, the GPO is rather clear, I enable or disable game recording, the setting is set to Disabled and the help text also uses the words Enable and disable. The Intune alternative is a bit more confusing for me. Why is it desktop only ? There is no mention of this in the GPO. I assume here that "desktop only" doesn't refer to the formfactor of you windows 10 device but rather that this is a Windows 10 only setting and not a mobile device setting. However, when you create a profile, the platform is set fixed to "Windows 10 and later", so you wouldn't be able to apply this setting to a mobile device.
+Now for me, the GPO is rather clear, I enable or disable game recording, the setting is set to Disabled and the help text also uses the words Enable and disable. The Intune alternative is a bit more confusing for me. Why is it desktop only ? There is no mention of this in the GPO. I assume here that "desktop only" doesn't refer to the formfactor of you windows 10 device but rather that this is a Windows 10 only setting and not a mobile device setting. However, when you create a profile, the platform is set fixed to "Windows 10 and later", so you wouldn't be able to apply this setting to a mobile device.  
 Finally, if you read the help text for Intune : Configures whether recording and broadcasting of games is allowed. and you see the setting "Yes" it seems to indicate that this setting does allow you to record games.
 
 My preference is the GPO in this case as it's a lot more clear to what the setting is about.
@@ -104,14 +104,14 @@ GPO alternative :
 
 I won't copy over all the GPO settings that cover bitlocker as there way to many settings.  That being said, I prefer the Intune approach here. They only provide a small set of bitlocker settings versus all the GPO ones that are, in my opinion , way to difficult to handle unless you are really deep into bitlocker security 
 
-GPO example :
-Policy Setting name : Use enhanced Boot Configuration Data validation profile
-Setting : no default
-Help Text : "This policy setting allows you to choose specific Boot Configuration Data (BCD) settings to verify during platform validation.
-If you enable this policy setting, you will be able to add additional settings, remove the default settings, or both.
-If you disable this policy setting, the computer will revert to a BCD profile similar to the default BCD profile used by Windows 7.
-If you do not configure this policy setting, the computer will verify the default Windows BCD settings. 
-Note: When BitLocker is using Secure Boot for platform and Boot Configuration Data (BCD) integrity validation, as defined by the ""Allow Secure Boot for integrity validation"" group policy, the ""Use enhanced Boot Configuration Data validation profile"" group policy is ignored.
+GPO example :  
+**Policy Setting name** : Use enhanced Boot Configuration Data validation profile  
+**Setting** : no default  
+**Help Text** : "This policy setting allows you to choose specific Boot Configuration Data (BCD) settings to verify during platform validation.  
+If you enable this policy setting, you will be able to add additional settings, remove the default settings, or both.  
+If you disable this policy setting, the computer will revert to a BCD profile similar to the default BCD profile used by Windows 7.  
+If you do not configure this policy setting, the computer will verify the default Windows BCD settings.   
+Note: When BitLocker is using Secure Boot for platform and Boot Configuration Data (BCD) integrity validation, as defined by the ""Allow Secure Boot for integrity validation"" group policy, the ""Use enhanced Boot Configuration Data validation profile"" group policy is ignored.  
 The setting that controls boot debugging (0x16000010) will always be validated and will have no effect if it is included in the provided fields."
 
 For me it's clear, less is more :)
@@ -125,16 +125,16 @@ In this case, it's not really the comparison with the GPO that is confusing, rat
 
 Require SmartScreen for Microsoft Edge : Yes
 
-For me, this is clear, I enable smartscreen for Edge... However if we read the helptext : 
+For me, this is clear, I enable smartscreen for Edge... However if we read the helptext :  
 Microsoft Edge uses Windows Defender SmartScreen (turned on) to protect users from potential phishing scams and malicious software by default. Also, by default, users cannot disable (turn off) Windows Defender SmartScreen. Enabling this policy turns off Windows Defender SmartScreen and prevent users from turning it on. Don’t configure this policy to let users choose to turn Windows defender SmartScreen on or off.
 
 This seems to indicate that if you enable this setting, you prevent users from turning on smartscreen.
 
 The corresponding GPO is a bit more clear 
 
-Policy Setting name : Configure Windows Defender SmartScreen
-Setting : Enable
-Help Text : "This policy setting lets you configure whether to turn on Windows Defender SmartScreen. Windows Defender SmartScreen provides warning messages to help protect your employees from potential phishing scams and malicious software. By default, Windows Defender SmartScreen is turned on.
+**Policy Setting name** : Configure Windows Defender SmartScreen  
+**Setting** : Enable  
+**Help Text** : "This policy setting lets you configure whether to turn on Windows Defender SmartScreen. Windows Defender SmartScreen provides warning messages to help protect your employees from potential phishing scams and malicious software. By default, Windows Defender SmartScreen is turned on.
 If you enable this setting, Windows Defender SmartScreen is turned on and employees can't turn it off.
 If you disable this setting, Windows Defender SmartScreen is turned off and employees can't turn it on.
 If you don't configure this setting, employees can choose whether to use Windows Defender SmartScreen."
@@ -144,7 +144,7 @@ If you don't configure this setting, employees can choose whether to use Windows
 Intune :
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline07.png)
 
-Apart from the section called Device guard and the settings covering credential guard, this is rather clear. The GPO counterpart covers both setting in 1 gpo,but I think the Intune version is a lot clearer ! (the GPO also lists this setting under device guard)
+Apart from the section called Device guard and the settings covering credential guard, this is rather clear. The GPO counterpart covers both setting in 1 gpo, but I think the Intune version is a lot clearer ! (the GPO also lists this setting under device guard)
 
 The system guard setting seems to be lacking some help text, but the GPO alternative is even worse as there is no "System Guard" setting. If you dig into the details, the Virtualization based security GPO does set some systemguard registry keys, but this is not clear from the help text or policy settings name
 
@@ -199,8 +199,8 @@ Require client to always digitally sign communications
 At the end of the help text, there is a reference to 2 other policies when this setting is disabled. From the Intune side, you have no option to disable this policy as you can only "Enable" it (configure it to YES) or "Not Configured". Both policies are also not configurable from the Intune side.
 
 They do exist at a GPO level and are enabled by default : 
-Domain member: Digitally encrypt secure channel data (when possible)
-Domain member: Digitally sign secure channel data (when possible)
+- Domain member: Digitally encrypt secure channel data (when possible)
+- Domain member: Digitally sign secure channel data (when possible)
 
 Prevent clients from sending unencrypted passwords to third party SMB servers
 
@@ -226,46 +226,46 @@ None of the settings have any explanation on what they actually do. Even the "le
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline19.png)
 
-Apply UAC restrictions to local accounts on network logon
+###Apply UAC restrictions to local accounts on network logon###
 
 "This setting controls whether local accounts can be used for remote administration via network logon (e.g., NET USE, connecting to C$, etc.). Local accounts are at high risk for credential theft when the same account and password is configured on multiple systems.  Enabling this policy significantly reduces that risk.
 Enabled (recommended): Applies UAC token-filtering to local accounts on network logons. Membership in powerful group such as Administrators is disabled and powerful privileges are removed from the resulting access token. This configures the LocalAccountTokenFilterPolicy registry value to 0. This is the default behavior for Windows.
-Disabled: Allows local accounts to have full administrative rights when authenticating via network logon, by configuring the LocalAccountTokenFilterPolicy registry value to 1.
-For more information about local accounts and credential theft, see ""Mitigating Pass-the-Hash (PtH) Attacks and Other Credential Theft Techniques"": http://www.microsoft.com/en-us/download/details.aspx?id=36036.
+Disabled: Allows local accounts to have full administrative rights when authenticating via network logon, by configuring the LocalAccountTokenFilterPolicy registry value to 1. 
+For more information about local accounts and credential theft, see ""Mitigating Pass-the-Hash (PtH) Attacks and Other Credential Theft Techniques"": http://www.microsoft.com/en-us/download/details.aspx?id=36036. 
 For more information about LocalAccountTokenFilterPolicy, see http://support.microsoft.com/kb/951016."
 
-SMB v1 client driver start configuration
+###SMB v1 client driver start configuration###
 
-"Configures the SMB v1 client driver's start type.
-To disable client-side processing of the SMBv1 protocol, select the ""Enabled"" radio button, then select ""Disable driver"" from the dropdown.
-WARNING: DO NOT SELECT THE ""DISABLED"" RADIO BUTTON UNDER ANY CIRCUMSTANCES!
-For Windows 7 and Servers 2008, 2008R2, and 2012, you must also configure the ""Configure SMB v1 client (extra setting needed for pre-Win8.1/2012R2)"" setting.
-To restore default SMBv1 client-side behavior, select ""Enabled"" and choose the correct default from the dropdown:
-* ""Manual start"" for Windows 7 and Windows Servers 2008, 2008R2, and 2012;
-* ""Automatic start"" for Windows 8.1 and Windows Server 2012R2 and newer.
-Changes to this setting require a reboot to take effect.
-For more information, see https://support.microsoft.com/kb/2696547"
+"Configures the SMB v1 client driver's start type.  
+To disable client-side processing of the SMBv1 protocol, select the ""Enabled"" radio button, then select ""Disable driver"" from the dropdown. 
+WARNING: DO NOT SELECT THE ""DISABLED"" RADIO BUTTON UNDER ANY CIRCUMSTANCES! 
+For Windows 7 and Servers 2008, 2008R2, and 2012, you must also configure the ""Configure SMB v1 client (extra setting needed for pre-Win8.1/2012R2)"" setting. 
+To restore default SMBv1 client-side behavior, select ""Enabled"" and choose the correct default from the dropdown: 
+* ""Manual start"" for Windows 7 and Windows Servers 2008, 2008R2, and 2012; 
+* ""Automatic start"" for Windows 8.1 and Windows Server 2012R2 and newer. 
+Changes to this setting require a reboot to take effect. 
+For more information, see https://support.microsoft.com/kb/2696547" 
 
-SMB v1 server
+###SMB v1 server###
 
-"Disabling this setting disables server-side processing of the SMBv1 protocol. (Recommended.)
-Enabling this setting enables server-side processing of the SMBv1 protocol. (Default.)
-Changes to this setting require a reboot to take effect.
-For more information, see https://support.microsoft.com/kb/2696547"
+"Disabling this setting disables server-side processing of the SMBv1 protocol. (Recommended.) 
+Enabling this setting enables server-side processing of the SMBv1 protocol. (Default.) 
+Changes to this setting require a reboot to take effect. 
+For more information, see https://support.microsoft.com/kb/2696547" 
 
-Digest authentication
+###Digest authentication###
 
-"When WDigest authentication is enabled, Lsass.exe retains a copy of the user's plaintext password in memory, where it can be at risk of theft. Microsoft recommends disabling WDigest authentication unless it is needed.
-If this setting is not configured, WDigest authentication is disabled in Windows 8.1 and in Windows Server 2012 R2; it is enabled by default in earlier versions of Windows and Windows Server.
+"When WDigest authentication is enabled, Lsass.exe retains a copy of the user's plaintext password in memory, where it can be at risk of theft. Microsoft recommends disabling WDigest authentication unless it is needed. 
+If this setting is not configured, WDigest authentication is disabled in Windows 8.1 and in Windows Server 2012 R2; it is enabled by default in earlier versions of Windows and Windows Server. 
 Update KB2871997 must first be installed to disable WDigest authentication using this setting in Windows 7, Windows 8, Windows Server 2008 R2 and Windows Server 2012.
-Enabled: Enables WDigest authentication.
-Disabled (recommended): Disables WDigest authentication. For this setting to work on Windows 7, Windows 8, Windows Server 2008 R2 or Windows Server 2012, KB2871997 must first be installed.
+Enabled: Enables WDigest authentication. 
+Disabled (recommended): Disables WDigest authentication. For this setting to work on Windows 7, Windows 8, Windows Server 2008 R2 or Windows Server 2012, KB2871997 must first be installed. 
 For more information, see http://support.microsoft.com/kb/2871997 and http://blogs.technet.com/b/srd/archive/2014/06/05/an-overview-of-kb2871997.aspx ."
 
 
-Structured exception handling overwrite 
+###Structured exception handling overwrite ###
 
-"If this setting is enabled, SEHOP is enforced. For more information, see https://support.microsoft.com/en-us/help/956607/how-to-enable-structured-exception-handling-overwrite-protection-sehop-in-windows-operating-systems.
+"If this setting is enabled, SEHOP is enforced. For more information, see https://support.microsoft.com/en-us/help/956607/how-to-enable-structured-exception-handling-overwrite-protection-sehop-in-windows-operating-systems. 
 If this setting is disabled or not configured, SEHOP is not enforced for 32-bit processes."
 
 ## MSS Legacy ##
@@ -274,19 +274,19 @@ Same as with MS Security Guide, we have no details on the settings. I'll include
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline20.png)
 
-Network IP source routing protection level
+###Network IP source routing protection level###
 
 MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)
 
-Network ignore NetBIOS name release requests except from WINS servers
+###Network ignore NetBIOS name release requests except from WINS servers###
 
 MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers
 
-Network IPv6 source routing protection level
+###Network IPv6 source routing protection level###
 
 MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)
 
-Network ICMP redirects override OSPF generated routes
+###Network ICMP redirects override OSPF generated routes###
 
 MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes
 
@@ -298,7 +298,12 @@ There is nothing wrong with the settings , help text and values. However, it lac
 
 the Intune settings as such are not confusing, but it does show that Microsoft is constantly tweaking the settings text and help text.  Some time ago, "Block Storing run as credentials" had no clear description, but now it does. However, the Microsoft documentation hasn't been updated yet and still shows no real details on this setting
 
+Intune :
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline21.png)
+
+MS Docs :
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline22.png)
 
 ## Smart Screen ##
@@ -311,13 +316,13 @@ The corresponding GPO allows more control than just Enabling or "not configuring
 
 GPO help text : 
 
-"This policy allows you to turn Windows Defender SmartScreen on or off.  SmartScreen helps protect PCs by warning users before running potentially malicious programs downloaded from the Internet.  This warning is presented as an interstitial dialog shown before running an app that has been downloaded from the Internet and is unrecognized or known to be malicious.  No dialog is shown for apps that do not appear to be suspicious.
-Some information is sent to Microsoft about files and programs run on PCs with this feature enabled.
-If you enable this policy, SmartScreen will be turned on for all users.  Its behavior can be controlled by the following options:
-* Warn and prevent bypass
-* Warn
-If you enable this policy with the ""Warn and prevent bypass"" option, SmartScreen's dialogs will not present the user with the option to disregard the warning and run the app.  SmartScreen will continue to show the warning on subsequent attempts to run the app.
-If you enable this policy with the ""Warn"" option, SmartScreen's dialogs will warn the user that the app appears suspicious, but will permit the user to disregard the warning and run the app anyway.  SmartScreen will not warn the user again for that app if the user tells SmartScreen to run the app.
+"This policy allows you to turn Windows Defender SmartScreen on or off.  SmartScreen helps protect PCs by warning users before running potentially malicious programs downloaded from the Internet.  This warning is presented as an interstitial dialog shown before running an app that has been downloaded from the Internet and is unrecognized or known to be malicious.  No dialog is shown for apps that do not appear to be suspicious. 
+Some information is sent to Microsoft about files and programs run on PCs with this feature enabled. 
+If you enable this policy, SmartScreen will be turned on for all users.  Its behavior can be controlled by the following options: 
+* Warn and prevent bypass 
+* Warn  
+If you enable this policy with the ""Warn and prevent bypass"" option, SmartScreen's dialogs will not present the user with the option to disregard the warning and run the app.  SmartScreen will continue to show the warning on subsequent attempts to run the app. 
+If you enable this policy with the ""Warn"" option, SmartScreen's dialogs will warn the user that the app appears suspicious, but will permit the user to disregard the warning and run the app anyway.  SmartScreen will not warn the user again for that app if the user tells SmartScreen to run the app. 
 If you disable this policy, SmartScreen will be turned off for all users.  Users will not be warned if they try to run suspicious apps from the Internet.
 If you do not configure this policy, SmartScreen will be enabled by default, but users may change their settings."
 
@@ -337,7 +342,7 @@ It also contains settings for Exploit Guard :
 
 - Network protection type
 
-And , for me , the most confusing one is this reference to Credential guard :
+And , personally , the most confusing one is this reference to Credential guard :
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline24.png)
 
