@@ -186,13 +186,13 @@ There are in total 836 GPO's related to internet explorer settings, so I think t
 
 ## Local Policies Security Options ##
 
-###Restrict anonymous access to named pipes and shares###
+### Restrict anonymous access to named pipes and shares ###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline12.png)
 
 If you don't read the help text, the intention of this setting is clear to me, but when you do read the help text, it gets confusing again as they refer to "Enabled" but the setting allows you to set "Yes" or "Not Configured".
 
-###Require client to always digitally sign communications###
+### Require client to always digitally sign communications ###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline13.png)
 
@@ -202,19 +202,19 @@ They do exist at a GPO level and are enabled by default :
 - Domain member: Digitally encrypt secure channel data (when possible)
 - Domain member: Digitally sign secure channel data (when possible)
 
-###Prevent clients from sending unencrypted passwords to third party SMB servers###
+### Prevent clients from sending unencrypted passwords to third party SMB servers ###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline14.png)
 
 We are starting to see a pattern here. The settings is clear, if you select "Yes", clients won't be able to send unencrypted passwords to 3rd party SMB servers. However, the help text seems to indicate that if you Enable this policy , you DO allow unencrypted passwords to be sent to 3rd party SMB servers.
 
-###Require admin approval mode for administrators###
+### Require admin approval mode for administrators ###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline15.png)
 
 Interestingly enough, here we have references to "Not Configured" in the help text and not Enable/Disable anymore.
 
-###Allow remote calls to security accounts manager###
+### Allow remote calls to security accounts manager ###
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline18.png)
 
@@ -226,7 +226,7 @@ None of the settings have any explanation on what they actually do. Even the "le
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline19.png)
 
-###Apply UAC restrictions to local accounts on network logon###
+### Apply UAC restrictions to local accounts on network logon ###
 
 "This setting controls whether local accounts can be used for remote administration via network logon (e.g., NET USE, connecting to C$, etc.). Local accounts are at high risk for credential theft when the same account and password is configured on multiple systems.  Enabling this policy significantly reduces that risk.
 Enabled (recommended): Applies UAC token-filtering to local accounts on network logons. Membership in powerful group such as Administrators is disabled and powerful privileges are removed from the resulting access token. This configures the LocalAccountTokenFilterPolicy registry value to 0. This is the default behavior for Windows.
@@ -234,7 +234,7 @@ Disabled: Allows local accounts to have full administrative rights when authenti
 For more information about local accounts and credential theft, see ""Mitigating Pass-the-Hash (PtH) Attacks and Other Credential Theft Techniques"": http://www.microsoft.com/en-us/download/details.aspx?id=36036. 
 For more information about LocalAccountTokenFilterPolicy, see http://support.microsoft.com/kb/951016."
 
-###SMB v1 client driver start configuration###
+### SMB v1 client driver start configuration ###
 
 "Configures the SMB v1 client driver's start type.  
 To disable client-side processing of the SMBv1 protocol, select the ""Enabled"" radio button, then select ""Disable driver"" from the dropdown. 
@@ -246,14 +246,14 @@ To restore default SMBv1 client-side behavior, select ""Enabled"" and choose the
 Changes to this setting require a reboot to take effect. 
 For more information, see https://support.microsoft.com/kb/2696547" 
 
-###SMB v1 server###
+### SMB v1 server ###
 
 "Disabling this setting disables server-side processing of the SMBv1 protocol. (Recommended.) 
 Enabling this setting enables server-side processing of the SMBv1 protocol. (Default.) 
 Changes to this setting require a reboot to take effect. 
 For more information, see https://support.microsoft.com/kb/2696547" 
 
-###Digest authentication###
+### Digest authentication ###
 
 "When WDigest authentication is enabled, Lsass.exe retains a copy of the user's plaintext password in memory, where it can be at risk of theft. Microsoft recommends disabling WDigest authentication unless it is needed. 
 If this setting is not configured, WDigest authentication is disabled in Windows 8.1 and in Windows Server 2012 R2; it is enabled by default in earlier versions of Windows and Windows Server. 
@@ -263,7 +263,7 @@ Disabled (recommended): Disables WDigest authentication. For this setting to wor
 For more information, see http://support.microsoft.com/kb/2871997 and http://blogs.technet.com/b/srd/archive/2014/06/05/an-overview-of-kb2871997.aspx ."
 
 
-###Structured exception handling overwrite ###
+### Structured exception handling overwrite ###
 
 "If this setting is enabled, SEHOP is enforced. For more information, see https://support.microsoft.com/en-us/help/956607/how-to-enable-structured-exception-handling-overwrite-protection-sehop-in-windows-operating-systems. 
 If this setting is disabled or not configured, SEHOP is not enforced for 32-bit processes."
@@ -274,19 +274,19 @@ Same as with MS Security Guide, we have no details on the settings. I'll include
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/IntuneSecurityBaseline20.png)
 
-###Network IP source routing protection level###
+### Network IP source routing protection level ###
 
 MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)
 
-###Network ignore NetBIOS name release requests except from WINS servers###
+### Network ignore NetBIOS name release requests except from WINS servers ###
 
 MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers
 
-###Network IPv6 source routing protection level###
+### Network IPv6 source routing protection level ###
 
 MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)
 
-###Network ICMP redirects override OSPF generated routes###
+### Network ICMP redirects override OSPF generated routes ###
 
 MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes
 
