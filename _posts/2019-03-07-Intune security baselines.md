@@ -2,7 +2,7 @@
 title: "Intune - Security baselines (Preview)"
 header:
 author: Tom Degreef
-date: 2000-01-11
+date: 2019-03-11 
 categories:
   - Intune
 
