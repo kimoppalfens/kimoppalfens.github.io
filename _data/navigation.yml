@@ -14,8 +14,11 @@ main:
 
   - title: "Contact Us"
     url: /Contactus/
-    sublinks: "Faq"
+    - sublinks: "Faq"
     url: /Faq/
+    - sublinks: "Faq2"
+    url: /Faq2/
+
 
 
 
