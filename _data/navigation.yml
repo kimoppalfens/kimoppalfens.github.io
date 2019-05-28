@@ -14,11 +14,6 @@ main:
 
   - title: "Contact Us"
     url: /Contactus/
-    sublinks:
-      - title: item1
-        url: /sessions/
-      - title: item2
-        url: /training/
 
 
 
