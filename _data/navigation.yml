@@ -13,12 +13,7 @@ main:
     url: /tools/
 
   - title: "Contact Us"
-    url: /Contactus/
-    sublinks:
-    - title: "Page1"
-      url: "/Contactus/"
-    - title: "Page2"
-      url: "/Contactus/"      
+    url: /Contactus/ 
 
 
 
