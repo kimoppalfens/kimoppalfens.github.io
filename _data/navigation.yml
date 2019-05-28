@@ -14,6 +14,11 @@ main:
 
   - title: "Contact Us"
     url: /Contactus/
+    sublinks:
+    - title: "Page1"
+      url: "/page1.html"
+    - title: "Page2"
+      url: "/page2.html"      
 
 
 
