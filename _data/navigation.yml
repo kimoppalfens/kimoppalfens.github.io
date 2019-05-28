@@ -16,9 +16,9 @@ main:
     url: /Contactus/
     sublinks:
     - title: "Page1"
-      url: "/page1.html"
+      url: "/Contactus/"
     - title: "Page2"
-      url: "/page2.html"      
+      url: "/Contactus/"      
 
 
 
