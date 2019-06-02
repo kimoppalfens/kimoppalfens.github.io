@@ -7,6 +7,7 @@ header:
 date: 2015-09-24
 categories:
   - osccservices
+category: osccservices
 tags:
   - SCCM
   - Servicing
