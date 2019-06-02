@@ -7,16 +7,13 @@ main:
     url: /sessions/
  
   - title: "OSCC services"
-    url: /about-oscc/
+    url: /OSCCServices/
 
   - title: "Products"
     url: /tools/
 
   - title: "Contact Us"
     url: /Contactus/
-    sublinks:
-    - title: page1
-      url: /page1/   
 
 
 
