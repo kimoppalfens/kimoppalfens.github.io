@@ -13,6 +13,5 @@ feature:
 
 {% for post in site.categories.osccservices %}
   {% if post.featured != true %}
-  {% include archive__item.html %}
-  {% endif %}
+   {% endif %}
 {% endfor %}
