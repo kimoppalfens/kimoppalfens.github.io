@@ -7,7 +7,7 @@ main:
     url: /sessions/
  
   - title: "OSCC services"
-    url: /OSCCServices/
+    url: /osccservices/
 
   - title: "Products"
     url: /tools/
