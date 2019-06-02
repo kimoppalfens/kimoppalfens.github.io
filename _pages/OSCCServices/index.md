@@ -1,0 +1,18 @@
+---
+layout: archive
+permalink: /OSCCServices/
+title: "OSCC Services"
+date: 2014-06-02T12:26:34-04:00
+modified: 2015-12-02T11:05:08-05:00
+excerpt: "A collection of thoughts, inspiration, mistakes, and other minutia I’ve written."
+feature:
+  visible: true
+  headline: "OSCC Services"
+  category: services
+---
+
+{% for post in site.categories.OSCCServices %}
+  {% if post.featured != true %}
+  {% include archive__item.html %}
+  {% endif %}
+{% endfor %}
