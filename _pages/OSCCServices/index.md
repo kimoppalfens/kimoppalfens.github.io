@@ -1,6 +1,6 @@
 ---
 layout: archive
-permalink: /OSCCServices/
+permalink: /osccservices/
 title: "OSCC Services"
 date: 2014-06-02T12:26:34-04:00
 modified: 2015-12-02T11:05:08-05:00
@@ -8,10 +8,10 @@ excerpt: "A collection of thoughts, inspiration, mistakes, and other minutia Iâ€
 feature:
   visible: true
   headline: "OSCC Services"
-  category: services
+  category: osccservices
 ---
 
-{% for post in site.categories.OSCCServices %}
+{% for post in site.categories.osccservices %}
   {% if post.featured != true %}
   {% include archive__item.html %}
   {% endif %}
