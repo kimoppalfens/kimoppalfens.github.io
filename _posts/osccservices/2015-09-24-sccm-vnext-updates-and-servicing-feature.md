@@ -6,7 +6,7 @@ header:
   teaser: updatesandservicing512x384.jpg
 date: 2015-09-24
 categories:
-  - SCCM
+  - osccservices
 tags:
   - SCCM
   - Servicing
