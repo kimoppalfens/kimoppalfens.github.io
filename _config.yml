@@ -242,10 +242,3 @@ defaults:
       comments: true
       share: true
       related: true
-    # OSCC Services
-  - scope:
-      path: _posts/osccservices
-      type: posts
-    values:
-      layout: single
-      category: osccservices
