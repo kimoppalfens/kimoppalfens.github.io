@@ -13,7 +13,9 @@ feature:
 
 {% for post in site.categories.osccservices %}
   {% if post.featured != true %}
-  <p><h2 class="archive__item-title" itemprop="headline"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h2></p>
+  <div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <h2 class="archive__item-title" itemprop="headline"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h2>
   <p>{{ post.excerpt }}</p>
   {% endif %}
 {% endfor %}
