@@ -14,6 +14,6 @@ feature:
 {% for post in site.categories.osccservices %}
   {% if post.featured != true %}
   {{ post.title }}
-  {{ post.Excerpt }}
+  {{ post.excerpt }}
   {% endif %}
 {% endfor %}
