@@ -3,7 +3,7 @@ title: About us
 author: OSCC
 layout: post
 category: osccservices
-excerpt: "Page not found. Your pixels are in another canvas."
+excerpt: "Sample excerpt, webpage not broken, stop contacting your administrator"
 sitemap: false
 permalink: /about-oscc/
 author_profile: true
