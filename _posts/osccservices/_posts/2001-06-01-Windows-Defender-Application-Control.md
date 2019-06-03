@@ -1,6 +1,6 @@
 ---
 title: "Windows Defender Application Control"
-author: Tom Degreef
+author: OSCC
 header:
   overlay_image: updatesandservicing1280x960.jpg
   teaser: updatesandservicing512x384.jpg
