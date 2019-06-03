@@ -13,7 +13,7 @@ feature:
 
 {% for post in site.categories.osccservices %}
   {% if post.featured != true %}
-  <a href="{{ post.url }}">{{ post.title }}</a>
-      {{ post.excerpt }}
+  <p><a href="{{ post.url }}"><b>{{ post.title }}</b></a></p>
+  <p>{{ post.excerpt }}</p>
   {% endif %}
 {% endfor %}
