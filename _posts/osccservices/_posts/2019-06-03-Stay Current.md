@@ -28,7 +28,8 @@ The image is further enhanced so that it always contains the latest Windows 10 S
 
 ## Windows 10 Upgrades ##
 
-Windows 10 is released 2 times a year, with a March and September release. This offer provides customers with a task sequence that allows upgrading from the current build to the new build. This tasksequence incorporates OSCC’s years long experience and expertise in building reliable and robust task sequences. One tasksequence a year is provided within this offer for the first September release following the signing of this offer.
+Windows 10 is released 2 times a year, with a March and September release. This offer provides customers with a task sequence that allows upgrading from the current build to the new build. This tasksequence incorporates OSCC’s years long experience and expertise in building reliable and robust task sequences.   
+One tasksequence a year is provided within this offer for the first September release following the signing of this offer.
 
 The upgrade tasksequence is made available 3 months post the original release of the Windows 10 build. 2 days of assistance is included in this offer to tailor this tasksequence to the customer’s environment.
 
