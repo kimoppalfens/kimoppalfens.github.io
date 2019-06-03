@@ -15,7 +15,7 @@ feature:
   {% if post.featured != true %}
   <div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-  <h2 class="archive__item-title" itemprop="headline"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h2>
+  <p><h2 class="archive__item-title" itemprop="headline"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h2></p>
   <p>{{ post.excerpt }}</p>
   {% endif %}
 {% endfor %}
