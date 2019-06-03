@@ -242,3 +242,10 @@ defaults:
       comments: true
       share: true
       related: true
+    # Mastering Paper
+  - scope:
+      path: _posts/osccservices
+      type: posts
+    values:
+      layout: single
+      category: osccservices
