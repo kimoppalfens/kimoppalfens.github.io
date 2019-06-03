@@ -16,6 +16,8 @@ feature:
   <div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
   <p><h2 class="archive__item-title" itemprop="headline"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h2></p>
-  <p>{{ post.excerpt }}</p>
+  <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt }}</p>
+  </article>
+  </div>
   {% endif %}
 {% endfor %}
