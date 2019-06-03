@@ -1,5 +1,5 @@
 ---
-layout: archivewithoutheader1title
+layout: archive
 permalink: /osccservices/
 date: 2014-06-02T12:26:34-04:00
 modified: 2015-12-02T11:05:08-05:00
