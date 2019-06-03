@@ -13,6 +13,6 @@ feature:
 
 {% for post in site.categories.osccservices %}
   {% if post.featured != true %}
-  {{ post.excerpt }}
+  {{ post.title }}
   {% endif %}
 {% endfor %}
