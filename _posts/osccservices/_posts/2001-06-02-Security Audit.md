@@ -2,13 +2,13 @@
 title: "Security Audit"
 author: Tom Degreef
 header:
-  overlay_image: updatesandservicing1280x960.jpg
-  teaser: updatesandservicing512x384.jpg
+  overlay_image: securityaudit1280x960.png
+  teaser: securityaudit1280x960.png
 date: 2001-06-04
 categories:
   - osccservices
 category: osccservices
-excerpt: "An in-depth vulnerability assessment of your SCCM environment"
+excerpt: "SCCM is gaining more and more interest of security researchers in how to (ab-)use this tool to execute their own code in your environment. OSCC's deep understanding of the internal SCCM operations allows us to perform an in-depth vulnerability assessment of your SCCM environment from a security point of view. Click here to learn more about this special offer. "
 tags:
   - SCCM
   - vulnerability
@@ -39,7 +39,8 @@ OSCC is driven by 2 senior consultants with a strong focus on understanding how 
 
 OSCC has worked at close to 100 different customers of different sizes, across different private and public sectors over the years. This has resulted in a ton of experience working with SCCM and has provided a lot of insight into how organizations operate their SCCM environments. 
 
-What’s in scope of this Vulnerability assessment?
+# What’s in scope of this Vulnerability assessment? #
+
 The scope is largely focused on SCCM, which includes:
 
 *	Site Server configuration
@@ -52,8 +53,10 @@ The scope is largely focused on SCCM, which includes:
 *	Uptake of new Security features delivered by the SCCM product team
 *	All the above is checked for common configuration shortcomings and proper security hygiene.
 
-What are the deliverables at the end of the assignment?
+# What are the deliverables at the end of the assignment? #
+
 The main deliverable is a “Call to action” - document that is discussed with the customer’s Desktop and Server management teams. The Call to action document lists the items found, qualifies and describes them and offers remediations.
 
 # How much does an SCCM vulnerability assessment cost? #
+
 A security review conducted by one of the 2 qualified MVP’s to deliver this assignment is priced at 4.950€.
