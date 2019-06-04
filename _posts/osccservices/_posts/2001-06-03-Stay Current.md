@@ -8,7 +8,7 @@ date: 2001-06-05
 categories:
   - osccservices
 category: osccservices
-excerpt: "The rapid release cadence of Windows 10 & SCCM makes 'staying current' a mandatory task to keep the environment secure. OSCC offers an industry best practice based offer to assist with the technical and non-technical challenges of this task. Learn how to increase your efficiency in this process. <a href="http://www.oscc.be/osccservices/">More details.</a>"
+excerpt: "The rapid release cadence of Windows 10 & SCCM makes 'staying current' a mandatory task to keep the environment secure. OSCC offers an industry best practice based offer to assist with the technical and non-technical challenges of this task. Learn how to increase your efficiency in this process."
 tags:
   - SCCM
   - Windows 10
