@@ -8,7 +8,7 @@ date: 2001-06-04
 categories:
   - osccservices
 category: osccservices
-excerpt: "System Center Configuration Manager is gaining interest of the Infosec community at large. OSCC's deep understanding of its internal operations and focus on security allows us to perform a vulnerability assessment and report issues in your environment. Fixed price offer for report, service available worldwide. "
+excerpt: "System Center Configuration Manager is gaining interest of the Infosec community at large. OSCC's deep understanding of its internal operations and focus on security allows us to perform a vulnerability assessment and report issues in your environment. Fixed price offer, service available worldwide. "
 tags:
   - SCCM
   - vulnerability
