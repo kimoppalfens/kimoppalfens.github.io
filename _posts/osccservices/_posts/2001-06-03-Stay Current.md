@@ -1,6 +1,6 @@
 ---
-title: "Stay Current"
-author: Tom Degreef
+title: "Stay Current with SCCM and Windows 10"
+author: OSCC
 header:
   overlay_image: staycurrent1280x960.png
   teaser: staycurrent.png
@@ -8,7 +8,7 @@ date: 2001-06-05
 categories:
   - osccservices
 category: osccservices
-excerpt: "Let OSCC assist you with SCCM & Windows 10 upgrades ! We take care of your SCCM environment and windows 10 upgrade task sequences. We also provide you a patches Windows 10 image each month to ensure a smooth rollout. Twice a year you are welcome to join our evening workshop where we will inform you on what's going on in the windows 10 world. Click here for a more details !"
+excerpt: "The rapid release cadence of Windows 10 & SCCM makes 'staying current' a mandatory task to keep the environment secure. OSCC offers an industry best practice based approach to assist with the technical and non-technical challenges of this task. Learn how to increase your efficiency in this process."
 tags:
   - SCCM
   - Windows 10

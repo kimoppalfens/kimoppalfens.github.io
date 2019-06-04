@@ -1,6 +1,6 @@
 ---
-title: "Security Audit"
-author: Tom Degreef
+title: "SCCM Vulnerability assessment"
+author: OSCC
 header:
   overlay_image: securityaudit1280x960.png
   teaser: securityaudit1280x960.png
@@ -8,7 +8,7 @@ date: 2001-06-04
 categories:
   - osccservices
 category: osccservices
-excerpt: "SCCM is gaining more and more interest of security researchers in how to (ab-)use this tool to execute their own code in your environment. OSCC's deep understanding of the internal SCCM operations allows us to perform an in-depth vulnerability assessment of your SCCM environment from a security point of view. Click here to learn more about this special offer. "
+excerpt: "System Center Configuration Manager is gaining interest of the Infosec community at large. OSCC's deep understanding of its internal operations and focus on security allows us to perform a vulnerability assessment and report issues in your environment. Fixed price offer, service available worldwide. "
 tags:
   - SCCM
   - vulnerability

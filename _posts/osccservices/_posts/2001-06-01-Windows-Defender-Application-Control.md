@@ -1,5 +1,5 @@
 ---
-title: "Windows Defender Application Control"
+title: "Windows application whitelisting with Defender Application Control (WDAC)"
 author: OSCC
 header:
   overlay_image: wdac1280x960.png
@@ -8,7 +8,7 @@ date: 2001-06-03
 categories:
   - osccservices
 category: osccservices
-excerpt: "Application whitelisting allows you tightly control what applications are allowed to run in your environment. Properly implemented, this will increase your security posture by an order of magnitude. OSCC's approach in implementing DeviceGuard (Windows defender application control) will allow for a smooth transition into a more secure environment. Click here for more information."
+excerpt: "Application whitelisting allows you tight control of what applications are allowed to run in your environment. OSCC's approach mixes the Systems Management knowledge of SCCM with in-depth DeviceGuard/WDAC knowledge to smoothen the transition into a more secure environment. Check for more details on customized training and proof of concept guidance."
 tags:
   - SCCM
   - vulnerability
