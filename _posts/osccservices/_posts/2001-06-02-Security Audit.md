@@ -13,6 +13,8 @@ tags:
   - SCCM
   - vulnerability
   - security
+  - Audit
+  - Assessment
 ---
 
 # Why do I need an SCCM vulnerability assessment? #
