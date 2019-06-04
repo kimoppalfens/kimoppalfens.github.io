@@ -8,7 +8,7 @@ date: 2001-06-05
 categories:
   - osccservices
 category: osccservices
-excerpt: "Let OSCC assist you with SCCM & Windows 10 upgrades !"
+excerpt: "Let OSCC assist you with SCCM & Windows 10 upgrades ! We take care of your SCCM environment and windows 10 upgrade task sequences. We also provide you a patches Windows 10 image each month to ensure a smooth rollout. Twice a year you are welcome to join our evening workshop where we will inform you on what's going on in the windows 10 world. Click here for a more details !"
 tags:
   - SCCM
   - Windows 10
@@ -24,7 +24,7 @@ The image is further enhanced so that it always contains the latest Windows 10 S
 
 | Basic Image Lifecycle management | Automated Windows 10 Image Lifecycle management with SCCM |
 |---|---|---|
-|Once customers receive the update it is their responsibility to import the new image into their staging process. E.g.: This means importing the image, distributing it to all necessary distribution points, and updating the tasksequences that need to use the new image going forward on a monthly basis. Machines will use the older image until this manual update has been performed by the IT department of the customer.| The automated Windows 10 image lifecycle management with sccm is an add-on to the basic image lifecycle management service. This add-on enables fully automated integration of the new images into the customer’s SCCM environment avoiding the need for manual monthly actions and allowing for a complete hands-off approach. Customers can set a delay before the current images are replaced with the most recent as a safeguard against software updates that have challenges.| 
+|Once customers receive the update it is their responsibility to import the new image into their staging process.<br> E.g.: This means importing the image, distributing it to all necessary distribution points, and updating the tasksequences that need to use the new image going forward on a monthly basis.<br>Machines will use the older image until this manual update has been performed by the IT department of the customer.| The automated Windows 10 image lifecycle management with sccm is an add-on to the basic image lifecycle management service.<br> This add-on enables fully automated integration of the new images into the customer’s SCCM environment avoiding the need for manual monthly actions and allowing for a complete hands-off approach.<br> Customers can set a delay before the current images are replaced with the most recent as a safeguard against software updates that have challenges.| 
 
 ## Windows 10 Upgrades ##
 
