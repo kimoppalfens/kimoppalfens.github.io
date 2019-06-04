@@ -2,8 +2,8 @@
 title: "Stay Current"
 author: Tom Degreef
 header:
-  overlay_image: updatesandservicing1280x960.jpg
-  teaser: updatesandservicing512x384.jpg
+  overlay_image: staycurrent1280x960.png
+  teaser: staycurrent.png
 date: 2001-06-05
 categories:
   - osccservices
