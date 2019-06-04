@@ -2,13 +2,13 @@
 title: "Windows Defender Application Control"
 author: OSCC
 header:
-  overlay_image: updatesandservicing1280x960.jpg
-  teaser: updatesandservicing512x384.jpg
+  overlay_image: wdac1280x960.png
+  teaser: wdac1280x960.png
 date: 2001-06-03
 categories:
   - osccservices
 category: osccservices
-excerpt: "Let us help you implementing Application whitelisting (DeviceGuard)"
+excerpt: "Application whitelisting allows you tightly control what applications are allowed to run in your environment. Properly implemented, this will increase your security posture by an order of magnitude. OSCC's approach in implementing DeviceGuard (Windows defender application control) will allow for a smooth transition into a more secure environment. Click here for more information."
 tags:
   - SCCM
   - vulnerability
