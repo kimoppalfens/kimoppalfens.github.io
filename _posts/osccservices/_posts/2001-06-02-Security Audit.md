@@ -1,5 +1,5 @@
 ---
-title: "SCCM Vulnearbility assessment"
+title: "System Center Configuration Manager (SCCM) Vulnerability assessment"
 author: Tom Degreef
 header:
   overlay_image: securityaudit1280x960.png
