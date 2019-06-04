@@ -8,7 +8,7 @@ date: 2001-06-03
 categories:
   - osccservices
 category: osccservices
-excerpt: "Application whitelisting allows you tight control of what applications are allowed to run in your environment. OSCC's approach mixes the Systems Management knowledge of SCCM with in-depth DeviceGuard/WDAC knowledge to smoothen the transition into a more secure environment. Click here for more information."
+excerpt: "Application whitelisting allows you tight control of what applications are allowed to run in your environment. OSCC's approach mixes the Systems Management knowledge of SCCM with in-depth DeviceGuard/WDAC knowledge to smoothen the transition into a more secure environment. Check for more details on custom build training and proof of concept guidance."
 tags:
   - SCCM
   - vulnerability
