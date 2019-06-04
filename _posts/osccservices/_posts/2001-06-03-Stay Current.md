@@ -1,6 +1,6 @@
 ---
 title: "Stay Current with SCCM and Windows 10"
-author: Tom Degreef
+author: OSCC
 header:
   overlay_image: staycurrent1280x960.png
   teaser: staycurrent.png

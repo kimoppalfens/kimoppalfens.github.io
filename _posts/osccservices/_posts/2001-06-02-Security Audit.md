@@ -1,6 +1,6 @@
 ---
 title: "SCCM Vulnerability assessment"
-author: Tom Degreef
+author: OSCC
 header:
   overlay_image: securityaudit1280x960.png
   teaser: securityaudit1280x960.png
