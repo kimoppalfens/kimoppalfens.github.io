@@ -15,9 +15,9 @@ bedrijfsnaam : <input name="BedrijfsNaam" type="text" maxlength="255" value=""/>
 
 <h1> Selecteer uw OS Versie's </h1>
 
- <input name="1709" type="checkbox" value="1709" /> 1709 <br>
- <input name="1803" type="checkbox" value="1803" /> 1803 <br>
- <input name="1809" type="checkbox" value="1809" /> 1809 <br>
+ <input name="1709" type="checkbox" value="1709" /> 1709<br>
+ <input name="1803" type="checkbox" value="1803" /> 1803<br>
+ <input name="1809" type="checkbox" value="1809" /> 1809<br>
  <input name="1903" type="checkbox" value="1903" /> 1903
 
 <h1> Op te nemen in de Image</h1>
@@ -26,27 +26,27 @@ bedrijfsnaam : <input name="BedrijfsNaam" type="text" maxlength="255" value=""/>
 
 <h1>Te verwijderen features uit de Image</h1>
 
-<input name="Posh2" type="checkbox" value="Powershell versie 2" checked /> Powershell versie 2 <br>
+<input name="Posh2" type="checkbox" value="Powershell versie 2" checked /> Powershell versie 2<br>
 <input name="SMBv1" type="checkbox" value="SMB v1" checked/>SMB v1
 
 <h1>Moderne apps die moeten blijven BESTAAN in de image</h1>
 
-<input name="Microsoft.BingWeather" type="checkbox" value="Microsoft.BingWeather" /> Microsoft.BingWeather <br>
-<input name="Microsoft.XboxApp" type="checkbox" value="Microsoft.XboxApp" /> Microsoft.XboxApp <br>
-<input name="Microsoft.SkypeApp" type="checkbox" value="Microsoft.SkypeApp" /> Microsoft.SkypeApp <br>
-<input name="Microsoft.MicrosoftSolitaireCollection" type="checkbox" value="Microsoft.MicrosoftSolitaireCollection" /> Microsoft.MicrosoftSolitaireCollection <br>
-<input name="Microsoft.ZuneMusic" type="checkbox" value="Microsoft.ZuneMusic" /> Microsoft.ZuneMusic <br>
-<input name="Microsoft.ZuneVideo" type="checkbox" value="Microsoft.ZuneVideo" /> Microsoft.ZuneVideo <br>
-<input name="Microsoft.People" type="checkbox" value="Microsoft.People" /> Microsoft.People <br>
-<input name="Microsoft.MicrosoftOfficeHub" type="checkbox" value="Microsoft.MicrosoftOfficeHub" /> Microsoft.MicrosoftOfficeHub <br>
-<input name="Microsoft.WindowsMaps" type="checkbox" value="Microsoft.WindowsMaps" /> Microsoft.WindowsMaps <br>
-<input name="microsoft.windowscommunicationsapps" type="checkbox" value="microsoft.windowscommunicationsapps" /> microsoft.windowscommunicationsapps <br>
-<input name="Microsoft.Getstarted" type="checkbox" value="Microsoft.Getstarted" /> Microsoft.Getstarted <br>
-<input name="Microsoft.Office.OneNote" type="checkbox" value="Microsoft.Office.OneNote" /> Microsoft.Office.OneNote <br>
-<input name="Microsoft.Messaging" type="checkbox" value="Microsoft.Messaging" /> Microsoft.Messaging <br>
-<input name="Microsoft.WindowsFeedbackHub" type="checkbox" value="Microsoft.WindowsFeedbackHub" /> Microsoft.WindowsFeedbackHub <br>
-<input name="Microsoft.OneConnect" type="checkbox" value="Microsoft.OneConnect" /> Microsoft.OneConnect <br>
-<input name="Microsoft.GetHelp" type="checkbox" value="Microsoft.GetHelp" /> Microsoft.GetHelp <br>
+<input name="Microsoft.BingWeather" type="checkbox" value="Microsoft.BingWeather" /> Microsoft.BingWeather<br>
+<input name="Microsoft.XboxApp" type="checkbox" value="Microsoft.XboxApp" /> Microsoft.XboxApp<br>
+<input name="Microsoft.SkypeApp" type="checkbox" value="Microsoft.SkypeApp" /> Microsoft.SkypeApp<br>
+<input name="Microsoft.MicrosoftSolitaireCollection" type="checkbox" value="Microsoft.MicrosoftSolitaireCollection" /> Microsoft.MicrosoftSolitaireCollection<br>
+<input name="Microsoft.ZuneMusic" type="checkbox" value="Microsoft.ZuneMusic" /> Microsoft.ZuneMusic<br>
+<input name="Microsoft.ZuneVideo" type="checkbox" value="Microsoft.ZuneVideo" /> Microsoft.ZuneVideo<br>
+<input name="Microsoft.People" type="checkbox" value="Microsoft.People" /> Microsoft.People<br>
+<input name="Microsoft.MicrosoftOfficeHub" type="checkbox" value="Microsoft.MicrosoftOfficeHub" /> Microsoft.MicrosoftOfficeHub<br>
+<input name="Microsoft.WindowsMaps" type="checkbox" value="Microsoft.WindowsMaps" /> Microsoft.WindowsMaps<br>
+<input name="microsoft.windowscommunicationsapps" type="checkbox" value="microsoft.windowscommunicationsapps" /> microsoft.windowscommunicationsapps<br>
+<input name="Microsoft.Getstarted" type="checkbox" value="Microsoft.Getstarted" /> Microsoft.Getstarted<br>
+<input name="Microsoft.Office.OneNote" type="checkbox" value="Microsoft.Office.OneNote" /> Microsoft.Office.OneNote<br>
+<input name="Microsoft.Messaging" type="checkbox" value="Microsoft.Messaging" /> Microsoft.Messaging<br>
+<input name="Microsoft.WindowsFeedbackHub" type="checkbox" value="Microsoft.WindowsFeedbackHub" /> Microsoft.WindowsFeedbackHub<br>
+<input name="Microsoft.OneConnect" type="checkbox" value="Microsoft.OneConnect" /> Microsoft.OneConnect<br>
+<input name="Microsoft.GetHelp" type="checkbox" value="Microsoft.GetHelp" /> Microsoft.GetHelp<br>
 
 <button type="submit">Send</button>
 </form>
