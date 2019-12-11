@@ -77,7 +77,7 @@ This flaw deserves a post of it's own ! Stay tuned.
 
 ## Attacking Client Push ##
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Defending/Defending02.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Defending/Defending02.jpeg)
 
 If there is one client installation method that sticks out like a sore thumb it must be Client Push!
 Not only does it require a ton of prerequisites before it actually works, but it can be abused in a man in the middle attack.
