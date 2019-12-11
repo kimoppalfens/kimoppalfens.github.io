@@ -147,3 +147,4 @@ Finding applications without content is left as an exercise to the reader.
 
 # Conclusion #
 
+A systems management tool is a powerfull tool for good, with this great power comes a certain level of risk though. As a systems management admin security best practices and knowledge should be top of mind. The system you manage is one avenue to full company compromise. We've started to give ConfigMgr based training, speaking sessions and security reviews of Microsoft's systems management products and cloud services a while ago and will continue our path in 2020.
