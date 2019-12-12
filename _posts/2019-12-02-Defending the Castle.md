@@ -120,7 +120,7 @@ The good news is, there is an easy fix for this. This MITM attack relies on NTLM
 ## Decyphering the Network Access Account ##
 Next demo had us, representing some bad actors, decypher your Network Access Account. Re-enforcing the message that you should consider the NAA as an account to which everybody in the company, or with access to a single machine in your company has access.
 
-In this demo we were assisted by Dawn "[ConfigGirl](https://configgirl.com/author/dawnwertz/)" Wertz. She picked a child-safe password for us to decrypt. We promise that this password is as close a call we'll ever have to having cat pictures in our presentations.
+In this demo we were assisted by Dawn "[ConfigGirl](https://configgirl.com/author/dawnwertz/)" Wertz [@wertzdm3](https://twitter.com/wertzdm3). She picked a child-safe password for us to decrypt. We promise that this password is as close a call we'll ever have to having cat pictures in our presentations.
 
 Roger Zander was the first to publicly state this over 4 years ago in his blog [Network Access Accounts are Evil](http://rzander.azurewebsites.net/network-access-accounts-are-evil/).
 
