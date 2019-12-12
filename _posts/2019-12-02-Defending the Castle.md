@@ -84,7 +84,7 @@ Not only does it require a ton of prerequisites before it actually works, but it
 
 **Note:** One of those prerequisites is that the account used for client push has local admin privileges on your workstations
 
-[Every admin should at least understand the basics of the man in the middle attack, however it seems a lot of people don't.](https://mez0.cc/posts/ntlm-relaying.html) To make it as comprehensible as possible, we did a little role-playing at MMS JE to explain a MITM attack with the great help of Arne Smeyers, one of our audience volunteers. The following explanation isn't 100% technically accurate, the sketch is simplified to make grasping the mechanism of an NTLM/SMB relay MITM attack easier.
+[Every admin should at least understand the basics of the man in the middle attack, however it seems a lot of people don't.](https://mez0.cc/posts/ntlm-relaying.html) To make it as comprehensible as possible, we did a little role-playing at MMS JE to explain a MITM attack with the great help of Arne Smeyers [@arnenysd](https://twitter.com/ArneNYSD), one of our audience volunteers. The following explanation isn't 100% technically accurate, the sketch is simplified to make grasping the mechanism of an NTLM/SMB relay MITM attack easier.
 
 Regular NTLM authentication is as follows :
 
