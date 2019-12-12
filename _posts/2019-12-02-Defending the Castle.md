@@ -16,7 +16,7 @@ With great power comes great responsibility !
 
 ## Intro ##
 
-**The following blog post is a summary of the lessons learned and offered, worldwide, in our [SCCM Vulnerability assessment offer](http://www.oscc.be/osccservices/Security-Audit/). If this is something that sounds of interest to you, and it should, don't hesitate to contact us.
+The following blog post is a summary of the lessons learned and offered, worldwide, in our [SCCM Vulnerability assessment offer](http://www.oscc.be/osccservices/Security-Audit/). If this is something that sounds of interest to you, and it should, don't hesitate to contact us.
 
 If you need additional feedback on this offer, here is some of the feedback of speaking sessions we've done that mention a subset of what the Vulnerability assessment contains:
 * **"Very interesting topics and demos.  All SCCM admins should attend sessions like this."**
@@ -120,13 +120,16 @@ The good news is, there is an easy fix for this. This MITM attack relies on NTLM
 ## Decyphering the Network Access Account ##
 Next demo had us, representing some bad actors, decypher your Network Access Account. Re-enforcing the message that you should consider the NAA as an account to which everybody in the company, or with access to a single machine in your company has access.
 
+In this demo we were assisted by Dawn "[ConfigGirl](https://configgirl.com/author/dawnwertz/)" Wertz. She picked a child-safe password for us to decrypt. We promise that this password is as close a call we'll ever have to having cat pictures in our presentations.
+
 Roger Zander was the first to publicly state this over 4 years ago in his blog [Network Access Accounts are Evil](http://rzander.azurewebsites.net/network-access-accounts-are-evil/).
 
 Kim hasn't been a huge fan of the fix Roger suggested at the time though. His proposal is to make sure the account is as underprivileged as it can be. Meaning this should be a regular domain user with some additional limitations enforced as documented [here](https://docs.microsoft.com/en-us/configmgr/core/plan-design/hierarchy/accounts#network-access-account).
 
 What the documentation doesn't spell out is that you can "grant" this account all the other deny user rights on a distribution point, and all the deny user rights on all machines that aren't acting as distribution points. To assist in making this configuration OSCC has [blogged](http://www.oscc.be/sccm/configmgr/Protecting-the-Network-Access-Account-using-Configuration-Items-Quest-Part1/) a CI in the past that doest exactly this for you.
 
-In this demo we were assisted by Dawn "[ConfigGirl](https://configgirl.com/author/dawnwertz/)" Wertz. She picked a child-safe password for us to decrypt. We promise that this password is as close a call we'll ever have to having cat pictures in our presentations.
+Now, Configuration Manager Current Branch evolves at speed. One of its more recent evolutions introduced [Enhanced HTTP](https://docs.microsoft.com/en-us/configmgr/core/plan-design/hierarchy/enhanced-http). One of the goals at introduction of this feature was to eliminate the need for the Network Access Account all-together. We, and the product team, believe this has been achieved in the more recent builds of Configuration Manager.
+We strongly suggest putting this on your todo list to test and remove the Network Access Account from your environment.
 
 ## Hiding applications in your Admin UI ##
 
