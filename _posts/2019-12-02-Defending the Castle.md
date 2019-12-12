@@ -2,7 +2,7 @@
 title: "Defending the (SCCM) Castle"
 header:
 author: Tom Degreef
-date: 2010-12-02
+date: 2019-12-12
 categories:
   - SCCM
 
