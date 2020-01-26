@@ -20,7 +20,7 @@ words_per_minute         : 200
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus: 
-    shortname            : "oscc blog" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "osccblog" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -50,7 +50,7 @@ atom_feed:
 include: ["_pages"]
 
 # SEO Related
-google_site_verification : "BAFi08JmV7iUd4B5bnCjs-oZOEtVxZTp77sQDZjfEjU"
+google_site_verification :
 bing_site_verification   : "8C179B9B4BF8744D60A714B21CCE6013"
 alexa_site_verification  :
 yandex_site_verification :
@@ -81,8 +81,8 @@ analytics:
 author:
   name             : "Kim Oppalfens"
   avatar           : "bio-photo.jpg"
-  bio              : "EMS MVP for over a decade, focussing on Automation, Security and overall self-proclaimed nice guy."
-  location         : "Belgium"
+  bio              : "EMS MVP for over a decade, focussing on Automation, Hybrid Identity, DevOps enthousiast and overall self-proclaimed nice guy."
+  location         : "Belgium / Malta"
   email            : "kim.oppalfens@oscc.be"
   uri              : #"http://www.voetbalkrant.com"
   bitbucket        :
