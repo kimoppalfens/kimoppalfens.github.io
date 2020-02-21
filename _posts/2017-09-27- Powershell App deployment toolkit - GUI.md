@@ -1,26 +1,28 @@
 ---
-title: "Powershell App Deployment Tookit - GUI (Updated version 1.3)"
+title: "Powershell App Deployment Tookit - GUI (Updated version 1.4)"
 header:
 author: Tom Degreef
-date: 2018-02-06
+date: 2020-02-22
 categories:
   - SCCM
   - Configmgr
   - Powershell
   - PoSh
+  - Intune
 
 tags:
   - SCCM
   - Configmgr
   - Powershell
   - PoSh
+  - Intune
 ---
 
-GUI for creating applications using the Powershell App Deployment Toolkit, including creating Software ID Tags for easier License Management.
+GUI for creating Intune & SCCM applications using the Powershell App Deployment Toolkit, including creating Software ID Tags for easier License Management.
 
 # Intro #
 
-If you are working with ConfigMgr, you will probably create Applications once in a while to deploy to end-users machines :)
+If you are working with ConfigMgr or Intune, you will probably create Applications once in a while to deploy to end-users machines :)
 
 Although the current Application model is great and allows for much greater flexibility than we had with Packages/Programs , there are still situations where the Application model isn't sufficient.
 
@@ -46,7 +48,7 @@ One of the issues I ran into when using the toolkit for the first times, besides
 
 To prevent this, I started this project to create a GUI that does most of the legwork for you.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_1.3.gif)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Demo_PSAPP_Gui_1.4.gif)
 
 At this moment the functionality is still limited but it should cover the basics to deploy an MSI or Script (setup.exe). The goal is to extend the GUI so that most of the functionality offered by the toolkit is present in the GUI, but that will take time ;-)
 
@@ -68,13 +70,24 @@ Added functionality in Version 1.3 :
 - A text message can be shown at the end of an installation
 - Bugfix where uninstallation wouldn't delete the RegID file.
 
+Added functionality in Version 1.4 :
+- Browse to your setup files (this will extract relevant information from the MSI/EXE and populate the necessary fields)
+- Create Intune Win32 package (IntuneWin file)
+- New/Fixed whois lookup information for the SWID Tag
+- Latest PSADT & Intune Win32 app binaries are included
+- Additional errorhandling
+- Runs from any location that has the Configmgr AdminUI (Console) installed
+- Vendor name is removed in collection/AD name (to shorten the name)
+- Suffix install/uninstall is replaced by -I/-U (to shorten the name)
+- Bugfix if no parameters are required or script or MSI
+
 # Pre-requisites #
 
 **Disclaimer :** As this is the first (beta) version of the GUI (don't let the version number fool you), not everything is error-handled. Also, this is my first attempt at such a project and I'm not the best PowerShell coder out there anyway ;-) So it's a "learn as you go" project.
 
 For now, I assume that the account that launches the GUI has access to the folder that holds your source binaries (the files you want to install) and to the UNC path where we will copy the merged application to (explained below).
 
-If you want to use the GUI to create the SCCM Application as well, you'll also need the appropriate rights in Configmgr and the GUI must run on your primary site server.
+You should be able to run the GUI from any device that has the configmgr AdminUI (Console) installed.
 
 Logging is included in the GUI and if you have PowerShell 5 (or greater), it will try to install [Kim's Logging module](https://gallery.technet.microsoft.com/scriptcenter/Log4Net-Powershell-Module-0d7deacd) so that logging is done in the CMtrace format.
 If that fails, logging will be done to a regular text file.
@@ -83,24 +96,30 @@ The location of the logs for now is c:\temp\PSAPPgui
 
 # Using the GUI #
 
-First things first, Copy the entire content of the GUI, for now, to your SCCM Primary site. That should include the following files/Folders :
+First things first, Download the GUI to a location of your liking. That should include the following files/Folders :
 
 - Toolkit (subfolder - holds the full PS App deployment toolkit)
-- Deploy-Application.PS1 (The template I build upon)
-- MainWindow.XAML (My GUI file)
-- OSCCLogo.jpg (needs no further explanation)
-- Prefs.XML (caching of regid's and other settings)
+- Intune_Win32 (subfolder - holds the Intune Win32 conversion toolkit)
+- Config (Subfolder - holds the following files)
+  - Deploy-Application.PS1 (The template I build upon)
+  - MainWindow.XAML (My GUI file)
+  - OSCCLogo.jpg (needs no further explanation)
+  - Prefs.XML (caching of user settings)
+  - SWID.XML (caching of regid's)
 - PSAPP_GUI.PS1 (The file you need to run !)
 
 When you start the GUI (by launching PSAPP_GUI.PS1 from a PowerShell cmd prompt) you should see the interface that allows you to create a new application.
-(Run as administrator the first time to allow the logging module to be downloaded/installed. This is not required for the GUI functionality)
+(Run as administrator the first time to allow the logging module to be downloaded/installed. This is not required for the GUI functionality but might throw some errors because it will tyr to install the logging module)
 
-There are a few required fields :
+To use the tool, the easiest way is to click the "Browse for install file" button at the top. Browse to the MSI/EXE you want to install and select it.
+The tool will try to extract as much information as possible and enter it in the appropriate field. You may need to complete the remaining required fields.
+
+These are the required fields :
 
 - Application Vendor
 - Application Name
 - Application Version
-- Application Architecture 
+- Application Architecture
 - Software ID Tag
 - Source Path
 - Destination Path
@@ -136,6 +155,10 @@ In the Uninstall section, provide the name for the application as you see it in 
 
 If needed, provide the full uninstall command line, eg "Setup.exe /uninstall".
 
+### MSI Product Code ###
+
+You can also use the MSI product code for uninstallation.
+
 ## Source & Destination ##
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/sources.PNG)
@@ -152,11 +175,15 @@ The actual toolkit will be copied into that final subfolder and your application
 
 ## The Buttons ##
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Browse.png)
+
+Clicking this button will allow you to browse to your sourcefiles that you want to install and extract as much information as possible.
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Button_lookup.png)
 
 If you provide the URL of your vendor's website, eg adobe.com and click the lookup button, the GUI will try to detect when that website was registered and pre-fill the RegID information.
 
-Only Com,Org,Edu & Net domains are supported. (Proxy-support is not built-in at this moment)
+Most domains should be supported, but the lookup can only handle 1000 requests/month globaly (Proxy-support is not built-in at this moment)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Button_Generate.png)
 
@@ -180,7 +207,24 @@ As a detection method, we check for the presence of the SWID-Tag file. Since it'
 
 The list of DP's and DP-Groups is multi-selectable, so just hold CTRL and select the DP and/or DP-groups you want to start the distribution to and click "Distribute Content"
 
-Finally, you can generate 2 collections based on the Application-Name with the suffixes "-Install" & "-Uninstall". They can be further customized with a pre & suffix of your choice.
+Finally, you can generate 2 collections based on the Application-Name with the suffixes "-I" & "-U". They can be further customized with a pre & suffix of your choice.
+
+# Settings #
+
+The Settings tab is split in 2 sections. The first part are the generic settings that you can enable or disable. It will tell the GUI to remember some items and re-use them in the furure 
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSADT_Prefs1.png)
+
+The other part will initially be greyed-out. To be able to select those items, you must complete the first and second tab "manually". That is, create the PSADT package on the first tab and on the SCCM tab, click connect and create the SCCM Application. At that point,the GUI will cache the SCCM sitecode, the DP's you selected, if you want to create collections ...
+The next time you create a PSADT package. The tool will automatically connect to SCCM and create the application on your behalf with all your previous preferences.
+
+![alt]({{ site.url }}{{ site.baseurl }}/PSADT_Prefs2.png)
+
+By default, the tool will limit the collections to the "All systems" collection. If you dont want this, you can set the collection ID to a collection of your liking.
+
+If you select the "Create Intune package" checkbox, you also need to provide a target "Intune app folder". Once the PSADT Package is fully created, it will also generate the IntuneWin file for you in that target folder. This will include the details needed to create the Win32 app in Intune (Commandline, Detection method,...)
+
+Don't forget to hit "Save" to actually save your settings.
 
 # Software ID Tags #
 
@@ -227,24 +271,23 @@ Currently on my roadmap for future versions (not necessarily in this order)
 - Create Deployments
 - Create AD-Groups and link to Collections (done in 1.3)
 - Saved settings such as target folder, selected DP's, ... (done in 1.3)
-- Browse buttons
+- Browse buttons (done in 1.4)
 - More Built-in Toolkit actions
 - Multi-threaded GUI
 
 # Bugs #
 
-- The Collection "preview" is missing an "underscore" between the application vendor and application name. However they are created correctly
 - The GUI can become unresponsive when copying large files or importing into SCCM. Be patient as the process is running in the background in single-threaded mode.
 
 # Download #
 
-Current Version : 1.3
+Current Version : 1.4
 
-[Download here](/Files/PSAppGui.zip)
-
-MD5 Checksum : 0961C98E2CBEDB4F396AC038C9DAA0B3
+[Download from Github](https://github.com/TomDegreef/PSADT_GUI)
 
 
 Feel free to add ideas for features that you feel are missing badly and let me know if you run into issues using the GUI.
+
+Shoutout to Kim Oppalfens and Sandy (Yinghua Zeng) for testing the functionality!
 
 That's it ! Enjoy ...
