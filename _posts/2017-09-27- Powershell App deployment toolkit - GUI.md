@@ -218,7 +218,7 @@ The Settings tab is split in 2 sections. The first part are the generic settings
 The other part will initially be greyed-out. To be able to select those items, you must complete the first and second tab "manually". That is, create the PSADT package on the first tab and on the SCCM tab, click connect and create the SCCM Application. At that point,the GUI will cache the SCCM sitecode, the DP's you selected, if you want to create collections ...
 The next time you create a PSADT package. The tool will automatically connect to SCCM and create the application on your behalf with all your previous preferences.
 
-![alt]({{ site.url }}{{ site.baseurl }}/PSADT_Prefs2.png)
+![alt]({{ site.url }}{{ site.baseurl }}/images/PSADT_Prefs2.png)
 
 By default, the tool will limit the collections to the "All systems" collection. If you dont want this, you can set the collection ID to a collection of your liking.
 
