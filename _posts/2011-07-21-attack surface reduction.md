@@ -33,13 +33,39 @@ What is meant by attack surface reduction - in Microsoft speak?
 
 Microsoft is busy re-branding a ton of Windows 10 (Enterprise) features as Attack Surface Reduction. Not to be confused with Attack Surface Reduction rules/controls which are a sub-component of the Windows Defender Exploit Guard feature set. Part 1of the nice series on [demystifying Attack Surface reduction rules](https://techcommunity.microsoft.com/t5/microsoft-defender-atp/demystifying-attack-surface-reduction-rules-part-1/ba-p/1306420) refers to Attack surface reduction as an umbrella term for all the built-in and cloud-based security features in Windows 10.
 
+Microsoft had bundled the following items under the Attack Surface reduction umbrella:
+- Attack surface reduction rules: A set of rules that eliminates very popular elements of attack. Raning from privilege escalation over fishing through lateral movement.
+- Application guard: Prevent phising attacks through webbrowsers and Microsoft Office.
+- Windows Defender Application Control: A serious shift in security where applications are no longer allowed to run by default. But only apps on an approve list are tolerated.
+- System guard: A system to protect the integrity of the boot process.
+- Device Control: Control the USB devices allowed on a system.
+- Windows Defender Exploit guard
+- Network protection: Expand Microsoft Defender Smartscreen to all HTTP(s) traffic as opposed to just protecting browsers.
+- Controlled Folder access: A mechanism to prevent folders from cryptolockers
+- Web content filtering (ATP): A proxy without the proxy. Protect devices from accesssing undesirable webcontent.
+- Windows Defender Antivirus with cloud delivered protection
+- Windows Defender Firewall with advanced security
+
+As you can see, the list is quite impressive.
+
 ### Personal opinion ###
 
-What did I mean when I said attack surface reduction should be top of mind, and double so for folks that manage an organisation's systems management platform. I guess this part will be split up into 2 different main sections. 
+ There's a ton of things we're already doing that can be considered attack surface reduction.
 
-One is the lack of progress that we've seen made in the industry of the Windows 10 features that allow attack surface reduction in general. There's a ton of things we're already doing that can be considered attack surface reduction.
+- Software updates: The item that probably makes every Top 3 security best practice, patch, patch, patch. Patches however typically eliminate the software from doing things they probably shouldn't have been able to do from the inception of the software.
+- Principle of least privilege: The famous principle where you only grant the necessary permissions is often about making sure that a system can't be attacked by compromising an account with too much permissions.
+- Removing local admin permissions: Several reports yearly point out that security vulnerabilities are less impactful if users are no local admins.
 
-- Software updates: The item that problem makes every Top 3 security best practice, patch, patch, patch. 
+There are quite a number of things that can be done to increase security as can be seen from that list above. 
+
+What did I mean when I said attack surface reduction should be top of mind, and double so for folks that manage an organisation's systems management platform. I guess this part will be split up into 2 different sections in this series.
+
+1. The items related to reducing the attack surface of your systems management platform. Given my experience over the years, items related to the Microsoft systems management platform Microsoft Endpoint Manager
+2. Items where the systems management platform can assist in implementing Windows 10 security features that reduce attack surface.
+
+In both these areas we are seeing evolutions and lack of movement that are either unfortunate or counterproductive. The next couple of posts will talk to points we think can be improved in both these sections. 
+
+
 
 
 
