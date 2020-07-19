@@ -16,7 +16,6 @@ tags:
 The attack surface reduction principle should be top of mind for IT admins.
 
 # Intro #
-author: Kim Oppalfens
 
 What is meant by attack surface reduction - generally?
 The name itself is pretty self-explanatory, the idea behind attack surface reduction is to eliminate vectors of attack by reducing the elements that can be attacked. Plenty of what is already done in the Infosec industry are often forms of attack surface reduction. The general idea, what isn't there, can't be compromised is a pretty strong defense.
