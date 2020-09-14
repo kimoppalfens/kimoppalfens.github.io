@@ -4,13 +4,15 @@ header:
   overlay_image: attacksurfacereduction.jpg
   teaser: attacksurfacereduction.jpg
 author: Kim Oppalfens
-date: 2008-12-25
+date: 2020-09-14
 categories:
   - Security
   - AttackSurfaceReduction
+  - ASR
 tags:
   - Security
   - AttackSurfaceReduction
+  - ASR
 ---
 
 The attack surface reduction principle should be top of mind for IT admins.
@@ -19,9 +21,9 @@ The attack surface reduction principle should be top of mind for IT admins.
 
 What is meant by attack surface reduction - generally?
 
-The name itself is pretty self-explanatory, the idea behind attack surface reduction is to eliminate vectors of attack by reducing the elements that can be attacked. Plenty of what is already done in the Infosec industry are often forms of attack surface reduction. The general idea, what isn't there, can't be compromised is a pretty strong defense.
+The name itself is pretty self-explanatory, the idea behind attack surface reduction is to eliminate vectors of attack by reducing the elements that can be attacked. Plenty of what is already done in the Infosec industry are often forms of attack surface reduction. The general idea, "what isn't there, can't be compromised.", is a pretty good reason to follow the practice.
 
-My CISSP manual compares attack surface reduction to body armor. The more body armor you have, the less attack surface left. It's a workable analogy, they could've taken it further by giving you massive body armor making you ultra-secure, yet make it impossible for you to move around.
+The CISSP manual compares attack surface reduction to body armor. The more body armor you have, the less attack surface left. It's a workable analogy, they could've taken it further by giving you massive body armor making you ultra-secure, yet make it impossible for you to move around.
 
 Unfortunately, IT systems are often still very permissive of what is allowed, leading to a vast attack surface. The reasons for that vary, from convenience, over lack of time considering what the attack surfaces are, and various others.
  
