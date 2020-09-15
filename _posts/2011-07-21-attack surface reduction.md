@@ -1,7 +1,7 @@
 ---
 title: "Attack surface reduction - rising to the challenge"
 header:
-  overlay_image: attacksurfacereduction.jpg
+  overlay_image: attack-surface-reduction1280960.jpg
   teaser: attacksurfacereduction.jpg
 author: Kim Oppalfens
 date: 2020-09-14
