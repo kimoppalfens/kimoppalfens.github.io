@@ -1,10 +1,10 @@
 ---
-title: "Attack surface reduction - rising to the challenge"
+title: "Attack surface reduction"
 header:
   overlay_image: attacksurfacereduction.jpg
   teaser: attacksurfacereduction.jpg
 author: Kim Oppalfens
-date: 2008-12-25
+date: 2020-11-17
 categories:
   - Security
   - AttackSurfaceReduction
