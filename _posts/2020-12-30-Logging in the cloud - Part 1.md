@@ -20,32 +20,36 @@ tags:
 With the release of MEM2010, we got a feature that I'm super excited about! [OSD over the internet (CMG) with bootmedia.](https://docs.microsoft.com/en-us/mem/configmgr/core/plan-design/changes/whats-new-in-version-2010#deploy-an-os-over-cmg-using-bootable-media). 
 There are already plenty of blogs out there on how to set it up, so this blog is not about that part of the puzzle. 
 
-In an on-premises OSD scenario, I assume most of you perform some sort of error-catching scenario. If the task sequence fails, we copy the relevant logs to a share for further investigation. It's a tremendous time-saver and super helpful in troubleshooting scenario's. However, when you perform OSD over the internet/cmg, there is no share available for you to copy these logs to. To make things even worse, the person doing the OSD is probably in a location that you have no access to, so recovering the logs could become very challenging. 
+In an on-premises OSD scenario, I assume most of you perform some sort of error-catching. If the task sequence fails, we copy the relevant logs to a share for further investigation. It's a tremendous time-saver and super helpful in troubleshooting scenario's.  
+However, when you perform OSD over the internet/cmg, there is no share available for you to copy these logs to. To make things even worse, the person doing the OSD is probably in a location that you have no access to, so recovering the logs could become very challenging. 
 
 This 2-part blog series is offering you a solution to get the same central logging functionality as you would have on-premises.
 
 ## Preparations ##
 
 We are going to use Azure blob-storage as an intermediate storage solution to copy the logs to, and to retrieve them from for investigation. 
-There are multiple ways of storing logs/files in azure, there might be even better ways than how I do chose to do it. This is just one possiblilty to get you started. By all means choose the solution that you are most comfortable with.
+There are multiple ways of storing logs/files in azure, there might be even better ways than how I chose to do it.  
+This is just one possibilty to get you started. By all means choose the solution that you are most comfortable with.
 
 First of all, let's prepare our blob-container to host the logfiles. 
-Log on into the Azure portal with an account that has sufficient access (eg, the one you used to setup your CMG) and navigate to "Storage Accounts". Depending on the account you used, you'll probably see a storage container already for your CMG. Click the "Add" button to create a new storage container.
+Log-on into the Azure portal with an account that has sufficient access (eg, the one you used to setup your CMG) and navigate to "Storage Accounts". Depending on the account you used, you'll probably see a storage container already for your CMG.  
+Click the "Add" button to create a new storage container.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs2.jpg)
 
-Select, or create a new resource group and choose a name for your container. If needed, you can adjust the options in the other sections, but for our purpose, the defaults are good enough, so just click "Review + Create", and after reviewing "Create" to actually create our blob container
+Select, or create a new resource group and choose a name for your container. If needed, you can adjust the options in the other sections, but for our purpose, the defaults are good enough, so just click "Review + Create".  
+After reviewing "Create" to actually create our blob container
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs3.jpg)
 
-If you don't already have it, download and install [Microsoft Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) as it offers an easy GUI to work with our storage containers.
+If you don't have it, download and install [Microsoft Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) as it offers an easy GUI to work with our storage containers.
 
 When you first start the tool, a wizard will pop-up asking you to connect to azure storage. Select the first option "add an azure account" and click next.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs1.jpg)
 
-Log in with the account that you used to create the azure blob container.
-If all is well, you should be presented with a list of subscriptions that you entitled to. Expand the subscription you just used to create your container and it should become visible under "Storage accounts"
+Log in with the account that you used to create the azure blob container.  
+If all is well, you should be presented with a list of subscriptions that you are entitled to. Expand the subscription you just used to create your container and the container should become visible under "Storage accounts"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs4.jpg)
 
@@ -55,7 +59,7 @@ Right-click "Blob Containers" and select "Create Blob Container"
 
 Give it a name to your liking and click OK. In my example, i chose "osdlogs".
 
-Right-click your new container and select "Get Shared access Signature" (I will refer to this as the SAS key in the remainder of this blog)
+Right-click your newly created container and select "Get Shared access Signature" (I will refer to this as the SAS key in the remainder of this blog)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs6.jpg)
 
@@ -98,8 +102,9 @@ Select the "package" option and link it to the package you just created with the
 
 This will copy the module to the correct location and allow us to reference it in the script.
 
-The last step we need to add is a script that will gather all the logs needed and upload it to azure. For now, I added it as the last step in task sequence, but you could, just like with normal error-catching, make it conditional to run only when the task sequence fails. 
-Initially, I do think there is some value in having it run every time as deploying task sequences over the internet is a rather new thing and the task sequence we normally use might behave differently when there is no domain present.
+The last step we need to add, is a script that will gather all the logs needed and upload it to azure.  
+For now, I added it as the last step in task sequence, but you could, just like with normal error-catching, make it conditional to run only when the task sequence fails.  
+Initially, I do think there is some value in having it run every time, as deploying task sequences over the internet is a rather new thing and the task sequence we normally use might behave differently when there is no domain present.
 
 The script :
 
@@ -151,7 +156,7 @@ Set-AzureStorageBlobContent -Context $ClientContext -container "osdlogs" -File "
 
 You could pretty much use the above script as-is. You just have to adjust 2 things to for the azure storage.
 
-1) On line 36, replace the content of the storSAS variable with your "Write" SAS-key
+1) On line 36, replace the content of the storSAS variable with your "Write" SAS-key  
 2) In the last line (42) replace the name of the container with the one you created in our preparation step
 
 I used a "Run powershell script" step and added the script in-line in the task sequence
@@ -163,7 +168,7 @@ Ok, we're all setup for testing ! Run your task sequence and if all goes well, o
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs14.jpg)
 
-You could use storage explorer to download it, but why not automate this step as well ...
+We could now use storage explorer to download it, but why not automate this step as well ...
 
 ## Retrieving the logs ##
 
@@ -204,7 +209,7 @@ foreach ($file in $files)
 ```
 Same story as with the previous script, make the following adjustments : 
 
-1) on line 11, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created)
+1) on line 11, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created)  
 2) on lines 16 and 29, replace the name of the container with the one you created in our preparation step
 
 If you then run this script, it should download the logs from Azure, expand the archive, delete the zipfile and clean up Azure.
