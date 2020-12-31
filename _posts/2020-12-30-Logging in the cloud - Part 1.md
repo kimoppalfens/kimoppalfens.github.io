@@ -172,7 +172,7 @@ I used a "Run powershell script" step and added the script in-line in the task s
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs12.jpg)
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs13.jpg)
 
-**note** We copy the files/folders that are, in our opinion, most relevant in OSD troubleshooting :  
+**note :** We copy the files/folders that are, in our opinion, most relevant in OSD troubleshooting :  
 - Dism : this will help you with errors injecting anything dism related (language packs, drivers, ...)
 - Panther : for troubleshooting unattend.xml or domain-join related issues
 - Software : we are heavy advocates of using the powershell app deployment toolkit for application installs, by default the PSADT logs to this folder and copying this folder helps in troubleshooting application related install issues during OSD
