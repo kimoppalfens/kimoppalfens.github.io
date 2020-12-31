@@ -93,9 +93,9 @@ Check your local modules folder to see if you already have this "Azure.Storage" 
 
 If not, open an admin powershell window and run the following command to install it : 
 
-```powershell
+~~~ powershell
 install-module azure.storage
-```
+~~~
 
 Create an SCCM package with the Azure.Storage module as content (Make sure that you include the folder azure.Storage, not just the content of that folder)
 
@@ -103,9 +103,9 @@ Create an SCCM package with the Azure.Storage module as content (Make sure that 
 
 Somewhere after your "Setup windows and Configmgr" step (thus, when you are in the Live-OS part of your task sequence) add a run commandline step with the following command : 
 
-```shell
+~~~ shell
 Xcopy .\ "%OSDTargetSystemDrive%\Program Files\WindowsPowerShell\Modules" /Y /E
-```
+~~~
 
 Select the "package" option and link it to the package you just created with the azure storage module.
 
@@ -119,7 +119,7 @@ Initially, I do think there is some value in having it run every time, as deploy
 
 The script :
 
-```powershell
+~~~ powershell
 Import-Module azure.storage
 
 $tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
@@ -162,8 +162,7 @@ write-host "upload to azure"
 $clientContext = New-AzureStorageContext -SasToken ($BlobProperties.storsas) -StorageAccountName ($blobproperties.StorageAccountName)
 
 Set-AzureStorageBlobContent -Context $ClientContext -container "osdlogs" -File "C:\LogsToAzure\$hostname-$Timestamp.zip"
-
-```
+~~~
 
 You could pretty much use the above script as-is. You just have to adjust 2 things to for the azure storage.
 
