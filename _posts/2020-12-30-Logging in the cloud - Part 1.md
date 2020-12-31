@@ -18,16 +18,16 @@ tags:
 ## Intro ##
 
 With the release of MEM2010, we got a feature that I'm super excited about! [OSD over the internet (CMG) with bootmedia.](https://docs.microsoft.com/en-us/mem/configmgr/core/plan-design/changes/whats-new-in-version-2010#deploy-an-os-over-cmg-using-bootable-media). 
-There are already plenty of blogs out there on how to set it up, so this blog is not about that part of the puzzle. 
+There are already plenty of blogs out there on how to set it up, so this blog is not about that piece of the puzzle. 
 
-In an on-premises OSD scenario, I assume most of you perform some sort of error-catching. If the task sequence fails, we copy the relevant logs to a share for further investigation. It's a tremendous time-saver and super helpful in troubleshooting scenario's.  
+In an on-premises OSD scenario, I assume most of you perform some sort of error-catching. If the task sequence fails, you copy the relevant logs to a share for further investigation. It's a tremendous time-saver and super helpful in troubleshooting scenario's.  
 However, when you perform OSD over the internet/cmg, there is no share available for you to copy these logs to. To make things even worse, the person doing the OSD is probably in a location that you have no access to, so recovering the logs could become very challenging. 
 
 This 2-part blog series is offering you a solution to get the same central logging functionality as you would have on-premises.
 
 ## Preparations ##
 
-We are going to use Azure blob-storage as an intermediate storage solution to copy the logs to, and to retrieve them from for investigation. 
+We are going to use Azure blob-storage as an intermediate storage solution. We will copy the logs to blob storage and retrieve them from there for investigation. 
 There are multiple ways of storing logs/files in azure, there might be even better ways than how I chose to do it.  
 This is just one possibilty to get you started. By all means choose the solution that you are most comfortable with.
 
@@ -38,7 +38,7 @@ Click the "Add" button to create a new storage container.
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs2.jpg)
 
 Select, or create a new resource group and choose a name for your container. If needed, you can adjust the options in the other sections, but for our purpose, the defaults are good enough, so just click "Review + Create".  
-After reviewing "Create" to actually create our blob container
+After reviewing click "Create" to actually create our blob container
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs3.jpg)
 
@@ -88,13 +88,21 @@ Check your local modules folder to see if you already have this "Azure.Storage" 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs9.jpg)
 
-If not, open an admin powershell window and run the following command to install it : install-module azure.storage
+If not, open an admin powershell window and run the following command to install it : 
+
+```
+install-module azure.storage
+```
 
 Create an SCCM package with the Azure.Storage module as content (Make sure that you include the folder azure.Storage, not just the content of that folder)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs10.jpg)
 
-Somewhere after your "Setup windows and Configmgr" step (thus, when you are in the Live-OS part of your task sequence) add a run commandline step with the following command : Xcopy .\ "%OSDTargetSystemDrive%\Program Files\WindowsPowerShell\Modules" /Y /E
+Somewhere after your "Setup windows and Configmgr" step (thus, when you are in the Live-OS part of your task sequence) add a run commandline step with the following command : 
+
+```
+Xcopy .\ "%OSDTargetSystemDrive%\Program Files\WindowsPowerShell\Modules" /Y /E
+```
 
 Select the "package" option and link it to the package you just created with the azure storage module.
 
@@ -164,6 +172,11 @@ I used a "Run powershell script" step and added the script in-line in the task s
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs12.jpg)
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs13.jpg)
 
+**note** We copy the files/folders that are, in our opinion, most relevant in OSD troubleshooting :  
+- Dism : this will help you with errors injecting anything dism related (language packs, drivers, ...)
+- Panther : for troubleshooting unattend.xml or domain-join related issues
+- Software : we are heavy advocates of using the powershell app deployment toolkit for application installs, by default the PSADT logs to this folder and copying this folder helps in troubleshooting application related install issues during OSD
+
 Ok, we're all setup for testing ! Run your task sequence and if all goes well, once it finished, you should see a zipfile with the hostname of the device you staged and a timestamp in your azure storage explorer
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs14.jpg)
@@ -219,7 +232,7 @@ As a final step, you could run this script on a schedule so that any log files g
 ## Final thoughts ##
 
 We've got all the bases covered to have the same functionality as you would have when performing OSD on-prem. 
-The scripts provided should get you started into implementing this into your own environment without to much hassle!
+The scripts provided should get you started into implementing this into your own environment without too much hassle!
 
 So, what's left for part 2 ?
 We will look into encrypting the data before putting it up on a "public" storage location.
