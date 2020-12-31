@@ -15,6 +15,8 @@ tags:
   - Azure
 ---
 
+Configmgr provides a wealth of information in logfiles, but they are only useful if you have access to them ...
+
 ## Intro ##
 
 With the release of MEM2010, we got a feature that I'm super excited about! [OSD over the internet (CMG) with bootmedia.](https://docs.microsoft.com/en-us/mem/configmgr/core/plan-design/changes/whats-new-in-version-2010#deploy-an-os-over-cmg-using-bootable-media). 
@@ -29,7 +31,7 @@ This 2-part blog series is offering you a solution to get the same central loggi
 
 We are going to use Azure blob-storage as an intermediate storage solution. We will copy the logs to blob storage and retrieve them from there for investigation. 
 There are multiple ways of storing logs/files in azure, there might be even better ways than how I chose to do it.  
-This is just one possibilty to get you started. By all means choose the solution that you are most comfortable with.
+This is just one possibility to get you started. By all means choose the solution that you are most comfortable with.
 
 First of all, let's prepare our blob-container to host the logfiles. 
 Log-on into the Azure portal with an account that has sufficient access (eg, the one you used to setup your CMG) and navigate to "Storage Accounts". Depending on the account you used, you'll probably see a storage container already for your CMG.  
@@ -66,6 +68,7 @@ Right-click your newly created container and select "Get Shared access Signature
 We are going to create 2 SAS-keys. 1 with "write" access to upload the logs, and 1 with additional delete rights to clean up the container after we retrieved the logs.
 
 For our first key, configure it with these settings :
+
 - Start time : your current date/time
 - Expiry time : I set it to 1 year in the future
 - Permissions : Read,Add, Create, Write, List (not shown in screenshot)
@@ -90,7 +93,7 @@ Check your local modules folder to see if you already have this "Azure.Storage" 
 
 If not, open an admin powershell window and run the following command to install it : 
 
-```
+```powershell
 install-module azure.storage
 ```
 
@@ -100,7 +103,7 @@ Create an SCCM package with the Azure.Storage module as content (Make sure that 
 
 Somewhere after your "Setup windows and Configmgr" step (thus, when you are in the Live-OS part of your task sequence) add a run commandline step with the following command : 
 
-```
+```shell
 Xcopy .\ "%OSDTargetSystemDrive%\Program Files\WindowsPowerShell\Modules" /Y /E
 ```
 
@@ -116,7 +119,7 @@ Initially, I do think there is some value in having it run every time, as deploy
 
 The script :
 
-```
+```powershell
 Import-Module azure.storage
 
 $tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
@@ -173,6 +176,7 @@ I used a "Run powershell script" step and added the script in-line in the task s
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs13.jpg)
 
 **note :** We copy the files/folders that are, in our opinion, most relevant in OSD troubleshooting :  
+
 - Dism : this will help you with errors injecting anything dism related (language packs, drivers, ...)
 - Panther : for troubleshooting unattend.xml or domain-join related issues
 - Software : we are heavy advocates of using the powershell app deployment toolkit for application installs, by default the PSADT logs to this folder and copying this folder helps in troubleshooting application related install issues during OSD
@@ -187,7 +191,7 @@ We could now use storage explorer to download it, but why not automate this step
 
 The following script will download your logfiles from azure, unpack them and clean up the storage container
 
-```
+```powershell
 Import-Module azure.storage
 
 if (!(test-path "C:\LogsFromAzure"))
@@ -231,7 +235,7 @@ As a final step, you could run this script on a schedule so that any log files g
 
 ## Final thoughts ##
 
-We've got all the bases covered to have the same functionality as you would have when performing OSD on-prem. 
+We've got all the bases covered to have the same functionality as you would have when performing OSD on-prem.  
 The scripts provided should get you started into implementing this into your own environment without too much hassle!
 
 So, what's left for part 2 ?
