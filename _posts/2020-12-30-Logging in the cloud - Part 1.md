@@ -191,7 +191,7 @@ We could now use storage explorer to download it, but why not automate this step
 
 The following script will download your logfiles from azure, unpack them and clean up the storage container
 
-```powershell
+~~~ powershell
 Import-Module azure.storage
 
 if (!(test-path "C:\LogsFromAzure"))
@@ -223,8 +223,9 @@ foreach ($file in $files)
     Remove-AzureStorageBlob -Container "osdlogs" -Context $clientContext -Blob $file.name
   
 }
-```
-Same story as with the previous script, make the following adjustments : 
+~~~
+
+Same story as with the previous script, make the following adjustments :  
 
 1) on line 11, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created)  
 2) on lines 16 and 29, replace the name of the container with the one you created in our preparation step
