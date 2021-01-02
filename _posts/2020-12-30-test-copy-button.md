@@ -8,7 +8,6 @@ categories:
 tags:
 ---
 
-{% capture code %}
 ~~~ powershell
 Import-Module azure.storage
 
@@ -42,4 +41,3 @@ foreach ($file in $files)
   
 }
 ~~~
-{% endcapture %}
