@@ -9,8 +9,9 @@ tags:
 ---
 
 
-# test text #
+# test text 2 #
 
+{% capture code %}
 ``` powershell
 Import-Module azure.storage
 
@@ -44,3 +45,4 @@ foreach ($file in $files)
   
 }
 ```
+{% endcapture %}
