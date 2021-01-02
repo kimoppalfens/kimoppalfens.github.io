@@ -7,12 +7,11 @@ categories:
 
 tags:
 ---
+<script src="/assets/scripts/copyCode.js"></script>
 
+# test text 6 #
 
-# test text 4 #
-
-{% capture code %}
-Import-Module azure.storage
+{% capture code %}Import-Module azure.storage
 
 if (!(test-path "C:\LogsFromAzure"))
 {
@@ -42,6 +41,5 @@ foreach ($file in $files)
 
     Remove-AzureStorageBlob -Container "osdlogs" -Context $clientContext -Blob $file.name
   
-}
-{% endcapture %}
+}{% endcapture %}
 {% include code.html code=code lang="powershell" %}
