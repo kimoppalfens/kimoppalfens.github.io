@@ -9,9 +9,9 @@ tags:
 ---
 
 
-test text
+# test text #
 
-~~~ powershell
+``` powershell
 Import-Module azure.storage
 
 if (!(test-path "C:\LogsFromAzure"))
@@ -43,4 +43,4 @@ foreach ($file in $files)
     Remove-AzureStorageBlob -Container "osdlogs" -Context $clientContext -Blob $file.name
   
 }
-~~~
+```
