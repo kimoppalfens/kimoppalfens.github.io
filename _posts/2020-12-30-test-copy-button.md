@@ -9,7 +9,7 @@ tags:
 ---
 
 
-# test text 2 #
+# test text 3 #
 
 {% capture code %}
 ``` powershell
@@ -46,3 +46,4 @@ foreach ($file in $files)
 }
 ```
 {% endcapture %}
+{% include code.html code=code lang="powershell" %}
