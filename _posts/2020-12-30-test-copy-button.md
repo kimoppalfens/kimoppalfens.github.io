@@ -7,9 +7,9 @@ categories:
 
 tags:
 ---
-<script src="/assets/scripts/copyCode.js"></script>
+<script src="{{ base.url | prepend: site.url }}/assets/scripts/copyCode.js"></script>
 
-# test text 6 #
+# test text 7 #
 
 {% capture code %}Import-Module azure.storage
 
