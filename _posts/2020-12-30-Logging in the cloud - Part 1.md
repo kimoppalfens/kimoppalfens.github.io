@@ -122,6 +122,13 @@ The script :
 ~~~ powershell
 Import-Module azure.storage
 
+$BlobProperties = @{
+
+    StorageAccountName   = 'osdlogging'
+    storSas              = '?sv=2019-12-12<<<rest of key is censored>>>'
+    container            = 'osdlogs'
+}
+
 $tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
 $TSHostname = $tsenv.Value("OSDComputername")
 $TSLogpath = $tsenv.Value("_SMSTSLogPath")
@@ -152,22 +159,17 @@ Get-Childitem -Path $TSLogpath | Copy-Item -Destination $localpath -Recurse
 write-host "compressing logfiles"
 Compress-Archive -Path $localpath -DestinationPath "C:\LogsToAzure\$hostname-$Timestamp.zip"
 
-$BlobProperties = @{
-
-    StorageAccountName   = 'osdlogging'
-    storSas              = '?sv=2019-12-12<<<rest of key is censored>>>'
-}
-
 write-host "upload to azure"
 $clientContext = New-AzureStorageContext -SasToken ($BlobProperties.storsas) -StorageAccountName ($blobproperties.StorageAccountName)
 
-Set-AzureStorageBlobContent -Context $ClientContext -container "osdlogs" -File "C:\LogsToAzure\$hostname-$Timestamp.zip"
+Set-AzureStorageBlobContent -Context $ClientContext -container ($BlobProperties.container) -File "C:\LogsToAzure\$hostname-$Timestamp.zip"
 ~~~
 
-You could pretty much use the above script as-is. You just have to adjust 2 things to for the azure storage.
+You could pretty much use the above script as-is. You just have to adjust the variables for the azure storage.
 
-1) On line 36, replace the content of the storSAS variable with your "Write" SAS-key  
-2) In the last line (42) replace the name of the container with the one you created in our preparation step
+1) On line 5, set the StorageAccountName to the containername we created in the azure portal
+2) On line 6, replace the content of the storSAS variable with your "Write" SAS-key  
+3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
 I used a "Run powershell script" step and added the script in-line in the task sequence
 
@@ -193,15 +195,16 @@ The following script will download your logfiles from azure, unpack them and cle
 ~~~ powershell
 Import-Module azure.storage
 
-if (!(test-path "C:\LogsFromAzure"))
-{
-    New-Item -ItemType Directory -Path "C:\LogsFromAzure"
-}
-
 $BlobProperties = @{
 
     StorageAccountName   = 'osdlogging'
     storSas              = '?sv=2019-12-12<<<rest of key is censored>>>'
+    container            = 'osdlogs'
+}
+
+if (!(test-path "C:\LogsFromAzure"))
+{
+    New-Item -ItemType Directory -Path "C:\LogsFromAzure"
 }
 
 $clientContext = New-AzureStorageContext -SasToken ($BlobProperties.storsas) -StorageAccountName ($blobproperties.StorageAccountName)
@@ -211,7 +214,7 @@ $files = Get-AzureStorageBlob -Container "osdlogs" -Context $clientContext
 foreach ($file in $files)
 {
     write-host $file.name
-    Get-AzureStorageBlobContent -Destination "C:\LogsFromAzure" -Container "osdlogs" -Context $clientContext -Blob $file.name
+    Get-AzureStorageBlobContent -Destination "C:\LogsFromAzure" -Container ($BlobProperties.container) -Context $clientContext -Blob $file.name
    
     write-host "expanding logfiles"
     Expand-Archive -Path "C:\LogsFromAzure\$($file.name)" -DestinationPath "C:\LogsFromAzure"
@@ -219,17 +222,18 @@ foreach ($file in $files)
     write-host "cleaning up"
     Remove-Item -Path "C:\LogsFromAzure\$($file.name)" -Force
 
-    Remove-AzureStorageBlob -Container "osdlogs" -Context $clientContext -Blob $file.name
+    Remove-AzureStorageBlob -Container ($BlobProperties.container) -Context $clientContext -Blob $file.name
   
 }
 ~~~
 
 Same story as with the previous script, make the following adjustments :  
 
-1) on line 11, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created)  
-2) on lines 16 and 29, replace the name of the container with the one you created in our preparation step
+1) On line 5, set the StorageAccountName to the containername we created in the azure portal
+2) On line 6, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created) 
+3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
-If you then run this script, it should download the logs from Azure, expand the archive, delete the zipfile and clean up Azure.
+If you then run this script, it should download the logs from Azure, expand the archive, delete the zipfile and clean up your Azure blob container.
 
 As a final step, you could run this script on a schedule so that any log files get downloaded automatically so that they are ready when you need them!
 
