@@ -167,7 +167,7 @@ Set-AzureStorageBlobContent -Context $ClientContext -container ($BlobProperties.
 
 You could pretty much use the above script as-is. You just have to adjust the variables for the azure storage.
 
-1) On line 5, set the StorageAccountName to the containername we created in the azure portal
+1) On line 5, set the StorageAccountName to the containername we created in the azure portal 
 2) On line 6, replace the content of the storSAS variable with your "Write" SAS-key  
 3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
@@ -229,8 +229,8 @@ foreach ($file in $files)
 
 Same story as with the previous script, make the following adjustments :  
 
-1) On line 5, set the StorageAccountName to the containername we created in the azure portal
-2) On line 6, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created) 
+1) On line 5, set the StorageAccountName to the containername we created in the azure portal  
+2) On line 6, replace the content of the storSAS variable with your "DELETE" SAS-key (the 2nd SAS key we created)  
 3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
 If you then run this script, it should download the logs from Azure, expand the archive, delete the zipfile and clean up your Azure blob container.
@@ -247,5 +247,5 @@ We will look into encrypting the data before putting it up on a "public" storage
 
 Hope you enjoyed part 1 and if you encounter any issues, or if something is not clear, let us know in the comments below.
 
-Br,
+Have fun !  
 Tom
