@@ -171,7 +171,8 @@ You could pretty much use the above script as-is. You just have to adjust the va
 2) On line 6, replace the content of the storSAS variable with your "Write" SAS-key  
 3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
-I used a "Run powershell script" step and added the script in-line in the task sequence
+I used a "Run powershell script" step and added the script in-line in the task sequence.  
+! Make sure to set the appropriate powershell execution policy for your environment in this step !
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs12.jpg)
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs13.jpg)
