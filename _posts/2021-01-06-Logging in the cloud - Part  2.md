@@ -20,7 +20,7 @@ Copying log files through azure was easy enough, now let's try and make it more 
 
 ## Intro ##
 
-Allright! In [Part 1](2021-01-04-Logging%20in%20the%20cloud%20-%20Part%201.md) we've seen that it was not very complicated to get the same capability of centralized logging that we have been enjoying on-premises, but now over the internet.  
+Allright! In [Part 1](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-1/) we've seen that it was not very complicated to get the same capability of centralized logging that we have been enjoying on-premises, but now over the internet.  
 While this solution works fine, there could be a security concern. After all, anyone with access to the SAS key (that is distributed each time a device is being staged), can download and examine our logfiles.  
 
 The answer to this concern is : Encryption!  
@@ -30,34 +30,35 @@ Before we get all pratical on how to set it up, a few words on the encryption pr
 
 ## Symmetric vs. Asymmetric Encryption ##
 
-Symmetric key encryption uses the same (secret) key to both encrypt and decrypt the data. This poses a challenge in our process. Since we have to encrypt the data before uploading it, it means that our key is present on our staged device. If someone can get a hold of this key, we could decrypt all other encrypted logfiles as well. 
+**Symmetric key encryption** uses the same (secret) key to both encrypt and decrypt the data. This poses a challenge in our process. Since we have to encrypt the data before uploading it, it means that our key is present on our staged device. If someone can get a hold of this key, we could decrypt all other encrypted logfiles as well. 
 
-Asymmetric key encryption, also known as public key encryption, uses 2 different key's to encrypt/decrypt the data. A public key available to everyone that wants to use it, and a private key only available to you.  
+**Asymmetric key encryption**, also known as public key encryption, uses 2 different key's to encrypt/decrypt the data. A public key available to everyone that wants to use it, and a private key only available to you.  
 A message that is encrypted using a public key can only be decrypted using a private key, while also, a message encrypted using a private key can be decrypted using a public key. Security of the public key is not required because it is publicly available and can be passed over the internet.
 
-So, that's settled then ? Let's use asymmetric key encryption then ? We take the public key to encrypt the logfiles before uploading them, and then use the private key to decrypt the data. Done!
+So, that's settled then ? We will use asymmetric key encryption ? We take the public key to encrypt the logfiles before uploading them, and then use the private key to decrypt the data. Done!
 
-If only life was that simple ;)  As it turns out, most asymmetric key algorithms can't be used on "large" files. And large is a bit of an understatement. It seems that it can roughly encrypt the same amount of bits as the amount of bits we used to generate the key. So a 2048bit key can only encrypt 2048bits of data.  
+If only life was that simple ;)  
+As it turns out, most asymmetric key algorithms can't be used on "large" files. And large is a bit of an understatement. It seems that it can roughly encrypt the same amount of bits as the amount of bits we used to generate the key. So a 2048bit key can only encrypt 2048bits of data.  
 That's not nearly enough for our purpose.
 
 The solution here is to combine both methods!
 
-1) on the staging machine, we generate a symmetric key and encrypt our data with it
-2) we then encrypt this symmetric key with our public key (that is freely available)
-3) both the (symmetric) encrypted data and (asymmetric) encrypted key are uploaded to azure
-4) both files are downloaded again on the receiving side
-5) The symmetric key is decrypted using our private key (only known to us)
-6) the data is decrypted using our (freshly decrypted) symmetric key
+1) on the staging machine, we generate a symmetric key and encrypt our data with it  
+2) we then encrypt this symmetric key with our public key (that is freely available)  
+3) both the (symmetric) encrypted data and (asymmetric) encrypted key are uploaded to azure  
+4) both files are downloaded again on the receiving side  
+5) The symmetric key is decrypted using our private key (only known to us)  
+6) the data is decrypted using our (freshly decrypted) symmetric key  
 
 While that may sound very complicated, you'll see that in practise it's not so bad. So let's take a look at how to put this in place.
 
 ## Preparations ##
 
-I assume you've configured your environment like we discussed in [part 1](2021-01-04-Logging%20in%20the%20cloud%20-%20Part%201.md) as we will use this as a foundation for part 2.  I would strongly recommend getting it up & running without encryption anyway, so that you know the entire procedure is working as expected.
+I assume you've configured your environment like we discussed in [part 1](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-1/) as we will use this as a foundation for part 2.  I would strongly recommend getting it up & running without encryption anyway, so that you know the entire procedure is working as expected.
 
 In order to proceed with encryption, we need to add 2 steps to our task sequence.
 
-We are going to use a windows distribution of OpenSSL to perform the actual cryptography. For this to work, you need the **X64** of the visual C++ redistributables.  Download [here](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)
+We are going to use a windows distribution of OpenSSL to perform the actual cryptography. For this to work, you need the **X64** bits of the visual C++ redistributables.  Download [here](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)
 
 We've created an application to install this during our task sequence. It could very well be that you have this already configured in your task sequence as those distributables are often needed for other applications as well.  
 
@@ -174,11 +175,11 @@ As you notice, the script is very similar to the initial script, at least the fi
 - line 47 : the public key is used to encrypt the symmetric key
 - lines 52 & 53 : both the encrypted zipfile and encrypted symmetric key are uploaded to azure
 
-Like in part 1, don't forget to adjust the variables for the azure storage on lines 5,6,7.
+Like in part 1, don't forget to adjust the variables for your azure storage on lines 5,6,7.
 
 **note :** I prefer to upload the (small) symmetric key as the last file. This way, when I check for files to download, I am sure that the Zipfile is already present on our blob storage.
 
-Ok, so to recap, these are the added/modified steps in our task sequence :
+Ok, as a recap, these are the added/modified steps in our task sequence :
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs19.jpg)
 
@@ -190,7 +191,7 @@ Run your task sequence, and if all goes well, you should see 2 files appearing i
 
 In order for the modified download script to work, I expect that you have a working version of OpenSSL in C:\OpenSSL with the **private key (private_key.pem)** in the X64\Bin folder.
 
-~~~ powershell
+{% highlight powershell linenos %}
 Import-Module azure.storage
 
 $BlobProperties = @{
@@ -237,7 +238,7 @@ foreach ($file in $files)
     }
 
 }
-~~~
+{% endhighlight %}
 
 Again, don't forget to adjust the variables for the azure storage on lines 5,6,7 !!
 
