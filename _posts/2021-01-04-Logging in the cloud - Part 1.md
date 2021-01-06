@@ -210,7 +210,7 @@ if (!(test-path "C:\LogsFromAzure"))
 
 $clientContext = New-AzureStorageContext -SasToken ($BlobProperties.storsas) -StorageAccountName ($blobproperties.StorageAccountName)
 
-$files = Get-AzureStorageBlob -Container "osdlogs" -Context $clientContext 
+$files = Get-AzureStorageBlob -Container ($BlobProperties.container) -Context $clientContext 
 
 foreach ($file in $files)
 {
