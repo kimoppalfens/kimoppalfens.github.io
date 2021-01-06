@@ -119,7 +119,7 @@ Initially, I do think there is some value in having it run every time, as deploy
 
 The script :
 
-~~~ powershell
+{% highlight powershell linenos %}
 Import-Module azure.storage
 
 $BlobProperties = @{
@@ -163,7 +163,7 @@ write-host "upload to azure"
 $clientContext = New-AzureStorageContext -SasToken ($BlobProperties.storsas) -StorageAccountName ($blobproperties.StorageAccountName)
 
 Set-AzureStorageBlobContent -Context $ClientContext -container ($BlobProperties.container) -File "C:\LogsToAzure\$hostname-$Timestamp.zip"
-~~~
+{% endhighlight %}
 
 You could pretty much use the above script as-is. You just have to adjust the variables for the azure storage.
 
@@ -193,7 +193,7 @@ We could now use storage explorer to download it, but why not automate this step
 
 The following script will download your logfiles from azure, unpack them and clean up the storage container
 
-~~~ powershell
+{% highlight powershell linenos %}
 Import-Module azure.storage
 
 $BlobProperties = @{
@@ -226,7 +226,7 @@ foreach ($file in $files)
     Remove-AzureStorageBlob -Container ($BlobProperties.container) -Context $clientContext -Blob $file.name
   
 }
-~~~
+{% endhighlight %}
 
 Same story as with the previous script, make the following adjustments :  
 

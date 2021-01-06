@@ -110,7 +110,7 @@ Make sure, in this "run command line" step, to select your OpenSSL package we pr
 
 As a last step, we will adjust the "upload" script we previously used to include the encryption.
 
-~~~ powershell
+{% highlight powershell linenos %}
 Import-Module azure.storage
 
 $BlobProperties = @{
@@ -164,7 +164,7 @@ $clientContext = New-AzureStorageContext -SasToken ($BlobProperties.storsas) -St
 
 Set-AzureStorageBlobContent -Context $ClientContext -container ($BlobProperties.container) -File "c:\logstoazure\$hostname-$Timestamp.enc"
 Set-AzureStorageBlobContent -Context $ClientContext -container ($BlobProperties.container) -File "C:\LogsToAzure\$hostname-$Timestamp.key.enc"
-~~~
+{% endhighlight %}
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs20.jpg)
 
