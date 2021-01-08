@@ -46,7 +46,7 @@ The solution here is to combine both methods!
 1) on the staging machine, we generate a symmetric key and encrypt our data with it  
 2) we then encrypt this symmetric key with our public key (that is freely available)  
 3) both the (symmetric) encrypted data and (asymmetric) encrypted key are uploaded to azure  
-4) both files are downloaded again on the device used to read the logs
+4) both files are downloaded again on the device used to read the logs  
 5) The symmetric key is decrypted using our private key (only known to us)  
 6) the data is decrypted using our (freshly decrypted) symmetric key  
 
