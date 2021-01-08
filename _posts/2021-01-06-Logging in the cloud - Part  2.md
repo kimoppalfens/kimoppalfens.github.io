@@ -16,14 +16,14 @@ tags:
   - Encryption
 ---
 
-Copying log files through azure was easy enough, now let's try and make it more secure !
+Copying log files through azure was great start, now let's try and make it more secure !
 
 ## Intro ##
 
-Allright! In [Part 1](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-1/) we've seen that it was not very complicated to get the same capability of centralized logging that we have been enjoying on-premises, but now over the internet.  
+Allright! In [Part 1](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-1/) we've seen how to get the same capability of centralized logging that we have been enjoying on-premises, but now over the internet.  
 While this solution works fine, there could be a security concern. After all, anyone with access to the SAS key (that is distributed each time a device is being staged), can download and examine our logfiles.  
 
-The answer to this concern is : Encryption!  
+The answer to this concern : Encryption!  
 Let us encrypt the logfiles before we upload them to azure, and then after downloading them, decrypt it again with a key only known to the downloader.
 
 Before we get all pratical on how to set it up, a few words on the encryption process itself.
@@ -33,7 +33,7 @@ Before we get all pratical on how to set it up, a few words on the encryption pr
 **Symmetric key encryption** uses the same (secret) key to both encrypt and decrypt the data. This poses a challenge in our process. Since we have to encrypt the data before uploading it, it means that our key is present on our staged device. If someone can get a hold of this key, we could decrypt all other encrypted logfiles as well. 
 
 **Asymmetric key encryption**, also known as public key encryption, uses 2 different key's to encrypt/decrypt the data. A public key available to everyone that wants to use it, and a private key only available to you.  
-A message that is encrypted using a public key can only be decrypted using a private key, while also, a message encrypted using a private key can be decrypted using a public key. Security of the public key is not required because it is publicly available and can be passed over the internet.
+A message that is encrypted using a public key can only be decrypted using a private key, while also, a message encrypted using a private key can be decrypted using a public key. Security of the public key is not required because decryption is done using our private key.
 
 So, that's settled then ? We will use asymmetric key encryption ? We take the public key to encrypt the logfiles before uploading them, and then use the private key to decrypt the data. Done!
 
@@ -46,7 +46,7 @@ The solution here is to combine both methods!
 1) on the staging machine, we generate a symmetric key and encrypt our data with it  
 2) we then encrypt this symmetric key with our public key (that is freely available)  
 3) both the (symmetric) encrypted data and (asymmetric) encrypted key are uploaded to azure  
-4) both files are downloaded again on the receiving side  
+4) both files are downloaded again on the device used to read the logs
 5) The symmetric key is decrypted using our private key (only known to us)  
 6) the data is decrypted using our (freshly decrypted) symmetric key  
 
@@ -62,13 +62,14 @@ We are going to use a windows distribution of OpenSSL to perform the actual cryp
 
 We've created an application to install this during our task sequence. It could very well be that you have this already configured in your task sequence as those distributables are often needed for other applications as well.  
 
-**Note :** the silent install parameters are : "/install /quiet /norestart"
+**Note :** the silent install parameters are : "/install /quiet /norestart"  
+**Note 2:** [Patch my PC](https://patchmypc.com/) offers a way to automatically generate applications for the software they can patch, this includes those visual C++ redistributables.
 
-The second step to our task sequence is the actuall installation of OpenSSL. For this demo, I've used the binaries provided by FireDeamon, but there are probably others available that are equally good. Download the binaries [here](https://kb.firedaemon.com/support/solutions/articles/4000121705).
+The second step to our task sequence is the actual installation of OpenSSL. For this demo, I've used the binaries provided by FireDeamon, but there are probably others available that are equally good. Download the binaries [here](https://kb.firedaemon.com/support/solutions/articles/4000121705).
 
 On a workstation that has the previously mentioned x64 vcredist installed, extract the OpenSSL zipfile to, eg, c:\openssl
 
-open a commandprompt and navigate to 'C:\openssl\x64\bin'
+open a command prompt and navigate to 'C:\openssl\x64\bin'
 
 The following command will create our 2048 bits private key called "private_key.pem" :
 
@@ -177,7 +178,7 @@ As you notice, the script is very similar to the initial script, at least the fi
 
 Like in part 1, don't forget to adjust the variables for your azure storage on lines 5,6,7.
 
-**note :** I prefer to upload the (small) symmetric key as the last file. This way, when I check for files to download, I am sure that the Zipfile is already present on our blob storage.
+**note :** I prefer to upload the (small) encrypted symmetric key as the last file. This way, when I check for files to download, I am sure that the Zipfile is already present on our blob storage.
 
 Ok, as a recap, these are the added/modified steps in our task sequence :
 
