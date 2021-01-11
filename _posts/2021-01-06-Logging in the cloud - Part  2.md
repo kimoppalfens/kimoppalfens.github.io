@@ -2,7 +2,7 @@
 title: "Logging in a cloud-world - Part 2"
 header:
 author: Tom Degreef
-date: 2000-01-04
+date: 2021-01-11
 categories:
   - SCCM
 

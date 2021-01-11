@@ -243,7 +243,7 @@ As a final step, you could run this script on a schedule so that any log files g
 We've got all the bases covered to have the same functionality as you would have when performing OSD on-prem.  
 The scripts provided should get you started into implementing this into your own environment without too much hassle!
 
-So, what's left for part 2 ?
+So, what's left for [part 2](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-2/) ?
 We will look into encrypting the data before putting it up on a "public" storage location.
 
 Hope you enjoyed part 1 and if you encounter any issues, or if something is not clear, let us know in the comments below.
