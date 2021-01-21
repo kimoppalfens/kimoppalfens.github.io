@@ -85,19 +85,21 @@ Ok ! All preparations are done, let's configure our task sequence.
 
 ## Task Sequence steps ##
 
-So, the script we will use to upload the logs to Azure makes use of the Azure storage powershell module. We tried multiple times but we couldn't get the module to install dynamically during the task sequence. That's why we have to install/copy it manually first.
+So, the script we will use to upload the logs to Azure makes use of the Azure storage and Azurerm Profile powershell modules. We tried multiple times but we couldn't get the modules to install dynamically during the task sequence. That's why we have to install/copy them manually first.
 
-Check your local modules folder to see if you already have this "Azure.Storage" module installed (C:\Program Files\WindowsPowerShell\Modules)
+Check your local modules folder to see if you already have this "Azure.Storage" and "AzureRM.Profile" modules installed (C:\Program Files\WindowsPowerShell\Modules)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs9.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs23.jpg)
 
-If not, open an admin powershell window and run the following command to install it : 
+If not, open an admin powershell window and run the following command to install them : 
 
 ~~~ powershell
 install-module azure.storage
+install-module azureRM.profile
 ~~~
 
-Create an SCCM package with the Azure.Storage module as content (Make sure that you include the folder azure.Storage, not just the content of that folder)
+Create an SCCM package with both modules as content (Make sure that you include the folders azure.Storage and azureRM.Profile, not just the content of those folders)
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs10.jpg)
 
@@ -107,11 +109,11 @@ Somewhere after your "Setup windows and Configmgr" step (thus, when you are in t
 Xcopy .\ "%OSDTargetSystemDrive%\Program Files\WindowsPowerShell\Modules" /Y /E
 ~~~
 
-Select the "package" option and link it to the package you just created with the azure storage module.
+Select the "package" option and link it to the package you just created with the azure storage modules.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs11.jpg)
 
-This will copy the module to the correct location and allow us to reference it in the script.
+This will copy the modules to the correct location and allow us to reference it in the script.
 
 The last step we need to add, is a script that will gather all the logs needed and upload it to azure.  
 For now, I added it as the last step in task sequence, but you could, just like with normal error-catching, make it conditional to run only when the task sequence fails.  
