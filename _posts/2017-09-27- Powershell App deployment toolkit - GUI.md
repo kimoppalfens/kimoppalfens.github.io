@@ -1,5 +1,5 @@
 ---
-title: "Powershell App Deployment Tookit - GUI (Updated version 1.4)"
+title: "Powershell App Deployment Toolkit - GUI (Updated version 1.4)"
 header:
 author: Tom Degreef
 date: 2020-02-22
