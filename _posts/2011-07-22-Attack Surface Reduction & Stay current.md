@@ -60,7 +60,7 @@ The entire action configured eventually runs on the server with the privileges o
 
 [Matt Atkinson has a blog](http://blog.configmatt.com/2017/05/monitoring-potentially-dangerous.html) where he uses the functionality*
 
-(*) Matt's blog was the first blog in a bing search for %msgis01
+(*) Matt's blog was the first blog in a bing search for the %msgis01 parameter
 
 **side note** : My very first presentation at an internation conference was MMS 2010 in Las Vegas on taking SCCM event driven and contained a section on status filter rules.
 
