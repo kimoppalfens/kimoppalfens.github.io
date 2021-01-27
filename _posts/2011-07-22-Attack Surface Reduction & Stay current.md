@@ -17,7 +17,7 @@ tags:
   - Security
 ---
 
-Header Line
+Servicing your Endpoint Manager Configuration Manager environment isn't only about getting those shiny new features, it's about security too. A case in point.
 
 # Intro #
 author: Kim Oppalfens
