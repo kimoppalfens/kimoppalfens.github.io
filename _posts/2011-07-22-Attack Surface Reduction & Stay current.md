@@ -1,8 +1,8 @@
 ---
 title: "Making the case for reducing (ConfigMgr) attack surface by staying current"
 header:
-  overlay_image: template1280x960.jpg
-  teaser: template512x384.jpg
+  overlay_image: updatesandservicing1280x960.jpg
+  teaser: updatesandservicing512x384.jpg
 author: Kim Oppalfens
 date: 2008-12-31
 categories:
