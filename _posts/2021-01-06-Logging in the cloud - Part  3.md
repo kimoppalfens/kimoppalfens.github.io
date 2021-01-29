@@ -25,6 +25,8 @@ Let's implement the functionality we discussed in [Part 1](https://www.oscc.be/s
 So here we are, in the 3rd part of a 2 part blog series ;-)  
 After getting the second part up & running, I figured it might be nice to apply the same resolution in an autopilot scenario. This comes with its own set of challenges ofcorse, so this post aims to tackle all those challenges.
 
+This blogpost won't cover setting up Autopilot. I assume you have a working autopilot profile before you proceed with this blog. Everything else should be covered here!
+
 We will gather all the relevant logs at the end of an autopilot enrollment and upload them with encryption to our azure blob storage.  
 We cannot simply copy/paste the SCCM/Task sequence solution since autopilot isn't a task sequence.  There is no list of sequential steps that we can edit so that the last step gathers the logs and uploads them Azure.  Time to get a bit creative then !
 
@@ -298,6 +300,8 @@ The full explanation of this script can be found in [Part 1](https://www.oscc.be
 * Line 25 : Copy of the IME logs
 * Line 45 : Removal of the scheduled task, so it runs just once !
 
+**Note :** This is just an example set of logfiles you can gather, there could be others of interest in your environment, just add them to the script above.
+
 ## Validation ##
 
 At this point, It probably makes sense to test the entire flow before we upload it to Intune.
@@ -382,3 +386,65 @@ Fingers crossed that everything worked as it should! If not, make sure to revisi
 If everything worked as expected, we can do the final integration into Intune & Autopilot!
 
 ## Creation of the Intune Package ##
+
+With all scripts validated we can move forward to the cloud-part.  
+First, we need to wrap our PSADT in the intune wrapper. This wrapper is already included with my PSADT GUI!
+
+Open a command prompt on the device that hosts your PSADT package and navigate to "C:\Temp\PSADTGui\Intune_Win32"
+Run the tool called : "IntuneWinAppUtil.exe"
+
+Specify the following details for :
+* Source folder : C:\temp\OSCC\Copy logs to azure_1.0_X86
+* Setup file : Deploy-Application.exe
+* Output folder : C:\Temp
+* Catalog : N
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs37.jpg)
+
+The tool will now generate a package that we can upload to Intune. You should find a file called 'C:\Temp\Deploy-Application.intunewin' once everything is finished.
+
+Open the [MEM portal](https://endpoint.microsoft.com)  
+Navigate to Apps , All Apps and Add a new application. Select "Windows App (Win32)" as the app type and click Select.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs38.jpg)
+
+Select your 'C:\Temp\Deploy-Application.intunewin' file as the app package file
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs39.jpg)
+
+Update the Name and vendor to something more relevant and click Next
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs40.jpg)
+
+* Install command : Deploy-Application.exe
+* Uninstall command : Deploy-Application.exe -Deploymenttype Uninstall
+* Install behavior : System
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs41.jpg)
+
+You can select both X86 and X64 as supported architecture and set the minimum operating system level to your liking
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs42.jpg)
+
+Manually configure the detection rule, Click Add and configure a file-type rule :
+
+* Path : C:\
+* File or folder : LogsToAzure
+* Detection method : File or folder exists
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs43.jpg)
+
+We have no dependencies. 
+
+On the Assignments tab, deploy it as *required* to the group where you assigned your autopilot profile to.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs44.jpg)
+
+Finish the wizard and create your application.  
+Once your app is uploaded, you are good to go.  Deploy a device using autopilot (that is a member of the previously mentionned group) and if all is well, once you reach the logon screen, your log files should be available for you in Azure!
+
+What a journey! I hope you enjoy experimenting with this as much as I enjoyed writing this blog. As always, feel free to leave comments at the end of this blogpost.
+
+Take care!
+
+Tom
