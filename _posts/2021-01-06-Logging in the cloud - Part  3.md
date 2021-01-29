@@ -23,14 +23,15 @@ Let's implement the functionality we discussed in [Part 1](https://www.oscc.be/s
 ## Intro ##
 
 So here we are, in the 3rd part of a 2 part blog series ;-)  
-After getting the second part up & running, I figured it might be nice to apply the same resolution in an autopilot scenario. This comes with its own set of challenges ofcorse, so this post aims to tackle all those challenges.
 
-This blogpost won't cover setting up Autopilot. I assume you have a working autopilot profile before you proceed with this blog. Everything else should be covered here!
+After getting the second part up & running, I figured it might be nice to apply the same solution in an autopilot scenario. This comes with its own set of challenges ofcorse, so this post aims to tackle all those challenges.
+
+This blogpost won't cover setting up Autopilot. I assume you have a working autopilot enrollment profile before you proceed with this blog. Everything else should be covered here!
 
 We will gather all the relevant logs at the end of an autopilot enrollment and upload them with encryption to our azure blob storage.  
-We cannot simply copy/paste the SCCM/Task sequence solution since autopilot isn't a task sequence.  There is no list of sequential steps that we can edit so that the last step gathers the logs and uploads them Azure.  Time to get a bit creative then !
+We cannot simply copy/paste the SCCM/Task sequence solution since autopilot isn't a task sequence.  There is no list of sequential steps that we can edit in order for the last step to gather the logs and upload them Azure.  Time to get a bit creative then !
 
-**Note :** we are going to re-use binaries and scripts found in [Part 1](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-1/) and [Part 2](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-2/) , but for your convenience, I will put all necessary links and scripts here as well.
+**Note :** we are going to re-use binaries and scripts found in [Part 1](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-1/) and [Part 2](https://www.oscc.be/sccm/Logging-in-the-cloud-Part-2/) , but for your convenience, I will put all necessary links and scripts here as well. If you read the first 2 parts, there will be pieces in this blog that are copied from the other 2.
 
 ## Azure Preparations ##
 
@@ -89,7 +90,7 @@ Repeat this process and create another SAS-key, but add the "Delete" permission 
 ## Package Preparations ##
 
 We will create an Intune win32 app that will install all the necessary components for the encryption to work and then, we will create a scheduled task that will run one time at first logon. This scheduled task will kick-off a script that gathers what we need and uploads the logs.  
-Since we have no control over the order that those apps will get installed during autopilot enrollment, I had to come up with a solution that would upload the logs after everything was finished. Hence the scheduled task. 
+Since we have no control over the order that those apps will get installed in during autopilot enrollment, I had to come up with a solution that would upload the logs after everything was finished. Hence the scheduled task. 
 
 In my lab, I used the [Powershell app depoyment toolkit](https://psappdeploytoolkit.com/) to basically do everything we need to have configured. Once that is done, we need to convert it to a format Intune understands. This is done using the [Win32 content prep tool](https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool). As an alternative, you could use my [GUI for the PSADT](https://www.oscc.be/sccm/configmgr/powershell/posh/intune/Powershell-App-deployment-toolkit-GUI/) if you are not to familiar with both the PSADT or the content prep tool.  
 That's what I will be using to set everything up.
@@ -156,7 +157,7 @@ Take your private key (private_key.pem) out of this folder and store it somewher
 
 ## Creating the initial PSADT package ##
 
-From an *admin* commandprompt, browse to C:\temp\psadtgui and launch the PSAPP_GUI.PS1
+From an *admin* commandprompt, change directory to C:\temp\psadtgui and launch the PSAPP_GUI.PS1
 
 One the Application details tab, enter the following details :
 * Application Vendor : OSCC (or your own company)
@@ -185,7 +186,13 @@ Doublecheck the "files" subfolder in "C:\temp\OSCC\copy logs to azure_1.0_x86" t
 
 ## Making changes to our PSADT package ##
 
-In "C:\temp\OSCC\copy logs to azure_1.0_x86" you will find a file called : Deploy-Application.PS1 . Edit it in whatever editor you prefer and search for the word "FINDME"
+In "C:\temp\OSCC\copy logs to azure_1.0_x86" you will find a file called : Deploy-Application.PS1 . Edit it in whatever editor you prefer.
+
+Search for the words 'Show-InstallationWelcome'. It should be around line 124 and have the following content : Show-InstallationWelcome -CloseApps 'iexplore' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt
+
+Add the character "#" in front of that line to put it in comment (we don't need it here)
+
+Then, search for the word "FINDME"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs29.jpg)
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs30.jpg)
