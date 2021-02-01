@@ -96,12 +96,11 @@ In my lab, I used the [Powershell app depoyment toolkit](https://psappdeploytool
 
 For your convenience, I have prepared the PSADT package with the necessary scripts already included. You will need to make a few adjustments and add the nessecary binaries for the scripts to work.
 
-Download my PSADT file [here][1]
-[1]:{{ site.url }}/Files/PSADT.zip
+Download my PSADT file [here]{{ site.url }}/Files/PSADT.zip
 
-Name: PSADT.zip
-Size: 165832 bytes (161 KiB)
-SHA256: 5E7C17313AC2C73D5DB7986B8253775930A707F49B8B9E27FFB370037231C3F2
+Name: PSADT.zip  
+Size: 165832 bytes (161 KiB)  
+SHA256: 5E7C17313AC2C73D5DB7986B8253775930A707F49B8B9E27FFB370037231C3F2  
 
 Extract the zipfile to C:\Temp
 
@@ -113,7 +112,7 @@ Next we need to download the binaries for everything to work :
 * OpenSSL-1.1
 * VC_Redist.X-64.Exe
 
-Check your local modules folder to see if you already have this "Azure.Storage" and "AzureRM.Profile" modules installed (C:\Program Files\WindowsPowerShell\Modules)
+Check your local modules folder to see if you already have this "Azure.Storage" and "AzureRM.Profile" modules installed (C:\Program Files\WindowsPowerShell\Modules)  
 If not, open an admin powershell window and run the following command to install them : 
 
 ~~~ powershell
@@ -179,7 +178,7 @@ The full explanation of this script can be found in [Part 1](https://www.oscc.be
 
 **Note :** This is just an example set of logfiles you can gather, there could be others of interest in your environment, just add them to the script above.
 
-The details on the PSADT Script that prepares everything is explained at the end of this blog under the "Deployment Script details explained" header for those that want to know more.
+The details on the PSADT Script that prepares everything is explained at the end of this blog under the "Deployment Script details explained" header for those that want to know more on that part.
 
 ## Validation ##
 
@@ -188,18 +187,18 @@ At this point, It probably makes sense to test the entire flow before we upload 
 Copy your full PSADT package to a test computer and from an *admin* command prompt, run the "Deploy-Application.exe".  
 It shouldn't take long to run and the endresult should be :
 
-* A folder called "C:\LogsToAzure" with a script in it called Uploadlogstoazure_autopilot.ps1
+* A folder called "C:\LogsToAzure" with a script in it called Uploadlogstoazure_autopilot.ps1  
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs33.jpg)
 
-* The azure Powershell modules in C:\Program Files\WindowsPowerShell\Modules
+* The azure Powershell modules in C:\Program Files\WindowsPowerShell\Modules  
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs34.jpg)
 
-* A scheduled task called "CopyLogs" in the root of your scheduled tasks library (launch task scheduler as admin if you don't see the task!)
+* A scheduled task called "CopyLogs" in the root of your scheduled tasks library (launch task scheduler as admin if you don't see the task!)  
 * ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs35.jpg)
 
 If all those items are indeed where they are supposed to be, we can validate the next step and reboot this test-pc. Once you logon (doesn't need to be as an admin), your script should kick in action and do it's magic ;)
 
-To validate this second piece, browse to the "C:\LogsToAzure" folder and you should see a bunch of files created 
+To validate this second piece, browse to the "C:\LogsToAzure" folder and you should see a bunch of files created  
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs36.jpg)
 
 Also, fire up your Azure storage explorer (see Part 1) and validate that indeed your logfiles are uploaded to the blob storage !
