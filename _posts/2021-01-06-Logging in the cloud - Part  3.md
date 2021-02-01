@@ -194,7 +194,7 @@ It shouldn't take long to run and the endresult should be :
 ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs34.jpg)
 
 * A scheduled task called "CopyLogs" in the root of your scheduled tasks library (launch task scheduler as admin if you don't see the task!)  
-* ![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs35.jpg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs35.jpg)
 
 If all those items are indeed where they are supposed to be, we can validate the next step and reboot this test-pc. Once you logon (doesn't need to be as an admin), your script should kick in action and do it's magic ;)
 
@@ -357,8 +357,6 @@ Register-ScheduledTask -TaskName "CopyLogs" -Description "CopyLogs" -Trigger $tr
 
 Get-ScheduledTask 
 {% endhighlight %}
-
-![alt]({{ site.url }}{{ site.baseurl }}/images/azurelogs/azurelogs31.jpg)
 
 Ok, so what have we done here ?
 * Line 2 & 4 : Copy of the Azure Powershell modules to the correct subfolder
