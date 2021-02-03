@@ -2,7 +2,7 @@
 title: "Logging in a cloud-world - Part 3 (Intune/Autopilot)"
 header:
 author: Tom Degreef
-date: 2000-01-11
+date: 2021-02-03
 categories:
   - Autopilot
 
@@ -164,9 +164,9 @@ Take your private key (private_key.pem) out of this folder and store it somewher
 
 Browse to 'C:\temp\PSADT\SupportFiles' and edit the file 'Uploadlogstoazure_autopilot.ps1' with an editor of your choice.
 
-Make the folloowing small changes on these lines :
+Make the following small changes on these lines :
 
-1) On line 5, set the StorageAccountName to the containername we created in the azure portal  
+1) On line 5, set the StorageAccountName to the StorageAccountName we created in the azure portal  
 2) On line 6, replace the content of the storSAS variable with your "Write" SAS-key  
 3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
