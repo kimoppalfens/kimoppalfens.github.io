@@ -65,7 +65,7 @@ We've created an application to install this during our task sequence. It could 
 **Note :** the silent install parameters are : "/install /quiet /norestart"  
 **Note 2:** [Patch my PC](https://patchmypc.com/) offers a way to automatically generate applications for the software they can patch, this includes those visual C++ redistributables.
 
-The second step to our task sequence is the actual installation of OpenSSL. For this demo, I've used the binaries provided by FireDeamon, but there are probably others available that are equally good. Download the binaries [here](https://kb.firedaemon.com/support/solutions/articles/4000121705).
+The second step to our task sequence is the actual installation of OpenSSL. For this demo, I've used the binaries provided by FireDeamon, but there are probably others available that are equally good. Download the binaries [here](https://mirror.firedaemon.com/OpenSSL/openssl-1.1.1j-dev.zip) (website with the details to [OpenSSL](https://kb.firedaemon.com/support/solutions/articles/4000121705))
 
 On a workstation that has the previously mentioned x64 vcredist installed, extract the OpenSSL zipfile to, eg, c:\openssl
 

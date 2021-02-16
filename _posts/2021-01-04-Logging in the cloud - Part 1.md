@@ -169,7 +169,7 @@ Set-AzureStorageBlobContent -Context $ClientContext -container ($BlobProperties.
 
 You could pretty much use the above script as-is. You just have to adjust the variables for the azure storage.
 
-1) On line 5, set the StorageAccountName to the containername we created in the azure portal  
+1) On line 5, set the StorageAccountName to the StorageAccountName we created in the azure portal  
 2) On line 6, replace the content of the storSAS variable with your "Write" SAS-key  
 3) On line 7, provide the name of the blob-container we created in our preparation step using the storage explorer tool.
 
