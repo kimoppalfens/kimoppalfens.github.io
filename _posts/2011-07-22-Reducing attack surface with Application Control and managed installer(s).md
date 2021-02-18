@@ -4,7 +4,7 @@ header:
   overlay_image: template1280x960.jpg
   teaser: template512x384.jpg
 author: Kim Oppalfens
-date: 2008-12-31
+date: 2021-02-18
 categories:
   - AttackSurfaceReduction
 tags:
