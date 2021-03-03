@@ -1,7 +1,7 @@
 ---
 title: "Reducing attack surface with Application Control and managed installer(s) - Part 2"
 header:
-  overlay_image: Wdac-Tom-1600-x586.jpg
+  image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
 author: Kim Oppalfens
 date: 2021-03-03
