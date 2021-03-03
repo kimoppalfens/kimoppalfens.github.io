@@ -74,7 +74,10 @@ If you enabled Managed Installer logging you should see an eevent with Event ID 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/WDAC - Event viewer 01.png)
 
+Note the ManagedInstalledEnabled true and PassesManagedInstaller entries.
 
+# Teaser bonus #
+![alt]({{ site.url }}{{ site.baseurl }}/images/WDAC - Extended Attribute02.png)
 
 
 
