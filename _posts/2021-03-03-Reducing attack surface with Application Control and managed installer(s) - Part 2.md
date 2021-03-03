@@ -3,7 +3,7 @@ title: "2021-03-03-Reducing attack surface with Application Control and managed 
 header:
   image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
-author:Kim Oppalfens
+author: Kim Oppalfens
 date: 2021-03-03
 categories:
   - AttackSurfaceReduction
