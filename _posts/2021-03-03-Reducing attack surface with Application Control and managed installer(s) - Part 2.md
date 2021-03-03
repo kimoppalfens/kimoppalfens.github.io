@@ -66,6 +66,18 @@ This should show you something like this, listing the process that wrote the fil
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/WDAC - Extended Attribute01.png)
 
+# Conclusion #
+
+When a process, that was written to disk by a Managed Installer launches, the Extended attribute for Smartlocker.OriginClaim is verified against your list of Managed Installers and if Managed Installers are enabled in your WDAC policy the process will just run.
+
+If you enabled Managed Installer logging you should see an eevent with Event ID 3090, and the following on the details tab.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/WDAC - Event viewer 01.png)
+
+
+
+
+
 
 
 
