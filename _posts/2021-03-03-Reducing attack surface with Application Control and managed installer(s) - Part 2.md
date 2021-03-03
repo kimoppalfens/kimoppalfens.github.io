@@ -4,7 +4,7 @@ header:
   image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
 author:Kim Oppalfens
-date: 2008-12-31
+date: 2021-03-03
 categories:
   - AttackSurfaceReduction
 tags:
