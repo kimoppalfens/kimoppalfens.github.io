@@ -1,8 +1,7 @@
 ---
 title: "Reducing attack surface with Application Control and Managed Installers."
-tagline: "This post will explain the basics of how a Windows Defender Application Control managed installer works."
 header:
-  overlay_image: Wdac-Tom-1280-x960.jpg
+  image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
 author: Kim Oppalfens
 date: 2021-02-18
@@ -16,6 +15,7 @@ tags:
   - AttacksurfaceReduction
 ---
 
+This post will explain the basics of how a Windows Defender Application Control managed installer works.
 
 # Intro #
 
