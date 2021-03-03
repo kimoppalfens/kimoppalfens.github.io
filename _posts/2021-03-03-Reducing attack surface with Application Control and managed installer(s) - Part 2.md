@@ -1,5 +1,5 @@
 ---
-title: "2021-03-03-Reducing attack surface with Application Control and managed installer(s) - Part 2"
+title: "Reducing attack surface with Application Control and managed installer(s) - Part 2"
 header:
   image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
@@ -33,7 +33,7 @@ Just navigate to Endpoint protection \ Windows Defender Application Control and 
 - Enforce a restart: If you leave this blank the policy can't be applied to open processes. From a security perspective enabling this is a good idea. From a User Experience perspective this will most likely kill your project before you're out of the gate. I typically uncheck this.
 - Enforced or Audit Only: I believe this one is fairly self-explanatory, you should start with Audit mode first.
 - On the Inclusions tab you can add support for the Intelligent Security graph, a Microsoft maintained list of trustworthy software. It's somewhat of a black box and I prefer to be in control over what is trusted to run on my devices. 
--Trusted files or folders: This was MemCM's attempt to have Path rules prior to Wdac starting to support Path rules in 1903. Afaic, this part of the UI is deprecated. This would genereate a codeintegrity_*.xml file for the scripts to pick up and generate hash rules for
+-Trusted files or folders: This was MemCM's attempt to have Path rules prior to Wdac starting to support Path rules in 1903. Afaic, this part of the UI is deprecated. This would genereate a codeintegrity_*.xml file for the scripts to pick up and generate hash rules for.
 
 
 Easy enough, right. Now deploy this policy out to a device and start analyzing.
@@ -61,6 +61,10 @@ Navigate to the folder holding the EAquery.exe executable and run the following 
 .\EaQuery.exe /target:"C:\Program Files (x86)\tools\wdactools\eatools" /mode:0 /verbose:2 /recurse:1 /identifier:$kernel.smartlocker
 
 {% endhighlight %}
+
+This should show you something like this, listing the process that wrote the file to disk.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/WDAC - Extended Attribute01.png)
 
 
 
