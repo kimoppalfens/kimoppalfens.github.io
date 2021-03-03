@@ -1,5 +1,5 @@
 ---
-title: "Reducing attack surface with Application Control and managed installer(s)"
+title: "Reducing attack surface with Appcontrol"
 header:
   overlay_image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
