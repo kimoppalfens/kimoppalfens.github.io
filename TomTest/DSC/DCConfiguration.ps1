@@ -7,8 +7,6 @@
         [Parameter(Mandatory)]
         [String]$DCName,
         [Parameter(Mandatory)]
-        [String]$DPMPName,
-        [Parameter(Mandatory)]
         [String]$CSName,
         [Parameter(Mandatory)]
         [String]$PSName,
@@ -33,7 +31,6 @@
         $CSComputerAccount = "$DName\$CSName$"
     }
     $PSComputerAccount = "$DName\$PSName$"
-    $DPMPComputerAccount = "$DName\$DPMPName$"
     $ClientComputerAccount = "$DName\$ClientName$"
 
     [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
@@ -80,13 +77,6 @@
             DependsOn = "[InstallCA]InstallCA"
         }
 
-        VerifyComputerJoinDomain WaitForDPMP
-        {
-            ComputerName = $DPMPName
-            Ensure = "Present"
-            DependsOn = "[InstallCA]InstallCA"
-        }
-
         VerifyComputerJoinDomain WaitForClient
         {
             ComputerName = $ClientName
@@ -100,14 +90,14 @@
                 DestinationPath = $LogPath     
                 Type = 'Directory'            
                 Ensure = 'Present'
-                DependsOn = @("[VerifyComputerJoinDomain]WaitForPS","[VerifyComputerJoinDomain]WaitForDPMP","[VerifyComputerJoinDomain]WaitForClient")
+                DependsOn = @("[VerifyComputerJoinDomain]WaitForPS","[VerifyComputerJoinDomain]WaitForClient")
             }
 
             FileReadAccessShare DomainSMBShare
             {
                 Name   = $LogFolder
                 Path =  $LogPath
-                Account = $PSComputerAccount,$DPMPComputerAccount,$ClientComputerAccount
+                Account = $PSComputerAccount,$ClientComputerAccount
                 DependsOn = "[File]ShareFolder"
             }
 
@@ -118,7 +108,7 @@
                 WriteNode = "DelegateControl"
                 Status = "Passed"
                 Ensure = "Present"
-                DependsOn = @("[DelegateControl]AddPS","[DelegateControl]AddDPMP")
+                DependsOn = @("[DelegateControl]AddPS")
             }
 
             WaitForExtendSchemaFile WaitForExtendSchemaFile
@@ -142,14 +132,14 @@
                 DestinationPath = $LogPath     
                 Type = 'Directory'            
                 Ensure = 'Present'
-                DependsOn = @("[VerifyComputerJoinDomain]WaitForCS","[VerifyComputerJoinDomain]WaitForPS","[VerifyComputerJoinDomain]WaitForDPMP","[VerifyComputerJoinDomain]WaitForClient")
+                DependsOn = @("[VerifyComputerJoinDomain]WaitForCS","[VerifyComputerJoinDomain]WaitForPS","[VerifyComputerJoinDomain]WaitForClient")
             }
 
             FileReadAccessShare DomainSMBShare
             {
                 Name   = $LogFolder
                 Path =  $LogPath
-                Account = $CSComputerAccount,$PSComputerAccount,$DPMPComputerAccount,$ClientComputerAccount
+                Account = $CSComputerAccount,$PSComputerAccount,$ClientComputerAccount
                 DependsOn = "[File]ShareFolder"
             }
             
@@ -178,7 +168,7 @@
                 WriteNode = "DelegateControl"
                 Status = "Passed"
                 Ensure = "Present"
-                DependsOn = @("[DelegateControl]AddCS","[DelegateControl]AddPS","[DelegateControl]AddDPMP")
+                DependsOn = @("[DelegateControl]AddCS","[DelegateControl]AddPS")
             }
 
             WaitForExtendSchemaFile WaitForExtendSchemaFile
@@ -200,16 +190,6 @@
             DependsOn = "[FileReadAccessShare]DomainSMBShare"
         }
 
-        WriteConfigurationFile WriteDPMPJoinDomain
-        {
-            Role = "DC"
-            LogPath = $LogPath
-            WriteNode = "DPMPJoinDomain"
-            Status = "Passed"
-            Ensure = "Present"
-            DependsOn = "[FileReadAccessShare]DomainSMBShare"
-        }
-
         WriteConfigurationFile WriteClientJoinDomain
         {
             Role = "DC"
@@ -226,14 +206,6 @@
             DomainFullName = $DomainName
             Ensure = "Present"
             DependsOn = "[WriteConfigurationFile]WritePSJoinDomain"
-        }
-
-        DelegateControl AddDPMP
-        {
-            Machine = $DPMPName
-            DomainFullName = $DomainName
-            Ensure = "Present"
-            DependsOn = "[WriteConfigurationFile]WriteDPMPJoinDomain"
         }
     }
 }
