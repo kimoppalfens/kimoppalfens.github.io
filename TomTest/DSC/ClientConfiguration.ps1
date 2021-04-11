@@ -7,8 +7,6 @@
         [Parameter(Mandatory)]
         [String]$DCName,
         [Parameter(Mandatory)]
-        [String]$DPMPName,
-        [Parameter(Mandatory)]
         [String]$CSName,
         [Parameter(Mandatory)]
         [String]$PSName,
