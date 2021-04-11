@@ -7,8 +7,6 @@
         [Parameter(Mandatory)]
         [String]$DCName,
         [Parameter(Mandatory)]
-        [String]$DPMPName,
-        [Parameter(Mandatory)]
         [String]$CSName,
         [Parameter(Mandatory)]
         [String]$PSName,
@@ -33,7 +31,6 @@
     {
         $CSComputerAccount = "$DName\$CSName$"
     }
-    $DPMPComputerAccount = "$DName\$DPMPName$"
     
     [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
 
@@ -108,7 +105,7 @@
                 TaskName = "ScriptWorkFlow"
                 ScriptName = "ScriptWorkFlow.ps1"
                 ScriptPath = $PSScriptRoot
-                ScriptArgument = "$DomainName $CM $DName\$($Admincreds.UserName) $DPMPName $ClientName $Configuration $CurrentRole $LogFolder $CSName $PSName"
+                ScriptArgument = "$DomainName $CM $DName\$($Admincreds.UserName) $ClientName $Configuration $CurrentRole $LogFolder $CSName $PSName"
                 Ensure = "Present"
                 DependsOn = "[FileReadAccessShare]CMSourceSMBShare"
             }
@@ -145,7 +142,7 @@
                 TaskName = "ScriptWorkFlow"
                 ScriptName = "ScriptWorkFlow.ps1"
                 ScriptPath = $PSScriptRoot
-                ScriptArgument = "$DomainName $CM $DName\$($Admincreds.UserName) $DPMPName $ClientName $Configuration $CurrentRole $LogFolder $CSName $PSName"
+                ScriptArgument = "$DomainName $CM $DName\$($Admincreds.UserName) $ClientName $Configuration $CurrentRole $LogFolder $CSName $PSName"
                 Ensure = "Present"
                 DependsOn = "[ChangeSQLServicesAccount]ChangeToLocalSystem"
             }

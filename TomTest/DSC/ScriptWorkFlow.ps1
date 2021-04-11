@@ -1,4 +1,4 @@
-Param($DomainFullName,$CM,$CMUser,$DPMPName,$ClientName,$Config,$CurrentRole,$LogFolder,$CSName,$PSName)
+Param($DomainFullName,$CM,$CMUser,$ClientName,$Config,$CurrentRole,$LogFolder,$CSName,$PSName)
 
 $CSRole = "CAS"
 $PSRole = "PS1"
@@ -120,17 +120,17 @@ if($Config -eq "Standalone")
     #Install DP
     $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallDP.ps1"
 
-    . $ScriptFile $DomainFullName $DPMPName $Role $ProvisionToolPath
+    . $ScriptFile $DomainFullName $CM $Role $ProvisionToolPath
 
     #Install MP
     $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallMP.ps1"
 
-    . $ScriptFile $DomainFullName $DPMPName $Role $ProvisionToolPath
+    . $ScriptFile $DomainFullName $CM $Role $ProvisionToolPath
 
     #Install Client
     $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallClient.ps1"
 
-    . $ScriptFile $DomainFullName $CMUser $ClientName $DPMPName $Role $ProvisionToolPath
+    . $ScriptFile $DomainFullName $CMUser $ClientName $CM $Role $ProvisionToolPath
 }
 else {
     if($CurrentRole -eq "CS")
@@ -152,16 +152,16 @@ else {
         #Install DP
         $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallDP.ps1"
     
-        . $ScriptFile $DomainFullName $DPMPName $Role $ProvisionToolPath
+        . $ScriptFile $DomainFullName $CM $Role $ProvisionToolPath
     
         #Install MP
         $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallMP.ps1"
     
-        . $ScriptFile $DomainFullName $DPMPName $Role $ProvisionToolPath
+        . $ScriptFile $DomainFullName $CM $Role $ProvisionToolPath
 
         #Install Client
         $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallClient.ps1"
 
-        . $ScriptFile $DomainFullName $CMUser $ClientName $DPMPName $Role $ProvisionToolPath
+        . $ScriptFile $DomainFullName $CMUser $ClientName $CM $Role $ProvisionToolPath
     }
 }
