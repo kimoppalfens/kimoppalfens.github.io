@@ -120,12 +120,12 @@ if($Config -eq "Standalone")
     #Install DP
     $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallDP.ps1"
 
-    . $ScriptFile $DomainFullName $CM $Role $ProvisionToolPath
+    . $ScriptFile $DomainFullName $PSName $Role $ProvisionToolPath
 
     #Install MP
     $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallMP.ps1"
 
-    . $ScriptFile $DomainFullName $CM $Role $ProvisionToolPath
+    . $ScriptFile $DomainFullName $PSName $Role $ProvisionToolPath
 
     #Install Client
     $ScriptFile = Join-Path -Path $ProvisionToolPath -ChildPath "InstallClient.ps1"
