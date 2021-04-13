@@ -50,6 +50,7 @@ if(!$SystemServer)
 if((get-cmdistributionpoint -SiteSystemServerName $MachineName).count -ne 1)
 {
     #Install DP
+    $Date = [DateTime]::Now.AddYears(30)
     "[$(Get-Date -format "MM/dd/yyyy HH:mm:ss")] Adding distribution point on $MachineName ..." | Out-File -Append $logpath
     Add-CMDistributionPoint -InputObject $SystemServer -CertificateExpirationTimeUtc $Date | Out-File -Append $logpath
     "[$(Get-Date -format "MM/dd/yyyy HH:mm:ss")] Finished adding distribution point on $MachineName ..." | Out-File -Append $logpath
