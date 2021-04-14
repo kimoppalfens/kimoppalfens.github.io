@@ -58,6 +58,10 @@ if(!$SystemServer)
 if((Get-CMManagementPoint -SiteSystemServerName $MachineName).count -ne 1)
 {
     #Install MP
+    "[$(Get-Date -format "MM/dd/yyyy HH:mm:ss")] Adding Dotnet framework 4.5 on $MachineName ..." | Out-File -Append $logpath
+    Install-WindowsFeature Net-framework-45-features | Out-File -Append $logpath
+    "[$(Get-Date -format "MM/dd/yyyy HH:mm:ss")] Adding BITS extensions on $MachineName ..." | Out-File -Append $logpath
+    Install-WindowsFeature BITS,BITS-IIS-Ext,BITS-Compact-server | Out-File -Append $logpath
     "[$(Get-Date -format "MM/dd/yyyy HH:mm:ss")] Adding management point on $MachineName ..." | Out-File -Append $logpath
     Add-CMManagementPoint -InputObject $SystemServer -CommunicationType Http | Out-File -Append $logpath
     "[$(Get-Date -format "MM/dd/yyyy HH:mm:ss")] Finished adding management point on $MachineName ..." | Out-File -Append $logpath
