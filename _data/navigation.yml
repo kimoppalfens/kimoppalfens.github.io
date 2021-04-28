@@ -1,5 +1,5 @@
 # main links links
-#main:
+main:
   - title: "Training"
     url: /training/
 
@@ -12,7 +12,7 @@
   - title: "Products"
     url: /tools/
 
-  - title: "Password Management7"
+  - title: "Password Management8"
     url: /Contactus/
     sublinks:
       - title: "Submenu1"
