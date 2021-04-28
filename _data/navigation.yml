@@ -1,22 +1,22 @@
 # main links links
-main:
-  - title: "Training"
-    url: /training/
+#main:
+- title: "Training"
+  url: /training/
 
-  - title: "Public sessions"
-    url: /sessions/
+- title: "Public sessions"
+  url: /sessions/
  
-  - title: "OSCC services"
-    url: /osccservices/
+- title: "OSCC services"
+  url: /osccservices/
 
-  - title: "Products"
-    url: /tools/
+- title: "Products"
+  url: /tools/
 
-  - title: "Password Management8"
-    url: /Contactus/
-    sublinks:
-      - title: "Submenu1"
-        url: /Contactus/
+- title: "Password Management9"
+  url: /Contactus/
+  sublinks:
+    - title: "Submenu1"
+      url: /Contactus/
 
-  - title: "Contact Us"
-    url: /Contactus/
+- title: "Contact Us"
+  url: /Contactus/
