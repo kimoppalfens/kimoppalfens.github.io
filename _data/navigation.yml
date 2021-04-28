@@ -12,15 +12,12 @@ main:
   - title: "Products"
     url: /tools/
 
-  - title: "Password Management1"
-    subcategories:
-      - subtitle: "Submenu1"
-      - subtitle: "Submenu2"
-        subhref: "#"
+  - title: "Password Management2"
+    subnav:
+      - title: "Submenu1"
+        url: /Contactus/
 
   - title: "Contact Us"
     url: /Contactus/
-
-
 
 
