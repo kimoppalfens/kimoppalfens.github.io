@@ -13,15 +13,12 @@ main:
     url: /tools/
 
   - title: "Password Management"
-    - subitems:
-      - text: "Submenu"
+    subcategories:
+      - subtitle: "Submenu"
         url: /training/
 
   - title: "Contact Us"
     url: /Contactus/
-
-
-
 
 
 
