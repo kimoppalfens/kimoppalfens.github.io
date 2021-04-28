@@ -14,8 +14,8 @@ main:
 
   - title: "Password Management"
     - subitems:
-      -title: "Submenu"
-      url: /training/
+      - text: "Submenu"
+        url: /training/
 
   - title: "Contact Us"
     url: /Contactus/
