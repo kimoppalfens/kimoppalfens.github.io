@@ -12,7 +12,8 @@ main:
   - title: "Products"
     url: /tools/
 
-  - title: "Password Management5"
+  - title: "Password Management6"
+    url: /Contactus/
     sublinks:
       - title: "Submenu1"
         url: /Contactus/
