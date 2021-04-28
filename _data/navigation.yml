@@ -13,7 +13,7 @@ main:
     url: /tools/
 
   - title: "Password Management3"
-    subitems:
+    sublink:
       - title: "Submenu1"
         url: /Contactus/
 
