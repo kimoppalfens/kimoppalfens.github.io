@@ -249,3 +249,9 @@ defaults:
     values:
       layout: single
       category: osccservices
+  - scope:
+      path: _posts/passwordsolutions
+      type: posts
+    values:
+      layout: single
+      category: passwordsolutions
