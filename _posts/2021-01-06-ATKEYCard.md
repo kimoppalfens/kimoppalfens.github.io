@@ -26,6 +26,10 @@ Gartner Group studies reflect an average of 20%-50% of all help desk calls is pa
 ![alt]({{ site.url }}{{ site.baseurl }}/images/ATKeyCard/620card.jpg)
 # One ATKey Card with Different Interfaces #
 - Bluetooth: Passwordless login Azure AD and FIDO2 services, and it can also serve BLE location tracking for the badge owner. 
-- NFC: Fingerprint matching to boost NFC for permission to door locker, card reader, kiosk, and Azure AD login through NFC reader. 
+- NFC: Fingerprint matching to boost NFC for permission to door locker, card reader, kiosk, and Azure AD login through NFC reader any ISO 14443 Mifare Type A (for 13.56MHz NFC reader) reader.
 - USB: FIDO2 USB key for Passwordless Azure AD login and also doing battery charging in parallel.
 
+# Supported Apps	#
+Facebook, G Suite, Twitter, Microsoft Azure AD, AWS, Dropbox, Dropbox Business, Other
+
+{% include video id="ogC8IF3_I6I" provider="youtube" %}
