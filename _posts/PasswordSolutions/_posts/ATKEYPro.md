@@ -3,7 +3,8 @@ title: "ATKEY.Pro"
 header:
 author: Tom Degreef
 date: 2000-02-03
-category: PasswordSolutions
+categories:
+  - PasswordSolutions
 youtubeId: OrDtjspe-Xg
 
 

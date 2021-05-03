@@ -4,7 +4,8 @@ author: OSCC
 layout: single
 excerpt: "Page not found. Your pixels are in another canvas."
 sitemap: false
-category: PasswordSolutions
+categories:
+  - PasswordSolutions
 author_profile: true
 gallery3:
   - image_path: AdminPasswordRandomizer-CMTSStep.png
