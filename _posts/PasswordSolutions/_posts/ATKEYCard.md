@@ -3,7 +3,7 @@ title: "ATKEY.Card"
 header:
 author: Tom Degreef
 date: 2000-02-03
-categories:
+category: PasswordSolutionscategory: PasswordSolutions
 youtubeId: E7W22ab1sE0
 
 
