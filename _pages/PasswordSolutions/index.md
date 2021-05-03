@@ -8,8 +8,8 @@ modified: 2015-12-02T11:05:08-05:00
 excerpt: "A collection of thoughts, inspiration, mistakes, and other minutia I’ve written."
 feature:
   visible: true
-  headline: "OSCC Services"
-  category: osccservices
+  headline: "Password Solutions"
+  category: PasswordSolutions
 ---
 
 {% for post in site.categories.osccservices %}
