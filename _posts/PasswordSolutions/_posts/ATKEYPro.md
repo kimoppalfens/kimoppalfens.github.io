@@ -5,6 +5,7 @@ author: Tom Degreef
 date: 2000-02-03
 categories:
   - PasswordSolutions
+category: PasswordSolutions
 youtubeId: OrDtjspe-Xg
 
 

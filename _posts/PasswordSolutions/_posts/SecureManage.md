@@ -6,6 +6,7 @@ excerpt: "Page not found. Your pixels are in another canvas."
 sitemap: false
 categories:
   - PasswordSolutions
+category: PasswordSolutions
 author_profile: true
 gallery3:
   - image_path: AdminPasswordRandomizer-CMTSStep.png

@@ -5,9 +5,8 @@ author: Tom Degreef
 date: 2000-02-03
 categories:
   - PasswordSolutions
+category: PasswordSolutions
 youtubeId: E7W22ab1sE0
-
-
 tags:
 
 ---
