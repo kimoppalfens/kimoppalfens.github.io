@@ -1,9 +1,10 @@
 ---
-title: "ATKEY.Card"
+title: "ATKEY.Card1"
 header:
 author: Tom Degreef
 date: 2000-02-03
 categories:
+youtubeId: E7W22ab1sE0
 
 
 tags:
@@ -32,4 +33,4 @@ Gartner Group studies reflect an average of 20%-50% of all help desk calls is pa
 # Supported Apps	#
 Facebook, G Suite, Twitter, Microsoft Azure AD, AWS, Dropbox, Dropbox Business, Other
 
-{% include youtubeplayer.html id=E7W22ab1sE0 %}
+{% include youtubeplayer.html id=page.youtubeId %}
