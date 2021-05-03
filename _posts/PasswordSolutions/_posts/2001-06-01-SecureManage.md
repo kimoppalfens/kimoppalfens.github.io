@@ -1,8 +1,8 @@
 ---
-title: Products
+title: Secure Manage
 author: OSCC
 layout: single
-excerpt: "Page not found. Your pixels are in another canvas."
+excerpt: "Secure manage is a solution that aims to eliminate the need for highly privileged accounts to access workstations by randomizing the local administrator password on workstations and make that password easily consumable through pre-build actions. Much effort has been put in making the solution as comprehensible as possible and to allow the solution to integrate into an organization’s current support workflow."
 sitemap: false
 categories:
   - PasswordSolutions
