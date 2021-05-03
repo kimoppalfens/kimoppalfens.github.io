@@ -32,4 +32,4 @@ Gartner Group studies reflect an average of 20%-50% of all help desk calls is pa
 # Supported Apps	#
 Facebook, G Suite, Twitter, Microsoft Azure AD, AWS, Dropbox, Dropbox Business, Other
 
-{% include video id="ogC8IF3_I6I" provider="youtube" %}
+{% include youtubeplayer.html id=ogC8IF3_I6I %}
