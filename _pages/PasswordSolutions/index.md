@@ -12,7 +12,7 @@ feature:
   category: PasswordSolutions
 ---
 
-{% for post in site.categories.osccservices %}
+{% for post in site.categories.PasswordSolutions %}
   {% if post.featured != true %}
   <div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
