@@ -22,3 +22,5 @@ feature:
   </div>
   {% endif %}
 {% endfor %}
+
+For additional information, demo's or to request a sample feel free to contact us.
