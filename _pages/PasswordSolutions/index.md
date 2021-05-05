@@ -2,7 +2,7 @@
 layout: archive
 title: OSCC Password Solutions
 permalink: /PasswordSolutions/
-author: oscc
+author: OSCC
 author_profile: true
 date: 2014-06-02T12:26:34-04:00
 modified: 2015-12-02T11:05:08-05:00
