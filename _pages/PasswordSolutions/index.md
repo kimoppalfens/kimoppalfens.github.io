@@ -24,4 +24,4 @@ feature:
   {% endif %}
 {% endfor %}
 
-For additional information, demo's or to request a sample feel free to contact us.
+For additional information, demo's or to request a sample feel free to [contact us](https://www.oscc.be/Contactus/).
