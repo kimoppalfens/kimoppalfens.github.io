@@ -2,7 +2,8 @@
 layout: archive
 title: OSCC Password Solutions
 permalink: /PasswordSolutions/
-author: oscc
+author: OSCC
+author_profile: true
 date: 2014-06-02T12:26:34-04:00
 modified: 2015-12-02T11:05:08-05:00
 excerpt: "A collection of thoughts, inspiration, mistakes, and other minutia I’ve written."
@@ -23,4 +24,4 @@ feature:
   {% endif %}
 {% endfor %}
 
-For additional information, demo's or to request a sample feel free to contact us.
+For additional information, demo's or to request a sample feel free to <ins>[contact us](https://www.oscc.be/Contactus/)</ins>.
