@@ -9,5 +9,8 @@ main:
   - title: "Password Solutions"
     url: /PasswordSolutions/
 
+  - title: "Training"
+    url: /training/
+
   - title: "Contact Us"
     url: /Contactus/
