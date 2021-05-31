@@ -21,11 +21,11 @@ students will get access to a personal online lab environment to run exercices t
 A discord channel will be available for questions and follow up
 
 # When #
-The training will start on Tuesday 9th of November 2021 and will finish Tuesday 7th of December 2021.
+The training will start on Tuesday 9th of November 2021 and will finish on Tuesday 7th of December 2021.
 
 [Register here](https://www.eventbrite.com/)
 
-# Modules #
+# Module details #
 ## Intro ##
 
 Applocker, Windows Defender Application control's little brother, is the predecessor application approval technology Microsoft developed. An understanding of their differences similarities and how they interact is hugely beneficial to understand Application Control in general.
