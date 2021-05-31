@@ -9,7 +9,7 @@ author_profile: true
 ---
 
 # Overview #
-OSCC will organise a new training focussed on one of the best Windows 10 security features. Application control (or application whitelisting) allows you to increase your security posture many times since only approved applications are allowed to run. 
+OSCC will organise a new training focussed on one of the best Windows 10 security features. Application control (or application allow-listing) allows you to increase your security posture many times since only approved applications are allowed to run. 
 
 This training will take you through all the necessary topics in order to be able to properly implement an application control policy in your environment.  We will focus on protecting core servers and workstations in your environment. 
 
