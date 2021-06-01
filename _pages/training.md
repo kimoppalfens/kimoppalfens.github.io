@@ -29,7 +29,7 @@ There won't be any sessions over the MMS Miami break end of October till early n
 # Module details #
 ## Intro ##
 
-Applocker, Windows Defender Application control's little brother, is the predecessor application approval technology Microsoft developed. An understanding of their differences similarities and how they interact is hugely beneficial to understand Application Control in general.
+Applocker, Windows Defender Application control's little brother, is the predecessor application approval technology Microsoft developed. An understanding of their differences, their  similarities and how they interact is hugely beneficial to help you understand Application Control in general.
 
 ## PowerShell Constrained Language Mode ##
 
