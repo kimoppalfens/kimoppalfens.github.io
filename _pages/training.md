@@ -18,7 +18,7 @@ Each module will be presented live and will run for about 2 hours. Trainings wil
 
 students will get access to a personal online lab environment to run exercices that are specifically crafted for this training. Once the training is over, students will be able to download the lab offline for continued access.
 
-A discord channel will be available for questions and follow up
+A collaboration channel will be available during and after this training, for questions, follow-up and sharing experiences amongst people that are working on a similar project.
 
 # When #
 The training will start on Tuesday 12th of October 2021 and will finish on Thursday the 25th of December 2021.
