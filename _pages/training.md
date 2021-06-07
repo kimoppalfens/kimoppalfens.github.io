@@ -23,7 +23,7 @@ A discord channel will be available for questions and follow up
 # When #
 The training will start on Tuesday 9th of November 2021 and will finish on Tuesday 7th of December 2021.
 
-[Register here](https://www.eventbrite.com/)
+[Register here](https://www.eventbrite.be/e/windows-defender-application-control-training-tickets-157760422671?keep_tld=1)
 
 # Module details #
 ## Intro ##
