@@ -9,26 +9,27 @@ author_profile: true
 ---
 
 # Overview #
-OSCC will organise a new training focussed on one of the best Windows 10 security features. Application control (or application allow-listing) allows you to increase your security posture many times since only approved applications are allowed to run. 
+OSCC is organising a new training focussed on one of the most powerful Windows 10 security features. Windows Defender Application control is an application allow-listing solution that allows you to take your security posture to a whole new level. It does so by controlling which applications are allowed to run and helps you limit the sources where code can come from to a limited set of items you manage. 
 
-This training will take you through all the necessary topics in order to be able to properly implement an application control policy in your environment.  We will focus on protecting core servers and workstations in your environment. 
+This training will provide you with all the necessary pieces of information, caveats and insight knowledge gained through our vast experience in this topic in order to be able to properly implement an application control policy in your environment.  The focus of this training is the protection of your core servers (AD, PKI, MEMCM) and workstations in your environment. 
 
 # Practical details #
-Each module will be presented live and will run for about 2 hours. Trainings will run twice a week (Tuesdays and Thursdays) at 7PM CET (10AM PST / 1PM EST) for about 5 weeks.
+Each module will be presented live and will run for about 2 hours. Trainings will run twice a week (Tuesdays and Thursdays) at 7PM CET (10AM PST / 1PM EST) for 5 weeks.
 
 students will get access to a personal online lab environment to run exercices that are specifically crafted for this training. Once the training is over, students will be able to download the lab offline for continued access.
 
-A discord channel will be available for questions and follow up
+A collaboration channel will be available during and after this training, for questions, follow-up and sharing experiences amongst people that are working on a similar project.
 
 # When #
-The training will start on Tuesday 9th of November 2021 and will finish on Tuesday 7th of December 2021.
+The training will start on Tuesday 12th of October 2021 and will finish on Thursday the 25th of November 2021.
+There won't be any sessions over the MMS Miami break end of October till early november.
 
 [Register here](https://www.eventbrite.be/e/windows-defender-application-control-training-tickets-157760422671?keep_tld=1)
 
 # Module details #
 ## Intro ##
 
-Applocker, Windows Defender Application control's little brother, is the predecessor application approval technology Microsoft developed. An understanding of their differences similarities and how they interact is hugely beneficial to understand Application Control in general.
+Applocker, Windows Defender Application control's little brother, is the predecessor application approval technology Microsoft developed. An understanding of their differences, their  similarities and how they interact is hugely beneficial to help you understand Application Control in general.
 
 ## PowerShell Constrained Language Mode ##
 
@@ -45,6 +46,9 @@ Code Integrity (CI) Rules are objects to allows certain code/software to run on 
 ## WDAC Managed Installers ##
 
 In the previous module we saw one way of making applications/code trusted. Building rules for every piece of software can be tedious. WDAC Managed Installer functionality is a flexible way to make applications/code trusted in an enterprise environment that relies on a Microsoft systems management solution. After this part you'll understand the MI functionality and its challenges.
+
+## Working with Catalogs ##
+Using security catalogs is a way to make files trusted that is being used by drivers for over 2 decades. This proven technology can equally be used to make application files trusted for Applocker. This section will cover managing .cat files and the newer msix format as a way to make applications trusted.
 
 ## MEMCM / Intune policies ##
 
