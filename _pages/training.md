@@ -24,7 +24,9 @@ A collaboration channel will be available during and after this training, for qu
 The training will start on Tuesday 12th of October 2021 and will finish on Thursday the 25th of November 2021.
 There won't be any sessions over the MMS Miami break end of October till early november.
 
-[Register here](https://www.eventbrite.be/e/windows-defender-application-control-training-tickets-157760422671?keep_tld=1)
+# Registration # 
+
+<iframe width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=2ona4-q3REiP6_rVRfcdbM9Y59aORShCv4KDmN_di6lUQ0hRSFRUTlRXSzZTVVcxSTRURFdVN05STC4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
 
 # Module details #
 ## Intro ##
