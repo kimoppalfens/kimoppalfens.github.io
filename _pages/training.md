@@ -26,7 +26,8 @@ There won't be any sessions over the MMS Miami break end of October till early n
 
 # Registration # 
 
-<iframe width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=2ona4-q3REiP6_rVRfcdbM9Y59aORShCv4KDmN_di6lUQ0hRSFRUTlRXSzZTVVcxSTRURFdVN05STC4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+<iframe width="700px" height= "500px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=2ona4-q3REiP6_rVRfcdbM9Y59aORShCv4KDmN_di6lUQ0hRSFRUTlRXSzZTVVcxSTRURFdVN05STC4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+
 
 # Module details #
 ## Intro ##
