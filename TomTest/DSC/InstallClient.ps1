@@ -64,7 +64,7 @@ New-CMBoundaryGroup -Name $SiteCode -DefaultSiteCode $SiteCode -AddSiteSystemSer
 
 Add-CMBoundaryToGroup -BoundaryName Client -BoundaryGroupName $SiteCode
 
-Set-CMBoundaryGroup -Name $SiteCode -AddSiteSystemServer $DPMPMachineName
+Set-CMBoundaryGroup -Name $SiteCode -AddSiteSystemServerName $DPMPMachineName
 
 #Wait collection
 $machinelist = (get-cmdevice -CollectionName "all systems").Name
