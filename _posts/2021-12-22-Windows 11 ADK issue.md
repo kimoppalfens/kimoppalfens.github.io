@@ -32,7 +32,7 @@ This mobilenetworking.dll file can be found in a regular/full windows 11 pro/ent
 
 ## Problem 2 ##
 
-Ok, so with workaround from Problem 1, we can now start the dot3svc service ! But you might still have issues with 802.1x authentication.
+Ok, so with the workaround from Problem 1, we can now start the dot3svc service ! But you might still have issues with 802.1x authentication.
 
 To fix that particular issue, you have to add some registry keys into your WinPE image :
 
