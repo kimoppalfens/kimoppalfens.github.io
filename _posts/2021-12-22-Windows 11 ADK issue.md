@@ -1,4 +1,3 @@
-
 ---
 title: "802.1X is not working properly with Windows 11 ADK"
 header:
