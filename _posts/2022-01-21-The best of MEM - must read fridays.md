@@ -4,7 +4,7 @@ header:
   image: Wdac-Tom-1280-x960.jpg
   teaser: Wdac-Tom-512-x384.jpg
 author: Kim Oppalfens
-date: 2021-01-21
+date: 2022-01-21
 categories:
   - MEM
 tags:
