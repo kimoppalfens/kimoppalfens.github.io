@@ -1,8 +1,8 @@
 ---
 title: "The best of MEM, must read fridays - wk2204 ."
 header:
-  image: mustread-1280-960.png
-  teaser: mustread-512-384.png
+  image: mustread-1280-960.jpg
+  teaser: mustread-512-384.jpg
 author: Kim Oppalfens
 date: 2022-01-28
 categories:
