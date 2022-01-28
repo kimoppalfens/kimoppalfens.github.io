@@ -1,8 +1,8 @@
 ---
 title: "The best of MEM must read fridays - wk2204 ."
 header:
-  image: Wdac-Tom-1280-x960.jpg
-  teaser: Wdac-Tom-512-x384.jpg
+  image: mustread-1280-960.png
+  teaser: mustread-1280-960.png
 author: Kim Oppalfens
 date: 2022-01-28
 categories:
