@@ -1,5 +1,5 @@
 ---
-title: "The best of MEM must read fridays - wk2204 ."
+title: "The best of MEM, must read fridays - wk2204 ."
 header:
   image: mustread-1280-960.png
   teaser: mustread-1280-960.png
