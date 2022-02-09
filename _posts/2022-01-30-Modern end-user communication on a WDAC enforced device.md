@@ -109,9 +109,36 @@ Nothing to fancy, a shell run of a powershell script and pointing to your toastn
 You can manipulate the other scheduled tasks settings as you desire.
 
 Your End result should resemble the following:
-A regular event running in the user's context
 
+A regular event running in the user's context
+### General Tab ###
 ![General Tab](/images/WDACEventTask01.png)
+
+### Trigger overview ###
+
+![Trigger Overview](/images/WDACEventTask02.png)
+
+### Trigger details ###
+**!Important: You Define your filter by manually copy/pasting the XML you find above!**
+
+![Trigger Details](/images/WDACEventTask03.png)
+
+### Actions ###
+
+![Actions](/images/WDACEventTask04.png)
+
+
+# End user eperience
+The end user receives the following 2 messages in short succession.
+The first appears center screen, and blurs out the background. 
+The second screen appears at the bottom right as a toast notification.
+
+![Actions](/images/WDACEventTask05.png)
+
+![Actions](/images/WDACEventTask06.png)
+
+
+
 
 
 
