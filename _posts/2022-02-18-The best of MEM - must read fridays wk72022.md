@@ -20,7 +20,7 @@ This post highlights the most interesting blogs, tweets and articles I've read r
 I figured I'd try and start something new. To stay up-to-date on what's happening in the MEM and Windows management realm I read a ton of stuff. A serious amount of community effort and a similar amount of items Microsoft puts out. The amount of things being put out is all incredibly valuable, and covers all types of knowledge depth imaginable. On a weekly basis I am going to try and shine a light on some of those items that I personally believe you must read. I'll equally add my view as to why I believe this is something you should probably look into. Items appear in random order.
 
 ## Item 1 ##
-Peter doesn't use the word awesome lightly, in this post he calls the Windows Update for Business awesome, not once, but twice. And he's absolutely right, the Windows Update for Business deployment service covers a serious gap for those organizations that have asked for more control over cloud based patching. [Getting started with the Windows Update for Business deployment service]
+Peter doesn't use the word awesome lightly, in this post he calls the Windows Update for Business deployment service awesome, not once, but twice. And he's absolutely right, the Windows Update for Business deployment service covers a serious gap for those organizations that have asked for more control over cloud based patching. [Getting started with the Windows Update for Business deployment service]
 (https://www.petervanderwoude.nl/post/getting-started-with-the-windows-update-for-business-deployment-service/)
 
 ## Item 2 ##
