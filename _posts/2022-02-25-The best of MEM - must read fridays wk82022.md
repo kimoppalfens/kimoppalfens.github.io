@@ -31,7 +31,9 @@ An interesting post + a promise to maintain the solution from [@ccmexec](https:/
 [Intune Configuration Profile for Google Chrome based on STIG](https://ccmexec.com/2022/02/intune-configuration-profile-for-google-chrome-based-on-stig/)
 
 ## Item 3 ##
-The What's new page for MEM is not something I should probably hightlight, however I've always had an interest in settings management. MacOS in settings catalg, that pretty nifty. [What’s new in Microsoft Endpoint Manager - 2202 (February) edition](https://techcommunity.microsoft.com/t5/microsoft-endpoint-manager-blog/what-s-new-in-microsoft-endpoint-manager-2202-february-edition/ba-p/3211530?utm_source=dlvr.it&utm_medium=twitter). 
+The What's new page for MEM is not something I should probably hightlight, however I've always had an interest in settings management. MacOS in settings catalg, that pretty nifty.
+
+ [What’s new in Microsoft Endpoint Manager - 2202 (February) edition](https://techcommunity.microsoft.com/t5/microsoft-endpoint-manager-blog/what-s-new-in-microsoft-endpoint-manager-2202-february-edition/ba-p/3211530?utm_source=dlvr.it&utm_medium=twitter). 
 
 
 
