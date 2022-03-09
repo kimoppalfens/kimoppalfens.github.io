@@ -30,9 +30,9 @@ The annoying bit is that you need either a file signed with the certificate or t
 
 ## Building the Policy ##
 I received a copy of one of the certs today, so decided to build the policy and share it out. I created the policy using the following PowerShell command.
-```Posh
+ ~~~ powershell
 Add-SignerRule -FilePath .\DefaultWindows_Audit.xml -Deny -CertificatePath .\nvidia.cer
-```
+~~~
 
 ## Item 3 ##
 
