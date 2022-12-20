@@ -12,14 +12,14 @@ tags:
   - Intune
   - MEM
 ---
-
+s
 This post details howto implement a Wdac policy to block the stolen Nvidia certs.
 
 # Intro #
 
 Early in March a Twitter conversation happened between a number of people regarding the Nvidia security incident that involved the leakage of some of Nvidia's expired codesigning certificates. This evolved into a recommendation by David Weston to use #WDAC as a first line of defense. You can find the twitter conversation below.
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">WDAC policies work on both 10-11 with no hardware requirements down to the home SKU despite some FUD misinformation i have seen so it should be your first choice.  Create a policy with the Wizard and then add a deny rule or allow specific versions of Nvidia if you need <a>pic.twitter.com/gcNLJoJ0Gn</a></p>&mdash; David Weston (DWIZZZLE) (@dwizzzleMSFT) <a href="https://twitter.com/dwizzzleMSFT/status/1499527802382471188">March 4, 2022</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">WDAC policies work on both 10-11 with no hardware requirements down to the home SKU despite some FUD misinformation i have seen so it should be your first choice.  Create a policy with the Wizard and then add a deny rule or allow specific versions of Nvidia if you need. </p>&mdash; David Weston (DWIZZZLE) (@dwizzzleMSFT) <a href="https://twitter.com/dwizzzleMSFT/status/1499527802382471188">March 4, 2022</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## The basics ##
