@@ -22,7 +22,7 @@ https://twitter.com/TheWMIGuy/status/1554134893113778177
 So Adam Juelich had a conversation with Mike Danoski about AppLocker in Intune. Somewhere along that conversation Adam mentioned WDAC, difficult and "Happy to be proven wrong, though" in one sentence, so here we are :-) 
  Adam has done a number of AppLocker implementations that were easier to get going than a WDAC implementation is considered to be. So, in this blogpost, we're going to try and mimick his AppLocker approach as good as we can with Windows Defender Application Control. 
 
- <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">WDAC policies work on both 10-11 with no hardware requirements down to the home SKU despite some FUD misinformation i have seen so it should be your first choice.  Create a policy with the Wizard and then add a deny rule or allow specific versions of Nvidia if you need. </p>&mdash; David Weston (DWIZZZLE) (@dwizzzleMSFT) <a href="https://twitter.com/dwizzzleMSFT/status/1499527802382471188">March 4, 2022</a></blockquote>
+ <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">WDAC policies work on both 10-11 with no hardware requirements down to the home SKU despite some FUD misinformation i have seen so it should be your first choice.  Create a policy with the Wizard and then add a deny rule or allow specific versions of Nvidia if you need. </p>&mdash; David Weston (DWIZZZLE) (@dwizzzleMSFT) <a href="https://twitter.com/acjuelich/status/1554094399537160194">March 4, 2022</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
