@@ -7,6 +7,7 @@ date: 2002-02-09
 categories:
   - MEM
   - WDAC
+  - WDAC
 tags:
   - SCCM
   - ConfigMgr
@@ -15,17 +16,29 @@ tags:
   - WDAC
 ---
 
+
 We've done quite a bit of Application Control work in the past months/years. One item that is always challenging in these types of projects is end-user communication. This post details one option for improving that communication.
 
 https://twitter.com/TheWMIGuy/status/1554134893113778177
 # The Backstory #
-So Adam Juelich had a conversation with Mike Danoski about AppLocker in Intune. Somewhere along that conversation Adam mentioned WDAC, difficult and "Happy to be proven wrong, though" in one sentence, so here we are :-) 
+So Adam Juelich [Twitter]("https://twitter.com/acjuelich") had a conversation with Mike Danoski [Twitter]("https://twitter.com/MikeDanoski") about AppLocker in Intune. Somewhere along that conversation Adam mentioned WDAC, difficult and "Happy to be proven wrong, though" in one sentence, so here we are :-) 
  Adam has done a number of AppLocker implementations that were easier to get going than a WDAC implementation is considered to be. So, in this blogpost, we're going to try and mimick his AppLocker approach as good as we can with Windows Defender Application Control. 
 
- <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">WDAC policies work on both 10-11 with no hardware requirements down to the home SKU despite some FUD misinformation i have seen so it should be your first choice.  Create a policy with the Wizard and then add a deny rule or allow specific versions of Nvidia if you need. </p>&mdash; David Weston (DWIZZZLE) (@dwizzzleMSFT) <a href="https://twitter.com/acjuelich/status/1554094399537160194">March 4, 2022</a></blockquote>
+ <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">A lot of times I would implement AppLocker to primarily, initially, only allow certain Apps to be installed in the User Profile (user-based Applications).  That solves a lot of issues in a lot of environments.  That seems difficult to do in WDAC.  Happy to be proven wrong, though </p>&mdash; Adam Juelich (@@acjuelich) <a href="https://twitter.com/acjuelich/status/1554094399537160194">Aug 1, 2022</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+# Getting Started
 
+## The Basics - Mimicking the Default Applocker rules
+### Default Applocker Rules
+
+### A Default Windows Defender Application Control Policy
+
+## Adding some additional Path Rules
+
+## Adding some publisher rules
+
+## The differences between this "Classic" Applocker implementation and WDAC
  # The Why/ the tradeoffs #
  ## Why? ##
  Let's get to the Why question (Yes, Wally, I know, I hate why questions to, but people keep asking 'em)>
