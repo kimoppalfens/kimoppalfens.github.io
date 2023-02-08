@@ -35,16 +35,22 @@ Summary: a perfect score for the WDAC team in january.
 # The nitty gritty details #
 ## The campaigns ##
 ### Threat Insights: OAuth consent phishing trust abuse ###
+This campaing focuses on credential phishing. A technique that can't be stopped by application control technologies. As a result we score it with -1, not applicable.
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-OauthConsentPhishingTrustAbuse.png)
 ### SystemBC tool used in human-operated ransomware intrusions
+Fully blocked by any application control implementation that we analyse. The SystemBC tool kicks off by launching a .exe.
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-SystemBC tool.png)
 ### DEV-1039 mass SQL server exploitation continues to deliver Mallox ransomware
+Fully blocked by any application control implementation that we analyse. The campaing is kicked off by a PowerShell command that launches a .exe.
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-mass SQL server exploitation.png)
 ### CVE-2022-47966: Zoho ManageEngine unauthenticated SAML XML RCE vulnerability
+This campaing's analyst report and the vendor's report do not contain enough details to assess application control's effectiveness. 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-ZohoManageEngineUnauthenticatedSaml.png)
 ### Emerging threat group DEV-0671 deploys Cuba ransomware
+This one is definitely debatable. WDAC blocks this campaign. Applocker might or might not. The initial steps would be blocked, but the threat actors clearly know how to circumvent applocker implementations.
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-CubaRansomware.png)
 ### DEV-0300 ransomware activity
+This campaign's analyst report does not contain enough details to assess application control's effectiveness.
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-Dev-0300.png)
 
 
