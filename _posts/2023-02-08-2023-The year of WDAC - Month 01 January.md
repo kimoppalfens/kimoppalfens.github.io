@@ -23,7 +23,7 @@ In both technologies we assume your users are NOT local administrators. Implemen
 
 Additionally, we look at the report and what happens prior to the hands-on-keyboard phase of a campaign, if one exist. If a hands-on-keyboard phase exists and your implementation does not block scripts and/or dll's than we assume the threat actor behind the keyboard can easily circumvent your policy by porting their tools to Powershell or dll.
 
-# TL;DR #
+# TL;DR  #
 January 2023 had __5 threat campaigns__ in Microsoft Defender for Endpoint analyzed.
 __1 Threat campaign did not involve executing code on client systems__, so there's no reasonable expectation that an application control technology could stop this. We mark these campaigns as out-of-scope for our analysis and statistics.
 __1 Threat campaign lacked enough details for us to make an informed decission__ as to whether an application control implementation could have stopped the campaign from wreaking havoc. We mark these campaigns as out-of-scope for our analysis and statistics.
