@@ -1,5 +1,5 @@
 ---
-title: "Getting started with WDAC by Kim featuring Adam."
+title: "The year of WDAC - January 2023"
 header:
   teaser: mustread-512-384.jpg
 author: Kim Oppalfens
@@ -24,9 +24,9 @@ In both technologies we assume your users are NOT local administrators. Implemen
 Additionally, we look at the report and what happens prior to the hands-on-keyboard phase of a campaign, if one exist. If a hands-on-keyboard phase exists and your implementation does not block scripts and/or dll's than we assume the threat actor behind the keyboard can easily circumvent your policy by porting their tools to Powershell or dll.
 
 # TL;DR  #
-January 2023 had __5 threat campaigns__ in Microsoft Defender for Endpoint analyzed.
+January 2023 had __6 threat campaigns__ in Microsoft Defender for Endpoint analyzed.
 __1 Threat campaign did not involve executing code on client systems__, so there's no reasonable expectation that an application control technology could stop this. We mark these campaigns as out-of-scope for our analysis and statistics.
-__1 Threat campaign lacked enough details for us to make an informed decission__ as to whether an application control implementation could have stopped the campaign from wreaking havoc. We mark these campaigns as out-of-scope for our analysis and statistics.
+__2 Threat campaign lacked enough details for us to make an informed decission__ as to whether an application control implementation could have stopped the campaign from wreaking havoc. We mark these campaigns as out-of-scope for our analysis and statistics.
 
 __The 3 other campaigns would have all been stopped by any Windows Defender Application Control implementation__. Out of these 3, __1 campaign made use of dll's, PowerShell scripts and the well-known RegSvr32 bypass for Applocker.__ The threat actors behind this campaign clearly used knowledge of Applocker and popular implementations of it to allow their campaign to move forward even when Applocker was implemented.
 
@@ -41,11 +41,11 @@ Summary: a perfect score for the WDAC team in january.
 ### DEV-1039 mass SQL server exploitation continues to deliver Mallox ransomware
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-mass SQL server exploitation.png)
 ### CVE-2022-47966: Zoho ManageEngine unauthenticated SAML XML RCE vulnerability
-![alt]({{ site.url }}{{ site.baseurl }}/images/TWdac-Jan2023-OauthConsentPhishingTrustAbuse.png)
-### Emerging threat group DEV-0671 deploys Cuba ransomware
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-ZohoManageEngineUnauthenticatedSaml.png)
-### DEV-0300 ransomware activity
+### Emerging threat group DEV-0671 deploys Cuba ransomware
 ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-CubaRansomware.png)
+### DEV-0300 ransomware activity
+![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Jan2023-Dev-0300.png)
 
 
 ## Implementation Details ##
