@@ -3,16 +3,10 @@ title: "Getting started with WDAC by Kim featuring Adam."
 header:
   teaser: mustread-512-384.jpg
 author: Kim Oppalfens
-date: 2002-02-09
+date: 2023-02-08
 categories:
-  - MEM
-  - WDAC
   - WDAC
 tags:
-  - SCCM
-  - ConfigMgr
-  - Intune
-  - MEM
   - WDAC
 ---
 
