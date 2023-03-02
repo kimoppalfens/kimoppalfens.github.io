@@ -3,7 +3,7 @@ title: "The year of WDAC - February 2023"
 header:
   teaser: mustread-512-384.jpg
 author: Kim Oppalfens
-date: 2023-03-08
+date: 2023-03-01
 categories:
   - WDAC
 tags:
