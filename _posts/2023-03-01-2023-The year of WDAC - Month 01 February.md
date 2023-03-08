@@ -28,10 +28,10 @@ January 2023 had __10 threat campaigns__ in Microsoft Defender for Endpoint anal
 __2 Threat campaigns did not involve executing code on client systems__, so there's no reasonable expectation that an application control technology could stop this. We mark these campaigns as out-of-scope for our analysis and statistics.
 __1 Threat campaign lacked enough details for us to make an informed decission__ as to whether an application control implementation could have stopped the campaign from wreaking havoc. We mark these campaigns as out-of-scope for our analysis and statistics.
 
-__The 7 other campaigns would have all been stopped by any Windows Defender Application Control implementation__. 
+__The 7 other campaigns would have all been stopped by any Windows Defender Application Control implementation enforcing the integrity of scripts__. 
 
 Out of these 7, __3__ campaigns made use of dll's to evade app control implementation that do not enforce DLL rules.
-__1__ campaign was PowerShell based evading application control implementations that do not enforce Script Enforcement aka PowerShell Constrained language mode.
+__1__ campaign was PowerShell based, evading application control implementations that do not enforce Script Enforcement aka PowerShell Constrained language mode.
 
 Summary: a perfect score for the WDAC team in february, provided you don't disable script enforcement. Disabling Script enforcement would've opened you up to 1 campaign.
 
