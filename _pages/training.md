@@ -21,8 +21,14 @@ students will get access to a personal online lab environment to run exercices t
 A collaboration channel will be available during and after this training, for questions, follow-up and sharing experiences amongst people that are working on a similar project.
 
 # When #
-The training will start on Tuesday 12th of October 2021 and will finish on Thursday the 25th of November 2021.
-There won't be any sessions over the MMS Miami break end of October till early november.
+The training will start on Tuesday 19th of September 2023 and will finish on Thursday the 19th of October 2023.
+Dates:
+- 19th of September & 21st of September
+- 26th of September & 28th of September
+- 3rd of October & 5th of October
+- 10th of October & 12th of October
+- 17th of October & 19th of October
+
 
 # Registration # 
 
