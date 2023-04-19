@@ -35,7 +35,7 @@ __The 12 other campaigns would have all been stopped by any Windows Defender App
 Out of these 12, __5__ campaigns made use of dll's to evade app control implementation that do not enforce DLL rules.
 __4__ campaigns were script based, evading application control implementations that do not enforce Script Enforcement aka PowerShell Constrained language mode.
 
-Summary: a perfect score for the WDAC team in march, provided you don't disable script enforcement. Disabling Script enforcement would've opened you up to 5 campaigns.
+Summary: a perfect score for the WDAC team in march, provided you don't disable script enforcement. Disabling Script enforcement would've opened you up to 4 campaigns.
 
 # The nitty gritty details #
 ## The campaigns ##
