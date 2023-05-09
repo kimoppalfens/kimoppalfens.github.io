@@ -5,6 +5,7 @@ excerpt: "This page contains a series of blog topics on leveraging ConfigMgr if 
 sitemap: false
 permalink: /CloudSCCM/
 author_profile: true
+author: OSCC
 date: 2023-05-09T12:26:34-04:00
 modified: 2023-05-09T11:05:08-05:00
 feature:
