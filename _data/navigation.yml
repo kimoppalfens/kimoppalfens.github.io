@@ -3,8 +3,8 @@ main:
   - title: "Services"
     url: /osccservices/
 
-  - title: "Products"
-    url: /tools/
+  - title: "CloudSCCM"
+    url: /CloudSCCM/
 
   - title: "Password Solutions"
     url: /PasswordSolutions/
