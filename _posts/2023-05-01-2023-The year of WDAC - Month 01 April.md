@@ -40,47 +40,45 @@ Additionally, we look at the report and what happens prior to the hands-on-keybo
 ## The campaigns ##
 ### Actor profile: Storm-1219 ###
 This actor typically makes use of standard remote access tools, which exe's should be stopped by your Application Control implementation.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-feb2023-3CXDesktopApp.png)
+
 ### Activity profile: Lace Tempest exploits critical PaperCut MF vulnerabilities ###
 This activity makes use of vulnerability in PaperCut that allows code execution as NT Authority\System. As such, when code execution is achieved using the DLL the code then possesses the necessary rights to disable Application Control technologies.
 The detected activity used PowerShell to download the DLL, but that PowerShell code would proably be able to run in Constrained language mode. Only DLL blocking would block this activity. on top of that this activity downloads its binary to the c:\windows folder and in doing so __abuses the default Applocker rules__ that trust everything in C:\windows.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Dev-0501Blackcat.png)
+
 ### Activity profile: Storm-1232 delivers malware through compromised United States tax filing service ###
 This method uses a stolen codesigning cert to deliver an executable. Application Control should block this unless you have a publisher rule for the owner of the CodeSigning certificate.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-InformationStealers.png)
+
 ### Behavior profile: DLL sideloading and DLL search order hijacking ###
 Not a real campaign, more a reminder of a technique being used by Malware authors. As the name implies anything blocking DLL's would thrump this technique.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-WinDealer.png)
+
 ### Threat Insights: Nation-state threat actor Mint Sandstorm refines tradecraft to attack high-value targets ###
 Makes use of Python code and Impacket, code that should not be allowed to run if you haven't made the Python interpreter trusted.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-WinDealer.png)
 ### MERCURY and DEV-1084: Destructive attack on hybrid environment ###
 This attack started of using a high privileged account. Our assumption is that you protect your high privilege accounts. This is not something Application Control can prevent easily as new rules could be created by the high-privilege account owner.
-![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Dev-0506.png)
+
 ### Actor profile: DEV-1118 ###
 Makes use of Python code and Impacket, code that should not be allowed to run if you haven't made the Python interpreter trusted.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Phosphorus.png)
+
 ### Tool Profile: Qakbot ###
 To the best of our knowledge, Qakbot still relies on a mix of DLL code and PowerShell code that would be blocked by an Application Control implementation that blocks untrusted DLL's and enforces Constrained Language mode for untrusted PowerShell.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Outlook Elevation of privilege.png)
+
 ### Threat insights: DEV-0196: Quadreams KingsPawn malware used to target civil society in Europe  North America  the Middle East  and Southeast Asia ###
 This campaign targeted devices running IOS. As such it can not be reasonabilly be expected to be stopped by a Windows Application Control technology. Marked with -1 not applicable.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Emotet Evasion.png)
+
 ### Activity profile: DEV-0950 exploits GoAnywhere to deliver Truebot and Clop ransomware ###
 Another campaign making use of DLL based code, continuing the trend that an Application Control implementation that does NOT look at DLL's can be bypassed.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Caffeine phishing.png)
+
 ### Vulnerability profile: CVE-2023-28252 Windows Common Log File System driver vulnerability ###
 The Common Log File System Driver runs as LocalSystem. As a result any exploit against this driver grants the malware author the rights to create new rules and/or disable your Application Control implementation. In short, allowing any form of unvalidated code execution (exe, dll or script) can serve as a bypass to your policy. The Common Log File System driver is becoming a more popular target as it's exploitation delivers very similar opportunities to exploiting the Print Spooler service.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Dev0381Smartscreen.png)
+
 ### Actor profile: STRONTIUM ###
 This report lacks the technical detail for us to make an assessment. Marked with -1 not applicable.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Exchange Vulnerability.png)
+
 ### Activity profile: 3CXDesktopApp possible supply chain compromise ###
 DLL's are used in that campaign, in contrast with the report last month (march 2023), there's no longer mention of an Exe, other than the 3CXDesktop app exe itself that would be blocked. Another indication that using DLL's to circumvent Application Control policies that do not take this into account are circumvented ever more frequently.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-mar2023-Remcos Payload.png)
+
 ### Tool profile: BlackCat ransomware ###
 To the best of our knowledge the BlackCat ransomware is typically deleivered as a .exe file. All Application Control implementations should block this exe.
-[comment_text]: # ![alt]({{ site.url }}{{ site.baseurl }}/images/Wdac-Mar2023-NakedPages.png)
 
 ## Implementation Details ##
 The different implementations we take into consoderation are:
