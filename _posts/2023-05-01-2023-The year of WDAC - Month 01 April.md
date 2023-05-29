@@ -10,22 +10,21 @@ tags:
   - WDAC
 ---
 
-I tweeted at the start of the year that 2023 should be the year of Windows Defender Application Control aka WDAC.
-
 # Intro #
 This series uses Microsoft Defender for Endpoint as input on threats that surfaced in the month. More specifically we'll look at the Threat Analytics page and the Threat Campaigns that are analyzed on there. Based on the analyst reports we're doing our best to assess whether an application control implementation would have stopped this specific campaigns. 
 
 # TL;DR  #
-The threat analysts at Microsoft delivered __14__ threat reports in April 2023. So, we had__14 threat campaigns__ in Microsoft Defender for Endpoint to analyze.
+The threat analysts at Microsoft delivered __14__ threat reports in April 2023. 
 No less than __4 campaigns__ made use of code in __DLL's__ to execute their malicious code. Continuing the trend to abuse this as a way to execute code. A trend that bypasses application control implementations that do NOT take __DLL's__ into account.
 
 __1 campaign__ relied on PowerShell scripting to do its bidding.
+
 The PaperCut vulnerability downloads its malicious binary to a subfolder in c:\Windows and would bypass Applocker implementations that make use of the Default Rules to make the Windows OS binaries trusted.
 
 We didn't analyze 2 out of the 14 campaigns, 1 didn't have enough data for us to make an assessment, the other one targeted IOS and as such is considered to be out of scope.
 
-
 Summary: a perfect score for the WDAC team in march, provided you don't disable script enforcement. Disabling Script enforcement would've opened you up to 1 campaign.
+
 
 # Methodology #
 In our assessment we look at a couple of different common implementation strategies of Microsoft application control technologies. The implementations we take into consideration are Applocker setups we've seen a number of times, the WDAC implementations are a mix of implementations we've seen with possible implementations we've imagined.
