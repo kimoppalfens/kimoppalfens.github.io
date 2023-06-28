@@ -1,6 +1,7 @@
 ---
 title: "WDAC Training halfway through selling out"
 header:
+  overlay_image: WDACEfficiency-1280x960.png
   teaser: mustread-512-384.jpg
 author: Kim Oppalfens
 date: 2023-06-27
