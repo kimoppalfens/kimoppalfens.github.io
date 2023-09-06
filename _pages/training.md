@@ -1,5 +1,5 @@
 ---
-title: Windows Defender Application Control
+title: Windows Defender Application Control - Sold out!
 author: Win10 Training 
 layout: single
 excerpt: "training overview"
@@ -9,7 +9,7 @@ author_profile: true
 ---
 
 # Overview #
-OSCC is organising a new training focussed on one of the most powerful Windows 10 security features. Windows Defender Application control is an application allow-listing solution that allows you to take your security posture to a whole new level. It does so by controlling which applications are allowed to run and helps you limit the sources where code can come from to a limited set of items you manage. 
+OSCC is organising a new training focussed on one of the most powerful Windows 10&11 security features. Windows Defender Application control is an application allow-listing solution that allows you to take your security posture to a whole new level. It does so by controlling which applications are allowed to run and helps you limit the sources where code can come from to a limited set of items you manage. 
 
 This training will provide you with all the necessary pieces of information, caveats and insight knowledge gained through our vast experience in this topic in order to be able to properly implement an application control policy in your environment.  The focus of this training is the protection of your core servers (AD, PKI, MEMCM) and workstations in your environment. 
 
@@ -31,6 +31,8 @@ Dates:
 
 
 # Registration # 
+## Class is Sold out! ##
+Any registrations that are completed now will add you to the waiting list should we have last minute cancelations and put you on a list of people to contact when dates for the next run of the class are confirmed.
 
 <iframe width="750px" height= "500px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=2ona4-q3REiP6_rVRfcdbM9Y59aORShCv4KDmN_di6lUQ0hRSFRUTlRXSzZTVVcxSTRURFdVN05STC4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
 
