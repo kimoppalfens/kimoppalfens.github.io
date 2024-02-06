@@ -8,28 +8,28 @@ permalink: /training/
 author_profile: true
 ---
 
-# Overview #
+## Overview ##
 We proudly announce this LIVE Online Training focusing on Windows Defender Application Control using ConfigMgr and Intune.  It is well-known that Windows Defender Application Control is the security control with the highest effectiveness in stopping malware. Kim Oppalfens and Tom Degreef present this Masterclass.
 
 Fighting malware has become an uphill battle in the last couple of years. This class intends to give you a way to drastically turn the tables by implementing allowlisting based on Microsoft's most recent iteration of the application allowlisting feature. There simply is no functionality out there that has the ability to raise your organization's security posture as much as what application allowlisting can achieve. Best of all, the license for it is already included in your Windows license.
 
 In this LIVE Online Training, you will learn to build and operate a Windows Defender Application Control implementation through ConfigMgr or Intune using an approach recommended by the Microsoft docs, in which the policies are changed as little as possible.
 
-# Hands-on Labs #
+## Hands-on Labs ##
 Over 60 percent of the time you spend in this live training is dedicated to hands-on labs and exercises, all based on  real-life scenarios and realistic methods tested and verified to work in real-world production environments.  The labs are self-paced, and the instructors are highly available for support. The material is built so the lab exercises can be repeated in your environment.
 
-# Added Bonus #
+## Added Bonus ##
 The best part of this LIVE Online Training is that you will receive access to all the sample files and scripts used during training.  With these, you can rerun the exercises after completing the training and modify them for use in your environment.
 
 
-# This Live Online Training runs for five days and includes: # 
+## This Live Online Training runs for five days and includes: ## 
 
 - Two four-hour live webinars a week, handling two modules a day (with plenty of time for Q&A)
 - A community of individuals with the same goals
 - A private Facebook group with other participants for sharing reflections, progress, etc.
 - The chance to ask Kim and Tom, two seasoned WDAC professionals, questions directly in a live training environment
 
-# This LIVE Online Training is for YOU if you want to: #
+## This LIVE Online Training is for YOU if you want to: ##
 
 - Learn how to implement the single most effective security control against ransomware and other malware
 - Master Windows Defender Application Control
@@ -38,10 +38,10 @@ The best part of this LIVE Online Training is that you will receive access to al
 - Achieve control and troubleshoot Windows Defender Application Control
 ...and so much more!
 
-# Prerequisites #
+## Prerequisites ##
 Basic understanding of networking fundamentals such as TCPIP and DNS. Knowledge of Active Directory and Configuration Manager. Scripting experience (VBScript, PowerShell) is helpful but not a requirement.
 
-# Date and Time for Live Webinars #
+## Date and Time for Live Webinars ##
 
 Dates and start times for the next 5-Day Masterclass:
 
@@ -52,6 +52,7 @@ Dates and start times for the next 5-Day Masterclass:
 - Tuesday, April 30, 2024, 9:00 AM-12:30 PM Central time (US and Canada)
 
 [REGISTER HERE](https://academy.viamonstra.com/order?ct=5a7fcf5d-8ed5-4b6a-b6c3-edeb94d680df)
+<span style="font-size:3em;">[REGISTER HERE](https://academy.viamonstra.com/order?ct=5a7fcf5d-8ed5-4b6a-b6c3-edeb94d680df)</span>
 
 # Masterclass Outline # 
 ## Module 1: Introduction ##
