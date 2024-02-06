@@ -7,7 +7,6 @@ sitemap: false
 permalink: /training/
 author_profile: true
 ---
-
 ## Overview ##
 We proudly announce this LIVE Online Training focusing on Windows Defender Application Control using ConfigMgr and Intune.  It is well-known that Windows Defender Application Control is the security control with the highest effectiveness in stopping malware. Kim Oppalfens and Tom Degreef present this Masterclass.
 
@@ -51,8 +50,7 @@ Dates and start times for the next 5-Day Masterclass:
 - Thursday, April 25, 2024, 9:00 AM-12:30 PM Central Time (US and Canada)
 - Tuesday, April 30, 2024, 9:00 AM-12:30 PM Central time (US and Canada)
 
-[REGISTER HERE](https://academy.viamonstra.com/order?ct=5a7fcf5d-8ed5-4b6a-b6c3-edeb94d680df)
-<span style="font-size:3em;">[REGISTER HERE](https://academy.viamonstra.com/order?ct=5a7fcf5d-8ed5-4b6a-b6c3-edeb94d680df)</span>
+<span style="font-size:2em;text-align: center;">[REGISTER HERE](https://academy.viamonstra.com/order?ct=5a7fcf5d-8ed5-4b6a-b6c3-edeb94d680df)</span>
 
 # Masterclass Outline # 
 ## Module 1: Introduction ##
