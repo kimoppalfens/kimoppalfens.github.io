@@ -1,5 +1,5 @@
 ---
-title: Windows Defender Application Control - Sold out!
+title: Windows Defender Application Control
 author: Win10 Training 
 layout: single
 excerpt: "training overview"
@@ -9,70 +9,140 @@ author_profile: true
 ---
 
 # Overview #
-OSCC is organising a new training focussed on one of the most powerful Windows 10&11 security features. Windows Defender Application control is an application allow-listing solution that allows you to take your security posture to a whole new level. It does so by controlling which applications are allowed to run and helps you limit the sources where code can come from to a limited set of items you manage. 
+We proudly announce this LIVE Online Training focusing on Windows Defender Application Control using ConfigMgr and Intune.  It is well-known that Windows Defender Application Control is the security control with the highest effectiveness in stopping malware. Kim Oppalfens and Tom Degreef present this Masterclass.
 
-This training will provide you with all the necessary pieces of information, caveats and insight knowledge gained through our vast experience in this topic in order to be able to properly implement an application control policy in your environment.  The focus of this training is the protection of your core servers (AD, PKI, MEMCM) and workstations in your environment. 
+Fighting malware has become an uphill battle in the last couple of years. This class intends to give you a way to drastically turn the tables by implementing allowlisting based on Microsoft's most recent iteration of the application allowlisting feature. There simply is no functionality out there that has the ability to raise your organization's security posture as much as what application allowlisting can achieve. Best of all, the license for it is already included in your Windows license.
 
-# Practical details #
-Each module will be presented live and will run for about 2 hours. Trainings will run twice a week (Tuesdays and Thursdays) at 7PM CET (10AM PST / 1PM EST) for 5 weeks.
+In this LIVE Online Training, you will learn to build and operate a Windows Defender Application Control implementation through ConfigMgr or Intune using an approach recommended by the Microsoft docs, in which the policies are changed as little as possible.
 
-students will get access to a personal online lab environment to run exercices that are specifically crafted for this training. Once the training is over, students will be able to download the lab offline for continued access.
+# Hands-on Labs #
+Over 60 percent of the time you spend in this live training is dedicated to hands-on labs and exercises, all based on  real-life scenarios and realistic methods tested and verified to work in real-world production environments.  The labs are self-paced, and the instructors are highly available for support. The material is built so the lab exercises can be repeated in your environment.
 
-A collaboration channel will be available during and after this training, for questions, follow-up and sharing experiences amongst people that are working on a similar project.
-
-# When #
-The training will start on Tuesday 19th of September 2023 and will finish on Thursday the 19th of October 2023.
-Dates:
-- 19th of September & 21st of September
-- 26th of September & 28th of September
-- 3rd of October & 5th of October
-- 10th of October & 12th of October
-- 17th of October & 19th of October
+# Added Bonus #
+The best part of this LIVE Online Training is that you will receive access to all the sample files and scripts used during training.  With these, you can rerun the exercises after completing the training and modify them for use in your environment.
 
 
-# Registration # 
-## Class is Sold out! ##
-Any registrations that are completed now will add you to the waiting list should we have last minute cancelations and put you on a list of people to contact when dates for the next run of the class are confirmed.
+# This Live Online Training runs for five days and includes: # 
 
-<iframe width="750px" height= "500px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=2ona4-q3REiP6_rVRfcdbM9Y59aORShCv4KDmN_di6lUQ0hRSFRUTlRXSzZTVVcxSTRURFdVN05STC4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+- Two four-hour live webinars a week, handling two modules a day (with plenty of time for Q&A)
+- A community of individuals with the same goals
+- A private Facebook group with other participants for sharing reflections, progress, etc.
+- The chance to ask Kim and Tom, two seasoned WDAC professionals, questions directly in a live training environment
+
+# This LIVE Online Training is for YOU if you want to: #
+
+- Learn how to implement the single most effective security control against ransomware and other malware
+- Master Windows Defender Application Control
+- Effectively implement WDAC using ConfigMgr
+- Effectively implement WDAC using Intune
+- Achieve control and troubleshoot Windows Defender Application Control
+...and so much more!
+
+# Prerequisites #
+Basic understanding of networking fundamentals such as TCPIP and DNS. Knowledge of Active Directory and Configuration Manager. Scripting experience (VBScript, PowerShell) is helpful but not a requirement.
+
+# Date and Time for Live Webinars #
+
+Dates and start times for the next 5-Day Masterclass:
+
+- Tuesday, April 16, 2024, 9:00 AM-12:30 PM Central Time (US and Canada)
+- Thursday, April 18, 2024, 9:00 AM-12:30 PM Central Time (US and Canada)
+- Tuesday, April 23, 2024, 9:00 AM-12:30 PM Central Time (US and Canada)
+- Thursday, April 25, 2024, 9:00 AM-12:30 PM Central Time (US and Canada)
+- Tuesday, April 30, 2024, 9:00 AM-12:30 PM Central time (US and Canada)
+
+[REGISTER HERE](https://academy.viamonstra.com/order?ct=5a7fcf5d-8ed5-4b6a-b6c3-edeb94d680df)
+
+# Masterclass Outline # 
+## Module 1: Introduction ##
+
+* Microsoft's Application Allowlisting History
+* Windows Defender Application Control and AppLocker Comparison
+* Measuring Application Allowlisting Effectiveness
+* High-Profile Threat Campaigns vs Application Allowlisting
 
 
-# Module details #
-## Intro ##
+## Module 2: PowerShell Constrained Language Mode ##
 
-Applocker, Windows Defender Application control's little brother, is the predecessor application approval technology Microsoft developed. An understanding of their differences, their  similarities and how they interact is hugely beneficial to help you understand Application Control in general.
+* The PowerShell Execution Policy Explained
+* Overview of the Different PowerShell Language Modes
+* PowerShell's Dot Sourcing Feature and WDAC
+* Codesigning PowerShell Code
 
-## PowerShell Constrained Language Mode ##
+## Module 3: WDAC Basics - Rule Options ##
 
-The idea behind controlling what code can run is to increase the barrier of entry for ransomware attacks. If PowerShell is left wide open that goal won't be met. In PowerShell Constrained Language mode we'll look at how to block PowerShell usage from the bad folks out there but still keep it available for your own Systems Management needs.
+* The Base and Supplemental Policy Format
+* Analyzing the Available Policy Rule Options
+* Inspecting the Windows Default Policies
+* WDAC Tooling: The WDAC Wizard for Building and Editing Policies
+* The Intelligent Security Graph's Role
 
-## WDAC Basics - rule options ##
+## Module 4: WDAC Basics - CI Rules ##
 
-This is where we start looking into the elements of a WDAC policy. The highest level items in a WDAC policy are the rule options. These impact the overall behavior of the policy. In this module you'll get an introduction to what the rule options do and how to build your first policy.
+* Rule Types: Allow and Deny
+* Certificate-based Rules
+* File Object Characteristics-based Rules
+* Signing Scenarios: Windows and Driver Mode
+* Path Rule Gotcha's
+* Handling Packaged Apps (aka Modern or Store Apps)
+* Rule Processing Explained
 
-## WDAC Basic - CI rules ##
+## Module 5: WDAC Managed Installers ##
 
-Code Integrity (CI) Rules are objects to allows certain code/software to run on your systems. There are multiple ways of making software trusted, CI Rules is one of those ways. CI Rules come in different shapes and forms. This module is about explaining what sort of rules are available to you and how they work.
+* The Magic of Managed Installers
+* Creating Your Own Managed Installers
+* Understanding the Impact of Process Trees
+* NTFS Extended Attributes in WDAC
+* Managed Installer Logging
+* Known Issues
 
-## WDAC Managed Installers ##
+## Module 6: Windows Security Catalog Usage and WDAC ##
 
-In the previous module we saw one way of making applications/code trusted. Building rules for every piece of software can be tedious. WDAC Managed Installer functionality is a flexible way to make applications/code trusted in an enterprise environment that relies on a Microsoft systems management solution. After this part you'll understand the MI functionality and its challenges.
+* Security Catalog Basics
+* Creating Security Catalogs
+* WDAC Tooling: Package Inspector
+* Automating Package Inspector
+* Catalog Management
+* MSIX as a Catalog
 
-## Working with Catalogs ##
-Using security catalogs is a way to make files trusted that is being used by drivers for over 2 decades. This proven technology can equally be used to make application files trusted for Applocker. This section will cover managing .cat files and the newer msix format as a way to make applications trusted.
 
-## MEMCM / Intune policies ##
+## Module 7: ConfigMgr and Intune Policies for WDAC ##
 
-With a thorough understanding of the mechanics of Managed Installers, let's move on to actually implementing this functionality using Microsoft's systems management solutions. This module will look into the options available with both Microsoft Endpoint Manager Configuration Manager and MEM ( Intune).
+* ConfigMgr Policy Options
+* WDAC and .NET Native Images
+* Things Learned from Reverse Engineering the ConfigMgr Implementation
+* Impact of the Operating System Default Policies on the Resulting ConfigMgr Policy
+* Managed Installer Applied to Microsoft Systems Management Solutions
+* Intune Policy Options
+* Things Learned from Reverse Engineering the Intune Implementation
+* Intune Caveats
 
-## WDAC for Servers ##
+## Module 8: WDAC and Server Operating Systems ##
 
-Servers typically have a more static workload than workstations have. This makes them ideal candidates for an application control solution. Not all servers are created equal though. This section will focus on helping you build policies for 2 types of servers that, when compromised, can mean the loss of your entire environment. We're talking about Domain Controllers and System Center Manager Configuration Manager servers. Both have the capabilities to distribute code to a large set of devices within your organization to wreak havoc.
+* Selecting WDAC Prime Candidate Server Roles
+* Supported WDAC Features per Operating System Server SKU
+* Building (Server) Application Policies
+* Building a Domain Controller Policy
+* Building a Certificate Server Policy
+* Building a SQL Server Policy
+* Azure Plugins and Agents
 
-## Centralized Logs (ATP, Windows Event Forwarding, SCCM) ##
 
-WDAC logs events locally in the Windows Event viewer. To operationalize a WDAC practice a way to centralize these logs is indispensable. In this module we'll look at 3 different options to achieve this centralization.
+## Module 9: WDAC Logging ##
 
-## Developing a WDAC Implementation plan ##
+* Understanding the Events Logs
+* Understanding the Application Allowlisting Event IDs
+* The Event ID Tags
+* To Be Signed (TBS) Hashes and WDAC
+* The Correlation ID in the Event Log
+* Options to Centralize the Event Log
 
-Actually building a WDAC practice is what this training is all about. In the final section of this training we'll look at everything you've learned so far and how you combine this into a manageable solution that drastically increases your security posture.
+## Module 10: Developing an Implementation Plan ##
+
+* Making Your Application Allowlisting Case
+* Lifecycle of a Ransomware Incident
+* Kick Off Your Implementation
+* Authoring a Communication Strategy
+* Handling the End User Impact of Interactively Launched Processes
+* The Microsoft Recommended Block Rules
+* Working with Multiple WDAC Policies
