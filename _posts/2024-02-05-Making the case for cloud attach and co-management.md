@@ -24,7 +24,8 @@ For managers that read this, I'll briefly add what not having these means throug
 
 # Scope includes, but is not limited to **Azure AD Only** devices #
 
-One of the things Tom Degreef and I stress during this session is that this is geared towards both Azure AD (aka Entra ID) - Only devices as well as "Hybrid" joined devices.  A couple of strong misconceptions still survive in the Microsoft systems management world.
+This post is heavily inspired on a breakout session Tom Degreef and I have been presenting on at several events.
+One of the things heand I stress during this session is that this is geared towards both Azure AD (aka Entra ID) - Only devices as well as "Hybrid" joined devices.  A couple of strong misconceptions still survive in the Microsoft systems management world.
 
 One of the strongest ones is the tie that people tend to make between Azure AD only devices and the available Microsoft Systems management solutions. It's true that Active Directory Group policies are not available to you when managing Azure AD only devices. Frequently this introduces the split up between "on-prem" tools and "cloud" tools. That split-up is confusing in this respect as it just defines where the service is most often offered from, it does NOT define what it can manage. So, repeat after me, 
 
