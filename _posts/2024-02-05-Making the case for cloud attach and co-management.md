@@ -1,8 +1,8 @@
 ---
 title: "Unleashing Efficiency: Exploring the Benefits of Microsoft Endpoint Manager Co-Management and cloud attach"
 header:
-  overlay_image: template1280x960.jpg
-  teaser: template512x384.jpg
+  overlay_image: tOSCCD32aR00aP02ZL-Logo Only.jpg
+  teaser: OSCCD32aR00aP02ZL-Logo Only.jpg
 author: kimoppalfens
 date: 2024-02-05
 categories:
