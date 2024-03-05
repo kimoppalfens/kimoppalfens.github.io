@@ -1,7 +1,7 @@
 ---
-title: "WDAC Training halfway through selling out"
+title: "OSCC's WDAC training partners up with ViaMonstra!"
 header:
-  overlay_image: AppAllowlisting.png
+  overlay_image: AppAllowlisting1280x960.png
   teaser: mustread-512-384.jpg
 author: Kim Oppalfens
 date: 2023-06-27
