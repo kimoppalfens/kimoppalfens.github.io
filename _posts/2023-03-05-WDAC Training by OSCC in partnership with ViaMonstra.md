@@ -21,7 +21,7 @@ We've chosen to partner up with ViaMonstra to allow us to focus even more on the
 
 Tom and I have been investing time in application allowlisting in general and Windows Defender Application control in particular. This training is our yearly event where we pass on everything we've learned over the years.
 
-The training was previously promoted by Jeffrey Sutherland one of the thought leaders at Microsoft in the platform security space and responsible for WDAC.
+The training was previously promoted by Jeffrey Sutherland one of the thought leaders at Microsoft in the platform security space and responsible for WDAC. That was over 2 years ago, we've learned a ton since then, done numerous presentations, got busy developping stuff and integrated all of that knowledge in a 10-module training.
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">If you are looking to use WDAC or just want to develop your WDAC skill set, consider this course. 
 @TheWMIGuy has a wealth of expertise that he and @TomDegreef have built up. </p>&mdash; Jeffrey Sutherland (@J3ffr3y1974) <a href="https://twitter.com/j3ffr3y1974/status/1443974758614200322">October 1, 2021</a></blockquote>
