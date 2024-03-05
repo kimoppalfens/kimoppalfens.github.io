@@ -1,7 +1,7 @@
 ---
 title: "OSCC's WDAC training partners up with ViaMonstra!"
 header:
-  overlay_image: AppAllowlisting1280x960.png
+  overlay_image: logging1280x960.png
   teaser: mustread-512-384.jpg
 author: Kim Oppalfens
 date: 2023-06-27
