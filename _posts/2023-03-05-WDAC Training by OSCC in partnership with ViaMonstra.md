@@ -1,5 +1,5 @@
 ---
-title: "OSCC's WDAC training partners up with ViaMonstra!"
+title: "OSCC's WDAC training partners with ViaMonstra!"
 header:
   overlay_image: AppAllowlisting1280x960.jpg
   teaser: appallowlisting2.jpg
