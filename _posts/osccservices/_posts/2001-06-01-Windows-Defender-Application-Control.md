@@ -43,6 +43,8 @@ The result of this is like securing your house properly in the physical world. I
 Given the focus of OSCC on building secure desktop management services OSCC can assist in several ways. A custom Microsoft application whitelisting training was developed to get organizations with an interest in this solution up to speed. This training has been very well received by customers that have sat in on it.
 
 The training delivers the technical details needed to get going but equally contains an implementation approach including ideas around end user communication.
+The training takes place once a year and is delivered in partnership with ViaMonstra.
+ [Mastering Windows Defender Application Control Using ConfigMgr and Intune](https://academy.viamonstra.com/courses/mastering-windows-defender-application-control)
 
 ## Proof of concept consultancy ##
 
@@ -54,8 +56,8 @@ To assist with this OSCC has developed a Windows Defender Application trust engi
 
 The other challenge in implementing application whitelisting is knowing when your policy is ready for enforcement on devices. OSCC’s centralized inventory, which integrates into SCCM or other systems management solutions. This provides customers with a centralized view of blocked applications to help them decide when the time for enforcing the policy has arrived.
 
-# How much does the Microsoft application whitelisting training cost? #
-The training is priced at 9.500€ for up to 8 participants.
+# Can we get a dedicated class just for our organization? #
+We're open to working with you to make that happen, please contact us at kim.oppalfens@oscc.be
 
 # How much does the proof of concept consultancy cost? #
 The consultancy is billed per consultancy day and depends on the agreed scope of the poc.
