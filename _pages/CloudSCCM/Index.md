@@ -14,4 +14,4 @@ feature:
   category: CloudSCCM
 ---
 This is a temporary placeholder. We will post a blog series on how you can setup/maintain Configmgr fully in the cloud with no on-premise AD anymore.
-[OSCC Co-Management cloud only setup]("https://oscc.be/images/SuperCharge your Intune - Setup.pptx") 
+[OSCC Co-Management cloud only setup]("files/SuperChargeyourIntune-Setup.pptx") 
